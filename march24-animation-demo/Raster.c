@@ -1,12 +1,6 @@
-// win32 headers / standard headerfiles
-#include <windows.h>
-#include <stdio.h>	// i/o for file
-#include <stdlib.h> // exit() call
-// OpenGL related header files
-#include <gl/GL.h>
-
 // custom header files
 #include "Raster.h"
+#include "../common/common.h"
 
 // OpenGL realated libraries
 #pragma comment(lib, "opengl32.lib")
@@ -408,8 +402,6 @@ void display(void)
 	// code
 	// clear openGL bufferes
 	glClear(GL_COLOR_BUFFER_BIT);
-
-	glEnd();
 
 	// swap the bufferes
 	SwapBuffers(ghdc); // win32 function

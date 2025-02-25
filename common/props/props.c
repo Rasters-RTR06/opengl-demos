@@ -1,10 +1,5 @@
-// win32 headers / standard headerfiles
-#include <windows.h>
-#include <stdio.h>  // i/o for file
-#include <stdlib.h> // exit() call
-// OpenGL related header files
-#include <gl/GL.h>
-#include <math.h>
+// customer header files
+#include "../common.h"
 
 extern FILE *gpFile;
 
@@ -19,12 +14,12 @@ void drawBushAt(float centerX, float centerY, float radiusX, float radiusY)
 {
     // function prototypes
     float getRandomFloat();
+    void setCircularCurvePoints(float centerX, float centerY, float radiusH, float radiusV, float startAngle, float endAngle);
 
     // variable declarations
     static int setDots = 1;
-    int numberOfDots = 200;
-    static struct Dots dots[300];
-    float bushRadius = 0.05f;
+    int numberOfDots = 500;
+    static struct Dots dots[500];
 
     if (setDots != 0)
     {
@@ -33,7 +28,7 @@ void drawBushAt(float centerX, float centerY, float radiusX, float radiusY)
             // Generate random polar coordinates within the bush radius
             float radiusXUpdated = radiusX * sqrt(getRandomFloat()); // sqrt for uniform distribution
             float radiusYUpdated = radiusY * sqrt(getRandomFloat()); // sqrt for uniform distribution
-            float angle = 2.0f * 3.14159265358979323846f * getRandomFloat();
+            float angle = 2.0f * PI * getRandomFloat();
 
             // Convert polar to Cartesian coordinates
             dots[i].x = radiusXUpdated * cos(angle);
@@ -45,13 +40,7 @@ void drawBushAt(float centerX, float centerY, float radiusX, float radiusY)
         setDots = 0;
     }
 
-    // bush outline curves
-    glBegin(GL_LINES);
-    for (int i = 0; i < numberOfDots; i++)
-    {
-        // plot points
-    }
-
+    // bush filling
     glPointSize(3.0f); // Adjust point size as needed
     glBegin(GL_POINTS);
     for (int i = 0; i < numberOfDots; i++)
@@ -60,6 +49,12 @@ void drawBushAt(float centerX, float centerY, float radiusX, float radiusY)
         glColor3f(0.0f, dots[i].dotColor, 0.0f);              // Set the color
         glVertex2f(centerX + dots[i].x, centerY + dots[i].y); // Draw the point
     }
+    glEnd();
+
+    // bush outline curves
+    glBegin(GL_LINES);
+    glColor3f(1.0f, 1.0f, 1.0f);
+    setCircularCurvePoints(centerX, centerY, radiusX, radiusY, 0.0f, 2 * PI);
     glEnd();
 }
 
