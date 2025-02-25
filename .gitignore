@@ -398,3 +398,15 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# executables
+*.exe
+*.obj
+
+# windowing
+*.res
+Log.txt
+log.txt
+*log*.txt
+*Log*.txt
+*.res
