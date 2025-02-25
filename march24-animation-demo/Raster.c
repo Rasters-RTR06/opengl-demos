@@ -1,6 +1,6 @@
 // win32 headers / standard headerfiles
 #include <windows.h>
-#include <stdio.h> // i/o for file
+#include <stdio.h>	// i/o for file
 #include <stdlib.h> // exit() call
 // OpenGL related header files
 #include <gl/GL.h>
@@ -8,7 +8,7 @@
 // custom header files
 #include "Raster.h"
 
-//OpenGL realated libraries
+// OpenGL realated libraries
 #pragma comment(lib, "opengl32.lib")
 
 // Macros
@@ -26,7 +26,7 @@ DWORD dwStyle;
 WINDOWPLACEMENT wpPrev;
 // variable related to file I/O
 char gszLogFileName[] = "Log.txt";
-FILE* gpFile = NULL;
+FILE *gpFile = NULL;
 
 // active window related variables
 BOOL gbActiveWindow = FALSE;
@@ -35,7 +35,7 @@ BOOL gbActiveWindow = FALSE;
 BOOL gbEscapeKeyIsPressed = FALSE;
 
 // Opengl related global variable
-HDC ghdc = NULL; // global handle to device context
+HDC ghdc = NULL;   // global handle to device context
 HGLRC ghrc = NULL; // global handle to rendering context (rc -> rendering context, HGLRC -> handle to openGL rendering context)
 
 // Entry point function
@@ -79,8 +79,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 		exit(0);
 	}
 
-	int windowStartX = (screenWidth / 2 ) - (WIN_WIDTH / 2);
-	int windowStartY = (screenHeight / 2 ) - (WIN_HEIGHT / 2);
+	int windowStartX = (screenWidth / 2) - (WIN_WIDTH / 2);
+	int windowStartY = (screenHeight / 2) - (WIN_HEIGHT / 2);
 
 	// code
 	// window class initialization
@@ -108,8 +108,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 		WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_CLIPSIBLINGS | WS_VISIBLE,
 		windowStartX, // window center x start - to be calculated as part of window
 		windowStartY, // window center y start - to be calculated as part of window
-		WIN_WIDTH, // WIN_WIDTH
-		WIN_HEIGHT, // WIN_HEIGHT
+		WIN_WIDTH,	  // WIN_WIDTH
+		WIN_HEIGHT,	  // WIN_HEIGHT
 		NULL,
 		NULL,
 		hInstance,
@@ -194,7 +194,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 	switch (iMsg)
 	{
 	case WM_CREATE:
-		ZeroMemory((void*)&wpPrev, sizeof(WINDOWPLACEMENT));
+		ZeroMemory((void *)&wpPrev, sizeof(WINDOWPLACEMENT));
 		wpPrev.length = sizeof(WINDOWPLACEMENT);
 		break;
 
@@ -274,7 +274,7 @@ void toggleFullScreen()
 		dwStyle = GetWindowLong(ghwnd, GWL_STYLE);
 		if (dwStyle & WS_OVERLAPPEDWINDOW)
 		{
-			ZeroMemory((void*)&mi, sizeof(MONITORINFO));
+			ZeroMemory((void *)&mi, sizeof(MONITORINFO));
 			mi.cbSize = sizeof(MONITORINFO);
 			if (GetWindowPlacement(ghwnd, &wpPrev) &&
 				GetMonitorInfo(MonitorFromWindow(ghwnd, MONITORINFOF_PRIMARY), &mi))
@@ -287,8 +287,7 @@ void toggleFullScreen()
 					mi.rcMonitor.top,
 					mi.rcMonitor.right - mi.rcMonitor.left,
 					mi.rcMonitor.bottom - mi.rcMonitor.top,
-					SWP_NOZORDER | SWP_FRAMECHANGED
-				);
+					SWP_NOZORDER | SWP_FRAMECHANGED);
 			}
 		}
 		// optional - hides cursor when endered full screen mode
@@ -305,8 +304,7 @@ void toggleFullScreen()
 			0,
 			0,
 			0,
-			SWP_NOMOVE | SWP_NOSIZE | SWP_NOOWNERZORDER | SWP_NOZORDER | SWP_FRAMECHANGED
-		);
+			SWP_NOMOVE | SWP_NOSIZE | SWP_NOOWNERZORDER | SWP_NOZORDER | SWP_FRAMECHANGED);
 		ShowCursor(TRUE);
 	}
 }
@@ -320,19 +318,19 @@ int initialize(void)
 	PIXELFORMATDESCRIPTOR pfd;
 	int iPixelFormatIndex = 0;
 
-	//code
-	// pixelformatdescriptor initialization
-	ZeroMemory((void*)&pfd, sizeof(PIXELFORMATDESCRIPTOR));
+	// code
+	//  pixelformatdescriptor initialization
+	ZeroMemory((void *)&pfd, sizeof(PIXELFORMATDESCRIPTOR));
 	pfd.nSize = sizeof(PIXELFORMATDESCRIPTOR);
 	pfd.nVersion = 1;
 	pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
 	pfd.iPixelType = PFD_TYPE_RGBA;
-	pfd.cColorBits = 32;// c => count
+	pfd.cColorBits = 32; // c => count
 	pfd.cRedBits = 8;
 	pfd.cGreenBits = 8;
 	pfd.cBlueBits = 8;
 	pfd.cAlphaBits = 8;
-	
+
 	// get device context
 	ghdc = GetDC(ghwnd);
 	if (ghdc == NULL)
@@ -411,18 +409,6 @@ void display(void)
 	// clear openGL bufferes
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	// triangle drawing code
-	glBegin(GL_TRIANGLES);
-	// apex
-	glColor3f(1.0f, 0.0f, 0.0f);
-	glVertex3f(0.0f, 1.0f, 0.0f);
-	// left bottom
-	glColor3f(0.0f, 1.0f, 0.0f);
-	glVertex3f(-1.0f, -1.0f, 0.0f);
-	// right bottom
-	glColor3f(0.0f, 0.0f, 1.0f);
-	glVertex3f(1.0f, -1.0f, 0.0f);
-
 	glEnd();
 
 	// swap the bufferes
@@ -447,7 +433,7 @@ void uninitialize(void)
 		gbFullScreen = FALSE;
 	}
 
-	//make hdc as current context by releasing rendering context as current context
+	// make hdc as current context by releasing rendering context as current context
 	if (wglGetCurrentContext() == ghrc)
 	{
 		wglMakeCurrent(NULL, NULL); // null -> default | make the dc as current context
@@ -482,5 +468,3 @@ void uninitialize(void)
 		gpFile = NULL;
 	}
 }
-
-
