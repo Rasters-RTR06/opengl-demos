@@ -1,0 +1,3 @@
+#include "Raster.h"
+
+MYICON ICON Raster.ico
