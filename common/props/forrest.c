@@ -22,6 +22,13 @@ struct Dots
 
 void drawGround()
 {
+    glBegin(GL_QUADS);
+    glColor3f(0.0f, 0.75f, 0.0f);
+    glVertex3f(-1.0f, 1.0f, 0.0f);
+    glVertex3f(1.0f, 1.0f, 0.0f);
+    glVertex3f(1.0f, -1.0f, 0.0f);
+    glVertex3f(-1.0f, -1.0f, 0.0f);
+    glEnd();
 }
 
 void drawDenseForrest()
@@ -102,14 +109,14 @@ void drawCompactPlant(float startX, float startY)
     // code
     struct Color plantColorGreen = {0.0f, 0.25f, 0.21f};
     struct Color plantColorSupposedToBeYellow = {0.735f, 0.625f, 0.455f};
-    drawBushWith(startX + 0.0f, startY + 0.0f, 0.10f, 0.10f, 250, plantColorGreen);
-    drawBushWith(startX + 0.05f, startY + 0.00f, 0.10f, 0.10f, 250, plantColorGreen);
-    drawBushWith(startX + -0.05f, startY + 0.00f, 0.10f, 0.10f, 250, plantColorGreen);
-    drawBushWith(startX + -0.05f, startY + 0.00f, 0.10f, 0.10f, 100, plantColorSupposedToBeYellow);
-    drawBushWith(startX + 0.025f, startY + 0.05f, 0.10f, 0.10f, 250, plantColorGreen);
-    drawBushWith(startX + -0.025f, startY + 0.05f, 0.10f, 0.10f, 250, plantColorGreen);
-    drawBushWith(startX + -0.025f, startY + 0.05f, 0.10f, 0.10f, 50, plantColorSupposedToBeYellow);
-    drawBushWith(startX + -0.025f, startY + 0.10f, 0.05f, 0.10f, 250, plantColorGreen);
+    drawBushWith(startX + 0.0f, startY + 0.0f, 0.10f, 0.10f, 500, plantColorGreen);
+    drawBushWith(startX + 0.05f, startY + 0.00f, 0.10f, 0.10f, 500, plantColorGreen);
+    drawBushWith(startX + -0.05f, startY + 0.00f, 0.10f, 0.10f, 500, plantColorGreen);
+    drawBushWith(startX + -0.05f, startY + 0.00f, 0.10f, 0.10f, 200, plantColorSupposedToBeYellow);
+    drawBushWith(startX + 0.025f, startY + 0.05f, 0.10f, 0.10f, 500, plantColorGreen);
+    drawBushWith(startX + -0.025f, startY + 0.05f, 0.10f, 0.10f, 500, plantColorGreen);
+    drawBushWith(startX + -0.025f, startY + 0.05f, 0.10f, 0.10f, 200, plantColorSupposedToBeYellow);
+    drawBushWith(startX + -0.025f, startY + 0.10f, 0.05f, 0.10f, 500, plantColorGreen);
 }
 
 void drawPlant(float startX, float startY)
@@ -119,12 +126,12 @@ void drawPlant(float startX, float startY)
 
     // code
     struct Color plantColorGreen = {0.0f, 0.25f, 0.21f};
-    drawBushWith(startX + 0.0f, startY + 0.0f, 0.10f, 0.10f, 250, plantColorGreen);
-    drawBushWith(startX + 0.05f, startY + 0.00f, 0.10f, 0.10f, 250, plantColorGreen);
-    drawBushWith(startX + -0.05f, startY + 0.00f, 0.10f, 0.10f, 250, plantColorGreen);
-    drawBushWith(startX + 0.025f, startY + 0.05f, 0.10f, 0.10f, 250, plantColorGreen);
-    drawBushWith(startX + -0.025f, startY + 0.05f, 0.10f, 0.10f, 250, plantColorGreen);
-    drawBushWith(startX + -0.025f, startY + 0.10f, 0.05f, 0.10f, 250, plantColorGreen);
+    drawBushWith(startX + 0.0f, startY + 0.0f, 0.10f, 0.10f, 500, plantColorGreen);
+    drawBushWith(startX + 0.05f, startY + 0.00f, 0.10f, 0.10f, 500, plantColorGreen);
+    drawBushWith(startX + -0.05f, startY + 0.00f, 0.10f, 0.10f, 500, plantColorGreen);
+    drawBushWith(startX + 0.025f, startY + 0.05f, 0.10f, 0.10f, 500, plantColorGreen);
+    drawBushWith(startX + -0.025f, startY + 0.05f, 0.10f, 0.10f, 500, plantColorGreen);
+    drawBushWith(startX + -0.025f, startY + 0.10f, 0.05f, 0.10f, 500, plantColorGreen);
 }
 
 void drawBushWith(float centerX, float centerY, float radiusX, float radiusY, int dotsCount, struct Color color)
