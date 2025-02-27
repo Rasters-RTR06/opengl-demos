@@ -403,6 +403,10 @@ void display(void)
 	// clear openGL bufferes
 	glClear(GL_COLOR_BUFFER_BIT);
 
+	drawGround();
+	drawDenseForrest();
+	drawFrontTrees();
+
 	// swap the bufferes
 	SwapBuffers(ghdc); // win32 function
 }
