@@ -1,4 +1,65 @@
+//	for Elephant
+struct MY_POINT elephantOneTranslationBy = { 1.25, -0.5, 0 };          // big
+struct MY_POINT elephantTwoTranslationBy = { 1, -0.65, 0 };     // first middle
+struct MY_POINT elephantThreeTranslationBy = { 1.35, -0.55, 0 };    // second middle
+struct MY_POINT elephantFourTranslationBy = { 1.55, -0.65, 0 };     // third middle
+struct MY_POINT elephantFiveTranslationBy = { 1.15, -0.8, 0 };      // small
+BOOL moveElephantTopToDown = FALSE;
+
 void drawElephant(struct MY_POINT, struct MY_POINT, struct MY_POINT);
+void elephant();
+void updateElephant();
+
+void elephant()
+{
+     struct MY_POINT bigElephantScale = { 0.35, 0.6, 1 };
+     struct MY_POINT middleElephantScale = { 0.3, 0.45, 1 };
+     struct MY_POINT smallElephantScale = { 0.15, 0.2, 1 };
+
+	struct MY_POINT reflectBy = { -1, 1, 0 };
+
+	drawElephant(bigElephantScale, elephantOneTranslationBy, reflectBy);
+	drawElephant(middleElephantScale, elephantTwoTranslationBy, reflectBy);
+	drawElephant(middleElephantScale, elephantThreeTranslationBy, reflectBy);
+	drawElephant(middleElephantScale, elephantFourTranslationBy, reflectBy);
+
+	drawElephant(smallElephantScale, elephantFiveTranslationBy, reflectBy);
+}
+
+void updateElephant()
+{
+     elephantOneTranslationBy.x -= 0.01;
+	elephantTwoTranslationBy.x -= 0.01;
+	elephantThreeTranslationBy.x -= 0.01;
+	elephantFourTranslationBy.x -= 0.01;
+	elephantFiveTranslationBy.x -= 0.01;
+	if (moveElephantTopToDown) 
+	{
+		if (elephantOneTranslationBy.y < -0.5)
+			moveElephantTopToDown = FALSE;
+		else 
+		{
+			elephantOneTranslationBy.y -= 0.005;
+			elephantTwoTranslationBy.y -= 0.005;
+			elephantThreeTranslationBy.y -= 0.005;
+			elephantFourTranslationBy.y -= 0.005;
+			elephantFiveTranslationBy.y -= 0.005;
+		}
+	}
+	else
+	{
+		if (elephantOneTranslationBy.y > -0.35)
+			moveElephantTopToDown = TRUE;
+		else
+		{
+			elephantOneTranslationBy.y += 0.005;
+			elephantTwoTranslationBy.y += 0.005;
+			elephantThreeTranslationBy.y += 0.005;
+			elephantFourTranslationBy.y += 0.005;
+			elephantFiveTranslationBy.y += 0.005;
+		}
+	}
+}
 
 void drawElephant(struct MY_POINT scalingFactor, struct MY_POINT translationFactor, struct MY_POINT reflectionFactor)
 {
