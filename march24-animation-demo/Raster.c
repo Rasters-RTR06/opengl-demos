@@ -413,6 +413,10 @@ void display(void)
 	struct MY_POINT reflectBy = { -1, 1, 0 };
 	drawElephant(scaleBy, elephantTranslationBy, reflectBy);
 
+	drawGround();
+	drawDenseForrest();
+	drawFrontTrees();
+
 	// swap the bufferes
 	SwapBuffers(ghdc); // win32 function
 }
