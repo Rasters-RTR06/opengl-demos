@@ -21,4 +21,6 @@ struct MY_POINT scalePoint(struct MY_POINT, struct MY_POINT);           //  chan
 struct MY_POINT translatePoint(struct MY_POINT, struct MY_POINT);       //  change origin / position of object
 struct MY_POINT reflectPoint(struct MY_POINT point, struct MY_POINT);   //  reflection of object
 
+#include "drawing.c"
+#include "geometry_calculations.c"
 #include "forrest.c"

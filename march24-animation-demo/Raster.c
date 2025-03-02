@@ -409,12 +409,13 @@ void display(void)
 	// clear openGL bufferes
 	glClear(GL_COLOR_BUFFER_BIT);
 
+	drawGround();
+	drawDenseForrest();
+
 	struct MY_POINT scaleBy = { 0.4, 0.5, 1 };
 	struct MY_POINT reflectBy = { -1, 1, 0 };
 	drawElephant(scaleBy, elephantTranslationBy, reflectBy);
 
-	drawGround();
-	drawDenseForrest();
 	drawFrontTrees();
 
 	// swap the bufferes
@@ -427,7 +428,7 @@ void update(void)
 	elephantTranslationBy.x -= 0.01;
 	if (moveElephantTopToDown) 
 	{
-		if (elephantTranslationBy.y < -0.5)
+		if (elephantTranslationBy.y < -0.6)
 			moveElephantTopToDown = FALSE;
 		else 
 		{
@@ -436,7 +437,7 @@ void update(void)
 	}
 	else
 	{
-		if (elephantTranslationBy.y > 0)
+		if (elephantTranslationBy.y > -0.35)
 			moveElephantTopToDown = TRUE;
 		else
 		{
