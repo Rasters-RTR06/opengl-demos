@@ -34,10 +34,6 @@ BOOL gbEscapeKeyIsPressed = FALSE;
 HDC ghdc = NULL;   // global handle to device context
 HGLRC ghrc = NULL; // global handle to rendering context (rc -> rendering context, HGLRC -> handle to openGL rendering context)
 
-//	for Elephant
-struct MY_POINT elephantTranslationBy = { 1, -0.5, 0 };
-BOOL moveElephantTopToDown = FALSE;
-
 // Entry point function
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int iCmdShow)
 {
@@ -411,12 +407,8 @@ void display(void)
 
 	drawGround();
 	drawDenseForrest();
-
-	struct MY_POINT scaleBy = { 0.4, 0.5, 1 };
-	struct MY_POINT reflectBy = { -1, 1, 0 };
-	drawElephant(scaleBy, elephantTranslationBy, reflectBy);
-
-	drawFrontTrees();
+	elephant();
+	// drawFrontTrees();
 
 	// swap the bufferes
 	SwapBuffers(ghdc); // win32 function
@@ -425,26 +417,8 @@ void display(void)
 void update(void)
 {
 	// code
-	elephantTranslationBy.x -= 0.01;
-	if (moveElephantTopToDown) 
-	{
-		if (elephantTranslationBy.y < -0.6)
-			moveElephantTopToDown = FALSE;
-		else 
-		{
-			elephantTranslationBy.y -= 0.005;
-		}
-	}
-	else
-	{
-		if (elephantTranslationBy.y > -0.35)
-			moveElephantTopToDown = TRUE;
-		else
-		{
-			elephantTranslationBy.y += 0.005;
-		}
-	}
-	SetTimer(ghwnd, NULL, 100, update);
+	updateElephant();
+	SetTimer(ghwnd, NULL, 500, update);
 }
 
 void uninitialize(void)
