@@ -19,9 +19,9 @@ typedef struct SHAPE_ATTRIBUTES
 
 void drawElephant(struct MY_POINT, struct MY_POINT, struct MY_POINT);
 void drawPolygon(SHAPE, struct MY_POINT, struct MY_POINT, struct MY_POINT);
-struct MY_POINT scalePoint(struct MY_POINT, struct MY_POINT);
-struct MY_POINT translatePoint(struct MY_POINT, struct MY_POINT);
-struct MY_POINT reflectPoint(struct MY_POINT point, struct MY_POINT);
+struct MY_POINT scalePoint(struct MY_POINT, struct MY_POINT);           //  change size of object
+struct MY_POINT translatePoint(struct MY_POINT, struct MY_POINT);       //  change origin / position of object
+struct MY_POINT reflectPoint(struct MY_POINT point, struct MY_POINT);   //  reflection of object
 
 void drawElephant(struct MY_POINT scalingFactor, struct MY_POINT translationFactor, struct MY_POINT reflectionFactor)
 {
