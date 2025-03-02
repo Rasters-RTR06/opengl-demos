@@ -1,4 +1,3 @@
-// customer header files
 #include "../common.h"
 
 extern FILE *gpFile;
@@ -76,4 +75,51 @@ void setCircularCurvePoints(float centerX, float centerY, float radiusH, float r
         ObjY = centerY + radiusV * sin(ObjAngle);
         glVertex2f(ObjX, ObjY);
     }
+}
+
+
+void drawPolygon(SHAPE shape, struct MY_POINT scalingFactor, struct MY_POINT translationFactor, struct MY_POINT reflectionFactor)
+{
+    glColor3f(shape.rValue > 1 ? (shape.rValue / 255.0f) : shape.rValue,
+        shape.gValue > 1 ? (shape.gValue / 255.0f) : shape.gValue,
+        shape.bValue > 1 ? (shape.bValue / 255.0f) : shape.bValue);
+    glBegin(GL_POLYGON);
+
+    for (int i = 0; i < shape.noOfPoints; i++)
+    {
+        struct MY_POINT newPoint = { shape.points[i].x, shape.points[i].y, shape.points[i].z };
+        newPoint = scalePoint(newPoint, scalingFactor);
+        newPoint = translatePoint(newPoint, translationFactor);
+        newPoint = reflectPoint(newPoint, reflectionFactor);
+
+        glVertex3f((GLfloat)(newPoint.x), (GLfloat)(newPoint.y), (GLfloat)(newPoint.z));
+    }
+
+    glEnd();
+}
+
+struct MY_POINT scalePoint(struct MY_POINT point, struct MY_POINT scalingFactor)
+{
+    struct MY_POINT newPoint = { (scalingFactor.x) * (point.x),
+                                 (scalingFactor.y) * (point.y),
+                                 (scalingFactor.z) * (point.z) };
+    return newPoint;
+}
+
+struct MY_POINT translatePoint(struct MY_POINT point, struct MY_POINT translationFactor)
+{
+    struct MY_POINT newPoint = { translationFactor.x + point.x,
+                                 translationFactor.y + point.y,
+                                 translationFactor.z + point.z };
+    return newPoint;
+}
+
+// to reflect by x axis : reflectionFactor = {1, -1, 0}
+// to reflect by y axis : reflectionFactor = {-1, 1, 0}
+struct MY_POINT reflectPoint(struct MY_POINT point, struct MY_POINT reflectionFactor)
+{
+    struct MY_POINT newPoint = { reflectionFactor.x * point.x,
+                                 reflectionFactor.y * point.y,
+                                 reflectionFactor.z * point.z };
+    return newPoint;
 }

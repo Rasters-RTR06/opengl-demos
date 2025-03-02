@@ -9,6 +9,8 @@
 // OpenGL related header files
 #include <gl/GL.h>
 
+#define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
+
 // constants
 #define PI 3.14159265358979323846f
 
