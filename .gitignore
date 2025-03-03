@@ -402,6 +402,8 @@ FodyWeavers.xsd
 # executables
 *.exe
 *.obj
+*.o
+
 
 # windowing
 *.res

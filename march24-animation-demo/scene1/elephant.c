@@ -28,7 +28,7 @@ void elephant()
 
 void updateElephant()
 {
-     elephantOneTranslationBy.x -= 0.01;
+     elephantOneTranslationBy.x -= 0.001;
 	elephantTwoTranslationBy.x -= 0.01;
 	elephantThreeTranslationBy.x -= 0.01;
 	elephantFourTranslationBy.x -= 0.01;

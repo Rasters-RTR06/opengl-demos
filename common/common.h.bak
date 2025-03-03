@@ -7,9 +7,9 @@
 #include <stdlib.h> // exit() call
 #include <math.h>
 // OpenGL related header files
-//#include <GL/gl.h>
+//#include <gl/GL.h>
 #ifdef _WIN32 // Windows
-    #include <GL/gl.h>
+    #include <gl/GL.h>
 #else // *NIX-like system (Linux, macOS, etc.)
     #include <GL/gl.h>
 #endif

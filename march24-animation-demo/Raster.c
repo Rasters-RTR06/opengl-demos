@@ -1,7 +1,10 @@
 // custom header files
 #include "Raster.h"
 #include "../common/common.h"
-#include "elephant.c"
+#include "scene1/elephant.c"
+#include "scene1/chamelon.c"
+#include "scene1/chamelontounge_mov.c"
+#include "scene1/butterfly.c"
 
 // OpenGL realated libraries
 #pragma comment(lib, "opengl32.lib")
@@ -33,6 +36,11 @@ BOOL gbEscapeKeyIsPressed = FALSE;
 // Opengl related global variable
 HDC ghdc = NULL;   // global handle to device context
 HGLRC ghrc = NULL; // global handle to rendering context (rc -> rendering context, HGLRC -> handle to openGL rendering context)
+
+// Demo Required global Variables
+UINT_PTR timerId;
+UINT iTimeElapsed = 0;
+int Scene = 1;
 
 // Entry point function
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int iCmdShow)
@@ -160,12 +168,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 				{
 					bDone = TRUE;
 				}
+				// update
+				update();
 
 				// render
 				display();
 
-				// update
-				update();
 			}
 		}
 	}
@@ -221,6 +229,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 
+	case WM_TIMER:
+		iTimeElapsed++;
+		break;
 	case WM_CLOSE:
 		uninitialize();
 		break;
@@ -371,6 +382,18 @@ int initialize(void)
 
 	printGLInfo();
 
+
+	//checkout https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-settimer
+	timerId = SetTimer(ghwnd, 1, 1000,(TIMERPROC) NULL);
+
+	if (timerId == 0) {
+		// Handle timer creation error
+		fprintf(gpFile, "SetTimer failed\n");
+		return -1;
+	}
+
+	return 0;
+
 	return (0);
 }
 
@@ -399,26 +422,68 @@ void resize(int width, int height)
 	glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 }
 
+// Scene 1 lasts from 00 to 46 Seconds in video
+BOOL bCallTounge = FALSE;
+BOOL bCallElephant = FALSE;
+void Scene1(void)
+{
+	drawGround();
+	drawDenseForrest();
+
+	butterfly(0.0f, 0.0f, 0.2);
+	elephant();
+	toungeMovement();
+
+
+
+	switch (iTimeElapsed) {
+		case 7:
+			bCallTounge = TRUE;
+			break; // Add break to prevent fall-through
+		case 8:
+			bCallElephant = TRUE;
+			break;
+			// ... other cases for Scene 1 ...
+		case 46:
+			Scene++; // Transition to the next scene after 46 seconds
+			break;
+	}
+
+	chamelon(0.5f, -0.5f, 0.2);
+}
 void display(void)
 {
 	// code
 	// clear openGL bufferes
 	glClear(GL_COLOR_BUFFER_BIT);
+	// TODO: Add switch case block that will flip bcallFlags based on iTimeElapsed [DONE]
+	switch (Scene)
+	{
+		case 1:
+			Scene1();
+			break;
 
-	drawGround();
-	drawDenseForrest();
-	elephant();
-	// drawFrontTrees();
+		default:
+			break;
+
+	}
+	drawFrontTrees();
 
 	// swap the bufferes
 	SwapBuffers(ghdc); // win32 function
+
 }
+
 
 void update(void)
 {
 	// code
-	updateElephant();
-	SetTimer(ghwnd, NULL, 500, update);
+	if(bCallTounge == TRUE)
+	{updateTounge();}
+	if(bCallElephant == TRUE)
+	{updateElephant();}
+
+
 }
 
 void uninitialize(void)
@@ -438,6 +503,12 @@ void uninitialize(void)
 	if (wglGetCurrentContext() == ghrc)
 	{
 		wglMakeCurrent(NULL, NULL); // null -> default | make the dc as current context
+	}
+
+	// kill timer
+	if (timerId != 0)
+	{
+		KillTimer(ghwnd, timerId);
 	}
 
 	// delete rendering context
