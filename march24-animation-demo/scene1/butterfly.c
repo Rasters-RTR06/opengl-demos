@@ -85,80 +85,80 @@ void drawRightWing(float originx, float originy, float resize)
 	float r = 0.0f, g = 0.0f, b = 0.0f;
 
 	//Right side of the wing
-	r = 0.216f, g = 0.612f, b = 0.89f;	//0.216, 0.612, 0.89	//1
+	r = 0.216f, g = 0.612f, b = 0.89f;	//1
 	t.p1x = originx + (0.3f) * resize;   t.p1y = originy + (0.2f) * resize;
-	t.p2x = originx + (0.073f) * resize; t.p2y = originy + (0.13f) * resize;	//0.073,0.13
+	t.p2x = originx + (0.073f) * resize; t.p2y = originy + (0.13f) * resize;	
 	t.p3x = originx + (0.13f) * resize;  t.p3y = originy + (0.0f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.314f, g = 0.757f, b = 0.976f;	//0.314, 0.757, 0.976	//2
+	r = 0.314f, g = 0.757f, b = 0.976f;	//2
 	t.p1x = originx + (0.3f) * resize;  t.p1y = originy + (0.2f) * resize;
 	t.p2x = originx + (0.073f) * resize;  t.p2y = originy + (0.13f) * resize;
-	t.p3x = originx + (0.174f) * resize;  t.p3y = originy + (0.473f) * resize;	//0.174,0.473
+	t.p3x = originx + (0.174f) * resize;  t.p3y = originy + (0.473f) * resize;	
 	drawTriangle(t, r, g, b);
 
-	r = 0.251f, g = 0.667f, b = 0.91f;	//0.251, 0.667, 0.91	//3
+	r = 0.251f, g = 0.667f, b = 0.91f;	//3
 	t.p1x = originx + (0.3f) * resize;    t.p1y = originy + (0.2f) * resize;
-	t.p2x = originx + (0.174f) * resize;    t.p2y = originy + (0.473f) * resize;	//0.175,0.473
-	t.p3x = originx + (0.4f) * resize;    t.p3y = originy + (0.55f) * resize; //0.4,0.55
+	t.p2x = originx + (0.174f) * resize;    t.p2y = originy + (0.473f) * resize;	
+	t.p3x = originx + (0.4f) * resize;    t.p3y = originy + (0.55f) * resize; 
 	drawTriangle(t, r, g, b);
 
-	r = 0.173f, g = 0.435f, b = 0.761f;	//0.173, 0.435, 0.761	//4
+	r = 0.173f, g = 0.435f, b = 0.761f;	//4
 	t.p1x = originx + (0.3f) * resize;   t.p1y = originy + (0.2f) * resize;
-	t.p2x = originx + (0.4f) * resize;   t.p2y = originy + (0.55f) * resize;	//0.17,0.47
-	t.p3x = originx + (0.55f) * resize;  t.p3y = originy + (0.2f) * resize; //0.545,0.724
+	t.p2x = originx + (0.4f) * resize;   t.p2y = originy + (0.55f) * resize;	
+	t.p3x = originx + (0.55f) * resize;  t.p3y = originy + (0.2f) * resize; 
 	drawTriangle(t, r, g, b);
 
-	r = 0.051f, g = 0.078f, b = 0.31f;	//0.051, 0.078, 0.31	//Yellow T
+	r = 0.051f, g = 0.078f, b = 0.31f;	
 	t.p1x = originx + (0.4f) * resize;  t.p1y = originy + (0.55f) * resize;
-	t.p2x = originx + (0.174f) * resize;  t.p2y = originy + (0.473f) * resize;	//0.17,0.47
-	t.p3x = originx + (0.55f) * resize;  t.p3y = originy + (0.73f) * resize; //0.545,0.724
+	t.p2x = originx + (0.174f) * resize;  t.p2y = originy + (0.473f) * resize;	
+	t.p3x = originx + (0.55f) * resize;  t.p3y = originy + (0.73f) * resize; 
 	drawTriangle(t, r, g, b);
 
-	r = 0.176f, g = 0.573f, b = 0.804f;	//0.176, 0.573, 0.804	//5
+	r = 0.176f, g = 0.573f, b = 0.804f;	//5
 	t.p1x = originx + (0.3f) * resize;  t.p1y = originy + (0.2f) * resize;
 	t.p2x = originx + (0.55f) * resize;  t.p2y = originy + (0.2f) * resize;
 	t.p3x = originx + (0.5f) * resize;  t.p3y = originy + (0.0f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.212f, g = 0.847f, b = 0.965f;	//0.212, 0.847, 0.965	//6
+	r = 0.212f, g = 0.847f, b = 0.965f;	//6
 	t.p1x = originx + (0.3f) * resize;  t.p1y = originy + (0.2f) * resize;
 	t.p2x = originx + (0.5f) * resize;  t.p2y = originy + (0.0f) * resize;
 	t.p3x = originx + (0.13f) * resize;  t.p3y = originy + (0.0f) * resize;
 	drawTriangle(t, r, g, b);
 
 	//0.66,0.55
-	r = 0.09f, g = 0.243f, b = 0.482f;	//0.09, 0.243, 0.482	//1
+	r = 0.09f, g = 0.243f, b = 0.482f;	//1
 	t.p1x = originx + (0.66f) * resize; t.p1y = originy + (0.55f) * resize;
 	t.p2x = originx + (0.40f) * resize; t.p2y = originy + (0.55f) * resize;
 	t.p3x = originx + (0.55f) * resize; t.p3y = originy + (0.2f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.11f, g = 0.141f, b = 0.325f;	//0.11, 0.141, 0.325	//2
+	r = 0.11f, g = 0.141f, b = 0.325f;	//2
 	t.p1x = originx + (0.66f) * resize; t.p1y = originy + (0.55f) * resize;
 	t.p2x = originx + (0.4f) * resize;  t.p2y = originy + (0.55f) * resize;
 	t.p3x = originx + (0.55f) * resize; t.p3y = originy + (0.73f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.188f, g = 0.204f, b = 0.31f;	//0.188, 0.204, 0.31	//3
+	r = 0.188f, g = 0.204f, b = 0.31f;	//3
 	t.p1x = originx + (0.66f) * resize;  t.p1y = originy + (0.55f) * resize;
 	t.p2x = originx + (0.55f) * resize;  t.p2y = originy + (0.73f) * resize;
 	t.p3x = originx + (0.77f) * resize;  t.p3y = originy + (0.75f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.188f, g = 0.204f, b = 0.31f;	//0.188, 0.204, 0.31	//4
+	r = 0.188f, g = 0.204f, b = 0.31f;	//4
 	t.p1x = originx + (0.66f) * resize;  t.p1y = originy + (0.55f) * resize;
 	t.p2x = originx + (0.77f) * resize;  t.p2y = originy + (0.75f) * resize;
 	t.p3x = originx + (0.85f) * resize;  t.p3y = originy + (0.4f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.137f, g = 0.157f, b = 0.251f;	//0.137, 0.157, 0.251	//5
+	r = 0.137f, g = 0.157f, b = 0.251f;	//5
 	t.p1x = originx + (0.66f) * resize;  t.p1y = originy + (0.55f) * resize;
 	t.p2x = originx + (0.85f) * resize;  t.p2y = originy + (0.4f) * resize;
 	t.p3x = originx + (0.7f) * resize;  t.p3y = originy + (0.1f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.094f, g = 0.051f, b = 0.18f;	//0.094, 0.051, 0.18	//5
+	r = 0.094f, g = 0.051f, b = 0.18f;	
 	q.p1x = originx + (0.66f) * resize;  q.p1y = originy + (0.55f) * resize;
 	q.p2x = originx + (0.7f) * resize;  q.p2y = originy + (0.1f) * resize;
 	q.p3x = originx + (0.5f) * resize;  q.p3y = originy + (0.0f) * resize;
@@ -166,71 +166,71 @@ void drawRightWing(float originx, float originy, float resize)
 	drawQuadrilateral(q, r, g, b);
 
 	//Bottom part of right wing
-	r = 0.212f, g = 0.776f, b = 0.965f;	//0.212, 0.776, 0.965	//1 : orange
+	r = 0.212f, g = 0.776f, b = 0.965f;	
 	t.p1x = originx + (0.3f) * resize; t.p1y = originy + (-0.27f) * resize;
 	t.p2x = originx + (0.07f) * resize; t.p2y = originy + (-0.12f) * resize;
 	t.p3x = originx + (0.13f) * resize; t.p3y = originy + (0.0f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.129f, g = 0.62f, b = 0.792f;	//0.129, 0.62, 0.792	//2 : orange
+	r = 0.129f, g = 0.62f, b = 0.792f;	
 	t.p1x = originx + (0.3f) * resize; t.p1y = originy + (-0.27f) * resize;
 	t.p2x = originx + (0.13f) * resize; t.p2y = originy + (0.0f) * resize;
-	t.p3x = originx + (0.53f) * resize; t.p3y = originy + (-0.32f) * resize;//0.53,-0.32
-	drawTriangle(t, r, g, b);
-
-	r = 0.114f, g = 0.612f, b = 0.773f;	//0.114, 0.612, 0.773	//3 : orange
-	t.p1x = originx + (0.3f) * resize;  t.p1y = originy + (-0.27f) * resize;
-	t.p2x = originx + (0.13f) * resize; t.p2y = originy + (0.0f) * resize;	//0.22,-0.63
 	t.p3x = originx + (0.53f) * resize; t.p3y = originy + (-0.32f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.133f, g = 0.804f, b = 0.914f;	//0.133, 0.804, 0.914	//3 : orange
+	r = 0.114f, g = 0.612f, b = 0.773f;	
 	t.p1x = originx + (0.3f) * resize;  t.p1y = originy + (-0.27f) * resize;
-	t.p2x = originx + (0.53f) * resize; t.p2y = originy + (-0.32f) * resize;	//0.22,-0.63
+	t.p2x = originx + (0.13f) * resize; t.p2y = originy + (0.0f) * resize;	
+	t.p3x = originx + (0.53f) * resize; t.p3y = originy + (-0.32f) * resize;
+	drawTriangle(t, r, g, b);
+
+	r = 0.133f, g = 0.804f, b = 0.914f;	
+	t.p1x = originx + (0.3f) * resize;  t.p1y = originy + (-0.27f) * resize;
+	t.p2x = originx + (0.53f) * resize; t.p2y = originy + (-0.32f) * resize;	
 	t.p3x = originx + (0.22f) * resize; t.p3y = originy + (-0.63f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.263f, g = 0.957f, b = 0.988f;	//0.263, 0.957, 0.988	//4 : orange
+	r = 0.263f, g = 0.957f, b = 0.988f;	
 	t.p1x = originx + (0.3f) * resize; t.p1y = originy + (-0.27f) * resize;
-	t.p2x = originx + (0.22f) * resize; t.p2y = originy + (-0.63f) * resize;	//0.22,-0.63
+	t.p2x = originx + (0.22f) * resize; t.p2y = originy + (-0.63f) * resize;	
 	t.p3x = originx + (0.07f) * resize; t.p3y = originy + (-0.12f) * resize;
 	drawTriangle(t, r, g, b);
 
 	//0.53,-0.32
-	r = 0.188f, g = 0.549f, b = 0.835f;	//0.188, 0.549, 0.835	//1 : yellow
+	r = 0.188f, g = 0.549f, b = 0.835f;	
 	t.p1x = originx + (0.53f) * resize;  t.p1y = originy + (-0.32f) * resize;
 	t.p2x = originx + (0.13f) * resize;  t.p2y = originy + (0.0f) * resize;
 	t.p3x = originx + (0.5f) * resize;  t.p3y = originy + (-0.0f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.125f, g = 0.494f, b = 0.596f;	//0.125, 0.494, 0.596	//2 : yellow
+	r = 0.125f, g = 0.494f, b = 0.596f;	
 	t.p1x = originx + (0.53f) * resize;   t.p1y = originy + (-0.32f) * resize;
 	t.p2x = originx + (0.5f) * resize;     t.p2y = originy + (0.00f) * resize;
-	t.p3x = originx + (0.655f) * resize;   t.p3y = originy + (-0.24f) * resize;	//0.655,-0.24
+	t.p3x = originx + (0.655f) * resize;   t.p3y = originy + (-0.24f) * resize;	
 	drawTriangle(t, r, g, b);
 
-	r = 0.125f, g = 0.494f, b = 0.596f;	//0.157, 0.596, 0.745	//3 : yellow
+	r = 0.125f, g = 0.494f, b = 0.596f;	
 	t.p1x = originx + (0.53f) * resize;  t.p1y = originy + (-0.32f) * resize;
 	t.p2x = originx + (0.655f) * resize;  t.p2y = originy + (-0.24f) * resize;
-	t.p3x = originx + (0.49f) * resize;  t.p3y = originy + (-0.72f) * resize;	//0.49,-0.72
+	t.p3x = originx + (0.49f) * resize;  t.p3y = originy + (-0.72f) * resize;	
 	drawTriangle(t, r, g, b);
 
-	r = 0.2f, g = 0.702f, b = 0.878f;	//0.2, 0.702, 0.878	//4 : yellow
+	r = 0.2f, g = 0.702f, b = 0.878f;	
 	t.p1x = originx + (0.53f) * resize;  t.p1y = originy + (-0.32f) * resize;
 	t.p2x = originx + (0.49f) * resize;  t.p2y = originy + (-0.72f) * resize;
-	t.p3x = originx + (0.22f) * resize;  t.p3y = originy + (-0.63f) * resize;	//
+	t.p3x = originx + (0.22f) * resize;  t.p3y = originy + (-0.63f) * resize;	
 	drawTriangle(t, r, g, b);
 
 	//tip of bottom
-	r = 0.141f, g = 0.227f, b = 0.424f;	//0.141, 0.227, 0.424	//4 : yellow
+	r = 0.141f, g = 0.227f, b = 0.424f;	
 	t.p1x = originx + (0.22f) * resize;  t.p1y = originy + (-0.63f) * resize;
 	t.p2x = originx + (0.49f) * resize;  t.p2y = originy + (-0.72f) * resize;
 	t.p3x = originx + (0.3f) * resize;  t.p3y = originy + (-0.8f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.031f, g = 0.063f, b = 0.318f;	//0.031, 0.063, 0.318	//4 : yellow
+	r = 0.031f, g = 0.063f, b = 0.318f;	
 	t.p1x = originx + (0.3f) * resize;    t.p1y = originy + (-0.8f) * resize;
-	t.p2x = originx + (0.49f) * resize;   t.p2y = originy + (-0.72f) * resize;//	//0.49,-0.93
+	t.p2x = originx + (0.49f) * resize;   t.p2y = originy + (-0.72f) * resize;
 	t.p3x = originx + (0.5f) * resize;   t.p3y = originy + (-0.93f) * resize;
 	drawTriangle(t, r, g, b);
 }
@@ -242,153 +242,152 @@ void drawLeftWing(float originx, float originy, float resize)
 	float r = 0.0f, g = 0.0f, b = 0.0f;
 
 	//Left side of the wing
-	r = 0.216f, g = 0.612f, b = 0.89f;	//0.216, 0.612, 0.89	//1
+	r = 0.216f, g = 0.612f, b = 0.89f;		//1
 	t.p1x = originx + (-0.3f) * resize;   t.p1y = originy + (0.2f) * resize;
-	t.p2x = originx + (-0.073f) * resize;   t.p2y = originy + (0.13f) * resize;	//0.073,0.13
+	t.p2x = originx + (-0.073f) * resize;   t.p2y = originy + (0.13f) * resize;	
 	t.p3x = originx + (-0.13f) * resize;   t.p3y = originy + (0.0f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.314f, g = 0.757f, b = 0.976f;	//0.314, 0.757, 0.976	//2
+	r = 0.314f, g = 0.757f, b = 0.976f;		//2
 	t.p1x = originx + (-0.3f) * resize; t.p1y = originy + (0.2f) * resize;
 	t.p2x = originx + (-0.073f) * resize; t.p2y = originy + (0.13f) * resize;
-	t.p3x = originx + (-0.174f) * resize; t.p3y = originy + (0.473f) * resize;	//0.174,0.473
+	t.p3x = originx + (-0.174f) * resize; t.p3y = originy + (0.473f) * resize;	
 	drawTriangle(t, r, g, b);
 
-	r = 0.251f, g = 0.667f, b = 0.91f;	//0.251, 0.667, 0.91	//3
+	r = 0.251f, g = 0.667f, b = 0.91f;		//3
 	t.p1x = originx + (-0.3f) * resize;   t.p1y = originy + (0.2f) * resize;
-	t.p2x = originx + (-0.174f) * resize;   t.p2y = originy + (0.473f) * resize;	//0.175,0.473
-	t.p3x = originx + (-0.4f) * resize;   t.p3y = originy + (0.55f) * resize; //0.4,0.55
+	t.p2x = originx + (-0.174f) * resize;   t.p2y = originy + (0.473f) * resize;	
+	t.p3x = originx + (-0.4f) * resize;   t.p3y = originy + (0.55f) * resize; 
 	drawTriangle(t, r, g, b);
 
-	r = 0.173f, g = 0.435f, b = 0.761f;	//0.173, 0.435, 0.761	//4
+	r = 0.173f, g = 0.435f, b = 0.761f;		//4
 	t.p1x = originx + (-0.3f) * resize;   t.p1y = originy + (0.2f) * resize;
-	t.p2x = originx + (-0.4f) * resize;   t.p2y = originy + (0.55f) * resize;	//0.17,0.47
-	t.p3x = originx + (-0.55f) * resize;   t.p3y = originy + (0.2f) * resize; //0.545,0.724
+	t.p2x = originx + (-0.4f) * resize;   t.p2y = originy + (0.55f) * resize;	
+	t.p3x = originx + (-0.55f) * resize;   t.p3y = originy + (0.2f) * resize; 
 	drawTriangle(t, r, g, b);
 
-	r = 0.051f, g = 0.078f, b = 0.31f;	//0.051, 0.078, 0.31	//Yellow T
+	r = 0.051f, g = 0.078f, b = 0.31f;		
 	t.p1x = originx + (-0.4f) * resize;   t.p1y = originy + (0.55f) * resize;
-	t.p2x = originx + (-0.174f) * resize;   t.p2y = originy + (0.473f) * resize;	//0.17,0.47
-	t.p3x = originx + (-0.55f) * resize;   t.p3y = originy + (0.73f) * resize; //0.545,0.724
+	t.p2x = originx + (-0.174f) * resize;   t.p2y = originy + (0.473f) * resize;	
+	t.p3x = originx + (-0.55f) * resize;   t.p3y = originy + (0.73f) * resize; 
 	drawTriangle(t, r, g, b);
 
-	r = 0.176f, g = 0.573f, b = 0.804f;	//0.176, 0.573, 0.804	//5
+	r = 0.176f, g = 0.573f, b = 0.804f;		//5
 	t.p1x = originx + (-0.3f) * resize;  t.p1y = originy + (0.2f) * resize;
 	t.p2x = originx + (-0.55f) * resize; t.p2y = originy + (0.2f) * resize;
 	t.p3x = originx + (-0.5f) * resize;  t.p3y = originy + (0.0f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.212f, g = 0.847f, b = 0.965f;	//0.212, 0.847, 0.965	//6
+	r = 0.212f, g = 0.847f, b = 0.965f;		//6
 	t.p1x = originx + (-0.3f) * resize;  t.p1y = originy + (0.2f) * resize;
 	t.p2x = originx + (-0.5f) * resize;  t.p2y = originy + (0.0f) * resize;
 	t.p3x = originx + (-0.13f) * resize; t.p3y = originy + (0.0f) * resize;
 	drawTriangle(t, r, g, b);
 
-	//0.66,0.55
-	r = 0.09f, g = 0.243f, b = 0.482f;	//0.09, 0.243, 0.482	//1
+	
+	r = 0.09f, g = 0.243f, b = 0.482f;		//1
 	t.p1x = originx + (-0.66f) * resize; t.p1y = originy + (0.55f) * resize;
 	t.p2x = originx + (-0.40f) * resize; t.p2y = originy + (0.55f) * resize;
 	t.p3x = originx + (-0.55f) * resize; t.p3y = originy + (0.2f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.11f, g = 0.141f, b = 0.325f;	//0.11, 0.141, 0.325	//2
+	r = 0.11f, g = 0.141f, b = 0.325f;		//2
 	t.p1x = originx + (-0.66f) * resize; t.p1y = originy + (0.55f) * resize;
 	t.p2x = originx + (-0.4f) * resize;  t.p2y = originy + (0.55f) * resize;
 	t.p3x = originx + (-0.55f) * resize; t.p3y = originy + (0.73f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.188f, g = 0.204f, b = 0.31f;	//0.188, 0.204, 0.31	//3
+	r = 0.188f, g = 0.204f, b = 0.31f;		//3
 	t.p1x = originx + (-0.66f) * resize;  t.p1y = originy + (0.55f) * resize;
 	t.p2x = originx + (-0.55f) * resize;  t.p2y = originy + (0.73f) * resize;
 	t.p3x = originx + (-0.77f) * resize;  t.p3y = originy + (0.75f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.188f, g = 0.204f, b = 0.31f;	//0.188, 0.204, 0.31	//4
+	r = 0.188f, g = 0.204f, b = 0.31f;		//4
 	t.p1x = originx + (-0.66f) * resize;  t.p1y = originy + (0.55f) * resize;
 	t.p2x = originx + (-0.77f) * resize;  t.p2y = originy + (0.75f) * resize;
 	t.p3x = originx + (-0.85f) * resize;  t.p3y = originy + (0.4f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.137f, g = 0.157f, b = 0.251f;	//0.137, 0.157, 0.251	//Check this triangle -- pending
+	r = 0.137f, g = 0.157f, b = 0.251f;		
 	t.p1x = originx + (-0.66f) * resize;  t.p1y = originy + (0.55f)* resize;
-	t.p2x = originx + (-0.85f) * resize;  t.p2y = originy + (0.4f) * resize; // ya point la problem - check it
+	t.p2x = originx + (-0.85f) * resize;  t.p2y = originy + (0.4f) * resize;
 	t.p3x = originx + (-0.7f)  * resize;  t.p3y = originy + (0.1f) * resize;
 	drawTriangle(t, r, g, b);
 
-
-	r = 0.094f, g = 0.051f, b = 0.18f;	//0.094, 0.051, 0.18	//5
+	r = 0.094f, g = 0.051f, b = 0.18f;		//5
 	q.p1x = originx + (-0.66f) * resize;  q.p1y = originy + (0.55f) * resize;
 	q.p2x = originx + (-0.7f) * resize;  q.p2y = originy + (0.1f) * resize;
-	q.p3x = originx + (-0.5f) * resize;   q.p3y = originy + (0.0f) * resize;
-	q.p4x = -0.55f;   q.p4y = 0.2f;
+	q.p3x = originx + (-0.5f) * resize;  q.p3y = originy + (0.0f) * resize;
+	q.p4x = originx + (-0.55f) * resize;  q.p4y = originy + (0.2f) * resize;
 	drawQuadrilateral(q, r, g, b);
 
 	//Bottom part of right wing
-	r = 0.212f, g = 0.776f, b = 0.965f;	//0.212, 0.776, 0.965	//1 : orange
+	r = 0.212f, g = 0.776f, b = 0.965f;	
 	t.p1x = originx + (-0.3f) * resize;  t.p1y = originy + (-0.27f) * resize;
 	t.p2x = originx + (-0.07f) * resize; t.p2y = originy + (-0.12f) * resize;
 	t.p3x = originx + (-0.13f) * resize; t.p3y = originy + (0.0f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.129f, g = 0.62f, b = 0.792f;	//0.129, 0.62, 0.792	//2 : orange
+	r = 0.129f, g = 0.62f, b = 0.792f;	
 	t.p1x = originx + (-0.3f) * resize; t.p1y = originy + (-0.27f) * resize;
 	t.p2x = originx + (-0.13f) * resize; t.p2y = originy + (0.0f) * resize;
-	t.p3x = originx + (-0.53f) * resize; t.p3y = originy + (-0.32f) * resize;//0.53,-0.32
+	t.p3x = originx + (-0.53f) * resize; t.p3y = originy + (-0.32f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.114f, g = 0.612f, b = 0.773f;	//0.114, 0.612, 0.773	//3 : orange
+	r = 0.114f, g = 0.612f, b = 0.773f;	
 	t.p1x = originx + (-0.3f) * resize;  t.p1y = originy + (-0.27f) * resize;
-	t.p2x = originx + (-0.13f) * resize;  t.p2y = originy + (0.0f) * resize;	//0.22,-0.63
+	t.p2x = originx + (-0.13f) * resize;  t.p2y = originy + (0.0f) * resize;	
 	t.p3x = originx + (-0.53f) * resize;  t.p3y = originy + (-0.32f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.133f, g = 0.804f, b = 0.914f;	//0.133, 0.804, 0.914	//3 : orange
+	r = 0.133f, g = 0.804f, b = 0.914f;	
 	t.p1x = originx + (-0.3f) * resize;  t.p1y = originy + (-0.27f) * resize;
-	t.p2x = originx + (-0.53f) * resize; t.p2y = originy + (-0.32f) * resize;	//0.22,-0.63
+	t.p2x = originx + (-0.53f) * resize; t.p2y = originy + (-0.32f) * resize;	
 	t.p3x = originx + (-0.22f) * resize; t.p3y = originy + (-0.63f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.263f, g = 0.957f, b = 0.988f;	//0.263, 0.957, 0.988	//4 : orange
+	r = 0.263f, g = 0.957f, b = 0.988f;	
 	t.p1x = originx + (-0.3f) * resize;  t.p1y = originy + (-0.27f) * resize;
-	t.p2x = originx + (-0.22f) * resize; t.p2y = originy + (-0.63f) * resize;	//0.22,-0.63
+	t.p2x = originx + (-0.22f) * resize; t.p2y = originy + (-0.63f) * resize;	
 	t.p3x = originx + (-0.07f) * resize; t.p3y = originy + (-0.12f) * resize;
 	drawTriangle(t, r, g, b);
 
-	//0.53,-0.32
-	r = 0.188f, g = 0.549f, b = 0.835f;	//0.188, 0.549, 0.835	//1 : yellow
+	
+	r = 0.188f, g = 0.549f, b = 0.835f;	
 	t.p1x = originx + (-0.53f) * resize;  t.p1y = originy + (-0.32f) * resize;
 	t.p2x = originx + (-0.13f) * resize;  t.p2y = originy + (0.0f) * resize;
 	t.p3x = originx + (-0.5f) * resize;  t.p3y = originy + (-0.0f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.125f, g = 0.494f, b = 0.596f;	//0.125, 0.494, 0.596	//2 : yellow
+	r = 0.125f, g = 0.494f, b = 0.596f;	
 	t.p1x = originx + (-0.53f) * resize;   t.p1y = originy + (-0.32f) * resize;
 	t.p2x = originx + (-0.5f) * resize;    t.p2y = originy + (0.00f) * resize;
-	t.p3x = originx + (-0.655f) * resize;  t.p3y = originy + (-0.24f) * resize;	//0.655,-0.24
+	t.p3x = originx + (-0.655f) * resize;  t.p3y = originy + (-0.24f) * resize;	
 	drawTriangle(t, r, g, b);
 
-	r = 0.125f, g = 0.494f, b = 0.596f;	//0.157, 0.596, 0.745	//3 : yellow
+	r = 0.125f, g = 0.494f, b = 0.596f;	
 	t.p1x = originx + (-0.53f) * resize;  t.p1y = originy + (-0.32f) * resize;
 	t.p2x = originx + (-0.655f) * resize; t.p2y = originy + (-0.24f) * resize;
-	t.p3x = originx + (-0.49f) * resize;  t.p3y = originy + (-0.72f) * resize;	//0.49,-0.72
+	t.p3x = originx + (-0.49f) * resize;  t.p3y = originy + (-0.72f) * resize;	
 	drawTriangle(t, r, g, b);
 
-	r = 0.2f, g = 0.702f, b = 0.878f;	//0.2, 0.702, 0.878	//4 : yellow
+	r = 0.2f, g = 0.702f, b = 0.878f;	
 	t.p1x = originx + (-0.53f) * resize;  t.p1y = originy + (-0.32f) * resize;
 	t.p2x = originx + (-0.49f) * resize;  t.p2y = originy + (-0.72f) * resize;
-	t.p3x = originx + (-0.22f) * resize;  t.p3y = originy + (-0.63f) * resize;	//
+	t.p3x = originx + (-0.22f) * resize;  t.p3y = originy + (-0.63f) * resize;	
 	drawTriangle(t, r, g, b);
 
 	//tip of bottom
-	r = 0.141f, g = 0.227f, b = 0.424f;	//0.141, 0.227, 0.424	//4 : yellow
+	r = 0.141f, g = 0.227f, b = 0.424f;	
 	t.p1x = originx + (-0.22f) * resize;  t.p1y = originy + (-0.63f) * resize;
-	t.p2x = originx + (-0.49f) * resize;  t.p2y = originy + (-0.72f) * resize;//
+	t.p2x = originx + (-0.49f) * resize;  t.p2y = originy + (-0.72f) * resize;
 	t.p3x = originx + (-0.3f) * resize;   t.p3y = originy + (-0.8f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.031f, g = 0.063f, b = 0.318f;	//0.031, 0.063, 0.318	//4 : yellow
+	r = 0.031f, g = 0.063f, b = 0.318f;	
 	t.p1x = originx + (-0.3f) * resize;  t.p1y = originy + (-0.8f) * resize;
-	t.p2x = originx + (-0.49f) * resize;  t.p2y = originy + (-0.72f) * resize;//	//0.49,-0.93
+	t.p2x = originx + (-0.49f) * resize;  t.p2y = originy + (-0.72f) * resize;
 	t.p3x = originx + (-0.5f) * resize;  t.p3y = originy + (-0.93f) * resize;
 	drawTriangle(t, r, g, b);
 }
@@ -443,41 +442,41 @@ void drawLeftHalfOfBody(float originx, float originy, float resize)
 	struct Pentagon p;
 	struct Triangle t;
 	float r = 0.0f, g = 0.0f, b = 0.0f;
-	r = 0.071f, g = 0.071f, b = 0.18f;	//0.071, 0.071, 0.18	//1
-	t.p1x = originx + (0.0f) * resize;    t.p1y = originy + (0.3f) * resize;	//0,0.377
-	t.p2x = originx + (0.0f) * resize;    t.p2y = originy + (0.0f) * resize;	//
-	t.p3x = originx + (-0.073f) * resize; t.p3y = originy + (0.123f) * resize;	//0.073,0.123
+	r = 0.071f, g = 0.071f, b = 0.18f;	
+	t.p1x = originx + (0.0f) * resize;    t.p1y = originy + (0.3f) * resize;	
+	t.p2x = originx + (0.0f) * resize;    t.p2y = originy + (0.0f) * resize;	
+	t.p3x = originx + (-0.073f) * resize; t.p3y = originy + (0.123f) * resize;	
 	drawTriangle(t, r, g, b);
 
 
-	r = 0.094f, g = 0.278f, b = 0.392f;	//0.094, 0.278, 0.392	//2
-	t.p1x = originx + (-0.073f) * resize; t.p1y = originy + (0.13f) * resize;	//0.073,0.13
-	t.p2x = originx + (0.0f) * resize;    t.p2y = originy + (0.0f) * resize;		//0,0
-	t.p3x = originx + (-0.13f) * resize;  t.p3y = originy + (0.0f) * resize;	//0.14,0.067
+	r = 0.094f, g = 0.278f, b = 0.392f;	//2
+	t.p1x = originx + (-0.073f) * resize; t.p1y = originy + (0.13f) * resize;
+	t.p2x = originx + (0.0f) * resize;    t.p2y = originy + (0.0f) * resize;
+	t.p3x = originx + (-0.13f) * resize;  t.p3y = originy + (0.0f) * resize;
 	drawTriangle(t, r, g, b);
 
-	r = 0.09f, g = 0.337f, b = 0.388f; //0.09, 0.337, 0.388	//3
-	t.p1x = originx + (-0.13f) * resize;  t.p1y = originy + (0.0f) * resize;	//0,0.377
-	t.p2x = originx + (0.0f) * resize;    t.p2y = originy + (0.0f) * resize;		//0.02,0.08
-	t.p3x = originx + (-0.057f) * resize; t.p3y = originy + (-0.114f) * resize;	//0.057,-0.114
+	r = 0.09f, g = 0.337f, b = 0.388f; 
+	t.p1x = originx + (-0.13f) * resize;  t.p1y = originy + (0.0f) * resize;	
+	t.p2x = originx + (0.0f) * resize;    t.p2y = originy + (0.0f) * resize;	
+	t.p3x = originx + (-0.057f) * resize; t.p3y = originy + (-0.114f) * resize;	
 	drawTriangle(t, r, g, b);
 
-	r = 0.071f, g = 0.075f, b = 0.161f; //0.09, 0.337, 0.388	//4
-	t.p1x = originx + (-0.057f) * resize; t.p1y = originy + (-0.114f) * resize;	//0,0.377
-	t.p2x = originx + (0.0f) * resize;    t.p2y = originy + (0.0f) * resize;		//0.02,0.08
-	t.p3x = originx + (0.0f) * resize;    t.p3y = originy + (-0.4f) * resize;	//
+	r = 0.071f, g = 0.075f, b = 0.161f; 
+	t.p1x = originx + (-0.057f) * resize; t.p1y = originy + (-0.114f) * resize;	
+	t.p2x = originx + (0.0f) * resize;    t.p2y = originy + (0.0f) * resize;	
+	t.p3x = originx + (0.0f) * resize;    t.p3y = originy + (-0.4f) * resize;	
 	drawTriangle(t, r, g, b);
 
-	r = 0.098f, g = 0.2f, b = 0.204f; //0.098, 0.2, 0.204
-	t.p1x = originx + (-0.042f) * resize; t.p1y = originy + (-0.191f) * resize;	//0,0.377
-	t.p2x = originx + (0.0f) * resize;    t.p2y = originy + (0.0f) * resize;		//0.02,0.08
-	t.p3x = originx + (0.0f) * resize;    t.p3y = originy + (-0.42f) * resize;	//0.042,-0.191
+	r = 0.098f, g = 0.2f, b = 0.204f; 
+	t.p1x = originx + (-0.042f) * resize; t.p1y = originy + (-0.191f) * resize;	
+	t.p2x = originx + (0.0f) * resize;    t.p2y = originy + (0.0f) * resize;	
+	t.p3x = originx + (0.0f) * resize;    t.p3y = originy + (-0.42f) * resize;	
 	drawTriangle(t, r, g, b);
 
-	r = 0.043f, g = 0.047f, b = 0.165f; //0.043, 0.047, 0.165
-	t.p1x = originx + (-0.073f) * resize; t.p1y = originy + (0.528f) * resize;	//0.09,0.528
-	t.p2x = originx + (0.0f) * resize;    t.p2y = originy + (0.3f) * resize;		//0,0.327
-	t.p3x = originx + (-0.073f) * resize; t.p3y = originy + (0.467f) * resize;		//0.095,0.467
+	r = 0.043f, g = 0.047f, b = 0.165f; 
+	t.p1x = originx + (-0.073f) * resize; t.p1y = originy + (0.528f) * resize;	
+	t.p2x = originx + (0.0f) * resize;    t.p2y = originy + (0.3f) * resize;	
+	t.p3x = originx + (-0.073f) * resize; t.p3y = originy + (0.467f) * resize;	
 	drawTriangle(t, r, g, b);
 }
 
@@ -506,7 +505,6 @@ void drawQuadrilateral(struct Quadrilateral q, float r, float g, float b)
 	float resize = 1.0f;
 
 	glBegin(GL_QUADS);
-	//printf("Drawing eye");
 	glColor3f(r, g, b);
 	glVertex3f(x + (q.p1x) * resize, y + (q.p1y) * resize, 0.0f);
 	glColor3f(r, g, b);
