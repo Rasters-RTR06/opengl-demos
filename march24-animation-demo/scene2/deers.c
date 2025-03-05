@@ -2,7 +2,7 @@ void drawRightPatternedDeer();
 void drawLeftPatternedDeer();
 void drawCraneOne();
 void drawCraneTwo();
-
+void drawCircleScene2(float , float , float, float, float, float, float, int);
 void drawRightPatternedDeer()
 {
 	float x = 0.0f;
@@ -475,7 +475,7 @@ void drawCraneOne()
 	glEnd();
 
 	//Head
-	drawCircle(0.38f, 0.9f, 0.03f, 0.04, 0.49f, 0.722f, 0.42f, 1);
+	drawCircleScene2(0.38f, 0.9f, 0.03f, 0.04, 0.49f, 0.722f, 0.42f, 1);
 
 	//Beak
 	glBegin(GL_TRIANGLES);	
@@ -541,7 +541,7 @@ void drawCraneTwo()
 	glEnd();
 
 	//Head
-	drawCircle(0.38f, 0.9f, 0.03f, 0.04, 0.49f, 0.722f, 0.42f, 1);
+	drawCircleScene2(0.38f, 0.9f, 0.03f, 0.04, 0.49f, 0.722f, 0.42f, 1);
 
 	//beak
 	glBegin(GL_TRIANGLES);	
@@ -572,7 +572,7 @@ void drawCraneTwo()
 	glEnd();
 }
 
-void drawCircle(float centerX, float centerY, float radiusH, float radiusV, float r, float g, float b, int fill)
+void drawCircleScene2(float centerX, float centerY, float radiusH, float radiusV, float r, float g, float b, int fill)
 {
 	float ObjX = 0.0f;
 	float ObjY = 0.0f;
