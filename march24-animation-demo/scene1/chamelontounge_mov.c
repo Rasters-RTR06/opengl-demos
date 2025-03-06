@@ -1,7 +1,7 @@
 extern float fToungeStretch = 0;
 extern float fToungeDirection = -1.0f;
 
-void toungeMovement(bool )
+void toungeMovement(void)
 {
 	glColor3f(1.0f, 0.0f, 0.0f);
 	glBegin(GL_TRIANGLE_STRIP);

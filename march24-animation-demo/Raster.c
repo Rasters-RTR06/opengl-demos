@@ -430,7 +430,7 @@ void Scene1(void)
 	drawGround();
 	drawDenseForrest();
 
-	butterfly(0.0f, 0.0f, 0.2);
+	drawButterfly(0.0f, 0.0f, 0.2);
 	elephant();
 	toungeMovement();
 

@@ -1,38 +1,11 @@
-void butterfly(float originx, float originy, float resize)
-{
-	// Triangle 1
-	glBegin(GL_TRIANGLES);
-	glColor3f(0.0, 0.0, 1.0);
-	glVertex2f(originx + 0*resize, originy + 1*resize);
-	glVertex2f(originx + -1*resize, originy + -1*resize);
-	glVertex2f(originx + 1*resize, originy + -1*resize);
-	glEnd();
-}
+
 
 void updateButterfly(void)
 {
 
-	fToungeStretch += 0.03f * fToungeDirection;   // Increment with fToungeDirection
-
-	if (fToungeStretch >= 1.0f) {
-		fToungeStretch = 1.0f;
-		fToungeDirection = -1.0f; // Change fToungeDirection to negative
-	} else if (fToungeStretch <= -1.0f) {
-		fToungeStretch = -1.0f;
-		fToungeDirection = 1.0f;  // Change fToungeDirection to positive
-	}
 }
 
-void drawRightWing(float, float, float);
-void drawLeftWing(float, float, float);
-void drawRightHalfOfBody();
-void drawLeftHalfOfBody();
 
-void drawTriangle(struct Triangle, float, float, float);
-void drawQuadrilateral(struct Quadrilateral, float, float, float);
-void drawPentagon(struct Pentagon, float, float, float);
-
-void drawButterfly();
 
 struct Triangle
 {
@@ -77,6 +50,17 @@ struct Pentagon
 	float p5y;
 };
 
+// Update these function declarations to include parameters
+void drawRightWing(float originx, float originy, float resize);
+void drawLeftWing(float originx, float originy, float resize);
+void drawRightHalfOfBody(float originx, float originy, float resize);
+void drawLeftHalfOfBody(float originx, float originy, float resize);
+
+void drawTriangle(struct Triangle t, float r, float g, float b);
+void drawQuadrilateral(struct Quadrilateral q, float r, float g, float b);
+void drawPentagon(struct Pentagon p, float r, float g, float b);
+
+void drawButterfly(float originx, float originy, float resize);
 
 void drawRightWing(float originx, float originy, float resize)
 {
