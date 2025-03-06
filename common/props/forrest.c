@@ -4,11 +4,14 @@
 extern FILE *gpFile;
 
 // array of random floats (50)
-float randomFloats[200] =
-    {0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604, 0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604, 0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604, 0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604};
+float randomFloats[800] =
+    {0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604, 0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604, 0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604, 0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604, 0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604, 0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604, 0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604, 0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604, 0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604, 0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604, 0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604, 0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604, 0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604, 0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604, 0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604, 0.000123, 0.048659, 0.008744, 0.056581, 0.070940, 0.077847, 0.086422, 0.085055, 0.029301, 0.086438, 0.064492, 0.074685, 0.082864, 0.076562, 0.087191, 0.090832, 0.091253, 0.052196, 0.044017, 0.010764, 0.035401, 0.082305, 0.042772, 0.016984, 0.000085, 0.065746, 0.077355, 0.006372, 0.008982, 0.038566, 0.068389, 0.080761, 0.015409, 0.014286, 0.004846, 0.034614, 0.001856, 0.097842, 0.064763, 0.005365, 0.091415, 0.063747, 0.043171, 0.002106, 0.024259, 0.039195, 0.065401, 0.078188, 0.002283, 0.082604};
 
+// global variable declarations for forrest
 float frontForestMoveX = 0.0f;
-GLboolean isFrontForrestMoving = FALSE;
+GLboolean isFrontForrestMoving = TRUE;
+float denseForrestMoveX = 0.0f;
+GLboolean isDenseForrestMoving = TRUE;
 
 struct Color
 {
@@ -24,11 +27,23 @@ struct Dots
     float y;
 };
 
-void updateFrontForest()
+void updateFrontForrest()
 {
-    while (isFrontForrestMoving == TRUE)
+
+    frontForestMoveX = frontForestMoveX - 0.005f;
+    if (frontForestMoveX < -2.0f)
     {
-        frontForestMoveX = frontForestMoveX - 0.001f;
+        frontForestMoveX = 0.0f;
+        // isFrontForrestMoving = FALSE;
+    }
+}
+
+void updateDenseForrest()
+{
+    denseForrestMoveX = denseForrestMoveX - 0.001f;
+    if (denseForrestMoveX < -2.0f)
+    {
+        denseForrestMoveX = 0.0f;
     }
 }
 
@@ -52,7 +67,7 @@ void drawDenseForrest()
     void drawTallNarrowPlant(float startX, float startY, struct Color leavesColor, struct Color petalColor);
 
     // variable declarations
-    float plantStartX = -1.10f;
+    float plantStartX = -3.10f;
     float plantStartY = 0.0f;
     float plantSeparation = 0.12f;
     float randomFloat = 0.0f;
@@ -64,13 +79,14 @@ void drawDenseForrest()
     // code
     for (j = 0; j < 10; j++)
     {
-        for (i = 0; i < 20; i++)
+        for (i = 0; i < 60; i++)
         {
-            randomFloat = randomFloats[i + (j * 20)];
-            drawPlant(plantStartX + randomFloat, plantStartY + randomFloat, plantColorGreen, plantColorGreen);
+            int randomFloatsIndex = i + (j * 20);
+            randomFloat = randomFloats[randomFloatsIndex];
+            drawPlant(plantStartX + randomFloat + denseForrestMoveX, plantStartY + randomFloat, plantColorGreen, plantColorGreen);
             plantStartX = plantStartX + plantSeparation;
         }
-        plantStartX = -1.10f;
+        plantStartX = -3.10f;
         plantStartY = plantStartY + plantSeparation;
     }
 }
@@ -78,6 +94,7 @@ void drawDenseForrest()
 void drawFrontTrees()
 {
     // function prototypes
+    void updateFrontForest();
     void drawPlant(float startX, float startY, struct Color leavesColor, struct Color petalColor);
     void drawCompactPlant(float startX, float startY, struct Color leavesColor, struct Color petalColor);
     void drawTallNarrowPlant(float startX, float startY, struct Color leavesColor, struct Color petalColor);
@@ -89,36 +106,102 @@ void drawFrontTrees()
     struct Color plantColorSupposedToBeYellow = {0.735f, 0.625f, 0.455f};
 
     // code
-    drawCompactPlant(-1.30f, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
-    drawCompactPlant(-1.10f, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
-    drawCompactPlant(-0.90f, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
-    drawCompactPlant(-0.80f, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
 
-    drawTallNarrowPlant(-0.70f, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+    // left not visible plants
+    drawCompactPlant(-1.30f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    // drawCompactPlant(-1.10f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(-0.90f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(-0.80f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
 
-    drawCompactPlant(-0.60f, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
-    drawCompactPlant(-0.50f, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
-    drawCompactPlant(-0.40f, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawTallNarrowPlant(-0.70f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
 
-    drawTallNarrowPlant(-0.30f, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
-    drawTallNarrowPlant(-0.20f, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+    drawCompactPlant(-0.60f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    // drawCompactPlant(-0.50f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(-0.40f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
 
-    drawCompactPlant(-0.10f, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
-    drawCompactPlant(0.00f, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
-    drawCompactPlant(0.10f, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
-    drawCompactPlant(0.20f, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
-    drawCompactPlant(0.30f, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawTallNarrowPlant(-0.30f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+    drawTallNarrowPlant(-0.20f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
 
-    drawTallNarrowPlant(0.40f, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
-    drawTallNarrowPlant(0.50f, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
-    drawTallNarrowPlant(0.60f, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+    drawCompactPlant(-0.10f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    // drawCompactPlant(0.00f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(0.10f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(0.20f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(0.30f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
 
-    drawCompactPlant(0.70f, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
-    drawCompactPlant(0.80f, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawTallNarrowPlant(0.40f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+    // drawTallNarrowPlant(0.50f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+    drawTallNarrowPlant(0.60f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
 
-    drawTallNarrowPlant(0.90f, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+    drawCompactPlant(0.70f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(0.80f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
 
-    drawCompactPlant(1.00f, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawTallNarrowPlant(0.90f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+
+    drawCompactPlant(1.00f - 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+
+    // middle plants visible for first time
+    drawCompactPlant(-1.30f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(-1.10f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    // drawCompactPlant(-0.90f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(-0.80f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+
+    drawTallNarrowPlant(-0.70f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+
+    drawCompactPlant(-0.60f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(-0.50f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    // drawCompactPlant(-0.40f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+
+    drawTallNarrowPlant(-0.30f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+    drawTallNarrowPlant(-0.20f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+
+    drawCompactPlant(-0.10f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(0.00f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(0.10f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    // drawCompactPlant(0.20f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(0.30f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+
+    drawTallNarrowPlant(0.40f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+    drawTallNarrowPlant(0.50f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+    drawTallNarrowPlant(0.60f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+
+    drawCompactPlant(0.70f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(0.80f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+
+    drawTallNarrowPlant(0.90f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+
+    drawCompactPlant(1.00f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+
+    // right plants not visible at first
+    drawCompactPlant(-1.30f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(-1.10f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(-0.90f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    // drawCompactPlant(-0.80f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+
+    drawTallNarrowPlant(-0.70f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+
+    drawCompactPlant(-0.60f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(-0.50f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    // drawCompactPlant(-0.40f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+
+    drawTallNarrowPlant(-0.30f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+    drawTallNarrowPlant(-0.20f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+
+    drawCompactPlant(-0.10f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    // drawCompactPlant(0.00f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(0.10f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(0.20f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(0.30f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+
+    drawTallNarrowPlant(0.40f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+    // drawTallNarrowPlant(0.50f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+    drawTallNarrowPlant(0.60f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+
+    drawCompactPlant(0.70f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+    drawCompactPlant(0.80f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
+
+    // drawTallNarrowPlant(0.90f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorKindOfPink);
+
+    drawCompactPlant(1.00f + 2.0f + frontForestMoveX, -1.00f, plantColorGrayDarkGreen, plantColorSupposedToBeYellow);
 }
 
 void drawTallNarrowPlant(float startX, float startY, struct Color leavesColor, struct Color petalColor)
@@ -131,22 +214,22 @@ void drawTallNarrowPlant(float startX, float startY, struct Color leavesColor, s
     drawBushWith(startX + 0.050f, startY + 0.0f, 0.10f, 0.10f, 5000, leavesColor);
     drawBushWith(startX + -0.050f, startY + 0.0f, 0.10f, 0.10f, 5000, leavesColor);
     drawBushWith(startX + 0.040f, startY + 0.10f, 0.10f, 0.10f, 5000, leavesColor);
-    drawBushWith(startX + 0.040f, startY + 0.10f, 0.10f, 0.10f, 100, petalColor);
     drawBushWith(startX + -0.040f, startY + 0.10f, 0.10f, 0.10f, 5000, leavesColor);
     drawBushWith(startX + 0.010f, startY + 0.10f, 0.10f, 0.10f, 5000, leavesColor);
     drawBushWith(startX + 0.030f, startY + 0.20f, 0.10f, 0.10f, 5000, leavesColor);
-    drawBushWith(startX + 0.030f, startY + 0.20f, 0.10f, 0.10f, 100, petalColor);
     drawBushWith(startX + -0.030f, startY + 0.20f, 0.10f, 0.10f, 5000, leavesColor);
     drawBushWith(startX + 0.020f, startY + 0.20f, 0.10f, 0.10f, 5000, leavesColor);
     drawBushWith(startX + 0.025f, startY + 0.30f, 0.10f, 0.30f, 5000, leavesColor);
-    drawBushWith(startX + 0.025f, startY + 0.30f, 0.10f, 0.30f, 100, petalColor);
     drawBushWith(startX + -0.025f, startY + 0.30f, 0.10f, 0.30f, 5000, leavesColor);
     drawBushWith(startX + 0.015f, startY + 0.40f, 0.10f, 0.30f, 5000, leavesColor);
     drawBushWith(startX + -0.015f, startY + 0.40f, 0.10f, 0.30f, 5000, leavesColor);
     drawBushWith(startX + 0.005f, startY + 0.50f, 0.10f, 0.30f, 5000, leavesColor);
     drawBushWith(startX + -0.005f, startY + 0.50f, 0.10f, 0.30f, 5000, leavesColor);
-    drawBushWith(startX + -0.005f, startY + 0.50f, 0.10f, 0.30f, 100, petalColor);
     drawBushWith(startX + 0.005f, startY + 0.60f, 0.10f, 0.30f, 5000, leavesColor);
+    drawBushWith(startX + -0.005f, startY + 0.50f, 0.10f, 0.30f, 100, petalColor);
+    drawBushWith(startX + 0.025f, startY + 0.30f, 0.10f, 0.30f, 100, petalColor);
+    drawBushWith(startX + 0.030f, startY + 0.20f, 0.10f, 0.10f, 100, petalColor);
+    drawBushWith(startX + 0.040f, startY + 0.10f, 0.10f, 0.10f, 100, petalColor);
 }
 
 void drawCompactPlant(float startX, float startY, struct Color leavesColor, struct Color petalColor)
@@ -159,19 +242,16 @@ void drawCompactPlant(float startX, float startY, struct Color leavesColor, stru
     drawBushWith(startX + 0.05f, startY + 0.00f, 0.10f, 0.10f, 3000, leavesColor);
     drawBushWith(startX + 0.05f, startY + 0.00f, 0.10f, 0.10f, 3000, leavesColor);
     drawBushWith(startX + -0.05f, startY + 0.00f, 0.10f, 0.10f, 3000, leavesColor);
-    drawBushWith(startX + -0.05f, startY + 0.00f, 0.10f, 0.10f, 200, petalColor);
     drawBushWith(startX + 0.025f, startY + 0.05f, 0.10f, 0.10f, 3000, leavesColor);
     drawBushWith(startX + -0.025f, startY + 0.05f, 0.10f, 0.10f, 3000, leavesColor);
-    drawBushWith(startX + -0.025f, startY + 0.05f, 0.10f, 0.10f, 200, petalColor);
     drawBushWith(startX + -0.025f, startY + 0.10f, 0.05f, 0.10f, 3000, leavesColor);
     drawBushWith(startX + 0.010f, startY + 0.10f, 0.05f, 0.10f, 3000, leavesColor);
     drawBushWith(startX + 0.030f, startY + 0.10f, 0.05f, 0.10f, 3000, leavesColor);
-    drawBushWith(startX + 0.030f, startY + 0.10f, 0.05f, 0.10f, 200, petalColor);
     drawBushWith(startX + 0.015f, startY + 0.15f, 0.05f, 0.10f, 3000, leavesColor);
     drawBushWith(startX + -0.015f, startY + 0.15f, 0.05f, 0.10f, 3000, leavesColor);
-    drawBushWith(startX + -0.015f, startY + 0.15f, 0.05f, 0.10f, 200, petalColor);
     drawBushWith(startX + 0.020f, startY + 0.20f, 0.05f, 0.10f, 3000, leavesColor);
     drawBushWith(startX + -0.020f, startY + 0.20f, 0.05f, 0.10f, 3000, leavesColor);
+    drawBushWith(startX + 0.0f, startY + 0.10f, 0.05f, 0.20f, 100, petalColor);
 }
 
 void drawPlant(float startX, float startY, struct Color leavesColor, struct Color petalColor)
