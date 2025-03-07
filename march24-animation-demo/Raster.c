@@ -33,6 +33,7 @@ HDC ghdc = NULL;   // global handle to device context
 HGLRC ghrc = NULL; // global handle to rendering context (rc -> rendering context, HGLRC -> handle to openGL rendering context)
 int x_Bheem = 0;
 int y_Bheem = 0;
+int SCALE_FACTOR = 1.0f;
 
 
 // Color Structure
@@ -50,7 +51,6 @@ typedef struct {
 #define WOOD_COLOR (Color){0.6f, 0.4f, 0.2f}
 #define HANDLE_COLOR (Color){0.6f, 0.4f, 0.2f}
 #define HAIR_COLOR (Color){0.0f, 0.0f, 0.0f}
-#define SCALE_FACTOR 0.5f
 
 void drawPolygon(GLfloat vertices[][2], int numVertices, Color color) {
     glColor3f(color.r, color.g, color.b);
