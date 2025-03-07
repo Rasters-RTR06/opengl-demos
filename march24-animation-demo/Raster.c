@@ -50,12 +50,13 @@ typedef struct {
 #define WOOD_COLOR (Color){0.6f, 0.4f, 0.2f}
 #define HANDLE_COLOR (Color){0.6f, 0.4f, 0.2f}
 #define HAIR_COLOR (Color){0.0f, 0.0f, 0.0f}
+#define SCALE_FACTOR 0.5f
 
 void drawPolygon(GLfloat vertices[][2], int numVertices, Color color) {
     glColor3f(color.r, color.g, color.b);
     glBegin(GL_POLYGON);
     for (int i = 0; i < numVertices; i++) {
-        glVertex2f(vertices[i][0] + x_Bheem, vertices[i][1] + y_Bheem);
+        glVertex2f((vertices[i][0] + x_Bheem)*SCALE_FACTOR, (vertices[i][1] + y_Bheem)*SCALE_FACTOR);
     }
     glEnd();
 }
@@ -65,7 +66,7 @@ void drawPoint(GLfloat x, GLfloat y, GLfloat size, Color color) {
     glColor3f(color.r, color.g, color.b);
     glPointSize(size);
     glBegin(GL_POINTS);
-    glVertex2f(x +x_Bheem, y + y_Bheem);
+    glVertex2f((x +x_Bheem)*SCALE_FACTOR, (y + y_Bheem)*SCALE_FACTOR);
     glEnd();
 }
 
@@ -73,8 +74,8 @@ void drawLine(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat lineWidth,
     glColor3f(color.r, color.g, color.b);  
     glLineWidth(lineWidth); 
     glBegin(GL_LINES);
-        glVertex2f(x1+x_Bheem, y1+ y_Bheem); 
-        glVertex2f(x2+x_Bheem, y2+ y_Bheem); 
+        glVertex2f((x1+x_Bheem)*SCALE_FACTOR, (y1+ y_Bheem)*SCALE_FACTOR); 
+        glVertex2f((x2+x_Bheem)*SCALE_FACTOR, (y2+ y_Bheem)*SCALE_FACTOR); 
     glEnd();
 }
 
@@ -148,8 +149,8 @@ void drawBhimRightHand() {
 }
 
 void drawBhimEye() {
-    drawPoint(0.0f, 0.625f, 10.0f, WHITE_COLOR);
-    drawPoint(0.01f, 0.627f, 4.0f, BLACK_COLOR);
+    drawPoint(0.0f, 0.625f, 10.0f*SCALE_FACTOR, WHITE_COLOR);
+    drawPoint(0.01f, 0.627f, 4.0f*SCALE_FACTOR, BLACK_COLOR);
 }
 
 void drawBhimHair() {
@@ -161,7 +162,7 @@ void drawBhimHair() {
 }
 
 void drawBhimMouth() {
-    drawPoint(0.012f, 0.516f, 5.0f, RED_COLOR);
+    drawPoint(0.012f, 0.516f, 5.0f*SCALE_FACTOR, RED_COLOR);
 }
 
 void drawBhimWeapon() {
