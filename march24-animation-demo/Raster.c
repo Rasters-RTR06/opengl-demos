@@ -10,8 +10,8 @@
 #pragma comment(lib, "opengl32.lib")
 
 // Macros
-#define WIN_WIDTH 800
-#define WIN_HEIGHT 600
+#define WIN_WIDTH 1280
+#define WIN_HEIGHT 720
 
 // global function declarations
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -456,17 +456,10 @@ void display(void)
 	// code
 	// clear openGL bufferes
 	glClear(GL_COLOR_BUFFER_BIT);
-	// TODO: Add switch case block that will flip bcallFlags based on iTimeElapsed [DONE]
-	switch (Scene)
-	{
-		case 1:
-			Scene1();
-			break;
 
-		default:
-			break;
-
-	}
+	drawGround();
+	drawDenseForrest();
+	// elephant();
 	drawFrontTrees();
 
 	// swap the bufferes
