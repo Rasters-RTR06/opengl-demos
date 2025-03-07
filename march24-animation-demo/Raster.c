@@ -31,257 +31,155 @@ BOOL gbEscapeKeyIsPressed = FALSE;
 // Opengl related global variable
 HDC ghdc = NULL;   // global handle to device context
 HGLRC ghrc = NULL; // global handle to rendering context (rc -> rendering context, HGLRC -> handle to openGL rendering context)
+int x_Bheem = 0;
+int y_Bheem = 0;
 
-void BHIM_Upper() {
-    
-    
-    glColor3f(0.9f, 0.7f, 0.6f);  // Light skin tone
+
+// Color Structure
+typedef struct {
+    GLfloat r, g, b;
+} Color;
+
+// Predefined Colors
+#define SKIN_COLOR (Color){0.9f, 0.7f, 0.6f}
+#define PANT_COLOR (Color){0.0f, 1.0f, 0.0f}
+#define WHITE_COLOR (Color){1.0f, 1.0f, 1.0f}
+#define BLACK_COLOR (Color){0.0f, 0.0f, 0.0f}
+#define RED_COLOR (Color){1.0f, 0.0f, 0.0f}
+#define GREEN_COLOR (Color){0.0f, 1.0f, 0.0f}
+#define WOOD_COLOR (Color){0.6f, 0.4f, 0.2f}
+#define HANDLE_COLOR (Color){0.6f, 0.4f, 0.2f}
+#define HAIR_COLOR (Color){0.0f, 0.0f, 0.0f}
+
+void drawPolygon(GLfloat vertices[][2], int numVertices, Color color) {
+    glColor3f(color.r, color.g, color.b);
     glBegin(GL_POLYGON);
-
-	glVertex2f(-0.151f, 0.259f);
-	glVertex2f(-0.113f, 0.251f);
-	glVertex2f(-0.079f, 0.243f);
-	glVertex2f(-0.051f, 0.244f);
-	glVertex2f(0.002f, 0.251f);
-	glVertex2f(0.023f, 0.265f);
-
-	glVertex2f(0.035f, 0.216f);
-	glVertex2f(0.043f, 0.173f);
-	glVertex2f(0.05f, 0.123f);
-	glVertex2f(0.056f, 0.063f);
-	glVertex2f(0.056f, 0.002f);
-	glVertex2f(0.043f, -0.076f);
-	glVertex2f(0.028f, -0.131f);
-	glVertex2f(0.002f, -0.155f);
-	glVertex2f(0.027f, -0.169f);
-	glVertex2f(0.033f, -0.192f);
-	glVertex2f(0.047f, -0.218f);
-	glVertex2f(0.059f, -0.242f);
-	glVertex2f(0.057f, -0.26f);
-	glVertex2f(0.04f, -0.273f);
-	glVertex2f(0.025f, -0.281f);
-	glVertex2f(0.003f, -0.266f);
-	glVertex2f(-0.011f, -0.245f);
-	glVertex2f(-0.026f, -0.216f);
-	glVertex2f(-0.018f, -0.0188f);
-	glVertex2f(-0.017f, -0.167f);
-	glVertex2f(-0.018f, -0.119f);
-	glVertex2f(-0.026f, -0.08f);
-	glVertex2f(-0.04f, -0.03f);
-	glVertex2f(-0.054f, -0.016f);
-	glVertex2f(-0.054f, -0.013f);
-	glVertex2f(-0.058f, -0.05f);
-	glVertex2f(-0.071f, -0.096f);
-	glVertex2f(-0.107f, -0.165f);
-	glVertex2f(-0.115f, -0.189f);
-	glVertex2f(-0.115f, -0.203f);
-	glVertex2f(-0.089f, -0.26f);
-	glVertex2f(-0.104f, -0.292f);
-	glVertex2f(-0.122f, -0.299f);
-	glVertex2f(-0.185f, -0.229f);
-	glVertex2f(-0.189f, -0.22f);
-	glVertex2f(-0.187f, -0.199f);
-	glVertex2f(-0.173f, -0.177f);
-	glVertex2f(-0.166f, -0.152f);
-	glVertex2f(-0.161f, -0.122f);
-	glVertex2f(-0.161f, -0.08f);
-	glVertex2f(-0.167f, -0.037f);
-	glVertex2f(-0.174f, -0.019f);
-	glVertex2f(-0.173f, 0.011f);
-	glVertex2f(-0.156f, 0.052f);
-	glVertex2f(-0.155f, 0.074f);
-	glVertex2f(-0.171f, 0.114f);
-	glVertex2f(-0.172f, 0.157f);
-	glVertex2f(-0.156f, 0.237f);
+    for (int i = 0; i < numVertices; i++) {
+        glVertex2f(vertices[i][0] + x_Bheem, vertices[i][1] + y_Bheem);
+    }
     glEnd();
 }
 
-void BHIM_Lower() { 
-    glColor3f(0.9f, 0.7f, 0.6f); 
-    glBegin(GL_POLYGON);
 
-	glVertex2f(-0.151f, 0.259f);
-	glVertex2f(-0.113f, 0.251f);
-	glVertex2f(-0.079f, 0.243f);
-	glVertex2f(-0.051f, 0.244f);
-	glVertex2f(0.002f, 0.251f);
-	glVertex2f(0.023f, 0.265f);
-	glVertex2f(0.024f, 0.29f);
-	glVertex2f(0.028f, 0.331f);
-	glVertex2f(0.038f, 0.402f);
-	glVertex2f(0.052f, 0.451f);
-	glVertex2f(0.026f, 0.478f);
-	glVertex2f(-0.001f, 0.494f);
-	glVertex2f(-0.079f, 0.498f);
-	glVertex2f(-0.107f, 0.466f);
-    glEnd();
-}
-
-void BHIM_face() {
-    glColor3f(0.9f, 0.7f, 0.6f);  
-    glBegin(GL_POLYGON);
-
-	glVertex2f(0.025f, 0.482f);
-	glVertex2f(0.002f, 0.489f);
-	glVertex2f(0.002f, 0.496f);
-	glVertex2f(0.003f, 0.506f);
-	glVertex2f(0.013f, 0.521f);
-	glVertex2f(0.031f, 0.534f);
-	glVertex2f(0.033f, 0.544f);
-	glVertex2f(0.028f, 0.551f);
-
-	glVertex2f(0.019f, 0.556f);
-	glVertex2f(0.019f, 0.56f);
-	glVertex2f(0.024f, 0.56f);
-	glVertex2f(0.034f, 0.562f);
-	glVertex2f(0.045f, 0.572f);
-	glVertex2f(0.035f, 0.621f);
-	glVertex2f(0.031f, 0.623f);
-	glVertex2f(0.035f, 0.636f);
-	glVertex2f(0.033f, 0.653f);
-
-	glVertex2f(0.03f, 0.673f);
-	glVertex2f(0.007f, 0.686f);
-	glVertex2f(0.01f, 0.693f);
-	glVertex2f(-0.027f, 0.694f);
-	glVertex2f(-0.054f, 0.682f);
-	glVertex2f(-0.068f, 0.667f);
-	glVertex2f(-0.077f, 0.647f);
-	glVertex2f(-0.077f, 0.6f);
-	glVertex2f(-0.075f, 0.564f);
-	glVertex2f(-0.075f, 0.508f);
-	glVertex2f(-0.082f, 0.495f);
-	glVertex2f(-0.082f, 0.479f);
-    glEnd();
-}
-
-void BHIM_R_Hand() { 
-    glColor3f(0.9f, 0.7f, 0.6f);  // Light skin tone
-    glBegin(GL_POLYGON);
-    glVertex2f(0.054f, 0.449f);
-	glVertex2f(0.018f, 0.347f);
-	glVertex2f(0.093f, 0.302f);
-	glVertex2f(0.115f, 0.351f);
-    glEnd();
-	
-	glColor3f(0.9f, 0.7f, 0.6f);  // Light skin tone
-    glBegin(GL_POLYGON);
-    glVertex2f(0.093f, 0.302f);
-	glVertex2f(0.115f, 0.288f);
-	glVertex2f(0.169f, 0.418f);
-	glVertex2f(0.136f, 0.438f);
-    glEnd();
-
-	glColor3f(0.9f, 0.7f, 0.6f);  // Light skin tone
-    glBegin(GL_POLYGON);
-    glVertex2f(0.136f, 0.438f);
-	glVertex2f(0.14f, 0.461f);
-	glVertex2f(0.136f, 0.506f);
-	glVertex2f(0.146f, 0.497f);
-	glVertex2f(0.144f, 0.465f);
-	glVertex2f(0.164f, 0.492f);
-	glVertex2f(0.182f, 0.472f);
-    glVertex2f(0.169f, 0.418f);
-    glEnd();
-
-}
-
-void BHIM_Eye() { 
-    glColor3f(1.0f, 0.0f, 0.0f);  // Light skin tone
-    glBegin(GL_POLYGON);
-    glVertex2f(-0.018f, 0.637f);
-	glVertex2f(0.006f, 0.643f);
-	glVertex2f(0.024f, 0.622f);
-	glVertex2f(0.001f, 0.62f);
-	glVertex2f(0.015f, 0.628f);
-
-    glEnd();
-}
-void BHIM_Mouth() { 
-    glColor3f(1.0f, 0.0f, 0.0f);  // Light skin tone
-	glPointSize(5.0f);
+void drawPoint(GLfloat x, GLfloat y, GLfloat size, Color color) {
+    glColor3f(color.r, color.g, color.b);
+    glPointSize(size);
     glBegin(GL_POINTS);
-    glVertex2f(0.012f, 0.516f);
-
+    glVertex2f(x +x_Bheem, y + y_Bheem);
     glEnd();
 }
 
-void BHIM_Weapon() { 
-    glColor3f(0.6f, 0.4f, 0.2f);  // Light skin tone
-	//glPointSize(5.0f);
-    glBegin(GL_POLYGON);
-    glVertex2f(0.203f, 0.469f);
-	glVertex2f(0.185f, 0.44f);
-    glVertex2f(-0.174f, 0.633f);
-	glVertex2f(-0.141f, 0.656f);
-    glEnd();
-
-	glColor3f(0.6f, 0.4f, 0.2f); 
-	//glPointSize(5.0f);
-    glBegin(GL_POLYGON);
-    glVertex2f(-0.150f + 0.09f,  0.640f);   
-        glVertex2f(-0.150f + 0.08f,  0.665f);  
-        glVertex2f(-0.150f + 0.06f,  0.680f);  
-        glVertex2f(-0.150f + 0.03f,  0.690f);   
-        glVertex2f(-0.150f,  0.730f);        
-        glVertex2f(-0.150f - 0.03f,  0.690f);    
-        glVertex2f(-0.150f - 0.06f,  0.680f);    
-        glVertex2f(-0.150f - 0.08f,  0.665f);  
-        glVertex2f(-0.150f - 0.09f,  0.640f);   
-        glVertex2f(-0.150f - 0.08f,  0.615f); 
-        glVertex2f(-0.150f - 0.06f,  0.600f);   
-        glVertex2f(-0.150f - 0.03f,  0.590f);  
-        glVertex2f(-0.150f,  0.550f);         
-        glVertex2f(-0.150f + 0.03f,  0.590f);  
-        glVertex2f(-0.150f + 0.06f,  0.600f);   
-        glVertex2f(-0.150f + 0.08f,  0.615f);    
+void drawLine(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat lineWidth,Color color) {
+    glColor3f(color.r, color.g, color.b);  
+    glLineWidth(lineWidth); 
+    glBegin(GL_LINES);
+        glVertex2f(x1+x_Bheem, y1+ y_Bheem); 
+        glVertex2f(x2+x_Bheem, y2+ y_Bheem); 
     glEnd();
 }
 
-
-void BHIM_Pant() {
-
-    glColor3f(0.0f, 1.0f, 0.0f);  // Light skin tone
-    glBegin(GL_POLYGON);
-
-	glVertex2f(-0.151f, 0.259f);
-	glVertex2f(-0.113f, 0.251f);
-	glVertex2f(-0.079f, 0.243f);
-	glVertex2f(-0.051f, 0.244f);
-	glVertex2f(0.002f, 0.251f);
-	glVertex2f(0.023f, 0.265f);
-
-	glVertex2f(0.035f, 0.216f);
-	glVertex2f(0.043f, 0.173f);
-	glVertex2f(0.05f, 0.123f);
-	glVertex2f(0.056f, 0.063f);
-	glVertex2f(0.056f, 0.002f);
-	glVertex2f(0.043f, -0.076f);
-	glVertex2f(0.028f, -0.131f);
-	glVertex2f(0.002f, -0.155f);
-	
-	
-	glVertex2f(-0.026f, -0.08f);
-	glVertex2f(-0.04f, -0.03f);
-	glVertex2f(-0.054f, -0.016f);
-	glVertex2f(-0.054f, -0.013f);
-	glVertex2f(-0.058f, -0.05f);
-	glVertex2f(-0.071f, -0.096f);
-	glVertex2f(-0.107f, -0.165f);
-
-	glVertex2f(-0.161f, -0.122f);
-	glVertex2f(-0.161f, -0.08f);
-	glVertex2f(-0.167f, -0.037f);
-	glVertex2f(-0.174f, -0.019f);
-	glVertex2f(-0.173f, 0.011f);
-	glVertex2f(-0.156f, 0.052f);
-	glVertex2f(-0.155f, 0.074f);
-	glVertex2f(-0.171f, 0.114f);
-	glVertex2f(-0.172f, 0.157f);
-	glVertex2f(-0.156f, 0.237f);
-    glEnd();
+void drawBhimMustache() {
+    drawLine(0.035f, 0.542f, -0.015f, 0.554f, 5.0f,BLACK_COLOR);
 }
 
+void drawBhimUpper() {
+    GLfloat upperBody[][2] = {
+        {-0.151f, 0.259f}, {-0.113f, 0.251f}, {-0.079f, 0.243f}, {-0.051f, 0.244f},
+        {0.002f, 0.251f}, {0.023f, 0.265f}, {0.035f, 0.216f}, {0.043f, 0.173f},
+        {0.05f, 0.123f}, {0.056f, 0.063f}, {0.056f, 0.002f}, {0.043f, -0.076f},
+        {0.028f, -0.131f}, {0.002f, -0.155f}, {0.027f, -0.169f}, {0.033f, -0.192f},
+        {0.047f, -0.218f}, {0.059f, -0.242f}, {0.057f, -0.26f}, {0.040f, -0.273f},
+        {0.025f, -0.281f}, {0.003f, -0.266f}, {-0.011f, -0.245f}, {-0.026f, -0.216f},
+        {-0.018f, -0.188f}, {-0.017f, -0.167f}, {-0.018f, -0.119f}, {-0.026f, -0.08f},
+        {-0.040f, -0.03f}, {-0.054f, -0.016f}, {-0.058f, -0.05f}, {-0.071f, -0.096f},
+        {-0.107f, -0.165f}, {-0.115f, -0.189f}, {-0.115f, -0.203f}, {-0.089f, -0.26f},
+        {-0.104f, -0.292f}, {-0.122f, -0.299f}, {-0.185f, -0.229f}, {-0.189f, -0.22f},
+        {-0.187f, -0.199f}, {-0.173f, -0.177f}, {-0.166f, -0.152f}, {-0.161f, -0.122f},
+        {-0.161f, -0.08f}, {-0.167f, -0.037f}, {-0.174f, -0.019f}, {-0.173f, 0.011f},
+        {-0.156f, 0.052f}, {-0.155f, 0.074f}, {-0.171f, 0.114f}, {-0.172f, 0.157f},
+        {-0.156f, 0.237f}
+    };
+    drawPolygon(upperBody, sizeof(upperBody) / sizeof(upperBody[0]), SKIN_COLOR);
+}
+
+void drawBhimLower() {
+    GLfloat lowerBody[][2] = {
+        {-0.151f, 0.259f}, {-0.113f, 0.251f}, {-0.079f, 0.243f}, {-0.051f, 0.244f},
+        {0.002f, 0.251f}, {0.023f, 0.265f}, {0.024f, 0.29f}, {0.028f, 0.331f},
+        {0.038f, 0.402f}, {0.052f, 0.451f}, {0.026f, 0.478f}, {-0.001f, 0.494f},
+        {-0.079f, 0.498f}, {-0.107f, 0.466f}
+    };
+    drawPolygon(lowerBody, sizeof(lowerBody) / sizeof(lowerBody[0]), SKIN_COLOR);
+}
+
+void drawBhimPant() {
+    GLfloat vertices[][2] = {
+        {-0.151f, 0.259f}, {-0.113f, 0.251f}, {-0.079f, 0.243f}, {-0.051f, 0.244f},
+        {0.002f, 0.251f}, {0.023f, 0.265f}, {0.035f, 0.216f}, {0.043f, 0.173f},
+        {0.05f, 0.123f}, {0.056f, 0.063f}, {0.056f, 0.002f}, {0.043f, -0.076f},
+        {0.028f, -0.131f}, {0.002f, -0.155f}, {-0.026f, -0.08f}, {-0.04f, -0.03f},
+        {-0.054f, -0.016f}, {-0.058f, -0.05f}, {-0.071f, -0.096f}, {-0.107f, -0.165f},
+        {-0.161f, -0.122f}, {-0.161f, -0.08f}, {-0.167f, -0.037f}, {-0.174f, -0.019f},
+        {-0.173f, 0.011f}, {-0.156f, 0.052f}, {-0.155f, 0.074f}, {-0.171f, 0.114f},
+        {-0.172f, 0.157f}, {-0.156f, 0.237f}
+    };
+    drawPolygon(vertices, 30, PANT_COLOR);
+}
+
+void drawBhimFace() {
+    GLfloat vertices[][2] = {
+        {0.025f, 0.482f}, {0.002f, 0.489f}, {0.002f, 0.496f}, {0.003f, 0.506f},
+        {0.013f, 0.521f}, {0.031f, 0.534f}, {0.033f, 0.544f}, {0.028f, 0.551f},
+        {0.019f, 0.556f}, {0.019f, 0.56f}, {0.024f, 0.56f}, {0.034f, 0.562f},
+        {0.045f, 0.572f}, {0.035f, 0.621f}, {0.031f, 0.623f}, {0.035f, 0.636f},
+        {0.033f, 0.653f}, {0.03f, 0.673f}, {0.007f, 0.686f}, {0.01f, 0.693f},
+        {-0.027f, 0.694f}, {-0.054f, 0.682f}, {-0.068f, 0.667f}, {-0.077f, 0.647f},
+        {-0.077f, 0.6f}, {-0.075f, 0.564f}, {-0.075f, 0.508f}, {-0.082f, 0.495f},
+        {-0.082f, 0.479f}
+    };
+    drawPolygon(vertices, 29, SKIN_COLOR);
+}
+
+void drawBhimRightHand() {
+    GLfloat hand1[][2] = {{0.054f, 0.449f}, {0.018f, 0.347f}, {0.093f, 0.302f}, {0.115f, 0.351f}};
+    GLfloat hand2[][2] = {{0.093f, 0.302f}, {0.115f, 0.288f}, {0.169f, 0.418f}, {0.136f, 0.438f}};
+    drawPolygon(hand1, 4, SKIN_COLOR);
+    drawPolygon(hand2, 4, SKIN_COLOR);
+}
+
+void drawBhimEye() {
+    drawPoint(0.0f, 0.625f, 10.0f, WHITE_COLOR);
+    drawPoint(0.01f, 0.627f, 4.0f, BLACK_COLOR);
+}
+
+void drawBhimHair() {
+    GLfloat vertices[][2] = {
+        {-0.086f, 0.615f}, {0.045f, 0.663f}, {0.01f, 0.700f}, 
+        {-0.025f, 0.714f}, {-0.066f, 0.685f}, {-0.070f, 0.665f}, {-0.073f, 0.64f}
+    };
+    drawPolygon(vertices, sizeof(vertices) / sizeof(vertices[0]), HAIR_COLOR);
+}
+
+void drawBhimMouth() {
+    drawPoint(0.012f, 0.516f, 5.0f, RED_COLOR);
+}
+
+void drawBhimWeapon() {
+    // Weapon handle (shaft)
+    GLfloat handle[][2] = {
+        {0.203f, 0.469f}, {0.185f, 0.44f}, {-0.174f, 0.633f}, {-0.141f, 0.656f}
+    };
+    drawPolygon(handle, 4, HANDLE_COLOR);
+
+    // Weapon head (blade)
+    GLfloat blade[][2] = {
+        {-0.060f, 0.640f}, {-0.070f, 0.665f}, {-0.090f, 0.680f}, {-0.120f, 0.690f},
+        {-0.150f, 0.730f}, {-0.180f, 0.690f}, {-0.210f, 0.680f}, {-0.230f, 0.665f},
+        {-0.240f, 0.640f}, {-0.230f, 0.615f}, {-0.210f, 0.600f}, {-0.180f, 0.590f},
+        {-0.150f, 0.550f}, {-0.120f, 0.590f}, {-0.090f, 0.600f}, {-0.070f, 0.615f}
+    };
+    drawPolygon(blade, 16, HANDLE_COLOR);
+}
 // Entry point function
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int iCmdShow)
 {
@@ -334,7 +232,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	wndclass.cbWndExtra = 0;
 	wndclass.lpfnWndProc = WndProc;
 	wndclass.hInstance = hInstance;
-	wndclass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+	wndclass.hbrBackground = (HBRUSH)GetStockObject(GRAY_BRUSH);
 	wndclass.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(MYICON));
 	wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wndclass.lpszClassName = szAppName;
@@ -636,35 +534,47 @@ void printGLInfo(void)
 
 void resize(int width, int height)
 {
-	// code
-	// if by accident if height becomes 0 then make height 1
-	if (height <= 0)
-	{
-		height = 1;
-	}
+    if (height == 0) height = 1; // Prevent division by zero
 
-	// set the view port
-	glViewport(0, 0, (GLsizei)width, (GLsizei)height);
+    GLfloat aspectRatio = (GLfloat)width / (GLfloat)height;
+
+    glViewport(0, 0, width, height);
+    
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    
+    if (aspectRatio > 1.0f) {
+        // Maintain fixed coordinate system for character
+        glOrtho(-1.0 * aspectRatio, 1.0 * aspectRatio, -1.0, 1.0, -1.0, 1.0);
+    } else {
+        glOrtho(-1.0, 1.0, -1.0 / aspectRatio, 1.0 / aspectRatio, -1.0, 1.0);
+    }
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 }
 
+// **Draw Entire Character at Given Position**
 void Bhim()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
-	BHIM_Weapon();
-    BHIM_Upper();
-	BHIM_Lower();
-	BHIM_face();
-	BHIM_R_Hand();
-	BHIM_Pant();
-	BHIM_Eye();
-	BHIM_Mouth();
-
+ glClear(GL_COLOR_BUFFER_BIT);
+ drawBhimWeapon();
+ drawBhimUpper();
+ drawBhimLower();
+ drawBhimPant();
+ drawBhimFace();
+ drawBhimRightHand();
+ drawBhimEye();
+ drawBhimMouth();
+ drawBhimHair();
+ drawBhimMustache();
 }
 
 void display(void)
 {
 	// code
 	// clear openGL bufferes
+	glClearColor(0.5f, 0.5f, 0.5f, 1.0f); 
 	glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
 
@@ -683,8 +593,6 @@ void uninitialize(void)
 	// function declarations
 	void toggleFullScreen(void);
 
-	// code
-	// if full screen restore to normal as good habit and standard to follow
 	if (gbFullScreen == TRUE)
 	{
 		toggleFullScreen();
