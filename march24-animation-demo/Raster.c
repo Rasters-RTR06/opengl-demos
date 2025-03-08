@@ -405,10 +405,15 @@ void display(void)
 	// clear openGL bufferes
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	drawGround();
+	/*drawGround();
 	drawDenseForrest();
 	elephant();
-	// drawFrontTrees();
+	drawFrontTrees();*/
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	drawIntro();
 
 	// swap the bufferes
 	SwapBuffers(ghdc); // win32 function
@@ -417,8 +422,9 @@ void display(void)
 void update(void)
 {
 	// code
-	updateElephant();
-	SetTimer(ghwnd, NULL, 500, update);
+	//updateElephant();
+	updateIntro();
+	//SetTimer(ghwnd, NULL, 500, update);
 }
 
 void uninitialize(void)

@@ -36,8 +36,16 @@ void drawEllipse(COLOR color,
         color.bValue > 1 ? (color.bValue / 255.0f) : color.bValue,
         color.aValue > 1 ? 1 : color.aValue);
 
-    glBegin(GL_POLYGON);
-    for (ObjAngle = angle.x; ObjAngle <= angle.y; ObjAngle += 0.01f)
+    if (angle.z != 0.0f) 
+    {
+        glLineWidth((angle.z < 0) ? (-1.0f * angle.z) : angle.z);
+        glBegin(GL_LINE_STRIP);
+    } 
+    else
+    {
+        glBegin(GL_TRIANGLE_FAN);
+    }
+    for (ObjAngle = angle.x; ObjAngle <= angle.y; ObjAngle += 0.001f)
     {
         ObjX = radius.x * cos(ObjAngle);
         ObjY = radius.y * sin(ObjAngle);
@@ -50,5 +58,19 @@ void drawEllipse(COLOR color,
 
         glVertex3f(newPoint.x, newPoint.y, newPoint.z);
     }
+    glEnd();
+}
+
+void drawLine(COLOR color, float thickness, MY_POINT start, MY_POINT end)
+{
+    glColor4f(color.rValue > 1 ? (color.rValue / 255.0f) : color.rValue,
+        color.gValue > 1 ? (color.gValue / 255.0f) : color.gValue,
+        color.bValue > 1 ? (color.bValue / 255.0f) : color.bValue,
+        color.aValue > 1 ? 1 : color.aValue);
+
+    glLineWidth((thickness < 0) ? (-1.0f * thickness) : thickness);
+    glBegin(GL_LINES);
+    glVertex3f(start.x, start.y, start.z);
+    glVertex3f(end.x, end.y, end.z);
     glEnd();
 }
