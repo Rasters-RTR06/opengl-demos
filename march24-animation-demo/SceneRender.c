@@ -115,13 +115,13 @@ void scene1Update(void)
 {
     // Check time-based triggers
     switch (iTimeElapsed) {
-        case 5:
+        case 5000:
             bCallElephant = TRUE;
             break;
-        case 6:
+        case 6000:
             bCallTounge = TRUE;
             break;
-        case 7:
+        case 7000:
             bCallButterfly = TRUE;
             break;
     }
@@ -138,7 +138,7 @@ void scene1Update(void)
 
 BOOL scene1ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 15;
+    int iThresholdTime = 15000;
     if (iSkipped)
     {
         iTimeElapsed = 0;
@@ -166,7 +166,8 @@ void scene2Update(void)
 
 BOOL scene2ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 20;
+    // 20 Sec is Temporarily set for testing
+    int iThresholdTime = 20000;
     if (iSkipped)
     {
         iTimeElapsed = 0;
