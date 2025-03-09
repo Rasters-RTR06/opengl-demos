@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# pre-compile script
+# This script helps me with Compilation changes need's to be done on linux.
+
+set -e
+
+COMMON_H="common/common.h"
+
+if [ ! -f "$COMMON_H" ]; then
+  echo "Error: common.h not found at $COMMON_H"
+  exit 1
+fi
+
+cp "$COMMON_H" "$COMMON_H.bak"
+
+sed -i 's/#include <gl\/GL\.h>/#include <GL\/gl.h>/g' "$COMMON_H"
+
+echo "Modified common.h for cross-compilation."
+
+exit 0

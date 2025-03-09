@@ -1,13 +1,15 @@
 // custom header files
 #include "Raster.h"
 #include "../common/common.h"
+#include "SceneRender.c"
+
 
 // OpenGL realated libraries
 #pragma comment(lib, "opengl32.lib")
 
 // Macros
-#define WIN_WIDTH 800
-#define WIN_HEIGHT 600
+#define WIN_WIDTH 1280
+#define WIN_HEIGHT 720
 
 // global function declarations
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -18,6 +20,7 @@ BOOL gbFullScreen = FALSE;
 HWND ghwnd = NULL;
 DWORD dwStyle;
 WINDOWPLACEMENT wpPrev;
+
 // variable related to file I/O
 char gszLogFileName[] = "Log.txt";
 FILE *gpFile = NULL;
@@ -31,6 +34,10 @@ BOOL gbEscapeKeyIsPressed = FALSE;
 // Opengl related global variable
 HDC ghdc = NULL;   // global handle to device context
 HGLRC ghrc = NULL; // global handle to rendering context (rc -> rendering context, HGLRC -> handle to openGL rendering context)
+
+// Demo Required global Variables
+UINT_PTR timerId;
+UINT iTimeElapsed = 0;
 
 // Entry point function
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int iCmdShow)
@@ -158,12 +165,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 				{
 					bDone = TRUE;
 				}
+				// update
+				update();
 
 				// render
 				display();
 
-				// update
-				update();
 			}
 		}
 	}
@@ -219,6 +226,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 
+	case WM_TIMER:
+		iTimeElapsed++;
+		break;
 	case WM_CLOSE:
 		uninitialize();
 		break;
@@ -241,7 +251,17 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 				gbFullScreen = FALSE;
 			}
 			break;
-
+		case 'S':
+		case 's':
+			// Scene skipping
+			fprintf(gpFile, "Scene skipping requested\n");
+			if (currentScene && currentScene->shouldTransition && currentScene->nextScene) {
+				if (currentScene->shouldTransition(TRUE)) {
+					fprintf(gpFile, "Transitioning to next scene at time %d seconds\n", iTimeElapsed);
+					currentScene = currentScene->nextScene;
+				}
+			}
+			break;
 		default:
 			break;
 		}
@@ -369,19 +389,32 @@ int initialize(void)
 
 	printGLInfo();
 
-	return (0);
+
+	//checkout https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-settimer
+	timerId = SetTimer(ghwnd, 1, 1,(TIMERPROC) NULL);
+
+	if (timerId == 0) {
+		// Handle timer creation error
+		fprintf(gpFile, "SetTimer failed\n");
+		return -1;
+	}
+
+	// Initialize the scene chain
+    initScenes();
+
+	return 0;
 }
 
 void printGLInfo(void)
 {
 	// code
-	// print openGL info
-	fprintf(gpFile, "****** OPENGL INFORMATION ******\n");
-	fprintf(gpFile, "--------------------------------\n");
-	fprintf(gpFile, "OpenGL vender: %s\n", glGetString(GL_VENDOR));
-	fprintf(gpFile, "OpenGL render: %s\n", glGetString(GL_RENDERER));
-	fprintf(gpFile, "OpenGL Version: %s\n", glGetString(GL_VERSION));
-	fprintf(gpFile, "--------------------------------\n");
+	//printglinfo
+	fprintf(gpFile,"*******************OPENGL INFORMATION*******************\n");
+	fprintf(gpFile,"|- OpenGL Vendor: %s\n",glGetString(GL_VENDOR));
+	fprintf(gpFile,"|- OpenGL Renderer: %s\n",glGetString(GL_RENDERER));
+	fprintf(gpFile,"|- OpenGL Version: %s\n",glGetString(GL_VERSION));
+
+	fprintf(gpFile,"********************************************************\n");
 }
 
 void resize(int width, int height)
@@ -403,13 +436,19 @@ void display(void)
 	// clear openGL bufferes
 	glClear(GL_COLOR_BUFFER_BIT);
 
+	// Render current scene
+    renderCurrentScene();
+
 	// swap the bufferes
 	SwapBuffers(ghdc); // win32 function
+
 }
+
 
 void update(void)
 {
-	// code
+	// Update current scene with the current time
+    updateCurrentScene(iTimeElapsed);
 }
 
 void uninitialize(void)
@@ -429,6 +468,12 @@ void uninitialize(void)
 	if (wglGetCurrentContext() == ghrc)
 	{
 		wglMakeCurrent(NULL, NULL); // null -> default | make the dc as current context
+	}
+
+	// kill timer
+	if (timerId != 0)
+	{
+		KillTimer(ghwnd, timerId);
 	}
 
 	// delete rendering context
