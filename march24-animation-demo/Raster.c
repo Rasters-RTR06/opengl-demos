@@ -437,8 +437,14 @@ void display(void)
 	// clear openGL bufferes
 	glClear(GL_COLOR_BUFFER_BIT);
 
+	//	enable alpha blending
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
+
 	// Render current scene
 	renderCurrentScene();
+
+	glDisable(GL_BLEND);
 
 	// swap the bufferes
 	SwapBuffers(ghdc); // win32 function
