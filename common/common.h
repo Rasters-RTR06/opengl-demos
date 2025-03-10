@@ -18,8 +18,10 @@
 
 // constants
 #define PI 3.14159265358979323846f
+#define WINDOW_ASPECT (16.0f / 9.0f)
 
 // custom header files
 #include "./props/props.h"
+
 
 #endif

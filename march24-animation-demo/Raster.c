@@ -1,17 +1,15 @@
 // custom header files
 #include "Raster.h"
 #include "../common/common.h"
-#include "scene1/elephant.c"
-#include "scene1/chamelon.c"
-#include "scene1/chamelontounge_mov.c"
-#include "scene1/butterfly.c"
+#include "SceneRender.c"
+
 
 // OpenGL realated libraries
 #pragma comment(lib, "opengl32.lib")
 
 // Macros
-#define WIN_WIDTH 800
-#define WIN_HEIGHT 600
+#define WIN_WIDTH 1280
+#define WIN_HEIGHT 720
 
 // global function declarations
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -40,7 +38,6 @@ HGLRC ghrc = NULL; // global handle to rendering context (rc -> rendering contex
 // Demo Required global Variables
 UINT_PTR timerId;
 UINT iTimeElapsed = 0;
-int Scene = 1;
 
 // Entry point function
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int iCmdShow)
@@ -254,7 +251,17 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 				gbFullScreen = FALSE;
 			}
 			break;
-
+		case 'S':
+		case 's':
+			// Scene skipping
+			fprintf(gpFile, "Scene skipping requested\n");
+			if (currentScene && currentScene->shouldTransition && currentScene->nextScene) {
+				if (currentScene->shouldTransition(TRUE)) {
+					fprintf(gpFile, "Transitioning to next scene at time %d seconds\n", iTimeElapsed);
+					currentScene = currentScene->nextScene;
+				}
+			}
+			break;
 		default:
 			break;
 		}
@@ -384,7 +391,7 @@ int initialize(void)
 
 
 	//checkout https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-settimer
-	timerId = SetTimer(ghwnd, 1, 1000,(TIMERPROC) NULL);
+	timerId = SetTimer(ghwnd, 1, 1,(TIMERPROC) NULL);
 
 	if (timerId == 0) {
 		// Handle timer creation error
@@ -392,21 +399,22 @@ int initialize(void)
 		return -1;
 	}
 
-	return 0;
+	// Initialize the scene chain
+    initScenes();
 
-	return (0);
+	return 0;
 }
 
 void printGLInfo(void)
 {
 	// code
-	// print openGL info
-	fprintf(gpFile, "****** OPENGL INFORMATION ******\n");
-	fprintf(gpFile, "--------------------------------\n");
-	fprintf(gpFile, "OpenGL vender: %s\n", glGetString(GL_VENDOR));
-	fprintf(gpFile, "OpenGL render: %s\n", glGetString(GL_RENDERER));
-	fprintf(gpFile, "OpenGL Version: %s\n", glGetString(GL_VERSION));
-	fprintf(gpFile, "--------------------------------\n");
+	//printglinfo
+	fprintf(gpFile,"*******************OPENGL INFORMATION*******************\n");
+	fprintf(gpFile,"|- OpenGL Vendor: %s\n",glGetString(GL_VENDOR));
+	fprintf(gpFile,"|- OpenGL Renderer: %s\n",glGetString(GL_RENDERER));
+	fprintf(gpFile,"|- OpenGL Version: %s\n",glGetString(GL_VERSION));
+
+	fprintf(gpFile,"********************************************************\n");
 }
 
 void resize(int width, int height)
@@ -422,52 +430,14 @@ void resize(int width, int height)
 	glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 }
 
-// Scene 1 lasts from 00 to 46 Seconds in video
-BOOL bCallTounge = FALSE;
-BOOL bCallElephant = FALSE;
-void Scene1(void)
-{
-	drawGround();
-	drawDenseForrest();
-
-	butterfly(0.0f, 0.0f, 0.2);
-	elephant();
-	toungeMovement();
-
-
-
-	switch (iTimeElapsed) {
-		case 7:
-			bCallTounge = TRUE;
-			break; // Add break to prevent fall-through
-		case 8:
-			bCallElephant = TRUE;
-			break;
-			// ... other cases for Scene 1 ...
-		case 46:
-			Scene++; // Transition to the next scene after 46 seconds
-			break;
-	}
-
-	chamelon(0.5f, -0.5f, 0.2);
-}
 void display(void)
 {
 	// code
 	// clear openGL bufferes
 	glClear(GL_COLOR_BUFFER_BIT);
-	// TODO: Add switch case block that will flip bcallFlags based on iTimeElapsed [DONE]
-	switch (Scene)
-	{
-		case 1:
-			Scene1();
-			break;
 
-		default:
-			break;
-
-	}
-	drawFrontTrees();
+	// Render current scene
+    renderCurrentScene();
 
 	// swap the bufferes
 	SwapBuffers(ghdc); // win32 function
@@ -477,13 +447,8 @@ void display(void)
 
 void update(void)
 {
-	// code
-	if(bCallTounge == TRUE)
-	{updateTounge();}
-	if(bCallElephant == TRUE)
-	{updateElephant();}
-
-
+	// Update current scene with the current time
+    updateCurrentScene(iTimeElapsed);
 }
 
 void uninitialize(void)

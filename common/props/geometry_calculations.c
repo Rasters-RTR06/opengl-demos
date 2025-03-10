@@ -1,25 +1,33 @@
-struct MY_POINT scalePoint(struct MY_POINT point, struct MY_POINT scalingFactor)
+MY_POINT scalePoint(MY_POINT point, SCALING scalingFactor)
 {
-    struct MY_POINT newPoint = { (scalingFactor.x) * (point.x),
-                                 (scalingFactor.y) * (point.y),
-                                 (scalingFactor.z) * (point.z) };
+    MY_POINT newPoint = { (scalingFactor.x) * (point.x),
+                        (scalingFactor.y) * (point.y),
+                        (scalingFactor.z) * (point.z) };
     return newPoint;
 }
 
-struct MY_POINT translatePoint(struct MY_POINT point, struct MY_POINT translationFactor)
+MY_POINT translatePoint(MY_POINT point, TRANSLATION translationFactor)
 {
-    struct MY_POINT newPoint = { translationFactor.x + point.x,
-                                 translationFactor.y + point.y,
-                                 translationFactor.z + point.z };
+    MY_POINT newPoint = { translationFactor.x + point.x,
+                        translationFactor.y + point.y,
+                        translationFactor.z + point.z };
     return newPoint;
 }
 
 // to reflect by x axis : reflectionFactor = {1, -1, 0}
 // to reflect by y axis : reflectionFactor = {-1, 1, 0}
-struct MY_POINT reflectPoint(struct MY_POINT point, struct MY_POINT reflectionFactor)
+MY_POINT reflectPoint(MY_POINT point, REFLECTION reflectionFactor)
 {
-    struct MY_POINT newPoint = { reflectionFactor.x * point.x,
-                                 reflectionFactor.y * point.y,
-                                 reflectionFactor.z * point.z };
+    MY_POINT newPoint = { reflectionFactor.x * point.x,
+                        reflectionFactor.y * point.y,
+                        reflectionFactor.z * point.z };
+    return newPoint;
+}
+
+MY_POINT rotatePoint(MY_POINT point, float rotationAngle)
+{
+    MY_POINT newPoint = { (cos(rotationAngle) * point.x) + (sin(rotationAngle) * point.y),
+                        (0 - (sin(rotationAngle) * point.x)) + (cos(rotationAngle) * point.y),
+                        point.z };
     return newPoint;
 }
