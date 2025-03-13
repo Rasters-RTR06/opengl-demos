@@ -7,11 +7,11 @@
 #include <stdlib.h> // exit() call
 #include <math.h>
 // OpenGL related header files
-//#include <GL/gl.h>
+// #include <GL/gl.h>
 #ifdef _WIN32 // Windows
-    #include <GL/gl.h>
+#include <GL/gl.h>
 #else // *NIX-like system (Linux, macOS, etc.)
-    #include <GL/gl.h>
+#include <GL/gl.h>
 #endif
 
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
@@ -22,6 +22,5 @@
 
 // custom header files
 #include "./props/props.h"
-
 
 #endif
