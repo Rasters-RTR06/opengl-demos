@@ -1,5 +1,7 @@
 #include "../common.h"
 
+extern FILE *gpFile;
+
 void rath(MY_POINT startPosition, TRANSLATION translateBy, SCALING scaleBy)
 {
     // function prototypes
@@ -19,20 +21,63 @@ void rathBody(MY_POINT startPosition, TRANSLATION translateBy, SCALING scaleBy)
     void setCircularCurvePoints(float centerX, float centerY, float radiusH, float radiusV, float startAngle, float endAngle);
 
     // code
+    // roof pole
+    glLineWidth(10.0);
+    glBegin(GL_LINES);
+    glColor3f(0.776f, 0.557f, 0.490f); // wooden pole color browinsh
+    glVertex3f(startPosition.x, startPosition.y, startPosition.x);
+    glVertex3f(startPosition.x, startPosition.y + 0.90f * scaleBy.y, startPosition.z);
+    glEnd();
+
+    // rath roof
+    glBegin(GL_POLYGON);
+    glColor3f(0.902, 0.753, 0.416); // gold color
+    glVertex3f(startPosition.x + (0.20f * scaleBy.x), startPosition.y + (0.80f * scaleBy.y), startPosition.z);
+    setCircularCurvePoints(startPosition.x, startPosition.y + (0.35f * scaleBy.y), (0.20 * scaleBy.x), (0.20f * scaleBy.y), (80.0f * (PI / 180)), (115.0f * (PI / 180)));
+    glVertex3f(startPosition.x - (0.30f * scaleBy.x), startPosition.y + (0.80f * scaleBy.y), startPosition.z);
+    glEnd();
+
+    glLineWidth(5.0f);
+    glBegin(GL_LINE_LOOP);
+    glColor3f(0.949, 0.737, 0.239); // red ruby color
+    glVertex3f(startPosition.x + (0.20f * scaleBy.x), startPosition.y + (0.80f * scaleBy.y), startPosition.z);
+    setCircularCurvePoints(startPosition.x, startPosition.y + (0.35f * scaleBy.y), (0.20 * scaleBy.x), (0.20f * scaleBy.y), (80.0f * (PI / 180)), (115.0f * (PI / 180)));
+    glVertex3f(startPosition.x - (0.30f * scaleBy.x), startPosition.y + (0.80f * scaleBy.y), startPosition.z);
+    glEnd();
+
+    // rath deck
     glBegin(GL_TRIANGLE_FAN);
-    glColor3f(0.827f, 0.557f, 0.404f);
+    glColor3f(0.902, 0.753, 0.416);
     glVertex3f(startPosition.x, startPosition.y, startPosition.z);
     glVertex3f(startPosition.x + (0.15f * scaleBy.x), startPosition.y + (0.10f * scaleBy.y), startPosition.z);
-    glColor3f(0.812, 0.384, 0.373);
-    setCircularCurvePoints(startPosition.x, startPosition.y, 0.50f * scaleBy.x, 0.50f * scaleBy.y, (65.0f * (PI / 180)), (115.0f * (PI / 180)));
-    glColor3f(0.667, 0.404, 0.341);
+    setCircularCurvePoints(startPosition.x, startPosition.y, 0.25f * scaleBy.x, 0.25f * scaleBy.y, (65.0f * (PI / 180)), (100.0f * (PI / 180)));
     glVertex3f(startPosition.x - (0.10f * scaleBy.x), startPosition.y + (0.45f * scaleBy.y), startPosition.z);
     glVertex3f(startPosition.x - (0.10f * scaleBy.x), startPosition.y + (0.25f * scaleBy.y), startPosition.z);
     glVertex3f(startPosition.x - (0.20f * scaleBy.x), startPosition.y + (0.25f * scaleBy.y), startPosition.z);
     glVertex3f(startPosition.x - (0.40f * scaleBy.x), startPosition.y + (0.05f * scaleBy.y), startPosition.z);
     glVertex3f(startPosition.x - (0.50f * scaleBy.x), startPosition.y + (0.05f * scaleBy.y), startPosition.z);
     glVertex3f(startPosition.x - (0.50f * scaleBy.x), startPosition.y, startPosition.z);
+    glEnd();
 
+    glBegin(GL_LINE_LOOP);
+    glColor3f(0.949, 0.737, 0.239);
+    glVertex3f(startPosition.x, startPosition.y, startPosition.z);
+    glVertex3f(startPosition.x + (0.15f * scaleBy.x), startPosition.y + (0.10f * scaleBy.y), startPosition.z);
+    setCircularCurvePoints(startPosition.x, startPosition.y, 0.25f * scaleBy.x, 0.25f * scaleBy.y, (65.0f * (PI / 180)), (100.0f * (PI / 180)));
+    glVertex3f(startPosition.x - (0.10f * scaleBy.x), startPosition.y + (0.45f * scaleBy.y), startPosition.z);
+    glVertex3f(startPosition.x - (0.10f * scaleBy.x), startPosition.y + (0.25f * scaleBy.y), startPosition.z);
+    glVertex3f(startPosition.x - (0.20f * scaleBy.x), startPosition.y + (0.25f * scaleBy.y), startPosition.z);
+    glVertex3f(startPosition.x - (0.40f * scaleBy.x), startPosition.y + (0.05f * scaleBy.y), startPosition.z);
+    glVertex3f(startPosition.x - (0.50f * scaleBy.x), startPosition.y + (0.05f * scaleBy.y), startPosition.z);
+    glVertex3f(startPosition.x - (0.50f * scaleBy.x), startPosition.y, startPosition.z);
+    glEnd();
+
+    // rath decors
+    glBegin(GL_TRIANGLE_FAN);
+    glColor3f(0.675, 0.071, 0.333);
+    fprintf(gpFile, "inside rathBody startPositionX: %f, startPositionY: %f\n", startPosition.x, startPosition.y);
+    setCircularCurvePoints(startPosition.x - (0.10f * scaleBy.x), startPosition.y + (0.45f * scaleBy.y), (0.05 * scaleBy.x), (0.05 * scaleBy.y), 0.0f, 2 * PI);
+    // setCircularCurvePoints(0, 0, (0.05 * scaleBy.x), (0.05 * scaleBy.y), 0.0f, 2 * PI);
     glEnd();
 }
 
