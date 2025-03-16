@@ -661,52 +661,52 @@ void drawHandAndCloth(float xOrigin, float yOrigin, float scale)
 		drawQuadrangle(
 			xOrigin + (-0.6250f * scale), yOrigin + (-0.075f * scale),
 			xOrigin + (-0.6000f * scale), yOrigin + (-0.080f * scale),
-			xOrigin + (-0.5950f * scale), yOrigin + (-0.025f * scale),
-			xOrigin + (-0.6125f * scale), yOrigin + (0.010f * scale));
+			xOrigin + (-0.5950f * scale), yOrigin + (-0.010f * scale),
+			xOrigin + (-0.6175f * scale), yOrigin + (0.020f * scale));
 
 		drawTriangle(
-			xOrigin + (-0.5950f * scale), yOrigin + (-0.025f * scale),
-			xOrigin + (-0.6125f * scale), yOrigin + (0.010f * scale),
-			xOrigin + (-0.6025f * scale), yOrigin + (0.014f * scale)); //finger tips
+			xOrigin + (-0.5950f * scale), yOrigin + (-0.010f * scale),
+			xOrigin + (-0.6175f * scale), yOrigin + (0.020f * scale),
+			xOrigin + (-0.6050f * scale), yOrigin + (0.024f * scale)); //finger tips
 
 		drawQuadrangle(
 			xOrigin + (-0.6250f * scale), yOrigin + (-0.075f * scale),
-			xOrigin + (-0.6250f * scale), yOrigin + (-0.050f * scale),
-			xOrigin + (-0.6200f * scale), yOrigin + (-0.010f * scale),
+			xOrigin + (-0.6300f * scale), yOrigin + (-0.050f * scale),
+			xOrigin + (-0.6275f * scale), yOrigin + (-0.010f * scale),
 			xOrigin + (-0.6100f * scale), yOrigin + (-0.010f * scale)); //thumb
 
 		//fingers
 		{
 			glColor3f(0.6f, 0.6f, 0.6f);
 			glBegin(GL_LINES);
-			glVertex2f(xOrigin + (-0.6150f * scale), yOrigin + (-0.010f * scale));
-			glVertex2f(xOrigin + (-0.6190f * scale), yOrigin + (-0.040f * scale));
+			glVertex2f(xOrigin + (-0.6190f * scale), yOrigin + (-0.006f * scale));
+			glVertex2f(xOrigin + (-0.6230f * scale), yOrigin + (-0.036f * scale));
 			glEnd();
 
 			glBegin(GL_LINES);
-			glVertex2f(xOrigin + (-0.6070f * scale), yOrigin + (0.012f * scale));
-			glVertex2f(xOrigin + (-0.6110f * scale), yOrigin + (-0.031f * scale));
+			glVertex2f(xOrigin + (-0.6100f * scale), yOrigin + (0.019f * scale));
+			glVertex2f(xOrigin + (-0.6140f * scale), yOrigin + (-0.024f * scale));
 			glEnd();
 
 			glBegin(GL_LINES);
-			glVertex2f(xOrigin + (-0.6020f * scale), yOrigin + (0.006f * scale));
-			glVertex2f(xOrigin + (-0.6060f * scale), yOrigin + (-0.037f * scale));
+			glVertex2f(xOrigin + (-0.6030f * scale), yOrigin + (0.013f * scale));
+			glVertex2f(xOrigin + (-0.6070f * scale), yOrigin + (-0.030f * scale));
 			glEnd();
 
 			glBegin(GL_LINES);
-			glVertex2f(xOrigin + (-0.5970f * scale), yOrigin + (-0.006f * scale));
-			glVertex2f(xOrigin + (-0.6010f * scale), yOrigin + (-0.043f * scale));
+			glVertex2f(xOrigin + (-0.5980f * scale), yOrigin + (0.001f * scale));
+			glVertex2f(xOrigin + (-0.6020f * scale), yOrigin + (-0.036f * scale));
 			glEnd();
 		}
 
 		//front side hand
 		SKIN_COLOR
-		drawQuadrangle(
-			xOrigin + (-0.6275f * scale), yOrigin + (-0.075f * scale),
-			xOrigin + (-0.7500f * scale), yOrigin + (-0.160f * scale),
-			xOrigin + (-0.7600f * scale), yOrigin + (-0.235f * scale),
-			xOrigin + (-0.6125f * scale), yOrigin + (-0.100f * scale)
-		);
+			drawQuadrangle(
+				xOrigin + (-0.6275f * scale), yOrigin + (-0.075f * scale),
+				xOrigin + (-0.7500f * scale), yOrigin + (-0.160f * scale),
+				xOrigin + (-0.7600f * scale), yOrigin + (-0.235f * scale),
+				xOrigin + (-0.6125f * scale), yOrigin + (-0.100f * scale)
+			);
 
 		drawTriangle(
 			xOrigin + (-0.6275f * scale), yOrigin + (-0.075f * scale),
@@ -717,41 +717,41 @@ void drawHandAndCloth(float xOrigin, float yOrigin, float scale)
 		drawQuadrangle(
 			xOrigin + (-0.6250f * scale), yOrigin + (-0.075f * scale),
 			xOrigin + (-0.6000f * scale), yOrigin + (-0.080f * scale),
-			xOrigin + (-0.5950f * scale), yOrigin + (-0.025f * scale),
-			xOrigin + (-0.6125f * scale), yOrigin + (0.010f * scale));
+			xOrigin + (-0.5950f * scale), yOrigin + (-0.010f * scale),
+			xOrigin + (-0.6175f * scale), yOrigin + (0.020f * scale));
 
 		drawTriangle(
-			xOrigin + (-0.5950f * scale), yOrigin + (-0.025f * scale),
-			xOrigin + (-0.6125f * scale), yOrigin + (0.010f * scale),
-			xOrigin + (-0.6025f * scale), yOrigin + (0.014f * scale)); //finger tips
+			xOrigin + (-0.5950f * scale), yOrigin + (-0.010f * scale),
+			xOrigin + (-0.6175f * scale), yOrigin + (0.020f * scale),
+			xOrigin + (-0.6050f * scale), yOrigin + (0.024f * scale)); //finger tips
 
 		drawQuadrangle(
 			xOrigin + (-0.6250f * scale), yOrigin + (-0.075f * scale),
-			xOrigin + (-0.6250f * scale), yOrigin + (-0.050f * scale),
-			xOrigin + (-0.6200f * scale), yOrigin + (-0.010f * scale),
+			xOrigin + (-0.6300f * scale), yOrigin + (-0.050f * scale),
+			xOrigin + (-0.6275f * scale), yOrigin + (-0.010f * scale),
 			xOrigin + (-0.6100f * scale), yOrigin + (-0.010f * scale)); //thumb
 
 		//fingers
 		{
 			glColor3f(0.6f, 0.6f, 0.6f);
 			glBegin(GL_LINES);
-			glVertex2f(xOrigin + (-0.6150f * scale), yOrigin + (-0.010f * scale));
-			glVertex2f(xOrigin + (-0.6190f * scale), yOrigin + (-0.040f * scale));
+			glVertex2f(xOrigin + (-0.6190f * scale), yOrigin + (-0.006f * scale));
+			glVertex2f(xOrigin + (-0.6230f * scale), yOrigin + (-0.036f * scale));
 			glEnd();
 
 			glBegin(GL_LINES);
-			glVertex2f(xOrigin + (-0.6070f * scale), yOrigin + (0.012f * scale));
-			glVertex2f(xOrigin + (-0.6110f * scale), yOrigin + (-0.031f * scale));
+			glVertex2f(xOrigin + (-0.6100f * scale), yOrigin + (0.019f * scale));
+			glVertex2f(xOrigin + (-0.6140f * scale), yOrigin + (-0.024f * scale));
 			glEnd();
 
 			glBegin(GL_LINES);
-			glVertex2f(xOrigin + (-0.6020f * scale), yOrigin + (0.006f * scale));
-			glVertex2f(xOrigin + (-0.6060f * scale), yOrigin + (-0.037f * scale));
+			glVertex2f(xOrigin + (-0.6030f * scale), yOrigin + (0.013f * scale));
+			glVertex2f(xOrigin + (-0.6070f * scale), yOrigin + (-0.030f * scale));
 			glEnd();
 
 			glBegin(GL_LINES);
-			glVertex2f(xOrigin + (-0.5970f * scale), yOrigin + (-0.006f * scale));
-			glVertex2f(xOrigin + (-0.6010f * scale), yOrigin + (-0.043f * scale));
+			glVertex2f(xOrigin + (-0.5980f * scale), yOrigin + (0.001f * scale));
+			glVertex2f(xOrigin + (-0.6020f * scale), yOrigin + (-0.036f * scale));
 			glEnd();
 		}
 	}
