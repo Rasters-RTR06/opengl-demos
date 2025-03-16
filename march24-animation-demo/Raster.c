@@ -31,9 +31,9 @@ BOOL gbEscapeKeyIsPressed = FALSE;
 // Opengl related global variable
 HDC ghdc = NULL;   // global handle to device context
 HGLRC ghrc = NULL; // global handle to rendering context (rc -> rendering context, HGLRC -> handle to openGL rendering context)
-int x_Bheem = 0;
-int y_Bheem = 0;
-int SCALE_FACTOR = 1.0f;
+float x_Bheem = -1;
+float y_Bheem = -0.9;
+float SCALE_FACTOR = 1.0f;
 
 
 // Color Structure
@@ -71,11 +71,11 @@ void drawPoint(GLfloat x, GLfloat y, GLfloat size, Color color) {
 }
 
 void drawLine(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat lineWidth,Color color) {
-    glColor3f(color.r, color.g, color.b);  
-    glLineWidth(lineWidth); 
+    glColor3f(color.r, color.g, color.b);
+    glLineWidth(lineWidth);
     glBegin(GL_LINES);
-        glVertex2f((x1+x_Bheem)*SCALE_FACTOR, (y1+ y_Bheem)*SCALE_FACTOR); 
-        glVertex2f((x2+x_Bheem)*SCALE_FACTOR, (y2+ y_Bheem)*SCALE_FACTOR); 
+        glVertex2f((x1+x_Bheem)*SCALE_FACTOR, (y1+ y_Bheem)*SCALE_FACTOR);
+        glVertex2f((x2+x_Bheem)*SCALE_FACTOR, (y2+ y_Bheem)*SCALE_FACTOR);
     glEnd();
 }
 
@@ -114,12 +114,12 @@ void drawBhimLower() {
 }
 
 void drawBhimFoldLeg() {
-	glColor3f(0.0, 1.0, 0.0); 
-	glBegin(GL_QUADS); 
-	glVertex2f(-0.151f, 0.259f);  
-	glVertex2f(0.023f, 0.265f);   
-	glVertex2f(0.093, 0.065);  
-	glVertex2f(-0.241, 0.059);   
+	glColor3f(0.0, 1.0, 0.0);
+	glBegin(GL_QUADS);
+	glVertex2f(-0.151f, 0.259f);
+	glVertex2f(0.023f, 0.265f);
+	glVertex2f(0.093, 0.065);
+	glVertex2f(-0.241, 0.059);
 	glEnd();
 }
 
@@ -165,7 +165,7 @@ void drawBhimEye() {
 
 void drawBhimHair() {
     GLfloat vertices[][2] = {
-        {-0.086f, 0.615f}, {0.045f, 0.663f}, {0.01f, 0.700f}, 
+        {-0.086f, 0.615f}, {0.045f, 0.663f}, {0.01f, 0.700f},
         {-0.025f, 0.714f}, {-0.066f, 0.685f}, {-0.070f, 0.665f}, {-0.073f, 0.64f}
     };
     drawPolygon(vertices, sizeof(vertices) / sizeof(vertices[0]), HAIR_COLOR);
@@ -550,10 +550,10 @@ void resize(int width, int height)
     GLfloat aspectRatio = (GLfloat)width / (GLfloat)height;
 
     glViewport(0, 0, width, height);
-    
+
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    
+
     if (aspectRatio > 1.0f) {
         // Maintain fixed coordinate system for character
         glOrtho(-1.0 * aspectRatio, 1.0 * aspectRatio, -1.0, 1.0, -1.0, 1.0);
@@ -591,7 +591,7 @@ void Bhim_SitDown()
  drawBhimEye();
  drawBhimMouth();
  drawBhimHair();
- 
+
  drawBhimFoldLeg();
  drawBhimMustache();
 }
@@ -600,7 +600,7 @@ void display(void)
 {
 	// code
 	// clear openGL bufferes
-	glClearColor(0.5f, 0.5f, 0.5f, 1.0f); 
+	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
 
@@ -611,7 +611,13 @@ void display(void)
 
 void update(void)
 {
-	// code
+    x_Bheem += 0.0001f;
+
+    printf("x_Bheem: %f\n", x_Bheem);
+
+    if (x_Bheem > 1.0f) {
+        x_Bheem = -1.0f;
+    }
 }
 
 void uninitialize(void)

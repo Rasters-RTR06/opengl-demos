@@ -129,7 +129,7 @@ void drawBhimEye() {
 
 void drawBhimHair() {
     GLfloat vertices[][2] = {
-        {-0.086f, 0.615f}, {0.045f, 0.663f}, {0.01f, 0.700f}, 
+        {-0.086f, 0.615f}, {0.045f, 0.663f}, {0.01f, 0.700f},
         {-0.025f, 0.714f}, {-0.066f, 0.685f}, {-0.070f, 0.665f}, {-0.073f, 0.64f}
     };
     drawPolygon(vertices, sizeof(vertices) / sizeof(vertices[0]), HAIR_COLOR);
@@ -158,12 +158,12 @@ void drawBhimWeapon() {
 
 
 void drawBhimFoldLeg() {
-	glColor3f(0.0, 1.0, 0.0); 
-	glBegin(GL_QUADS); 
-	glVertex2f(-0.151f, 0.259f);  
-	glVertex2f(0.023f, 0.265f);   
-	glVertex2f(0.093, 0.065);  
-	glVertex2f(-0.241, 0.059);   
+	glColor3f(0.0, 1.0, 0.0);
+	glBegin(GL_QUADS);
+	glVertex2f(-0.151f, 0.259f);
+	glVertex2f(0.023f, 0.265f);
+	glVertex2f(0.093, 0.065);
+	glVertex2f(-0.241, 0.059);
 	glEnd();
 }
 
@@ -193,7 +193,18 @@ void Bhim_SitDown()
  drawBhimEye();
  drawBhimMouth();
  drawBhimHair();
- 
+
  drawBhimFoldLeg();
  drawBhimMustache();
+}
+
+void Move_Bheem(void)
+{
+    x_Bheem += 0.0001f;
+
+   // printf("x_Bheem: %f\n", x_Bheem);
+
+    if (x_Bheem > 1.0f) {
+        x_Bheem = -1.0f;
+    }
 }
