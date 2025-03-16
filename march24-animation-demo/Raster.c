@@ -113,6 +113,16 @@ void drawBhimLower() {
     drawPolygon(lowerBody, sizeof(lowerBody) / sizeof(lowerBody[0]), SKIN_COLOR);
 }
 
+void drawBhimFoldLeg() {
+	glColor3f(0.0, 1.0, 0.0); 
+	glBegin(GL_QUADS); 
+	glVertex2f(-0.151f, 0.259f);  
+	glVertex2f(0.023f, 0.265f);   
+	glVertex2f(0.093, 0.065);  
+	glVertex2f(-0.241, 0.059);   
+	glEnd();
+}
+
 void drawBhimPant() {
     GLfloat vertices[][2] = {
         {-0.151f, 0.259f}, {-0.113f, 0.251f}, {-0.079f, 0.243f}, {-0.051f, 0.244f},
@@ -571,6 +581,21 @@ void Bhim()
  drawBhimMustache();
 }
 
+void Bhim_SitDown()
+{
+ glClear(GL_COLOR_BUFFER_BIT);
+ drawBhimWeapon();
+ drawBhimLower();
+ drawBhimFace();
+ drawBhimRightHand();
+ drawBhimEye();
+ drawBhimMouth();
+ drawBhimHair();
+ 
+ drawBhimFoldLeg();
+ drawBhimMustache();
+}
+
 void display(void)
 {
 	// code
@@ -580,7 +605,7 @@ void display(void)
     glLoadIdentity();
 
     Bhim();
-
+   // Bhim_SitDown();
 	SwapBuffers(ghdc);
 }
 

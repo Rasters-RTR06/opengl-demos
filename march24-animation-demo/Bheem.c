@@ -156,6 +156,18 @@ void drawBhimWeapon() {
     drawPolygon(blade, 16, HANDLE_COLOR);
 }
 
+
+void drawBhimFoldLeg() {
+	glColor3f(0.0, 1.0, 0.0); 
+	glBegin(GL_QUADS); 
+	glVertex2f(-0.151f, 0.259f);  
+	glVertex2f(0.023f, 0.265f);   
+	glVertex2f(0.093, 0.065);  
+	glVertex2f(-0.241, 0.059);   
+	glEnd();
+}
+
+// **Draw Entire Character at Given Position**
 void Bhim()
 {
  glClear(GL_COLOR_BUFFER_BIT);
@@ -168,5 +180,20 @@ void Bhim()
  drawBhimEye();
  drawBhimMouth();
  drawBhimHair();
+ drawBhimMustache();
+}
+
+void Bhim_SitDown()
+{
+ glClear(GL_COLOR_BUFFER_BIT);
+ drawBhimWeapon();
+ drawBhimLower();
+ drawBhimFace();
+ drawBhimRightHand();
+ drawBhimEye();
+ drawBhimMouth();
+ drawBhimHair();
+ 
+ drawBhimFoldLeg();
  drawBhimMustache();
 }
