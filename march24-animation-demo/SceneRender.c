@@ -33,13 +33,13 @@ BOOL bCallElephant = FALSE;
 BOOL bCallButterfly = FALSE;
 
 //scene 5 specific
-bShowRotatingPlants = FALSE;
-bShriKrishnaEntry = FALSE;
-bShowLake = FALSE;
-bShowCranes = FALSE;
-bShowPatternedDeers = FALSE;
-bShowFlowers = FALSE;
-bShowPeacock = FALSE;
+BOOL bShowRotatingPlants = FALSE;
+BOOL bShriKrishnaEntry = FALSE;
+BOOL bShowLake = FALSE;
+BOOL bShowCranes = FALSE;
+BOOL bShowPatternedDeers = FALSE;
+BOOL bShowFlowers = FALSE;
+BOOL bShowPeacock = FALSE;
 
 
 // Scene management functions declarations
@@ -138,8 +138,8 @@ void scene1Render(void)
 {
 
     drawGround();
-    drawDenseForrest();
-    drawFrontTrees();
+    //drawDenseForrest();
+    //drawFrontTrees();
     elephant();
     drawButterfly(butterflyX, butterflyY, 0.6f, butterflyRotation);
     toungeMovement();
@@ -153,11 +153,13 @@ void scene1Update(void)
     // Check time-based triggers
     switch (iTimeElapsed) {
         case 5:
-            
+            bCallElephant = TRUE;
             break;
+        case 6:
         case 6:
             bCallTounge = TRUE;
             break;
+        case 7:
         case 7:
             bCallButterfly = TRUE;
             bCallElephant = TRUE;
@@ -176,6 +178,7 @@ void scene1Update(void)
 
 BOOL scene1ShouldTransition(BOOL iSkipped)
 {
+    int iThresholdTime = 15;
     int iThresholdTime = 15;
     if (iSkipped)
     {
@@ -270,21 +273,21 @@ void scene5Update(void)
     // Check time-based triggers
     switch (iTimeElapsed) 
     {
-        case 73000:
+        case 73:
             bShowRotatingPlants = TRUE;
             break;
-        case 76000:
+        case 76:
             bShriKrishnaEntry = TRUE;
             bShowLake = TRUE;
             bShowCranes = TRUE;
             break;
-        case 84000:
+        case 84:
             bShowPatternedDeers = TRUE;
             break;
-        case 87000:
+        case 87:
             bShowFlowers = TRUE;
             break;
-        case 93000:
+        case 93:
             bShowPeacock = TRUE;
             break;
     }
@@ -309,7 +312,7 @@ void scene5Update(void)
 
 BOOL scene5ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 81000;
+    int iThresholdTime = 81;
     if (iSkipped)
     {
         iTimeElapsed = 0;
