@@ -288,15 +288,7 @@ void scene5Update(void)
     // Update specific elements
     if (bShowRotatingPlants == TRUE)
     {
-        //rotate plants
-           //set matrix to model view mode
-        glMatrixMode(GL_MODELVIEW);
-
-        //set it to identity matrix
-        glLoadIdentity();
-        glRotatef(0.5f, 1.0f, 0.0f, 0.0f);	// x axis rotation
         drawDenseForrest();
-        glEnd();
     }
     if (bShriKrishnaEntry == TRUE)
     {
