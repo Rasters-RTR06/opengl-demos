@@ -78,31 +78,31 @@ void drawCraneTwo(float originx, float originy, float resize) // right side cran
 	//Body
 	glBegin(GL_QUADS);
 	glColor3f(0.49f, 0.722f, 0.42f);
-	glVertex3f(originx + (0.023f) * resize, originy + (0.153f) * resize, 0.0f);
-	glVertex3f(originx + (0.105f) * resize, originy + (0.237f) * resize, 0.0f);
-	glVertex3f(originx + (0.1f)   * resize, originy + (0.2f)   * resize, 0.0f);
-	glVertex3f(originx + (0.06f)  * resize, originy + (0.15f)  * resize, 0.0f);
+	glVertex3f(originx - (0.023f) * resize, originy + (0.153f) * resize, 0.0f);
+	glVertex3f(originx - (0.105f) * resize, originy + (0.237f) * resize, 0.0f);
+	glVertex3f(originx - (0.1f)   * resize, originy + (0.2f)   * resize, 0.0f);
+	glVertex3f(originx - (0.06f)  * resize, originy + (0.15f)  * resize, 0.0f);
 	glEnd();
 
 	//Tail
 	glLineWidth(10);
 	glBegin(GL_LINES);
 	glColor3f(0.49f, 0.722f, 0.42f);
-	glVertex3f(originx + (0.04f) * resize, originy + (0.16f) * resize, 0.0f);
-	glVertex3f(originx + (0.0f)  * resize, originy + (0.12f) * resize, 0.0f);
+	glVertex3f(originx - (0.04f) * resize, originy + (0.16f) * resize, 0.0f);
+	glVertex3f(originx - (0.0f)  * resize, originy + (0.12f) * resize, 0.0f);
 	glEnd();
 
 	//Neck
 	glLineWidth(10);
 	glBegin(GL_LINES);
 	glColor3f(0.49f, 0.722f, 0.42f);
-	glVertex3f(originx + (0.097f) * resize, originy + (0.22f) * resize, 0.0f);
-	glVertex3f(originx + (0.12f) * resize,  originy + (0.3f) * resize, 0.0f);
+	glVertex3f(originx - (0.097f) * resize, originy + (0.22f) * resize, 0.0f);
+	glVertex3f(originx - (0.12f) * resize,  originy + (0.3f) * resize, 0.0f);
 	glEnd();
 
 	//Head
 	//drawCircleCranes(originx + (0.38f) * resize, originy + (0.9f) * resize, 0.03f, 0.04, 0.49f, 0.722f, 0.42f, 1);
-	drawCircleCranes(originx + (0.12f) * resize, originy + (0.3f) * resize, 0.02f, 0.02f, 0.49f, 0.722f, 0.42f, 1);
+	drawCircleCranes(originx - (0.12f) * resize, originy + (0.3f) * resize, 0.02f, 0.02f, 0.49f, 0.722f, 0.42f, 1);
 
 	/*COLOR color = { 0.49f, 0.722f, 0.42f , 0.0f};
 	ANGLE angle = { 0.0f, 0.0f , 0.0f };
@@ -115,29 +115,29 @@ void drawCraneTwo(float originx, float originy, float resize) // right side cran
 	//beak
 	glBegin(GL_TRIANGLES);	
 	glColor3f(0.0f, 0.282f, 0.2f);
-	glVertex3f(originx + (0.135f) * resize, originy + (0.31f) * resize, 0.0f);
-	glVertex3f(originx + (0.16f) * resize,  originy + (0.307f) * resize, 0.0f);
-	glVertex3f(originx + (0.135f) * resize, originy + (0.30f) * resize, 0.0f);
+	glVertex3f(originx - (0.135f) * resize, originy + (0.31f) * resize, 0.0f);
+	glVertex3f(originx - (0.16f) * resize,  originy + (0.307f) * resize, 0.0f);
+	glVertex3f(originx - (0.135f) * resize, originy + (0.30f) * resize, 0.0f);
 	glEnd();
 
 	//Eye
 	glPointSize(5);	
 	glBegin(GL_POINTS);
 	glColor3f(0.0f, 0.0f, 0.0f);
-	glVertex3f(originx + (0.128f) * resize, originy + (0.304f) * resize, 0.0f);
+	glVertex3f(originx - (0.128f) * resize, originy + (0.304f) * resize, 0.0f);
 	glEnd();
 
 	glLineWidth(3);
 	glBegin(GL_LINES);	// right leg
 	glColor3f(0.49f, 0.722f, 0.42f);
-	glVertex3f(originx + (0.07f) * resize,  originy + (0.161f) * resize, 0.0f);
-	glVertex3f(originx + (0.064f) * resize, originy + (0.026f) * resize, 0.0f);
+	glVertex3f(originx - (0.07f) * resize,  originy + (0.161f) * resize, 0.0f);
+	glVertex3f(originx - (0.064f) * resize, originy + (0.026f) * resize, 0.0f);
 	glEnd();
 
 	glBegin(GL_LINES);	// left leg
 	glColor3f(0.49f, 0.722f, 0.42f);
-	glVertex3f(originx + (0.06f)*resize, originy + (0.149f)*resize, 0.0f);
-	glVertex3f(originx + (0.03f)*resize, originy + (0.043f)*resize, 0.0f);
+	glVertex3f(originx - (0.06f)*resize, originy + (0.149f)*resize, 0.0f);
+	glVertex3f(originx - (0.03f)*resize, originy + (0.043f)*resize, 0.0f);
 	glEnd();
 }
 
