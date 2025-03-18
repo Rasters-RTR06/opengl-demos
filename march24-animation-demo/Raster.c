@@ -3,7 +3,6 @@
 #include "../common/common.h"
 #include "SceneRender.c"
 
-
 // OpenGL realated libraries
 #pragma comment(lib, "opengl32.lib")
 
@@ -170,7 +169,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 
 				// render
 				display();
-
 			}
 		}
 	}
@@ -251,12 +249,15 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 				gbFullScreen = FALSE;
 			}
 			break;
+
 		case 'S':
 		case 's':
 			// Scene skipping
 			fprintf(gpFile, "Scene skipping requested\n");
-			if (currentScene && currentScene->shouldTransition && currentScene->nextScene) {
-				if (currentScene->shouldTransition(TRUE)) {
+			if (currentScene && currentScene->shouldTransition && currentScene->nextScene)
+			{
+				if (currentScene->shouldTransition(TRUE))
+				{
 					fprintf(gpFile, "Transitioning to next scene at time %d seconds\n", iTimeElapsed);
 					currentScene = currentScene->nextScene;
 				}
@@ -389,18 +390,18 @@ int initialize(void)
 
 	printGLInfo();
 
+	// checkout https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-settimer
+	timerId = SetTimer(ghwnd, 1, 1, (TIMERPROC)NULL);
 
-	//checkout https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-settimer
-	timerId = SetTimer(ghwnd, 1, 1,(TIMERPROC) NULL);
-
-	if (timerId == 0) {
+	if (timerId == 0)
+	{
 		// Handle timer creation error
 		fprintf(gpFile, "SetTimer failed\n");
 		return -1;
 	}
 
 	// Initialize the scene chain
-    initScenes();
+	initScenes();
 
 	return 0;
 }
@@ -408,13 +409,13 @@ int initialize(void)
 void printGLInfo(void)
 {
 	// code
-	//printglinfo
-	fprintf(gpFile,"*******************OPENGL INFORMATION*******************\n");
-	fprintf(gpFile,"|- OpenGL Vendor: %s\n",glGetString(GL_VENDOR));
-	fprintf(gpFile,"|- OpenGL Renderer: %s\n",glGetString(GL_RENDERER));
-	fprintf(gpFile,"|- OpenGL Version: %s\n",glGetString(GL_VERSION));
+	// printglinfo
+	fprintf(gpFile, "*******************OPENGL INFORMATION*******************\n");
+	fprintf(gpFile, "|- OpenGL Vendor: %s\n", glGetString(GL_VENDOR));
+	fprintf(gpFile, "|- OpenGL Renderer: %s\n", glGetString(GL_RENDERER));
+	fprintf(gpFile, "|- OpenGL Version: %s\n", glGetString(GL_VERSION));
 
-	fprintf(gpFile,"********************************************************\n");
+	fprintf(gpFile, "********************************************************\n");
 }
 
 void resize(int width, int height)
@@ -437,18 +438,16 @@ void display(void)
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	// Render current scene
-    renderCurrentScene();
+	renderCurrentScene();
 
 	// swap the bufferes
 	SwapBuffers(ghdc); // win32 function
-
 }
-
 
 void update(void)
 {
 	// Update current scene with the current time
-    updateCurrentScene(iTimeElapsed);
+	updateCurrentScene(iTimeElapsed);
 }
 
 void uninitialize(void)
