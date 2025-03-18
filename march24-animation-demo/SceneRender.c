@@ -123,13 +123,15 @@ void logSceneTransition(UINT timeElapsed) {
 
 void scene1Render(void)
 {
+
     drawGround();
     //drawDenseForrest();
     //drawFrontTrees();
     elephant();
-    drawButterfly(butterflyX, butterflyY, 0.3f, butterflyRotation);
+    drawButterfly(butterflyX, butterflyY, 0.6f, butterflyRotation);
     toungeMovement();
     chamelon(0.5f, -0.35f, 0.2);
+
 }
 
 
@@ -138,13 +140,14 @@ void scene1Update(void)
     // Check time-based triggers
     switch (iTimeElapsed) {
         case 5:
-            bCallElephant = TRUE;
+            
             break;
         case 6:
             bCallTounge = TRUE;
             break;
         case 7:
             bCallButterfly = TRUE;
+            bCallElephant = TRUE;
             break;
     }
     // Update specific elements
