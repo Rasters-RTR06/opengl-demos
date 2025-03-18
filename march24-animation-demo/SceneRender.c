@@ -7,6 +7,10 @@
 #include "../common/props/patternedDeers.c"
 #include "../common/props/plainDeers.c"
 
+#include "../common/props/cranes.c"
+#include "../common/props/patternedDeers.c"
+#include "../common/props/plainDeers.c"
+
 
 /*******************************/ 
 /* TYPE DEFINITIONS AND DECLARATIONS */
@@ -29,13 +33,13 @@ BOOL bCallElephant = FALSE;
 BOOL bCallButterfly = FALSE;
 
 //scene 5 specific
-BOOL bShowRotatingPlants = FALSE;
-BOOL bShriKrishnaEntry = FALSE;
-BOOL bShowLake = FALSE;
-BOOL bShowCranes = FALSE;
-BOOL bShowPatternedDeers = FALSE;
-BOOL bShowFlowers = FALSE;
-BOOL bShowPeacock = FALSE;
+bShowRotatingPlants = FALSE;
+bShriKrishnaEntry = FALSE;
+bShowLake = FALSE;
+bShowCranes = FALSE;
+bShowPatternedDeers = FALSE;
+bShowFlowers = FALSE;
+bShowPeacock = FALSE;
 
 
 // Scene management functions declarations
@@ -58,6 +62,9 @@ BOOL scene2ShouldTransition(BOOL iSkipped);
 void scene5Render(void);
 void scene5Update(void);
 BOOL scene5ShouldTransition(BOOL iSkipped);
+void scene5Render(void);
+void scene5Update(void);
+BOOL scene5ShouldTransition(BOOL iSkipped);
 
 /*******************************/ 
 /* SCENE MANAGEMENT VARIABLES */
@@ -66,6 +73,7 @@ BOOL scene5ShouldTransition(BOOL iSkipped);
 // Scene management variables
 Scene scene1 = {scene1Render, scene1Update, scene1ShouldTransition, NULL};
 Scene scene2 = {scene2Render, scene2Update, scene2ShouldTransition, NULL};
+Scene scene5;
 Scene scene5;
 // External global variables from Raster.c
 extern FILE *gpFile;
@@ -80,7 +88,12 @@ void initScenes(void) {
 
     scene5 =(Scene) { scene5Render, scene5Update, scene5ShouldTransition, NULL };
 
+
+    scene5 =(Scene) { scene5Render, scene5Update, scene5ShouldTransition, NULL };
+
     scene1.nextScene = &scene2;
+    scene2.nextScene = &scene5;
+    scene5.nextScene = NULL; // End of chain
     scene2.nextScene = &scene5;
     scene5.nextScene = NULL; // End of chain
     currentScene = &scene1;   // Start with scene 1
@@ -125,8 +138,8 @@ void scene1Render(void)
 {
 
     drawGround();
-    //drawDenseForrest();
-    //drawFrontTrees();
+    drawDenseForrest();
+    drawFrontTrees();
     elephant();
     drawButterfly(butterflyX, butterflyY, 0.6f, butterflyRotation);
     toungeMovement();
@@ -257,21 +270,21 @@ void scene5Update(void)
     // Check time-based triggers
     switch (iTimeElapsed) 
     {
-        case 73:
+        case 73000:
             bShowRotatingPlants = TRUE;
             break;
-        case 76:
+        case 76000:
             bShriKrishnaEntry = TRUE;
             bShowLake = TRUE;
             bShowCranes = TRUE;
             break;
-        case 84:
+        case 84000:
             bShowPatternedDeers = TRUE;
             break;
-        case 87:
+        case 87000:
             bShowFlowers = TRUE;
             break;
-        case 93:
+        case 93000:
             bShowPeacock = TRUE;
             break;
     }
@@ -296,7 +309,7 @@ void scene5Update(void)
 
 BOOL scene5ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 81;
+    int iThresholdTime = 81000;
     if (iSkipped)
     {
         iTimeElapsed = 0;
