@@ -21,8 +21,7 @@ void setCircularCurvePoints(float centerX, float centerY, float radiusH, float r
     for (ObjAngle = startAngle; ObjAngle <= endAngle; ObjAngle += 0.01f)
     {
         float ObjX = centerX + (radiusH * cos(ObjAngle));
-        float ObjY = centerY + (radiusV * sin(ObjAngle));
-        fprintf(gpFile, "inside setcircularCurvePoint ObjX: %f, ObjY: %f\n", ObjX, ObjY);
-        glVertex3f(ObjX, ObjY * WINDOW_ASPECT, 0.0f);
+        float ObjY = centerY + (radiusV * WINDOW_ASPECT * sin(ObjAngle));
+        glVertex3f(ObjX, ObjY, 0.0f);
     }
 }
