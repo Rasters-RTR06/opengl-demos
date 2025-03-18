@@ -2,7 +2,7 @@ void drawCraneOne(float,float,float);
 void drawCraneTwo(float, float, float);
 void drawCircleCranes(float , float , float, float, float, float, float, int);
 
-void drawCraneOne(float originx, float originy, float resize)
+void drawCraneOne(float originx, float originy, float resize) //left side crane
 {
 	//Body
 	glBegin(GL_QUADS);
@@ -38,7 +38,9 @@ void drawCraneOne(float originx, float originy, float resize)
 	glEnd();
 
 	//Head
-	drawCircleCranes(0.38f, 0.9f, 0.03f, 0.04, 0.49f, 0.722f, 0.42f, 1);
+	//drawCircleCranes(originx + (0.38f)*resize, originy + (0.9f)* resize, 0.03f, 0.04, 0.49f, 0.722f, 0.42f, 1);
+	drawCircleCranes(originx + (0.12f) * resize, originy + (0.3f) * resize, 0.02f, 0.02, 0.49f, 0.722f, 0.42f, 1);
+
 
 	//Beak
 	glBegin(GL_TRIANGLES);	
@@ -71,7 +73,7 @@ void drawCraneOne(float originx, float originy, float resize)
 	glEnd();
 }
 
-void drawCraneTwo(float originx, float originy, float resize)
+void drawCraneTwo(float originx, float originy, float resize) // right side crane
 {
 	//Body
 	glBegin(GL_QUADS);
@@ -99,7 +101,16 @@ void drawCraneTwo(float originx, float originy, float resize)
 	glEnd();
 
 	//Head
-	drawCircleCranes(0.38f,0.9f, 0.03f, 0.04, 0.49f, 0.722f, 0.42f, 1);
+	//drawCircleCranes(originx + (0.38f) * resize, originy + (0.9f) * resize, 0.03f, 0.04, 0.49f, 0.722f, 0.42f, 1);
+	drawCircleCranes(originx + (0.12f) * resize, originy + (0.3f) * resize, 0.02f, 0.02f, 0.49f, 0.722f, 0.42f, 1);
+
+	/*COLOR color = { 0.49f, 0.722f, 0.42f , 0.0f};
+	ANGLE angle = { 0.0f, 0.0f , 0.0f };
+	SCALING scalingFactor = {resize,resize,resize};
+	TRANSLATION translationFactor = { originx + (0.12f) , originy + (0.3f) };
+	REFLECTION reflectionFactor = { -1, 1, 0 };
+	RADIUS radius = { 0.02f, 0.02f ,0.0f };
+	drawEllipse(color, angle,scalingFactor,translationFactor,reflectionFactor,radius,0.0f);*/
 
 	//beak
 	glBegin(GL_TRIANGLES);	
