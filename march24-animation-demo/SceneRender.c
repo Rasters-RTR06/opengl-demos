@@ -111,6 +111,7 @@ void scene1Render(void)
     chamelon(0.5f, -0.35f, 0.2);
 }
 
+
 void scene1Update(void)
 {
     // Check time-based triggers
