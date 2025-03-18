@@ -6,6 +6,9 @@
 #include "../common/props/cranes.c"
 #include "../common/props/patternedDeers.c"
 #include "../common/props/plainDeers.c"
+#include "../common/props/peacock.c"
+#include "../common/props/fullkrushna.c"
+#include "../common/props/horse.c"
 
 
 /*******************************/ 
@@ -217,13 +220,13 @@ void scene5Render(void)
     if (bShowRotatingPlants == TRUE)
     {
         //set matrix to model view mode
-        glMatrixMode(GL_MODELVIEW);
+        //glMatrixMode(GL_MODELVIEW);
 
         //set it to identity matrix
-        glLoadIdentity();
-        glRotatef(0.0f, 1.0f, 0.0f, 0.0f);	// x axis rotation
+        //glLoadIdentity();
+        //glRotatef(0.5f, 1.0f, 0.0f, 0.0f);	// x axis rotation
         drawDenseForrest();
-        glEnd();
+        //glEnd();
        
     }
     if (bShriKrishnaEntry = TRUE && bShowLake == TRUE && bShowCranes == TRUE)
@@ -231,6 +234,8 @@ void scene5Render(void)
         //draw lake and cranes
         drawCraneOne(0.0f, 0.0f, 1.0f);
         drawCraneTwo(0.8f, 0.4f, 1.0f);
+        drawHorse(-0.6f, -0.6f, 0.5f);
+        KrishnaRath(0.0f, 0.0f, 0.2f);
         //call shrikrishna function
     }
 
@@ -245,6 +250,10 @@ void scene5Render(void)
          drawLeftPatternedDeer(-0.4f, 0.0f, 0.5f);
     }
     //Flowers function
+    if (bShowPeacock)
+    {
+        drawPeacock();
+    }
     // Peacock function
 }
 
@@ -262,12 +271,17 @@ void scene5Update(void)
             bShowCranes = TRUE;
             break;
         case 84000:
+            bShowRotatingPlants = FALSE;
+            bShriKrishnaEntry = FALSE;
+            bShowLake = FALSE;
+            bShowCranes = FALSE;
             bShowPatternedDeers = TRUE;
             break;
         case 87000:
             bShowFlowers = TRUE;
             break;
         case 93000:
+            bShowPatternedDeers = FALSE;
             bShowPeacock = TRUE;
             break;
     }
@@ -275,6 +289,14 @@ void scene5Update(void)
     if (bShowRotatingPlants == TRUE)
     {
         //rotate plants
+           //set matrix to model view mode
+        glMatrixMode(GL_MODELVIEW);
+
+        //set it to identity matrix
+        glLoadIdentity();
+        glRotatef(0.5f, 1.0f, 0.0f, 0.0f);	// x axis rotation
+        drawDenseForrest();
+        glEnd();
     }
     if (bShriKrishnaEntry == TRUE)
     {
