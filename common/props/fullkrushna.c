@@ -5,6 +5,13 @@
 void KrishnaRath(float originx, float originy, float resize) 
 {
 
+    //set matrix to model view mode
+    glMatrixMode(GL_MODELVIEW);
+
+    //set it to identity matrix
+    glLoadIdentity();
+    glScalef(0.3f, 0.3f, 0.5f);	// x axis rotation
+
 // CROWN
 // Triangle 1
 glBegin(GL_TRIANGLES);
@@ -377,5 +384,10 @@ glVertex2f(-0.378, 0.660);
 glVertex2f(-0.417, 0.620);
 glEnd();
 
+glMatrixMode(GL_MODELVIEW);
+
+//set it to identity matrix
+glLoadIdentity();
+glScalef(1.0f, 1.0f, 1.0f);	// x axis rotation
 
 }
