@@ -153,7 +153,7 @@ void scene1Update(void)
     // Check time-based triggers
     switch (iTimeElapsed) {
         case 5:
-            bCallElephant = TRUE;
+            
             break;
         case 6:
         case 6:
