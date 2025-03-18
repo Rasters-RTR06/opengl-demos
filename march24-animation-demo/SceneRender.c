@@ -232,8 +232,8 @@ void scene5Render(void)
     if (bShriKrishnaEntry = TRUE && bShowLake == TRUE && bShowCranes == TRUE)
     {
         //draw lake and cranes
-        drawCraneOne(0.0f, 0.0f, 1.0f);
-        drawCraneTwo(0.8f, 0.4f, 1.0f);
+        drawCraneOne(0.4f, -0.2f, 0.9f);
+        drawCraneTwo(0.8f, 0.0f, 0.9f);
         drawHorse(-0.6f, -0.6f, 0.5f);
         KrishnaRath(0.0f, 0.0f, 0.2f);
         //call shrikrishna function
