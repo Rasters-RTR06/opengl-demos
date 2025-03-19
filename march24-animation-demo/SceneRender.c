@@ -4,20 +4,21 @@
 #include "scene1/chamelontounge_mov.c"
 #include "scene1/butterfly.c"
 
-/*******************************/ 
+/*******************************/
 /* TYPE DEFINITIONS AND DECLARATIONS */
 /******************************/
 
 // Scene structure definition for Chain of Responsibility pattern
-typedef struct Scene {
-    void (*render)(void);        // Function to render the scene
-    void (*update)(void);        // Function to update the scene
-    BOOL (*shouldTransition)(BOOL iSkipped);  // Function to check if transition to next scene is needed
-    struct Scene* nextScene;     // Pointer to next scene in the chain
+typedef struct Scene
+{
+    void (*render)(void);                    // Function to render the scene
+    void (*update)(void);                    // Function to update the scene
+    BOOL (*shouldTransition)(BOOL iSkipped); // Function to check if transition to next scene is needed
+    struct Scene *nextScene;                 // Pointer to next scene in the chain
 } Scene;
 
 // External scene variables
-Scene* currentScene = NULL;
+Scene *currentScene = NULL;
 
 // Scene-specific globals
 BOOL bCallTounge = FALSE;
@@ -30,7 +31,7 @@ void updateCurrentScene(UINT iTimeElapsed);
 void renderCurrentScene(void);
 void logSceneTransition(UINT iTimeElapsed);
 
-/*******************************/ 
+/*******************************/
 /* SCENE FUNCTION DECLARATIONS */
 /******************************/
 
@@ -42,7 +43,7 @@ void scene2Render(void);
 void scene2Update(void);
 BOOL scene2ShouldTransition(BOOL iSkipped);
 
-/*******************************/ 
+/*******************************/
 /* SCENE MANAGEMENT VARIABLES */
 /******************************/
 
@@ -50,31 +51,61 @@ BOOL scene2ShouldTransition(BOOL iSkipped);
 Scene scene1 = {scene1Render, scene1Update, scene1ShouldTransition, NULL};
 Scene scene2 = {scene2Render, scene2Update, scene2ShouldTransition, NULL};
 
+Scene scene6_5;
+
 // External global variables from Raster.c
 extern FILE *gpFile;
 extern UINT iTimeElapsed;
 
-/*******************************/ 
+/*******************************/
 /* SCENE MANAGEMENT FUNCTIONS */
 /******************************/
 
+/*******************************/
+/* Props update MANAGEMENT function and variable declarations */
+/******************************/
+
+TRANSLATION rathTranslation;
+
+void updateRath(void);
+
 // Initialize the scene chain
-void initScenes(void) {
+void initScenes(void)
+{
+    // function prototypes
+    void renderScene6_5(void);
+    void updateScene6_5(void);
+    void shouldTransitionScene6_5(GLboolean);
+
+    scene6_5 = (Scene){
+        renderScene6_5,
+        updateScene6_5,
+        shouldTransitionScene6_5,
+        NULL};
     scene1.nextScene = &scene2;
-    scene2.nextScene = NULL;  // End of chain
-    currentScene = &scene1;   // Start with scene 1
+    scene2.nextScene = &scene6_5; // End of chain
+    scene6_5.nextScene = NULL;
+
+    currentScene = &scene1; // Start with scene 1
+
+    rathTranslation = (TRANSLATION){0.0f, 0.0f, 0.0f};
 }
 
 // Update the current scene
-void updateCurrentScene(UINT timeElapsed) {
-    if (currentScene) {
+void updateCurrentScene(UINT timeElapsed)
+{
+    if (currentScene)
+    {
         // Call the current scene's update function
-        if (currentScene->update) {
+        if (currentScene->update)
+        {
             currentScene->update();
         }
-        
-        if (currentScene->shouldTransition && currentScene->shouldTransition(FALSE)) {
-            if (currentScene->nextScene) {
+
+        if (currentScene->shouldTransition && currentScene->shouldTransition(FALSE))
+        {
+            if (currentScene->nextScene)
+            {
                 logSceneTransition(timeElapsed);
                 currentScene = currentScene->nextScene;
             }
@@ -83,28 +114,32 @@ void updateCurrentScene(UINT timeElapsed) {
 }
 
 // Render the current scene
-void renderCurrentScene(void) {
-    if (currentScene && currentScene->render) {
+void renderCurrentScene(void)
+{
+    if (currentScene && currentScene->render)
+    {
         currentScene->render();
     }
 }
 
 // Log scene transition
-void logSceneTransition(UINT timeElapsed) {
-    if (gpFile) {
+void logSceneTransition(UINT timeElapsed)
+{
+    if (gpFile)
+    {
         fprintf(gpFile, "Transitioning to next scene at time %d seconds\n", timeElapsed);
     }
 }
 
-/*******************************/ 
+/*******************************/
 /* SCENE 1 IMPLEMENTATION */
 /******************************/
 
 void scene1Render(void)
 {
     drawGround();
-    //drawDenseForrest();
-    //drawFrontTrees();
+    // drawDenseForrest();
+    // drawFrontTrees();
     elephant();
     drawButterfly(butterflyX, butterflyY, 0.3f, butterflyRotation);
     toungeMovement();
@@ -114,22 +149,23 @@ void scene1Render(void)
 void scene1Update(void)
 {
     // Check time-based triggers
-    switch (iTimeElapsed) {
-        case 5000:
-            bCallElephant = TRUE;
-            break;
-        case 6000:
-            bCallTounge = TRUE;
-            break;
-        case 7000:
-            bCallButterfly = TRUE;
-            break;
+    switch (iTimeElapsed)
+    {
+    case 5000:
+        bCallElephant = TRUE;
+        break;
+    case 6000:
+        bCallTounge = TRUE;
+        break;
+    case 7000:
+        bCallButterfly = TRUE;
+        break;
     }
     // Update specific elements
-    if(bCallTounge == TRUE)
+    if (bCallTounge == TRUE)
         updateTounge();
-    
-    if(bCallElephant == TRUE)
+
+    if (bCallElephant == TRUE)
         updateElephant();
 
     if (bCallButterfly)
@@ -148,14 +184,14 @@ BOOL scene1ShouldTransition(BOOL iSkipped)
     return (iTimeElapsed >= iThresholdTime);
 }
 
-/*******************************/ 
+/*******************************/
 /* SCENE 2 IMPLEMENTATION */
 /******************************/
 
 void scene2Render(void)
 {
     // Draw scene 2 elements
-    //drawGround();
+    // drawGround();
     // Add scene 2 specific rendering
 }
 
@@ -173,5 +209,37 @@ BOOL scene2ShouldTransition(BOOL iSkipped)
         iTimeElapsed = 0;
         iTimeElapsed += iThresholdTime;
     }
-    return TRUE;  
+    return TRUE;
+}
+
+/*******************************/
+/* SCENE 6_5 IMPLEMENTATION */
+/******************************/
+void renderScene6_5()
+{
+}
+
+void updateScene6_5()
+{
+    switch (iTimeElapsed)
+    {
+    default:
+        break;
+    }
+}
+
+void shouldTransitionScene6_5(GLboolean iSceneSkipped)
+{
+    int iThresholdTime = 162000;
+    if (iSceneSkipped)
+    {
+        iTimeElapsed = 0;
+        iTimeElapsed += iThresholdTime;
+    }
+    return TRUE;
+}
+
+void updateRath()
+{
+    rathTranslation.x = rathTranslation.x - 0.0001f;
 }
