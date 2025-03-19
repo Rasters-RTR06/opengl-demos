@@ -59,9 +59,6 @@ BOOL scene1ShouldTransition(BOOL iSkipped);
 void scene2Render(void);
 void scene2Update(void);
 BOOL scene2ShouldTransition(BOOL iSkipped);
-void scene5Render(void);
-void scene5Update(void);
-BOOL scene5ShouldTransition(BOOL iSkipped);
 
 /*******************************/ 
 /* SCENE MANAGEMENT VARIABLES */
@@ -71,7 +68,7 @@ BOOL scene5ShouldTransition(BOOL iSkipped);
 Scene scene0 = {scene0Render, scene0Update, scene0ShouldTransition, NULL };
 Scene scene1 = {scene1Render, scene1Update, scene1ShouldTransition, NULL};
 Scene scene2 = {scene2Render, scene2Update, scene2ShouldTransition, NULL};
-Scene scene5;
+
 // External global variables from Raster.c
 extern FILE *gpFile;
 extern UINT iTimeElapsed;
@@ -82,12 +79,11 @@ extern UINT iTimeElapsed;
 
 // Initialize the scene chain
 void initScenes(void) {
-    scene5 =(Scene) { scene5Render, scene5Update, scene5ShouldTransition, NULL };
 
     scene0.nextScene = &scene1;
     scene1.nextScene = &scene2;
-    scene2.nextScene = &scene5;
-    scene5.nextScene = NULL; // End of chain
+    scene2.nextScene = NULL;
+
     currentScene = &scene0;   // Start with scene 1
 }
 
@@ -137,7 +133,7 @@ void scene0Update(void)
 
 BOOL scene0ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 1000;
+    int iThresholdTime = 200;
     BOOL flag = FALSE;
     if (iSkipped || iTimeElapsed >= iThresholdTime)
     {
@@ -231,109 +227,4 @@ BOOL scene2ShouldTransition(BOOL iSkipped)
         iTimeElapsed += iThresholdTime;
     }
     return TRUE;  
-}
-
-/*******************************/
-/* SCENE 5 IMPLEMENTATION */
-/******************************/
-
-void scene5Render(void)
-{
-    /*
-    Elements' Sequence : 
-                1. Rotating plants at time 1.13 (73 seconds)
-                2. lake and cranes, Bhagvan shrikrishna ki sawari   at time 1.16 (76 seconds)
-                3. Patterned deers at time  1.24 (84 seconds)
-                4. Flowers  - Jungle me mangal chaaya at time 1.27 (87 seconds)
-                5. Peacock at time 1.33 (93 seconds)
-
-    */
-    // Draw scene 5 elements
-    //drawGround();
-    if (bShowRotatingPlants == TRUE)
-    {
-        //set matrix to model view mode
-        glMatrixMode(GL_MODELVIEW);
-
-        //set it to identity matrix
-        glLoadIdentity();
-        glRotatef(0.0f, 1.0f, 0.0f, 0.0f);	// x axis rotation
-        drawDenseForrest();
-        glEnd();
-       
-    }
-    if (bShriKrishnaEntry = TRUE && bShowLake == TRUE && bShowCranes == TRUE)
-    {
-        //draw lake and cranes
-        drawCraneOne(0.0f, 0.0f, 1.0f);
-        drawCraneTwo(0.8f, 0.4f, 1.0f);
-        //call shrikrishna function
-    }
-
-    if (bShowFlowers == TRUE)
-    {
-        // flowers funtion
-    }
-    if (bShowPatternedDeers)
-    {
-         drawGround();
-         drawRightPatternedDeer(0.0f, 0.0f, 0.5f);
-         drawLeftPatternedDeer(-0.4f, 0.0f, 0.5f);
-    }
-    //Flowers function
-    // Peacock function
-}
-
-void scene5Update(void)
-{
-    // Check time-based triggers
-    switch (iTimeElapsed) 
-    {
-        case 73000:
-            bShowRotatingPlants = TRUE;
-            break;
-        case 76000:
-            bShriKrishnaEntry = TRUE;
-            bShowLake = TRUE;
-            bShowCranes = TRUE;
-            break;
-        case 84000:
-            bShowPatternedDeers = TRUE;
-            break;
-        case 87000:
-            bShowFlowers = TRUE;
-            break;
-        case 93000:
-            bShowPeacock = TRUE;
-            break;
-    }
-    // Update specific elements
-    if (bShowRotatingPlants == TRUE)
-    {
-        //rotate plants
-    }
-    if (bShriKrishnaEntry == TRUE)
-    {
-        //call traslation related function for moving Rath
-    }
-    if (bShowFlowers == TRUE)
-    {
-       //rotating flowers 
-    }
-    if (bShowPeacock == TRUE)
-    {
-        //dancing peacock
-    }
-}
-
-BOOL scene5ShouldTransition(BOOL iSkipped)
-{
-    int iThresholdTime = 81000;
-    if (iSkipped)
-    {
-        iTimeElapsed = 0;
-        iTimeElapsed += iThresholdTime;
-    }
-    // Transition to the next scene after 1 min 35 sec seconds
-    return (iTimeElapsed >= iThresholdTime);
 }

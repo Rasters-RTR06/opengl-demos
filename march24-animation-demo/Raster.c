@@ -20,6 +20,9 @@ HWND ghwnd = NULL;
 DWORD dwStyle;
 WINDOWPLACEMENT wpPrev;
 
+//	time interval to update the update()
+UINT updateInterval = 100;		//	10 * updateInterval = 1 sec
+
 // variable related to file I/O
 char gszLogFileName[] = "Log.txt";
 FILE *gpFile = NULL;
@@ -392,7 +395,7 @@ int initialize(void)
 	printGLInfo();
 
 	// checkout https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-settimer
-	timerId = SetTimer(ghwnd, 1, 1, (TIMERPROC)NULL);
+	timerId = SetTimer(ghwnd, 1, updateInterval, (TIMERPROC)NULL);
 
 	if (timerId == 0)
 	{
