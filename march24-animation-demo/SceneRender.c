@@ -280,6 +280,7 @@ void scene5Render(void)
     //drawGround();
     if (bShowRotatingPlants == TRUE)
     {
+        drawGround();
         drawDenseForrest();
     }
     if (bShriKrishnaEntry = TRUE && bShowLake == TRUE && bShowCranes == TRUE)
@@ -289,7 +290,7 @@ void scene5Render(void)
         drawCraneTwo(0.8f, 0.0f, 0.9f);
         drawHorse(-0.6f, -0.6f, 0.5f);
         KrishnaRath(0.0f, 0.0f, 0.2f);
-        //call shrikrishna function
+        //call rath function
     }
 
     if (bShowFlowers == TRUE)
@@ -319,12 +320,12 @@ void scene5Update(void)
         bShowRotatingPlants = TRUE;
         break;
     case 76000:
+        bShowRotatingPlants = FALSE;
         bShriKrishnaEntry = TRUE;
         bShowLake = TRUE;
         bShowCranes = TRUE;
         break;
     case 84000:
-        bShowRotatingPlants = FALSE;
         bShriKrishnaEntry = FALSE;
         bShowLake = FALSE;
         bShowCranes = FALSE;
