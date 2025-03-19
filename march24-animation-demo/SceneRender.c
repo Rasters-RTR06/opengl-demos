@@ -82,17 +82,13 @@ extern UINT iTimeElapsed;
 
 // Initialize the scene chain
 void initScenes(void) {
-    scene0.nextScene = &scene1;
-    scene1.nextScene = &scene2;
-    scene2.nextScene = NULL;  // End of chain
-    currentScene = &scene0;   // Start with scene 1
-
     scene5 =(Scene) { scene5Render, scene5Update, scene5ShouldTransition, NULL };
 
+    scene0.nextScene = &scene1;
     scene1.nextScene = &scene2;
     scene2.nextScene = &scene5;
     scene5.nextScene = NULL; // End of chain
-    currentScene = &scene1;   // Start with scene 1
+    currentScene = &scene0;   // Start with scene 1
 }
 
 // Update the current scene
@@ -127,7 +123,7 @@ void logSceneTransition(UINT timeElapsed) {
 }
 
 /*******************************/
-/* SCENE 1 IMPLEMENTATION */
+/* SCENE 0 IMPLEMENTATION */
 /******************************/
 void scene0Render(void)
 {
@@ -141,14 +137,20 @@ void scene0Update(void)
 
 BOOL scene0ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 10000;
-    if (iSkipped)
+    int iThresholdTime = 1000;
+    BOOL flag = FALSE;
+    if (iSkipped || iTimeElapsed >= iThresholdTime)
     {
         iTimeElapsed = 0;
         iTimeElapsed += iThresholdTime;
+        flag = TRUE;
+    }
+    if (flag == TRUE)
+    {
+        iTimeElapsed = 0;
     }
     // Transition to the next scene after 15 seconds
-    return (iTimeElapsed >= iThresholdTime);
+    return (flag);
 }
 
 /*******************************/ 
@@ -170,13 +172,13 @@ void scene1Update(void)
 {
     // Check time-based triggers
     switch (iTimeElapsed) {
-        case 5000:
+        case 5:
             bCallElephant = TRUE;
             break;
-        case 6000:
+        case 6:
             bCallTounge = TRUE;
             break;
-        case 7000:
+        case 7:
             bCallButterfly = TRUE;
             break;
     }

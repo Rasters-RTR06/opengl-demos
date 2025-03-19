@@ -1,6 +1,6 @@
 //	for Elephant
 MY_POINT elephantOneTranslationBy = { 1.35, -0.5, 0 };           // big
-MY_POINT elephantTwoTranslationBy = { 1.35, -0.65, 0 };             // first middle
+MY_POINT elephantTwoTranslationBy = { 1.35, -0.65, 0 };          // first middle
 MY_POINT elephantThreeTranslationBy = { 1.45, -0.55, 0 };        // second middle
 MY_POINT elephantFourTranslationBy = { 1.65, -0.65, 0 };         // third middle
 MY_POINT elephantFiveTranslationBy = { 1.25, -0.8, 0 };          // small

@@ -92,7 +92,7 @@ void updateIntro()
 			if (counter >= timeToSwapR)
 			{
 				counter = 0;
-				timeToSwapR = timeToSwapR / 1.5;
+				timeToSwapR = timeToSwapR / 1.2;
 				float lastRX = start.x + getWordwidth("ASTE", characterHeight, spacing);
 				if (posR.x <= (lastRX + 0.1f) &&
 					posR.x >= (lastRX - 0.1f))

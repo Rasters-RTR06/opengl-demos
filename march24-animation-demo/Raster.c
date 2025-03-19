@@ -227,6 +227,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 	case WM_TIMER:
 		iTimeElapsed++;
 		break;
+
 	case WM_CLOSE:
 		uninitialize();
 		break;
