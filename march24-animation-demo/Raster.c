@@ -30,6 +30,9 @@ BOOL gbActiveWindow = FALSE;
 // Exit keypress related variables
 BOOL gbEscapeKeyIsPressed = FALSE;
 
+//	time interval to update the update()
+UINT updateInterval = 100;		//	10 * updateInterval = 1 sec
+
 // Opengl related global variable
 HDC ghdc = NULL;   // global handle to device context
 HGLRC ghrc = NULL; // global handle to rendering context (rc -> rendering context, HGLRC -> handle to openGL rendering context)
@@ -391,7 +394,7 @@ int initialize(void)
 	printGLInfo();
 
 	// checkout https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-settimer
-	timerId = SetTimer(ghwnd, 1, 1, (TIMERPROC)NULL);
+	timerId = SetTimer(ghwnd, 1, updateInterval, (TIMERPROC)NULL);
 
 	if (timerId == 0)
 	{
@@ -437,8 +440,14 @@ void display(void)
 	// clear openGL bufferes
 	glClear(GL_COLOR_BUFFER_BIT);
 
+	//	enable alpha blending
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
+
 	// Render current scene
 	renderCurrentScene();
+
+	glDisable(GL_BLEND);
 
 	// swap the bufferes
 	SwapBuffers(ghdc); // win32 function
