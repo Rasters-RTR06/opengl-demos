@@ -36,6 +36,10 @@ void logSceneTransition(UINT iTimeElapsed);
 /******************************/
 
 // Forward declarations for scene functions
+void scene0Render(void);
+void scene0Update(void);
+BOOL scene0ShouldTransition(BOOL iSkipped);
+
 void scene1Render(void);
 void scene1Update(void);
 BOOL scene1ShouldTransition(BOOL iSkipped);
@@ -48,6 +52,7 @@ BOOL scene2ShouldTransition(BOOL iSkipped);
 /******************************/
 
 // Scene management variables
+Scene scene0 = { scene0Render, scene0Update, scene0ShouldTransition, NULL };
 Scene scene1 = {scene1Render, scene1Update, scene1ShouldTransition, NULL};
 Scene scene2 = {scene2Render, scene2Update, scene2ShouldTransition, NULL};
 
@@ -82,11 +87,12 @@ void initScenes(void)
         updateScene6_5,
         shouldTransitionScene6_5,
         NULL};
+    scene0.nextScene = &scene1;
     scene1.nextScene = &scene2;
     scene2.nextScene = &scene6_5; // End of chain
     scene6_5.nextScene = NULL;
 
-    currentScene = &scene1; // Start with scene 1
+    currentScene = &scene0; // Start with scene 1
 
     rathTranslation = (TRANSLATION){0.0f, 0.0f, 0.0f};
 }
@@ -132,6 +138,37 @@ void logSceneTransition(UINT timeElapsed)
 }
 
 /*******************************/
+/* SCENE 0 IMPLEMENTATION */
+/******************************/
+void scene0Render(void)
+{
+    drawIntro();
+}
+
+void scene0Update(void)
+{
+    updateIntro();
+}
+
+BOOL scene0ShouldTransition(BOOL iSkipped)
+{
+    int iThresholdTime = 200;
+    BOOL flag = FALSE;
+    if (iSkipped || iTimeElapsed >= iThresholdTime)
+    {
+        iTimeElapsed = 0;
+        iTimeElapsed += iThresholdTime;
+        flag = TRUE;
+    }
+    if (flag == TRUE)
+    {
+        iTimeElapsed = 0;
+    }
+    // Transition to the next scene after 15 seconds
+    return (flag);
+}
+
+/*******************************/
 /* SCENE 1 IMPLEMENTATION */
 /******************************/
 
@@ -151,13 +188,13 @@ void scene1Update(void)
     // Check time-based triggers
     switch (iTimeElapsed)
     {
-    case 5000:
+    case 50:
         bCallElephant = TRUE;
         break;
-    case 6000:
+    case 60:
         bCallTounge = TRUE;
         break;
-    case 7000:
+    case 70:
         bCallButterfly = TRUE;
         break;
     }
