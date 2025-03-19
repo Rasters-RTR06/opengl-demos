@@ -11,6 +11,7 @@
 #include "../common/props/horse.c"
 
 
+
 /*******************************/ 
 /* TYPE DEFINITIONS AND DECLARATIONS */
 /******************************/
@@ -219,15 +220,7 @@ void scene5Render(void)
     //drawGround();
     if (bShowRotatingPlants == TRUE)
     {
-        //set matrix to model view mode
-        //glMatrixMode(GL_MODELVIEW);
-
-        //set it to identity matrix
-        //glLoadIdentity();
-        //glRotatef(0.5f, 1.0f, 0.0f, 0.0f);	// x axis rotation
-        drawDenseForrest();
-        //glEnd();
-       
+        drawDenseForrest();  
     }
     if (bShriKrishnaEntry = TRUE && bShowLake == TRUE && bShowCranes == TRUE)
     {
@@ -236,12 +229,15 @@ void scene5Render(void)
         drawCraneTwo(0.8f, 0.0f, 0.9f);
         drawHorse(-0.6f, -0.6f, 0.5f);
         KrishnaRath(0.0f, 0.0f, 0.2f);
-        //call shrikrishna function
+        MY_POINT  startPosition = {0.0f, -0.5f, 0.0f};
+        TRANSLATION translateBy = { 0.1f, 0.0f, 0.0f };
+        SCALING scaleBy = {1.0f, 1.0f, 1.0f};
+        rath(startPosition, translateBy,  scaleBy);
     }
 
     if (bShowFlowers == TRUE)
     {
-        // flowers funtion
+        //drawFlower();
     }
     if (bShowPatternedDeers)
     {
