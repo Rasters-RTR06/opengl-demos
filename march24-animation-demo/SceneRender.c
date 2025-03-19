@@ -11,8 +11,7 @@
 #include "../common/props/horse.c"
 
 
-
-/*******************************/ 
+/*******************************/
 /* TYPE DEFINITIONS AND DECLARATIONS */
 /******************************/
 
@@ -20,7 +19,7 @@
 typedef struct Scene {
     void (*render)(void);        // Function to render the scene
     void (*update)(void);        // Function to update the scene
-    BOOL (*shouldTransition)(BOOL iSkipped);  // Function to check if transition to next scene is needed
+    BOOL(*shouldTransition)(BOOL iSkipped);  // Function to check if transition to next scene is needed
     struct Scene* nextScene;     // Pointer to next scene in the chain
 } Scene;
 
@@ -48,7 +47,7 @@ void updateCurrentScene(UINT iTimeElapsed);
 void renderCurrentScene(void);
 void logSceneTransition(UINT iTimeElapsed);
 
-/*******************************/ 
+/*******************************/
 /* SCENE FUNCTION DECLARATIONS */
 /******************************/
 
@@ -63,26 +62,26 @@ void scene5Render(void);
 void scene5Update(void);
 BOOL scene5ShouldTransition(BOOL iSkipped);
 
-/*******************************/ 
+/*******************************/
 /* SCENE MANAGEMENT VARIABLES */
 /******************************/
 
 // Scene management variables
-Scene scene1 = {scene1Render, scene1Update, scene1ShouldTransition, NULL};
-Scene scene2 = {scene2Render, scene2Update, scene2ShouldTransition, NULL};
+Scene scene1 = { scene1Render, scene1Update, scene1ShouldTransition, NULL };
+Scene scene2 = { scene2Render, scene2Update, scene2ShouldTransition, NULL };
 Scene scene5;
 // External global variables from Raster.c
-extern FILE *gpFile;
+extern FILE* gpFile;
 extern UINT iTimeElapsed;
 
-/*******************************/ 
+/*******************************/
 /* SCENE MANAGEMENT FUNCTIONS */
 /******************************/
 
 // Initialize the scene chain
 void initScenes(void) {
 
-    scene5 =(Scene) { scene5Render, scene5Update, scene5ShouldTransition, NULL };
+    scene5 = (Scene){ scene5Render, scene5Update, scene5ShouldTransition, NULL };
 
     scene1.nextScene = &scene2;
     scene2.nextScene = &scene5;
@@ -97,7 +96,7 @@ void updateCurrentScene(UINT timeElapsed) {
         if (currentScene->update) {
             currentScene->update();
         }
-        
+
         if (currentScene->shouldTransition && currentScene->shouldTransition(FALSE)) {
             if (currentScene->nextScene) {
                 logSceneTransition(timeElapsed);
@@ -121,7 +120,7 @@ void logSceneTransition(UINT timeElapsed) {
     }
 }
 
-/*******************************/ 
+/*******************************/
 /* SCENE 1 IMPLEMENTATION */
 /******************************/
 
@@ -140,21 +139,21 @@ void scene1Update(void)
 {
     // Check time-based triggers
     switch (iTimeElapsed) {
-        case 5000:
-            bCallElephant = TRUE;
-            break;
-        case 6000:
-            bCallTounge = TRUE;
-            break;
-        case 7000:
-            bCallButterfly = TRUE;
-            break;
+    case 5000:
+        bCallElephant = TRUE;
+        break;
+    case 6000:
+        bCallTounge = TRUE;
+        break;
+    case 7000:
+        bCallButterfly = TRUE;
+        break;
     }
     // Update specific elements
-    if(bCallTounge == TRUE)
+    if (bCallTounge == TRUE)
         updateTounge();
-    
-    if(bCallElephant == TRUE)
+
+    if (bCallElephant == TRUE)
         updateElephant();
 
     if (bCallButterfly)
@@ -173,7 +172,7 @@ BOOL scene1ShouldTransition(BOOL iSkipped)
     return (iTimeElapsed >= iThresholdTime);
 }
 
-/*******************************/ 
+/*******************************/
 /* SCENE 2 IMPLEMENTATION */
 /******************************/
 
@@ -198,7 +197,7 @@ BOOL scene2ShouldTransition(BOOL iSkipped)
         iTimeElapsed = 0;
         iTimeElapsed += iThresholdTime;
     }
-    return TRUE;  
+    return TRUE;
 }
 
 /*******************************/
@@ -208,7 +207,7 @@ BOOL scene2ShouldTransition(BOOL iSkipped)
 void scene5Render(void)
 {
     /*
-    Elements' Sequence : 
+    Elements' Sequence :
                 1. Rotating plants at time 1.13 (73 seconds)
                 2. lake and cranes, Bhagvan shrikrishna ki sawari   at time 1.16 (76 seconds)
                 3. Patterned deers at time  1.24 (84 seconds)
@@ -220,7 +219,7 @@ void scene5Render(void)
     //drawGround();
     if (bShowRotatingPlants == TRUE)
     {
-        drawDenseForrest();  
+        drawDenseForrest();
     }
     if (bShriKrishnaEntry = TRUE && bShowLake == TRUE && bShowCranes == TRUE)
     {
@@ -229,21 +228,18 @@ void scene5Render(void)
         drawCraneTwo(0.8f, 0.0f, 0.9f);
         drawHorse(-0.6f, -0.6f, 0.5f);
         KrishnaRath(0.0f, 0.0f, 0.2f);
-        MY_POINT  startPosition = {0.0f, -0.5f, 0.0f};
-        TRANSLATION translateBy = { 0.1f, 0.0f, 0.0f };
-        SCALING scaleBy = {1.0f, 1.0f, 1.0f};
-        rath(startPosition, translateBy,  scaleBy);
+        //call shrikrishna function
     }
 
     if (bShowFlowers == TRUE)
     {
-        //drawFlower();
+        // flowers funtion
     }
     if (bShowPatternedDeers)
     {
-         drawGround();
-         drawRightPatternedDeer(0.0f, 0.0f, 0.5f);
-         drawLeftPatternedDeer(-0.4f, 0.0f, 0.5f);
+        drawGround();
+        drawRightPatternedDeer(0.0f, 0.0f, 0.5f);
+        drawLeftPatternedDeer(-0.4f, 0.0f, 0.5f);
     }
     //Flowers function
     if (bShowPeacock)
@@ -256,30 +252,30 @@ void scene5Render(void)
 void scene5Update(void)
 {
     // Check time-based triggers
-    switch (iTimeElapsed) 
+    switch (iTimeElapsed)
     {
-        case 73000:
-            bShowRotatingPlants = TRUE;
-            break;
-        case 76000:
-            bShriKrishnaEntry = TRUE;
-            bShowLake = TRUE;
-            bShowCranes = TRUE;
-            break;
-        case 84000:
-            bShowRotatingPlants = FALSE;
-            bShriKrishnaEntry = FALSE;
-            bShowLake = FALSE;
-            bShowCranes = FALSE;
-            bShowPatternedDeers = TRUE;
-            break;
-        case 87000:
-            bShowFlowers = TRUE;
-            break;
-        case 93000:
-            bShowPatternedDeers = FALSE;
-            bShowPeacock = TRUE;
-            break;
+    case 73000:
+        bShowRotatingPlants = TRUE;
+        break;
+    case 76000:
+        bShriKrishnaEntry = TRUE;
+        bShowLake = TRUE;
+        bShowCranes = TRUE;
+        break;
+    case 84000:
+        bShowRotatingPlants = FALSE;
+        bShriKrishnaEntry = FALSE;
+        bShowLake = FALSE;
+        bShowCranes = FALSE;
+        bShowPatternedDeers = TRUE;
+        break;
+    case 87000:
+        bShowFlowers = TRUE;
+        break;
+    case 93000:
+        bShowPatternedDeers = FALSE;
+        bShowPeacock = TRUE;
+        break;
     }
     // Update specific elements
     if (bShowRotatingPlants == TRUE)
@@ -292,7 +288,7 @@ void scene5Update(void)
     }
     if (bShowFlowers == TRUE)
     {
-       //rotating flowers 
+        //rotating flowers 
     }
     if (bShowPeacock == TRUE)
     {
