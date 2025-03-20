@@ -7,11 +7,6 @@
 #include "../common/props/patternedDeers.c"
 #include "../common/props/plainDeers.c"
 
-#include "../common/props/cranes.c"
-#include "../common/props/patternedDeers.c"
-#include "../common/props/plainDeers.c"
-
-
 /*******************************/ 
 /* TYPE DEFINITIONS AND DECLARATIONS */
 /******************************/
@@ -62,9 +57,6 @@ BOOL scene2ShouldTransition(BOOL iSkipped);
 void scene5Render(void);
 void scene5Update(void);
 BOOL scene5ShouldTransition(BOOL iSkipped);
-void scene5Render(void);
-void scene5Update(void);
-BOOL scene5ShouldTransition(BOOL iSkipped);
 
 /*******************************/ 
 /* SCENE MANAGEMENT VARIABLES */
@@ -73,7 +65,6 @@ BOOL scene5ShouldTransition(BOOL iSkipped);
 // Scene management variables
 Scene scene1 = {scene1Render, scene1Update, scene1ShouldTransition, NULL};
 Scene scene2 = {scene2Render, scene2Update, scene2ShouldTransition, NULL};
-Scene scene5;
 Scene scene5;
 // External global variables from Raster.c
 extern FILE *gpFile;
@@ -85,10 +76,6 @@ extern UINT iTimeElapsed;
 
 // Initialize the scene chain
 void initScenes(void) {
-
-    scene5 =(Scene) { scene5Render, scene5Update, scene5ShouldTransition, NULL };
-
-
     scene5 =(Scene) { scene5Render, scene5Update, scene5ShouldTransition, NULL };
 
     scene1.nextScene = &scene2;
@@ -136,7 +123,6 @@ void logSceneTransition(UINT timeElapsed) {
 
 void scene1Render(void)
 {
-
     drawGround();
     //drawDenseForrest();
     //drawFrontTrees();
@@ -144,7 +130,6 @@ void scene1Render(void)
     drawButterfly(butterflyX, butterflyY, 0.6f, butterflyRotation);
     toungeMovement();
     chamelon(0.5f, -0.35f, 0.2);
-
 }
 
 
@@ -153,15 +138,11 @@ void scene1Update(void)
     // Check time-based triggers
     switch (iTimeElapsed) {
         case 5:
-            
             break;
-        case 6:
         case 6:
             bCallTounge = TRUE;
             break;
         case 7:
-        case 7:
-            bCallButterfly = TRUE;
             bCallElephant = TRUE;
             break;
     }
@@ -178,7 +159,6 @@ void scene1Update(void)
 
 BOOL scene1ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 15;
     int iThresholdTime = 15;
     if (iSkipped)
     {

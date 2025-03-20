@@ -3,7 +3,6 @@ void drawCraneTwo(float, float, float);
 void drawCircleCranes(float , float , float, float, float, float, float, int);
 
 void drawCraneOne(float originx, float originy, float resize) //left side crane
-void drawCraneOne(float originx, float originy, float resize) //left side crane
 {
 	//Body
 	glBegin(GL_QUADS);
@@ -77,7 +76,6 @@ void drawCraneOne(float originx, float originy, float resize) //left side crane
 	glEnd();
 }
 
-void drawCraneTwo(float originx, float originy, float resize) // right side crane
 void drawCraneTwo(float originx, float originy, float resize) // right side crane
 {
 	//Body
