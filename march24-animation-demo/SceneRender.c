@@ -97,7 +97,7 @@ void initScenes(void)
 {
     // function prototypes
     void renderScene6_5(void);
-    void updateScene6_5(void);
+    BOOL updateScene6_5(void);
     void shouldTransitionScene6_5(GLboolean);
 
     scene5 = (Scene){ scene5Render, scene5Update, scene5ShouldTransition, NULL };
@@ -107,11 +107,10 @@ void initScenes(void)
         shouldTransitionScene6_5,
         NULL};
     scene0.nextScene = &scene1;
-    scene1.nextScene = &scene2;
-    scene2.nextScene = &scene5;
+    scene1.nextScene = &scene5;
+    //scene2.nextScene = &scene5;
     scene5.nextScene = &scene6_5; // End of chain
     scene6_5.nextScene = NULL;
-
     currentScene = &scene0; // Start with scene 1
 
     rathTranslation = (TRANSLATION){0.0f, 0.0f, 0.0f};
@@ -231,7 +230,8 @@ void scene1Update(void)
 
 BOOL scene1ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 15000;
+    //int iThresholdTime = 300;
+    int iThresholdTime = 200;
     if (iSkipped)
     {
         iTimeElapsed = 0;
@@ -260,7 +260,7 @@ void scene2Update(void)
 BOOL scene2ShouldTransition(BOOL iSkipped)
 {
     // 20 Sec is Temporarily set for testing
-    int iThresholdTime = 460;
+    int iThresholdTime = 720;
     if (iSkipped)
     {
         iTimeElapsed = 0;
@@ -276,7 +276,7 @@ void renderScene6_5()
 {
 }
 
-void updateScene6_5()
+BOOL updateScene6_5()
 {
     switch (iTimeElapsed)
     {
@@ -307,31 +307,32 @@ void updateRath()
 
 void scene5Render(void)
 {
-    /*
-    Elements' Sequence :
-                1. Rotating plants at time 1.13 (73 seconds)
-                2. lake and cranes, Bhagvan shrikrishna ki sawari   at time 1.16 (76 seconds)
-                3. Patterned deers at time  1.24 (84 seconds)
-                4. Flowers  - Jungle me mangal chaaya at time 1.27 (87 seconds)
-                5. Peacock at time 1.33 (93 seconds)
-
-    */
-    // Draw scene 5 elements
-    //drawGround();
     if (bShowRotatingPlants == TRUE)
     {
+        //fprintf(gpFile, "\nbShowRotatingPlants is true\n");
         drawGround();
         drawDenseForrest();
     }
     if (bShriKrishnaEntry = TRUE && bShowLake == TRUE && bShowCranes == TRUE)
     {
-        //draw lake and cranes
+        
+        //lake and cranes
+        drawGround();
+        drawDenseForrest();
+      
         drawCraneOne(0.4f, -0.2f, 0.9f);
         drawCraneTwo(0.8f, 0.0f, 0.9f);
-        drawHorse(-0.6f, -0.6f, 0.5f);
-        KrishnaRath(0.0f, 0.0f, 0.2f);
-        //rath({ 0.0f,0.0f,0.0f }, rathTranslation, {1.0f,1.0f,1.0f});
-        //call rath function
+      
+        
+        //Shri-Krishna
+        KrishnaRath(-0.8f, -0.3f, 0.50f);
+     
+        //Rath
+        MY_POINT startPosition = { 0.2f, -0.5f, 0.8f };
+        SCALING scaleBy = { 1.3f, 1.3f, 1.3f };
+        rath(startPosition, rathTranslation, scaleBy);
+        drawHorse(-0.3f, -0.5f, 0.8f);
+        drawFrontTrees();
     }
 
     if (bShowFlowers == TRUE)
@@ -340,7 +341,9 @@ void scene5Render(void)
     }
     if (bShowPatternedDeers)
     {
+        fprintf(gpFile, "\bShowPatternedDeers is true\n");
         drawGround();
+        drawDenseForrest();
         drawRightPatternedDeer(0.0f, 0.0f, 0.5f);
         drawLeftPatternedDeer(-0.4f, 0.0f, 0.5f);
     }
@@ -357,25 +360,31 @@ void scene5Update(void)
     // Check time-based triggers
     switch (iTimeElapsed)
     {
-    case 730:
+    //case 700:
+    case 205:
+    //case 72:
         bShowRotatingPlants = TRUE;
         break;
-    case 760:
+    case 210:
+    //case 76:
         bShowRotatingPlants = FALSE;
         bShriKrishnaEntry = TRUE;
         bShowLake = TRUE;
         bShowCranes = TRUE;
         break;
-    case 840:
+    case 230:
+    //case 84:
         bShriKrishnaEntry = FALSE;
         bShowLake = FALSE;
         bShowCranes = FALSE;
         bShowPatternedDeers = TRUE;
         break;
-    case 870:
+    case 235:
+    //case 87:
         bShowFlowers = TRUE;
         break;
-    case 930:
+    case 245:
+    //case 93:
         bShowPatternedDeers = FALSE;
         bShowPeacock = TRUE;
         break;
@@ -388,7 +397,7 @@ void scene5Update(void)
     if (bShriKrishnaEntry == TRUE)
     {
         //call traslation related function for moving Rath
-        KrishnaRath(0.0f, 0.0f, 1.0f);
+        updateRath();
 
     }
     if (bShowFlowers == TRUE)
@@ -409,7 +418,6 @@ BOOL scene5ShouldTransition(BOOL iSkipped)
         iTimeElapsed = 0;
         iTimeElapsed += iThresholdTime;
     }
-    // Transition to the next scene after 1 min 35 sec seconds
     return (iTimeElapsed >= iThresholdTime);
 }
 
