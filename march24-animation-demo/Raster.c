@@ -31,14 +31,14 @@ BOOL gbActiveWindow = FALSE;
 BOOL gbEscapeKeyIsPressed = FALSE;
 
 //	time interval to update the update()
-UINT timeInterval = 100;		//	10 * updateInterval = 1 sec
+UINT timeInterval = 100; //	10 * updateInterval = 1 sec
 
 // Opengl related global variable
 HDC ghdc = NULL;   // global handle to device context
 HGLRC ghrc = NULL; // global handle to rendering context (rc -> rendering context, HGLRC -> handle to openGL rendering context)
 
 // Demo Required global Variables
-UINT_PTR timerId;
+UINT_PTR timerId = 1;
 UINT iTimeElapsed = 0;
 
 // Entry point function
@@ -394,7 +394,7 @@ int initialize(void)
 	printGLInfo();
 
 	// checkout https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-settimer
-	timerId = SetTimer(ghwnd, 1, timeInterval, (TIMERPROC)NULL);
+	timerId = SetTimer(ghwnd, timerId, 100, (TIMERPROC)NULL);
 
 	if (timerId == 0)
 	{

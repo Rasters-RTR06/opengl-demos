@@ -71,3 +71,6 @@ void rath(MY_POINT startPosition, TRANSLATION translateBy, SCALING scaleBy);
 #include "alphabates.c"
 #include "astromedicomp_to_rasters.c"
 #include "rath.c"
+#include "Room_Interior.c"
+#include "Nakul.c"
+#include "Draupadi.c"
