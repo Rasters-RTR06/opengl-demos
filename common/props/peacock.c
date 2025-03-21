@@ -523,7 +523,7 @@ void drawCircleWithColor_Peacock(float x, float y, float radius_vert, float radi
 
 		glColor4f(r, g, b, alpha);
 
-		glVertex2f(ObjX, ObjY);
+		glVertex2f(ObjX * resize, ObjY * resize);
 	}
 
 

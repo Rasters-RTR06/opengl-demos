@@ -61,6 +61,9 @@ BOOL scene1ShouldTransition(BOOL iSkipped);
 void scene2Render(void);
 void scene2Update(void);
 BOOL scene2ShouldTransition(BOOL iSkipped);
+void scene3Render(void);
+void scene3Update(void);
+BOOL scene3ShouldTransition(BOOL iSkipped);
 void scene5Render(void);
 void scene5Update(void);
 BOOL scene5ShouldTransition(BOOL iSkipped);
@@ -73,6 +76,7 @@ BOOL scene5ShouldTransition(BOOL iSkipped);
 Scene scene0 = {scene0Render, scene0Update, scene0ShouldTransition, NULL};
 Scene scene1 = {scene1Render, scene1Update, scene1ShouldTransition, NULL};
 Scene scene2 = {scene2Render, scene2Update, scene2ShouldTransition, NULL};
+Scene scene3 = {scene3Render, scene3Update, scene3ShouldTransition, NULL};
 Scene scene5;
 // External global variables from Raster.c
 extern FILE *gpFile;
@@ -90,7 +94,8 @@ void initScenes(void) {
 
     scene0.nextScene = &scene1;
     scene1.nextScene = &scene2;
-    scene2.nextScene = &scene5;
+    scene2.nextScene = &scene3;
+    scene3.nextScene = &scene5;
     scene5.nextScene = NULL; // End of chain
     currentScene = &scene0;   // Start with scene 1
 }
@@ -218,6 +223,7 @@ void scene2Render(void)
     // Draw scene 2 elements
     //drawGround();
     // Add scene 2 specific rendering
+
 }
 
 void scene2Update(void)
@@ -228,13 +234,36 @@ void scene2Update(void)
 BOOL scene2ShouldTransition(BOOL iSkipped)
 {
     // 20 Sec is Temporarily set for testing
-    int iThresholdTime = 200;
+    int iThresholdTime = 460;
     if (iSkipped)
     {
         iTimeElapsed = 0;
         iTimeElapsed += iThresholdTime;
     }
-    return TRUE;  
+    return (iTimeElapsed >= iThresholdTime);
+}
+
+void scene3Render(void)
+{
+    // Draw scene 3 elements
+    // Add scene 3 specific rendering
+}
+
+void scene3Update(void)
+{
+    // Update scene 3 elements
+}
+
+BOOL scene3ShouldTransition(BOOL iSkipped)
+{
+    // 20 Sec is Temporarily set for testing
+    int iThresholdTime = 520;
+    if (iSkipped)
+    {
+        iTimeElapsed = 0;
+        iTimeElapsed += iThresholdTime;
+    }
+    return (iTimeElapsed >= iThresholdTime);
 }
 
 /*******************************/
@@ -244,7 +273,7 @@ BOOL scene2ShouldTransition(BOOL iSkipped)
 void scene5Render(void)
 {
     /*
-    Elements' Sequence : 
+    Elements' Sequence :
                 1. Rotating plants at time 1.13 (73 seconds)
                 2. lake and cranes, Bhagvan shrikrishna ki sawari   at time 1.16 (76 seconds)
                 3. Patterned deers at time  1.24 (84 seconds)
