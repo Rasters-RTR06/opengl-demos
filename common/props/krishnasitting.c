@@ -450,5 +450,5 @@ void sittingkrishna(float originx, float originy, float resize)
 	glVertex2f(originx + -0.070*resize, originy + 0.469*resize);
 	glEnd();
 
-	mukut(0.165, -0.18, 1);
+	mukut(originx + 0.165 * resize, originy -0.18 * resize,resize );
 }

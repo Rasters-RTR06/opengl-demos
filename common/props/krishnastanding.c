@@ -387,6 +387,6 @@ void KrishnaStanding(float originx, float originy, float resize)
 	glVertex2f(originx + -0.084*resize, originy + 0.592*resize);
 	glEnd();
 
-	mukut(0.17, -0.11, 0.75, -10);
+	mukut(originx +0.17*resize, originy-0.11*resize, resize, -10);
 
 }
