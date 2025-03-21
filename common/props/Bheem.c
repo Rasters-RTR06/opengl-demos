@@ -20,6 +20,12 @@ typedef struct {
 
 void drawBheemWeapon();
 
+void changeDhotiColor(float r, float g, float b) {
+    DhotiColor[0] = r;
+    DhotiColor[1] = g;
+    DhotiColor[2] = b;
+}
+
 void drawBPolygon(GLfloat vertices[][2], int numVertices, Color color) {
     glColor3f(color.r, color.g, color.b);
     glBegin(GL_POLYGON);
@@ -31,6 +37,7 @@ void drawBPolygon(GLfloat vertices[][2], int numVertices, Color color) {
 
 void drawBheem(float xOrigin, float yOrigin, float scale)
 {
+    changeDhotiColor(1.0f, 0.0f, 0.0f);
     drawBheemWeapon(xOrigin, yOrigin, scale);
 	drawHead(xOrigin, yOrigin, scale);
 	drawCommonBody(xOrigin, yOrigin, scale, 1);
