@@ -9,6 +9,7 @@
 #include "../common/props/peacock.c"
 #include "../common/props/fullkrushna.c"
 #include "../common/props/horse.c"
+#include "../common/props/SandeshText.c"
 
 /*******************************/ 
 /* TYPE DEFINITIONS AND DECLARATIONS */
@@ -167,7 +168,8 @@ void scene1Render(void)
     elephant();
     drawButterfly(butterflyX, butterflyY, 0.6f, butterflyRotation);
     toungeMovement();
-    chamelon(0.5f, -0.35f, 0.2);
+    chamelon(1.5f, -0.35f, 0.2);
+    drawSandesh();
 }
 
 
@@ -197,7 +199,7 @@ void scene1Update(void)
 
 BOOL scene1ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 15;
+    int iThresholdTime = 150;
     if (iSkipped)
     {
         iTimeElapsed = 0;
@@ -226,7 +228,7 @@ void scene2Update(void)
 BOOL scene2ShouldTransition(BOOL iSkipped)
 {
     // 20 Sec is Temporarily set for testing
-    int iThresholdTime = 20000;
+    int iThresholdTime = 200;
     if (iSkipped)
     {
         iTimeElapsed = 0;
