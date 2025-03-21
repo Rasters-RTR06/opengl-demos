@@ -206,7 +206,7 @@ void drawText(int r, int g, int b)
     glVertex2f(-0.05, 0.0);
     glVertex2f(-0.05, -0.05);
     glVertex2f(-0.1, -0.05);
-    glVertex2f(-0.1, -0.1);
+    glVertex2f(-0.1, -0.15);
     glEnd();
 
     glBegin(GL_LINE_STRIP);
