@@ -6,6 +6,9 @@
 #include "../common/props/cranes.c"
 #include "../common/props/patternedDeers.c"
 #include "../common/props/plainDeers.c"
+#include "../common/props/peacock.c"
+#include "../common/props/fullkrushna.c"
+#include "../common/props/horse.c"
 
 /*******************************/ 
 /* TYPE DEFINITIONS AND DECLARATIONS */
@@ -73,6 +76,8 @@ Scene scene5;
 // External global variables from Raster.c
 extern FILE *gpFile;
 extern UINT iTimeElapsed;
+
+TRANSLATION rathTranslation;
 
 /*******************************/ 
 /* SCENE MANAGEMENT FUNCTIONS */
@@ -249,22 +254,26 @@ void scene5Render(void)
     //drawGround();
     if (bShowRotatingPlants == TRUE)
     {
-        //set matrix to model view mode
-        glMatrixMode(GL_MODELVIEW);
-
-        //set it to identity matrix
-        glLoadIdentity();
-        glRotatef(0.0f, 1.0f, 0.0f, 0.0f);	// x axis rotation
+        drawGround();
         drawDenseForrest();
-        glEnd();
-       
     }
     if (bShriKrishnaEntry = TRUE && bShowLake == TRUE && bShowCranes == TRUE)
     {
-        //draw lake and cranes
-        drawCraneOne(0.0f, 0.0f, 1.0f);
-        drawCraneTwo(0.8f, 0.4f, 1.0f);
-        //call shrikrishna function
+        //lake and cranes
+        drawGround();
+        drawDenseForrest();
+
+        drawCraneOne(0.4f, -0.2f, 0.9f);
+        drawCraneTwo(0.8f, 0.0f, 0.9f);
+
+        //Shri-Krishna
+        KrishnaRath(-0.8f, -0.3f, 0.50f);
+        //Rath
+        MY_POINT startPosition = { 0.2f, -0.5f, 0.8f };
+        SCALING scaleBy = { 1.3f, 1.3f, 1.3f };
+        rath(startPosition, rathTranslation, scaleBy);
+        drawHorse(-0.3f, -0.5f, 0.8f);
+        drawFrontTrees();
     }
 
     if (bShowFlowers == TRUE)
@@ -273,12 +282,17 @@ void scene5Render(void)
     }
     if (bShowPatternedDeers)
     {
-         drawGround();
-         drawRightPatternedDeer(0.0f, 0.0f, 0.5f);
-         drawLeftPatternedDeer(-0.4f, 0.0f, 0.5f);
+        drawGround();
+        drawDenseForrest();
+        drawRightPatternedDeer(0.0f, 0.0f, 0.5f);
+        drawLeftPatternedDeer(-0.4f, 0.0f, 0.5f);
     }
-    //Flowers function
-    // Peacock function
+    if (bShowPeacock)
+    {
+        drawGround();
+        drawDenseForrest();
+        drawPeacock(0.0f, 0.0f , 0.3f);
+    }
 }
 
 void scene5Update(void)
@@ -286,21 +300,27 @@ void scene5Update(void)
     // Check time-based triggers
     switch (iTimeElapsed) 
     {
-        case 73:
+        case 205:
             bShowRotatingPlants = TRUE;
             break;
-        case 76:
+        case 210:
+            bShowRotatingPlants = FALSE;
             bShriKrishnaEntry = TRUE;
             bShowLake = TRUE;
             bShowCranes = TRUE;
             break;
-        case 84:
+        case 230:
+            bShriKrishnaEntry = FALSE;
+            bShowLake = FALSE;
+            bShowCranes = FALSE;
             bShowPatternedDeers = TRUE;
             break;
-        case 87:
+        case 240:
+            bShowPatternedDeers = FALSE;
             bShowFlowers = TRUE;
             break;
-        case 93:
+        case 245:
+            bShowFlowers = FALSE;
             bShowPeacock = TRUE;
             break;
     }
@@ -325,7 +345,7 @@ void scene5Update(void)
 
 BOOL scene5ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 81;
+    int iThresholdTime = 950;
     if (iSkipped)
     {
         iTimeElapsed = 0;
