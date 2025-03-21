@@ -10,6 +10,7 @@
 #include "../common/props/fullkrushna.c"
 #include "../common/props/horse.c"
 #include "../common/props/SandeshText.c"
+#include "Scene6_2Render.h"
 
 /*******************************/ 
 /* TYPE DEFINITIONS AND DECLARATIONS */
@@ -67,6 +68,9 @@ BOOL scene3ShouldTransition(BOOL iSkipped);
 void scene5Render(void);
 void scene5Update(void);
 BOOL scene5ShouldTransition(BOOL iSkipped);
+void scene6_2Render(void);
+void scene6_2Update(void);
+BOOL scene6_2ShouldTransition(BOOL iSkipped);
 
 /*******************************/ 
 /* SCENE MANAGEMENT VARIABLES */
@@ -78,6 +82,7 @@ Scene scene1 = {scene1Render, scene1Update, scene1ShouldTransition, NULL};
 Scene scene2 = {scene2Render, scene2Update, scene2ShouldTransition, NULL};
 Scene scene3 = {scene3Render, scene3Update, scene3ShouldTransition, NULL};
 Scene scene5;
+Scene scene6_2 = { scene6_2Render, scene6_2Update, scene6_2ShouldTransition, NULL };
 // External global variables from Raster.c
 extern FILE *gpFile;
 extern UINT iTimeElapsed;
@@ -96,7 +101,8 @@ void initScenes(void) {
     scene1.nextScene = &scene2;
     scene2.nextScene = &scene3;
     scene3.nextScene = &scene5;
-    scene5.nextScene = NULL; // End of chain
+    scene5.nextScene = &scene6_2;
+    scene6_2.nextScene = NULL;// End of chain
     currentScene = &scene0;   // Start with scene 1
 }
 
@@ -391,3 +397,89 @@ BOOL scene5ShouldTransition(BOOL iSkipped)
     // Transition to the next scene after 1 min 35 sec seconds
     return (iTimeElapsed >= iThresholdTime);
 }
+
+/*******************************/
+/* SCENE 6_2 IMPLEMENTATION */
+/******************************/
+
+void scene6_2Render()
+{
+
+    drawRoom();
+
+    drawArjun(xOriginArjun, yOriginArjun, 0.7f, g_iArjunStanding);
+    drawBheem(xOriginBheem, yOriginBheem, 0.7f, g_iBheemStanding);
+    //drawYudhishteer(xOriginYudhishteer, yOriginYudhishteer, 0.7f, g_iYudhishteerStanding);
+
+    //drawSahadev(xOriginSahadev, yOriginSahadev, 0.7f, g_iSahadevStanding);
+
+    //drawNakul(xOriginNakul, yOriginNakul, 0.7f, g_iNakulStanding);
+
+    sittingkrishna(originxSK, originySK, resizeSK);
+    drawNakul(xOriginNakul, yOriginNakul, 0.7f, g_iNakulStanding);
+    drawDraupadi(xOriginDraupadi, yOriginDraupadi, 0.8f, g_iHandPositionDraupadi, g_iStandingDraupadi);
+}
+
+void scene6_2Update()
+{
+    fprintf(gpFile, "Scene6_2\n");
+    g_iHandPositionDraupadi = 1;
+    g_iStandingDraupadi = 1;
+
+    g_iYudhishteerStanding = 0;
+    g_iBheemStanding = 0;
+    g_iArjunStanding = 0;
+    g_iNakulStanding = 0;
+    g_iSahadevStanding = 0;
+
+
+    xOriginArjun = 0.05;yOriginArjun = 0.1;
+    xOriginBheem = 0.2;yOriginBheem = 0.0;
+    xOriginYudhishteer = 0.4;yOriginYudhishteer = -0.2;
+
+    xOriginSahadev = -0.3;yOriginSahadev = 0.0;
+    xOriginNakul = -0.1; yOriginNakul = -0.2;
+
+    xOriginDraupadi = -0.2; yOriginDraupadi = -0.3;
+
+    //fprintf(gpFile, "% d\n", iTimeElapsed);
+
+    originxSK = 0.5f;
+    originySK = -0.3f;
+    resizeSK = 0.3f;
+
+    switch (iTimeElapsed)
+    {
+    case 1060:
+        //bMoveDraupadi = TRUE;
+
+        break;
+    case 1120:
+        bMoveDraupadi = FALSE;
+        break;
+    default:
+        break;
+    }
+
+    if (bMoveDraupadi)
+    {
+        if (xOriginDraupadi >= 0.0)
+            xOriginDraupadi += 0.001;
+        else
+            xOriginDraupadi -= 0.01;
+    }
+
+}
+
+BOOL scene6_2ShouldTransition(BOOL iSceneSkipped)
+{
+    int iThresholdTime = 1340;
+    if (iSceneSkipped)
+    {
+        iTimeElapsed = 0;
+        iTimeElapsed += iThresholdTime;
+    }
+    // Transition to the next scene after 2 min 14 sec seconds
+    return (iTimeElapsed >= iThresholdTime);
+}
+
