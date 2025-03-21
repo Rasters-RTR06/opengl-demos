@@ -1,17 +1,17 @@
-#define PI 3.14159
+//#define PI 3.14159
 
-#define SKIN_COLOR { \
-    glColor3f(0.94f, 0.72f, 0.63f); \
-}
+//#define SKIN_COLOR { \
+//    glColor3f(0.94f, 0.72f, 0.63f); \
+//}
 
-#define NAKUL_DHOTI_COLOR {\
-    glColor3f(1.0f,0.2f,0.0f);\
+#define ARJUN_DHOTI_COLOR {\
+    glColor3f(0.125f,0.4f,0.047f);\
 }
 
 // global variable declarations
-float xOrigin_Arjun = 0.0f;
-float yOrigin_Arjun_Arjun = 0.0f;
-float fScaleFactor_Arjun_Arjun = 1.0f;
+//float xOrigin_Arjun = 0.0f;
+//float yOrigin_Arjun_Arjun = 0.0f;
+//float fScaleFactor_Arjun_Arjun = 1.0f;
 
 /// global function declarations
 void drawLineArjun(float x1, float y1, float x2, float y2);
@@ -23,15 +23,15 @@ void drawTriangleArjun(float x1, float y1, float x2, float y2, float x3, float y
 // function declarations
 void drawArjun(float xOrigin_Arjun, float yOrigin_Arjun, float scale, int iStanding);
 
-void display(void)
-{
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    drawNakul(xOrigin_Arjun, yOrigin_Arjun_Arjun, fScaleFactor_Arjun_Arjun, 1);
-
-    // Use SwapBuffers instead of glutSwapBuffers since GLUT is not used.
-    SwapBuffers(ghdc);
-}
+//void display(void)
+//{
+//    glClear(GL_COLOR_BUFFER_BIT);
+//
+//    drawNakul(xOrigin_Arjun, yOrigin_Arjun_Arjun, fScaleFactor_Arjun_Arjun, 1);
+//
+//    // Use SwapBuffers instead of glutSwapBuffers since GLUT is not used.
+//    SwapBuffers(ghdc);
+//}
 
 // Draw Rectangle 
 // Draw Rectangle 
@@ -100,18 +100,18 @@ void drawTriangleArjun(float x1, float y1, float x2, float y2, float x3, float y
 
 void drawArjun(float xOrigin, float yOrigin_Arjun, float scale, int iStanding)
 {
-    void drawClothBackSide(float, float, float);
-    void drawHead(float, float, float);
-    void drawCommonBody(float, float, float, int);
-    void drawHandAndCloth(float, float, float, int);
+    void drawClothBackSideArjun(float, float, float);
+    void drawHeadArjun(float, float, float);
+    void drawCommonBodyArjun(float, float, float, int);
+    void drawHandAndClothArjun(float, float, float, int);
 
-    drawClothBackSide(xOrigin, yOrigin_Arjun, scale);
-    drawHead(xOrigin, yOrigin_Arjun, scale);
-    drawCommonBody(xOrigin, yOrigin_Arjun, scale, iStanding);
-    drawHandAndCloth(xOrigin, yOrigin_Arjun, scale, iStanding);
+    drawClothBackSideArjun(xOrigin, yOrigin_Arjun, scale);
+    drawHeadArjun(xOrigin, yOrigin_Arjun, scale);
+    drawCommonBodyArjun(xOrigin, yOrigin_Arjun, scale, iStanding);
+    drawHandAndClothArjun(xOrigin, yOrigin_Arjun, scale, iStanding);
 }
 
-void drawHead(float xOrigin, float yOrigin_Arjun, float scale)
+void drawHeadArjun(float xOrigin, float yOrigin_Arjun, float scale)
 {
     // hairs
     {
@@ -119,7 +119,7 @@ void drawHead(float xOrigin, float yOrigin_Arjun, float scale)
 
         drawcircleArjun(
             xOrigin + (-0.7850f * scale), yOrigin_Arjun + (0.2550f * scale),
-            yOrigin_Arjun + (0.030f * scale), xOrigin + (0.020f * scale), 0.0f, 0.0f, 0.0f, 1);
+            (0.030f * scale), (0.020f * scale), 0.0f, 0.0f, 0.0f, 1);
 
         glBegin(GL_POLYGON);
         glVertex2f(xOrigin + (-0.7900f * scale), yOrigin_Arjun + (0.2650f * scale));
@@ -142,7 +142,7 @@ void drawHead(float xOrigin, float yOrigin_Arjun, float scale)
     }
 
     // Use uniform skin color for the face
-    SKIN_COLOR_ARJUN
+    SKIN_COLOR
         glBegin(GL_POLYGON);
     glVertex2f(xOrigin + (-0.7825f * scale), yOrigin_Arjun + (0.1500f * scale));
     glVertex2f(xOrigin + (-0.7350f * scale), yOrigin_Arjun + (0.1000f * scale));
@@ -255,7 +255,7 @@ void drawHead(float xOrigin, float yOrigin_Arjun, float scale)
     }
 }
 
-void drawClothBackSide(float xOrigin, float yOrigin_Arjun, float scale)
+void drawClothBackSideArjun(float xOrigin, float yOrigin_Arjun, float scale)
 {
     {
         glColor3f(0.50f, 0.67f, 0.35f);
@@ -295,10 +295,10 @@ void drawClothBackSide(float xOrigin, float yOrigin_Arjun, float scale)
     }
 }
 
-void drawCommonBody(float xOrigin, float yOrigin_Arjun, float scale, int iStanding)
+void drawCommonBodyArjun(float xOrigin, float yOrigin_Arjun, float scale, int iStanding)
 {
     // Use uniform skin color for the neck and torso
-    SKIN_COLOR_ARJUN
+    SKIN_COLOR
         //neck
         drawQuadrangleArjun(
             xOrigin + (-0.7825f * scale), yOrigin_Arjun + (0.0800f * scale),
@@ -306,7 +306,7 @@ void drawCommonBody(float xOrigin, float yOrigin_Arjun, float scale, int iStandi
             xOrigin + (-0.7350f * scale), yOrigin_Arjun + (0.1000f * scale),
             xOrigin + (-0.7350f * scale), yOrigin_Arjun + (0.0800f * scale));
 
-    SKIN_COLOR_ARJUN
+    SKIN_COLOR
         // Torso
         glBegin(GL_POLYGON);
     glVertex2f(xOrigin + (-0.835f * scale), yOrigin_Arjun + (0.050f * scale));
@@ -319,7 +319,7 @@ void drawCommonBody(float xOrigin, float yOrigin_Arjun, float scale, int iStandi
 
     if (iStanding == 1)
     {
-        SKIN_COLOR_ARJUN
+        SKIN_COLOR
             // back leg lower
             drawTriangleArjun(
                 xOrigin + (-0.820f * scale), yOrigin_Arjun + (-0.55f * scale),
@@ -343,7 +343,7 @@ void drawCommonBody(float xOrigin, float yOrigin_Arjun, float scale, int iStandi
             xOrigin + (-0.690f * scale), yOrigin_Arjun + (-0.550f * scale),
             xOrigin + (-0.747f * scale), yOrigin_Arjun + (-0.550f * scale));
 
-        SKIN_COLOR_ARJUN
+        SKIN_COLOR
             // Back foot
             drawQuadrangleArjun(
                 xOrigin + (-0.83f * scale), yOrigin_Arjun + (-0.85f * scale),
@@ -513,7 +513,7 @@ void drawCommonBody(float xOrigin, float yOrigin_Arjun, float scale, int iStandi
         glVertex2f(xOrigin + (-0.565f * scale), yOrigin_Arjun + (-0.400f * scale));
         glEnd();
 
-        SKIN_COLOR_ARJUN
+        SKIN_COLOR
             drawQuadrangleArjun(
                 xOrigin + (-0.770f * scale), yOrigin_Arjun + (-0.450f * scale),
                 xOrigin + (-0.770f * scale), yOrigin_Arjun + (-0.373f * scale),
@@ -610,12 +610,12 @@ void drawCommonBody(float xOrigin, float yOrigin_Arjun, float scale, int iStandi
     }
 }
 
-void drawHandAndCloth(float xOrigin, float yOrigin_Arjun, float scale, int iStanding)
+void drawHandAndClothArjun(float xOrigin, float yOrigin_Arjun, float scale, int iStanding)
 {
     // Ear rudraksh
     drawcircleArjun(
         xOrigin + (-0.7650f * scale), yOrigin_Arjun + (0.1300f * scale),
-        yOrigin_Arjun + (0.005f * scale), xOrigin + (0.005f * scale), 0.33f, 0.11f, 0.0f, 1);
+        (0.005f * scale), (0.005f * scale), 0.33f, 0.11f, 0.0f, 1);
 
     //neck thread
     glColor3f(0.63f, 0.53f, 0.0f);
@@ -656,7 +656,7 @@ void drawHandAndCloth(float xOrigin, float yOrigin_Arjun, float scale, int iStan
 
     drawcircleArjun(
         xOrigin + (-0.750f * scale), yOrigin_Arjun + (-0.0500f * scale),
-        yOrigin_Arjun + (0.005f * scale), xOrigin + (0.005f * scale), 0.33f, 0.11f, 0.0f, 1);
+        (0.005f * scale), (0.005f * scale), 0.33f, 0.11f, 0.0f, 1);
 
     {
         //shoulder cloth
@@ -753,7 +753,7 @@ void drawHandAndCloth(float xOrigin, float yOrigin_Arjun, float scale, int iStan
     }
 
     {
-        SKIN_COLOR_ARJUN
+        SKIN_COLOR
             //Hands
             drawQuadrangleArjun(
                 xOrigin + (-0.835f * scale), yOrigin_Arjun + (0.050f * scale),
@@ -770,7 +770,7 @@ void drawHandAndCloth(float xOrigin, float yOrigin_Arjun, float scale, int iStan
 
         //Back side hand
         // Using uniform skin color for the hand (for the back side)
-        SKIN_COLOR_ARJUN
+        SKIN_COLOR
             drawQuadrangleArjun(
                 xOrigin + (-0.6550f * scale), yOrigin_Arjun + (-0.250f * scale),
                 xOrigin + (-0.6875f * scale), yOrigin_Arjun + (-0.160f * scale),
@@ -853,7 +853,7 @@ void drawHandAndCloth(float xOrigin, float yOrigin_Arjun, float scale, int iStan
         if (iStanding == 1)
         {
             //front side hand
-            SKIN_COLOR_ARJUN
+            SKIN_COLOR
                 drawQuadrangleArjun(
                     xOrigin + (-0.6275f * scale), yOrigin_Arjun + (-0.075f * scale),
                     xOrigin + (-0.7500f * scale), yOrigin_Arjun + (-0.160f * scale),
@@ -913,7 +913,7 @@ void drawHandAndCloth(float xOrigin, float yOrigin_Arjun, float scale, int iStan
         }
         else
         {
-            SKIN_COLOR_ARJUN
+            SKIN_COLOR
                 drawQuadrangleArjun(
                     xOrigin + (-0.6275f * scale), yOrigin_Arjun + (-0.170f * scale),
                     xOrigin + (-0.7500f * scale), yOrigin_Arjun + (-0.160f * scale),
