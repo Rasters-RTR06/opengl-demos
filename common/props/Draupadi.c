@@ -1,23 +1,23 @@
 // header files
 #include "../common.h"
-
+#include "Nakul.h"
 // global variable declarations
-float xOriginDrau = 0.0f;
-float yOriginDrau = 0.0f;
-float fScaleFactorDrau = 1.0f;
+//float xOriginDrau = 0.0f;
+//float yOriginDrau = 0.0f;
+//float fScaleFactorDrau = 1.0f;
 
-int g_iHandPositionDrau = 1;
-int g_iStandingDrau = 1;
+//int g_iHandPositionDrau = 1;
+//int g_iStandingDrau = 1;
 
 // global function declarations
-void drawLineDrau(float x1, float y1, float x2, float y2);
-void drawRectangleDrau(float LX, float RX, float TY, float BY);
-void drawQuadrangleDrau(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4);
-void drawcircleDrau(float, float, float, float, float, float, float, int);
-void drawTriangleDrau(float x1, float y1, float x2, float y2, float x3, float y3);
+//void drawLineDrau(float x1, float y1, float x2, float y2);
+//void drawRectangleDrau(float LX, float RX, float TY, float BY);
+//void drawQuadrangleDrau(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4);
+//void drawcircleDrau(float, float, float, float, float, float, float, int);
+//void drawTriangleDrau(float x1, float y1, float x2, float y2, float x3, float y3);
 
 // function declarations
-void drawDraupadi(float xOriginDrau, float yOriginDrau, float scale, int iHandPosition, int iStanding);
+//void drawDraupadi(float xOriginDrau, float yOriginDrau, float scale, int iHandPosition, int iStanding);
 
 // Below setting required in init
 
@@ -572,7 +572,7 @@ void drawFace(float xOriginDrau, float yOriginDrau, float scale)
 	// earring
 	drawcircleDrau(
 		xOriginDrau + (-0.7625f * scale), yOriginDrau + (0.062f * scale),
-		xOriginDrau + (0.008f * scale), yOriginDrau + (0.008f * scale), 0.82f, 0.569f, 0.196f, 1);
+		(0.008f * scale), (0.008f * scale), 0.82f, 0.569f, 0.196f, 1);
 }
 
 void drawHands(float xOriginDrau, float yOriginDrau, float scale, int iHandPosition)
