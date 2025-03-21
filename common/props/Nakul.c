@@ -6,18 +6,6 @@
 		glColor3f(0.98f, 0.75f, 0.54f); \
 	}
 
-#define NAKUL_DHOTI_COLOR                \
-	{                                    \
-		glColor3f(0.78f, 0.78f, 0.278f); \
-	}
-
-// global variable declarations
-extern int g_iNakulStanding;
-extern float xOriginNakul;
-extern float yOriginNakul;
-extern float fScaleFactorNakul;
-
-
 // Below setting required in init
 
 // int initialize(void)
@@ -40,6 +28,14 @@ extern float fScaleFactorNakul;
 // }
 
 // Draw Rectangle
+
+
+float DhotiColor[3] = {0.78f, 0.78f, 0.278f}; 
+
+void drawNakulDhoti() {
+    SET_DHOTI_COLOR(); 
+}
+
 void drawRectangleNakul(float LX, float RX, float TY, float BY)
 {
 	glBegin(GL_QUADS);
@@ -422,7 +418,7 @@ void drawCommonBody(float xOriginNakul, float yOriginNakul, float scale, int iSt
 			xOriginNakul + (-0.655f * scale), yOriginNakul + (-0.863f * scale));
 
 		// Dhoti
-		NAKUL_DHOTI_COLOR
+		SET_DHOTI_COLOR();
 
 		glBegin(GL_POLYGON);
 		glVertex2f(xOriginNakul + (-0.835f * scale), yOriginNakul + (-0.35f * scale));
@@ -506,7 +502,7 @@ void drawCommonBody(float xOriginNakul, float yOriginNakul, float scale, int iSt
 	else
 	{
 		// Dhoti
-		NAKUL_DHOTI_COLOR
+		SET_DHOTI_COLOR();
 
 		glBegin(GL_POLYGON);
 		glVertex2f(xOriginNakul + (-0.930f * scale), yOriginNakul + (-0.40f * scale));
@@ -549,7 +545,7 @@ void drawCommonBody(float xOriginNakul, float yOriginNakul, float scale, int iSt
 		glVertex2f(xOriginNakul + (-0.833f * scale), yOriginNakul + (-0.450f * scale));
 		glEnd();
 
-		NAKUL_DHOTI_COLOR
+		SET_DHOTI_COLOR();
 		// leg1
 		drawQuadrangleNakul(
 			xOriginNakul + (-0.625f * scale), yOriginNakul + (-0.350f * scale),

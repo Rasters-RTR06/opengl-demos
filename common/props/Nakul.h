@@ -1,6 +1,15 @@
 #ifndef NAKUL_H
 #define NAKUL_H
 
+// global variable declarations
+extern int g_iNakulStanding;
+extern float xOriginNakul;
+extern float yOriginNakul;
+extern float fScaleFactorNakul;
+extern float DhotiColor[3];  // Global color array
+
+#define SET_DHOTI_COLOR() glColor3fv(DhotiColor)
+
 // Function declarations (not definitions)
 void drawRectangleNakul(float, float, float, float);
 void drawQuadrangleNakul(float, float, float, float, float, float, float, float);
