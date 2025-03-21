@@ -1,6 +1,6 @@
 // header files
 #include "../common.h"
-
+#include "Nakul.h"
 #define SKIN_COLOR                      \
 	{                                   \
 		glColor3f(0.98f, 0.75f, 0.54f); \
@@ -12,20 +12,11 @@
 	}
 
 // global variable declarations
-int g_iNakulStanding = 1;
-float xOriginNakul = 0.0f;
-float yOriginNakul = 0.0f;
-float fScaleFactorNakul = 1.0f;
+extern int g_iNakulStanding;
+extern float xOriginNakul;
+extern float yOriginNakul;
+extern float fScaleFactorNakul;
 
-// global function declarations
-void drawLineNakul(float x1, float y1, float x2, float y2);
-void drawRectangleNakul(float LX, float RX, float TY, float BY);
-void drawQuadrangleNakul(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4);
-void drawcircleNakul(float, float, float, float, float, float, float, int);
-void drawTriangleNakul(float x1, float y1, float x2, float y2, float x3, float y3);
-
-// function declarations
-void drawNakul(float xOriginNakul, float yOriginNakul, float scale, int iStanding);
 
 // Below setting required in init
 
