@@ -204,14 +204,20 @@ void scene1Update(void)
 
 BOOL scene1ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 150;
-    if (iSkipped)
+    int iThresholdTime = 100;
+    BOOL flag = FALSE;
+    if (iSkipped || (iTimeElapsed >= iThresholdTime))
     {
         iTimeElapsed = 0;
         iTimeElapsed += iThresholdTime;
+        flag = TRUE;
+    }
+    if(flag)
+    {
+        iTimeElapsed = 0;
     }
     // Transition to the next scene after 15 seconds
-    return (iTimeElapsed >= iThresholdTime);
+    return (flag);
 }
 
 /*******************************/ 
