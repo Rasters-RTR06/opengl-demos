@@ -14,11 +14,9 @@
 #include "../common/props/nikhilsSandeshtxt.c"
 #include "Scene6_2Render.h"
 #include "../common/props/krishnastanding.c"
+#include "../common/props/tutaribai.c"
 #include "../common/props/flowers.c"
 
-
-
-/*******************************/ 
 
 /*******************************/
 
@@ -66,6 +64,9 @@ void logSceneTransition(UINT iTimeElapsed);
 void scene0Render(void);
 void scene0Update(void);
 BOOL scene0ShouldTransition(BOOL iSkipped);
+void PrabhatRender(void);
+void PrabhatUpdate(void);
+BOOL PrabhatShouldTransition(BOOL iSkipped);
 void scene1Render(void);
 void scene1Update(void);
 BOOL scene1ShouldTransition(BOOL iSkipped);
@@ -88,6 +89,7 @@ BOOL scene6_2ShouldTransition(BOOL iSkipped);
 
 // Scene management variables
 Scene scene0 = {scene0Render, scene0Update, scene0ShouldTransition, NULL};
+Scene Prabhat = {PrabhatRender, PrabhatUpdate, PrabhatShouldTransition, NULL};
 Scene scene1 = {scene1Render, scene1Update, scene1ShouldTransition, NULL};
 Scene scene2 = {scene2Render, scene2Update, scene2ShouldTransition, NULL};
 Scene scene3 = {scene3Render, scene3Update, scene3ShouldTransition, NULL};
@@ -123,7 +125,8 @@ void initScenes(void)
         shouldTransitionScene6_5,
         NULL};
 
-    scene0.nextScene = &scene1;
+    scene0.nextScene = &Prabhat;
+    Prabhat.nextScene = &scene1;
     scene1.nextScene = &scene2;
     scene2.nextScene = &scene3;
     scene3.nextScene = &scene5;
@@ -208,6 +211,39 @@ BOOL scene0ShouldTransition(BOOL iSkipped)
     // Transition to the next scene after 15 seconds
     return (flag);
 }
+
+/*******************************/
+/* PRABHAT IMPLEMENTATION */
+/******************************/
+void PrabhatRender(void)
+{
+    drawGround();
+    drawTutariWithAnimation(0,0,1);
+}
+
+void PrabhatUpdate(void)
+{
+    updateTutariBai(iTimeElapsed);
+}
+
+BOOL PrabhatShouldTransition(BOOL iSkipped)
+{
+    int iThresholdTime = 260;
+    BOOL flag = FALSE;
+    if (iSkipped || (iTimeElapsed >= iThresholdTime))
+    {
+        iTimeElapsed = 0;
+        iTimeElapsed += iThresholdTime;
+        flag = TRUE;
+    }
+    if (flag)
+    {
+        iTimeElapsed = 0;
+    }
+    // Transition to the next scene after 15 seconds
+    return (flag);
+}
+
 
 /*******************************/
 /* SCENE 1 IMPLEMENTATION */
