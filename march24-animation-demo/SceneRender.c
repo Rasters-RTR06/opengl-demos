@@ -303,7 +303,7 @@ BOOL scene2ShouldTransition(BOOL iSkipped)
     // Transition to the next scene after 15 seconds
     return (flag);
 
-<<<<<<< HEAD
+
 /*******************************/ 
 /* SCENE 2 IMPLEMENTATION */
 /******************************/
