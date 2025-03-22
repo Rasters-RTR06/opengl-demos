@@ -8,7 +8,7 @@ void drawText(float originx, float originy, float resize, int r, int g, int b)
     glVertex2f(originx + -1.3*resize, originy + 0.05*resize);
     glVertex2f(originx + -1.25*resize, originy + 0.1*resize);
     glVertex2f(originx + -1.2*resize, originy + 0.05*resize);
-    glVertex2f(-1.25, 0);
+    glVertex2f(originx + -1.2*resize, originy + 0.0*resize);
     glVertex2f(originx + -1.2*resize, originy + -0.05*resize);
     glVertex2f(originx + -1.25*resize, originy + -0.1*resize);
     glVertex2f(originx + -1.3*resize, originy + -0.05*resize);
