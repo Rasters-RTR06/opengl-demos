@@ -104,7 +104,7 @@ void initScenes(void)
     // function prototypes
     void renderScene6_5(void);
     void updateScene6_5(void);
-    BOOL shouldTransitionScene6_5(GLboolean);
+    BOOL shouldTransitionScene6_5(BOOL);
 
     // code
     scene5 = (Scene){scene5Render, scene5Update, scene5ShouldTransition, NULL};
@@ -267,7 +267,7 @@ BOOL scene1ShouldTransition(BOOL iSkipped)
 void scene2Render(void)
 {
     // Draw scene 2 elements
-    // drawGround();
+     drawGround();
     // Add scene 2 specific rendering
 }
 
@@ -543,7 +543,7 @@ BOOL scene6_2ShouldTransition(BOOL iSceneSkipped)
 void renderScene6_5()
 {
     void drawRoom(void);
-    void drawNakul(float xOrigin, float yOrigin, float scale, int iStanding);
+    void drawNakul(float xOrigin, float yOrigin, float scale, int iStanding, int iHandPosition);
     void drawDraupadi(float xOriginDrau, float yOriginDrau, float scale, int iHandPosition, int iStanding);
     // void KrishnaStanding(float originx, float originy, float resize);
 
@@ -561,19 +561,19 @@ void renderScene6_5()
     glTranslatef(cameraTranslationScene6_5.x, cameraTranslationScene6_5.y, cameraTranslationScene6_5.z);
     glScalef(scalingScene6_5.x, scalingScene6_5.y, scalingScene6_5.z);
     // bheem
-    drawNakul(-0.3f, 0.0f, 0.7f, 1);
+    drawNakul(-0.3f, 0.0f, 0.7f, 1, 1);
     // sahadev
-    drawNakul(-0.1f, 0.0f, 0.7f, 1);
+    drawNakul(-0.1f, 0.0f, 0.7f, 1, 1);
     // nakul
-    drawNakul(0.1f, 0.0f, 0.7f, 1);
+    drawNakul(0.1f, 0.0f, 0.7f, 1, 1);
     // arjun
-    drawNakul(0.3f, 0.0f, 0.7f, 1);
+    drawNakul(0.3f, 0.0f, 0.7f, 1, 1);
     // yushishtir
-    drawNakul(0.5f, 0.0f, 0.7f, 1);
+    drawNakul(0.5f, 0.0f, 0.7f, 1, 1);
     // draupadi
     drawDraupadi(0.7f, 0.0f, 0.7f, 1, 1);
     // krishna
-    drawNakul(1.2f, 0.0f, 0.7f, 1);
+    drawNakul(1.2f, 0.0f, 0.7f, 1, 1);
     // KrishnaStanding(0.5f, 0.0f, 1.0f);
 }
 
