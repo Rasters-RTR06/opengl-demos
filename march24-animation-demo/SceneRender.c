@@ -4,6 +4,7 @@
 #include "scene1/chamelontounge_mov.c"
 #include "scene1/butterfly.c"
 
+
 /*******************************/ 
 /* TYPE DEFINITIONS AND DECLARATIONS */
 /******************************/
@@ -15,6 +16,9 @@ typedef struct Scene {
     BOOL (*shouldTransition)(BOOL iSkipped);  // Function to check if transition to next scene is needed
     struct Scene* nextScene;     // Pointer to next scene in the chain
 } Scene;
+
+extern float D_cordinate;
+ 
 
 // External scene variables
 Scene* currentScene = NULL;
@@ -100,45 +104,47 @@ void logSceneTransition(UINT timeElapsed) {
 /* SCENE 1 IMPLEMENTATION */
 /******************************/
 
+float D_cordinate = -0.4f;
+BOOL move = FALSE;
+
+void updateD_Pos(void)
+{
+	D_cordinate += 0.0006f;
+    if(D_cordinate > 0.6f) 
+    {move = FALSE;
+    }
+}
+
 void scene1Render(void)
 {
-    drawGround();
-    //drawDenseForrest();
-    //drawFrontTrees();
-    elephant();
-    drawButterfly(butterflyX, butterflyY, 0.3f, butterflyRotation);
-    toungeMovement();
-    chamelon(0.5f, -0.35f, 0.2);
+    drawRoom();
+    drawBheem(0.2f ,0.0f,0.6f, 0.0f,0.0f);
+    drawYuthishteer(-0.1f,0.0f,0.6,0.0f,1.0f);
+    drawYuthishteer(-0.3f,0.0f,0.6,0.0f,1.0f);
+    drawYuthishteer(-0.4f,-0.2f,0.6,0.0f,1.0f);
+    drawYuthishteer(0.1f,0.0f,0.6,0.0f,1.0f);
+    
+    sittingkrishna(0.6, -0.1f, 0.3);
+    drawDraupadi(D_cordinate, -0.3f, 0.6f, 3.0f, 1.0f);
+   // Add plate;
 }
 
 void scene1Update(void)
 {
     // Check time-based triggers
     switch (iTimeElapsed) {
-        case 5000:
-            bCallElephant = TRUE;
-            break;
-        case 6000:
-            bCallTounge = TRUE;
-            break;
-        case 7000:
-            bCallButterfly = TRUE;
+        case 10:
+            move = TRUE;
             break;
     }
     // Update specific elements
-    if(bCallTounge == TRUE)
-        updateTounge();
-    
-    if(bCallElephant == TRUE)
-        updateElephant();
-
-    if (bCallButterfly)
-        updateButterfly();
+    if(move == TRUE)
+         updateD_Pos();
 }
 
 BOOL scene1ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 15000;
+    int iThresholdTime = 1500000;
     if (iSkipped)
     {
         iTimeElapsed = 0;
