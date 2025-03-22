@@ -7,6 +7,7 @@
 #include <stdlib.h> // exit() call
 #include <math.h>
 #include <GL/glu.h>
+#include <time.h>
 // OpenGL related header files
 // #include <GL/gl.h>
 #ifdef _WIN32 // Windows
