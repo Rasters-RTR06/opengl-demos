@@ -12,6 +12,7 @@
 #include "../common/props/SandeshText.c"
 #include "Scene6_2Render.h"
 
+
 /*******************************/ 
 /* TYPE DEFINITIONS AND DECLARATIONS */
 /******************************/
@@ -53,12 +54,12 @@ void logSceneTransition(UINT iTimeElapsed);
 /******************************/
 
 // Forward declarations for scene functions
-void scene0Render(void);
-void scene0Update(void);
-BOOL scene0ShouldTransition(BOOL iSkipped);
-void scene1Render(void);
-void scene1Update(void);
-BOOL scene1ShouldTransition(BOOL iSkipped);
+//void scene0Render(void);
+//void scene0Update(void);
+//BOOL scene0ShouldTransition(BOOL iSkipped);
+//void scene1Render(void);
+//void scene1Update(void);
+//BOOL scene1ShouldTransition(BOOL iSkipped);
 void scene2Render(void);
 void scene2Update(void);
 BOOL scene2ShouldTransition(BOOL iSkipped);
@@ -77,8 +78,8 @@ BOOL scene6_2ShouldTransition(BOOL iSkipped);
 /******************************/
 
 // Scene management variables
-Scene scene0 = {scene0Render, scene0Update, scene0ShouldTransition, NULL};
-Scene scene1 = {scene1Render, scene1Update, scene1ShouldTransition, NULL};
+//Scene scene0 = {scene0Render, scene0Update, scene0ShouldTransition, NULL};
+//Scene scene1 = {scene1Render, scene1Update, scene1ShouldTransition, NULL};
 Scene scene2 = {scene2Render, scene2Update, scene2ShouldTransition, NULL};
 Scene scene3 = {scene3Render, scene3Update, scene3ShouldTransition, NULL};
 Scene scene5;
@@ -97,13 +98,18 @@ TRANSLATION rathTranslation;
 void initScenes(void) {
     scene5 =(Scene) { scene5Render, scene5Update, scene5ShouldTransition, NULL };
 
-    scene0.nextScene = &scene1;
-    scene1.nextScene = &scene2;
+    /*scene0.nextScene = &scene1;
+    scene1.nextScene = &scene2;*/
     scene2.nextScene = &scene3;
     scene3.nextScene = &scene5;
+<<<<<<< Updated upstream
     scene5.nextScene = &scene6_2;
     scene6_2.nextScene = NULL;// End of chain
     currentScene = &scene0;   // Start with scene 1
+=======
+    scene5.nextScene = NULL; // End of chain
+    currentScene = &scene2;   // Start with scene 1
+>>>>>>> Stashed changes
 }
 
 // Update the current scene
@@ -232,15 +238,35 @@ BOOL scene1ShouldTransition(BOOL iSkipped)
 
 void scene2Render(void)
 {
+    static float zoomFactor = 2.0f;
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslatef(0.5f, 0.5f, 0.0f);
+    glScalef(zoomFactor, zoomFactor, 1.0f);
+    glTranslatef(-0.5f, -0.5f, 0.0f);
     // Draw scene 2 elements
-    //drawGround();
+    drawGround();
+    drawDenseForrest();
+    drawFrontTrees();
+  //  drawCompactPlant();
     // Add scene 2 specific rendering
+    
 
+    // zoom out:
+    if (zoomFactor > 1.0f)
+    {
+        zoomFactor -= 0.02f; // speed
+        if (zoomFactor < 1.0f)
+            zoomFactor = 1.0f;
+    }
 }
 
 void scene2Update(void)
 {
     // Update scene 2 elements
+    updateDenseForrest();
+    updateFrontForrest();
+
 }
 
 BOOL scene2ShouldTransition(BOOL iSkipped)

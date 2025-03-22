@@ -6,6 +6,7 @@
 #include <stdio.h>  // i/o for file
 #include <stdlib.h> // exit() call
 #include <math.h>
+#include <GL/glu.h>
 // OpenGL related header files
 // #include <GL/gl.h>
 #ifdef _WIN32 // Windows
