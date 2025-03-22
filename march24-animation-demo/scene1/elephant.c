@@ -1,9 +1,9 @@
 //	for Elephant
-MY_POINT elephantOneTranslationBy = { 1.35, -0.5, 0 };           // big
-MY_POINT elephantTwoTranslationBy = { 1.35, -0.65, 0 };             // first middle
-MY_POINT elephantThreeTranslationBy = { 1.45, -0.55, 0 };        // second middle
-MY_POINT elephantFourTranslationBy = { 1.65, -0.65, 0 };         // third middle
-MY_POINT elephantFiveTranslationBy = { 1.25, -0.8, 0 };          // small
+MY_POINT elephantOneTranslationBy   = { 1.55, -0.2, 0 };           // big
+MY_POINT elephantTwoTranslationBy   = { 1.35, -0.25, 0 };             // first middle
+MY_POINT elephantThreeTranslationBy = { 1.85, -0.25, 0 };        // second middle
+MY_POINT elephantFourTranslationBy  = { 1.65, -0.65, 0 };         // third middle
+MY_POINT elephantFiveTranslationBy  = { 1.25, -0.8, 0 };          // small
 
 //	for Elephant shadows
 MY_POINT reflectBy = { -1, 1, 0 };
@@ -44,11 +44,11 @@ void elephant()
 
 void updateElephant()
 {
-    elephantOneTranslationBy.x -=   0.003;
-	elephantTwoTranslationBy.x -=   0.003;
-	elephantThreeTranslationBy.x -= 0.003;
-	elephantFourTranslationBy.x -=  0.003;
-	elephantFiveTranslationBy.x -=  0.003;
+    elephantOneTranslationBy.x -=   0.008;
+	elephantTwoTranslationBy.x -=   0.008;
+	elephantThreeTranslationBy.x -= 0.008;
+	//elephantFourTranslationBy.x -=  0.003;
+	//elephantFiveTranslationBy.x -=  0.003;
 	/*if (moveElephantTopToDown) 
 	{
 		if (elephantOneTranslationBy.y < -0.5)

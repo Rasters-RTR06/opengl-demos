@@ -1,8 +1,7 @@
 // Global variables for butterfly animation
-static float butterflyX = -0.4f;       // Starting X position
-static float butterflyY = -0.07f;      // Fixed Y position
+static float butterflyX = -0.65f;       // Starting X position
+static float butterflyY = -0.12f;      // Fixed Y position
 static float butterflyRotation = 0.0f; // Starting rotation angle
-
 
 void updateButterfly(void)
 {
@@ -16,9 +15,6 @@ void updateButterfly(void)
 	butterflyRotation = 20; // Starting rotation angle
 
 }
-
-
-
 
 struct Triangle
 {
