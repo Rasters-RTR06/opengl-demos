@@ -10,7 +10,9 @@
 #include "../common/props/fullkrushna.c"
 #include "../common/props/horse.c"
 #include "../common/props/SandeshText.c"
+#include "../common/props/sahadev.c"
 #include "Scene6_2Render.h"
+#include "Scene4.h"
 
 /*******************************/ 
 /* TYPE DEFINITIONS AND DECLARATIONS */
@@ -65,6 +67,9 @@ BOOL scene2ShouldTransition(BOOL iSkipped);
 void scene3Render(void);
 void scene3Update(void);
 BOOL scene3ShouldTransition(BOOL iSkipped);
+void scene4Render(void);
+void scene4Update(void);
+BOOL scene4ShouldTransition(BOOL iSkipped);
 void scene5Render(void);
 void scene5Update(void);
 BOOL scene5ShouldTransition(BOOL iSkipped);
@@ -81,6 +86,7 @@ Scene scene0 = {scene0Render, scene0Update, scene0ShouldTransition, NULL};
 Scene scene1 = {scene1Render, scene1Update, scene1ShouldTransition, NULL};
 Scene scene2 = {scene2Render, scene2Update, scene2ShouldTransition, NULL};
 Scene scene3 = {scene3Render, scene3Update, scene3ShouldTransition, NULL};
+Scene scene4 = {scene4Render, scene4Update, scene4ShouldTransition, NULL};
 Scene scene5;
 Scene scene6_2 = { scene6_2Render, scene6_2Update, scene6_2ShouldTransition, NULL };
 // External global variables from Raster.c
@@ -100,10 +106,12 @@ void initScenes(void) {
     scene0.nextScene = &scene1;
     scene1.nextScene = &scene2;
     scene2.nextScene = &scene3;
-    scene3.nextScene = &scene5;
+    scene3.nextScene = &scene4;
+    scene4.nextScene = &scene5;
     scene5.nextScene = &scene6_2;
     scene6_2.nextScene = NULL;// End of chain
-    currentScene = &scene0;   // Start with scene 1
+
+    currentScene = &scene4;   // Start with scene 1
 }
 
 // Update the current scene
@@ -255,6 +263,9 @@ BOOL scene2ShouldTransition(BOOL iSkipped)
     return (iTimeElapsed >= iThresholdTime);
 }
 
+/*******************************/ 
+/* SCENE 3 IMPLEMENTATION */
+/******************************/
 void scene3Render(void)
 {
     // Draw scene 3 elements
@@ -275,6 +286,31 @@ BOOL scene3ShouldTransition(BOOL iSkipped)
         iTimeElapsed = 0;
         iTimeElapsed += iThresholdTime;
     }
+    return (iTimeElapsed >= iThresholdTime);
+}
+
+/*******************************/
+/* SCENE 4 IMPLEMENTATION */
+/******************************/
+void scene4Render(void)
+{
+    sceneFourRender();
+}
+
+void scene4Update(void)
+{
+    sceneFourUpdate(iTimeElapsed);
+}
+
+BOOL scene4ShouldTransition(BOOL iSkipped)
+{
+    int iThresholdTime = 200;
+    if (iSkipped)
+    {
+        iTimeElapsed = 0;
+        iTimeElapsed += iThresholdTime;
+    }
+    // Transition to the next scene after 2 min 14 sec seconds
     return (iTimeElapsed >= iThresholdTime);
 }
 
