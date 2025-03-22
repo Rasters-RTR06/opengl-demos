@@ -9,8 +9,8 @@
 #include "../common/props/peacock.c"
 #include "../common/props/fullkrushna.c"
 #include "../common/props/horse.c"
-#include "../common/props/SandeshText.c"
-#include "../common/props/Sahadev.c"
+//#include "../common/props/SandeshText.c"
+//#include "../common/props/Sahadev.c"
 #include "../common/props/nikhilsSandeshtxt.c"
 #include "Scene6_2Render.h"
 #include "../common/props/krishnastanding.c"
@@ -128,8 +128,8 @@ void initScenes(void)
     scene2.nextScene = &scene3;
     scene3.nextScene = &scene5;
     scene5.nextScene = &scene6_2;
-    scene6_2.nextScene = NULL;// End of chain
-    currentScene = &scene2;   // Start with scene 1
+    //scene6_2.nextScene = NULL;// End of chain
+    //currentScene = &scene2;   // Start with scene 1
     scene6_2.nextScene = &scene6_5;
     scene6_5.nextScene = NULL; // End of chain
     currentScene = &scene0;    // Start with scene 1
@@ -273,37 +273,37 @@ BOOL scene1ShouldTransition(BOOL iSkipped)
 /*******************************/
 /* SCENE 2 IMPLEMENTATION */
 /******************************/
-
-void scene2Render(void)
-{
-    // Draw scene 2 elements
-     drawGround();
-    // Add scene 2 specific rendering
-}
-
-void scene2Update(void)
-{
-    // Update scene 2 elements
-}
-
-BOOL scene2ShouldTransition(BOOL iSkipped)
-{
-    int iThresholdTime = 460;
-    BOOL flag = FALSE;
-    if (iSkipped || (iTimeElapsed >= iThresholdTime))
-    {
-        iTimeElapsed = 0;
-        iTimeElapsed += iThresholdTime;
-        flag = TRUE;
-    }
-    if(flag)
-    {
-        iTimeElapsed = 0;
-    }
-    // Transition to the next scene after 15 seconds
-    return (flag);
-
-
+//
+//void scene2Render(void)
+//{
+//    // Draw scene 2 elements
+//     drawGround();
+//    // Add scene 2 specific rendering
+//}
+//
+//void scene2Update(void)
+//{
+//    // Update scene 2 elements
+//}
+//
+//BOOL scene2ShouldTransition(BOOL iSkipped)
+//{
+//    int iThresholdTime = 460;
+//    BOOL flag = FALSE;
+//    if (iSkipped || (iTimeElapsed >= iThresholdTime))
+//    {
+//        iTimeElapsed = 0;
+//        iTimeElapsed += iThresholdTime;
+//        flag = TRUE;
+//    }
+//    if(flag)
+//    {
+//        iTimeElapsed = 0;
+//    }
+//    // Transition to the next scene after 15 seconds
+//    return (flag);
+//
+//
 /*******************************/ 
 /* SCENE 2 IMPLEMENTATION */
 /******************************/
@@ -432,10 +432,10 @@ void scene2Render(void)
     // Draw scene elements.
     drawGround();
     drawDraupadi(0.5, -0.3, 0.5, 1, 1);
-    drawBheem(0.3, -0.3, 0.5, 1);
-    drawArjun(0.1, -0.3, 0.5, 1);
-    drawNakul(-0.1, -0.3, 0.5, 1);
-    drawSahadev(-0.3, -0.3, 0.5, 1);
+    drawBheem(0.3, -0.3, 0.5, 1, 1);
+    drawArjun(0.1, -0.3, 0.5, 1, 1, 0);
+    drawNakul(-0.1, -0.3, 0.5, 1, 1);
+    drawSahadev(-0.3, -0.3, 0.5, 1,1 ,0);
     drawDenseForrest();
     drawFrontTrees();
 }
