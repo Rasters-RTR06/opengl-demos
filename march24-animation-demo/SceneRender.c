@@ -11,6 +11,7 @@
 #include "../common/props/horse.c"
 #include "../common/props/nikhilsSandeshtxt.c"
 #include "Scene6_2Render.h"
+#include "../common/props/krishnastanding.c"
 
 /*******************************/
 /* TYPE DEFINITIONS AND DECLARATIONS */
@@ -210,8 +211,8 @@ void scene1Render(void)
     drawButterfly(butterflyX, butterflyY, 0.6f, butterflyRotation);
     toungeMovement();
     //chamelon(1.5f, -0.35f, 0.2);
+    KrishnaStanding(0, 0, 0.3);
     
-    // Draw the Sandesh message
     updateSandesh(bCallSandesh, 1.0f);
 }
 
