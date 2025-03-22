@@ -209,8 +209,8 @@ void scene1Render(void)
     elephant();
     drawButterfly(butterflyX, butterflyY, 0.6f, butterflyRotation);
     toungeMovement();
-    chamelon(1.5f, -0.35f, 0.2);
-
+    //chamelon(1.5f, -0.35f, 0.2);
+    
     // Draw the Sandesh message
     updateSandesh(bCallSandesh, 1.0f);
 }
@@ -218,18 +218,17 @@ void scene1Render(void)
 void scene1Update(void)
 {
     // Check time-based triggers
-    switch (iTimeElapsed)
-    {
-    case 50:
-        bCallTounge = TRUE;
-        break;
-    case 60:
-        bCallButterfly = TRUE;
-        bCallElephant = TRUE;
-        break;
-    case 90:
-        bCallSandesh = TRUE; // Hide Sandesh message before scene transition
-        break;
+    switch (iTimeElapsed) {
+        case 30:
+            bCallTounge = TRUE;
+            break;
+        case 40:
+            bCallButterfly = TRUE;
+            bCallElephant = TRUE;
+            break;
+        case 100:
+            bCallSandesh = TRUE;  // Hide Sandesh message before scene transition
+            break;
     }
 
     // Update specific elements
@@ -279,14 +278,21 @@ void scene2Update(void)
 
 BOOL scene2ShouldTransition(BOOL iSkipped)
 {
-    // 20 Sec is Temporarily set for testing
     int iThresholdTime = 460;
-    if (iSkipped)
+    BOOL flag = FALSE;
+    if (iSkipped || (iTimeElapsed >= iThresholdTime))
     {
         iTimeElapsed = 0;
         iTimeElapsed += iThresholdTime;
+        flag = TRUE;
     }
-    return (iTimeElapsed >= iThresholdTime);
+    if(flag)
+    {
+        iTimeElapsed = 0;
+    }
+    // Transition to the next scene after 15 seconds
+    return (flag);
+
 }
 
 void scene3Render(void)
@@ -302,14 +308,20 @@ void scene3Update(void)
 
 BOOL scene3ShouldTransition(BOOL iSkipped)
 {
-    // 20 Sec is Temporarily set for testing
-    int iThresholdTime = 720;
-    if (iSkipped)
+    int iThresholdTime = 520;
+    BOOL flag = FALSE;
+    if (iSkipped || (iTimeElapsed >= iThresholdTime))
     {
         iTimeElapsed = 0;
         iTimeElapsed += iThresholdTime;
+        flag = TRUE;
     }
-    return (iTimeElapsed >= iThresholdTime);
+    if(flag)
+    {
+        iTimeElapsed = 0;
+    }
+    // Transition to the next scene after 15 seconds
+    return (flag);
 }
 
 /*******************************/
