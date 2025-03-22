@@ -5,9 +5,10 @@
 #define BLACK 0, 0, 0
 #define WHITE 1, 1, 1
 
-void mukut(float originx, float originy, float resize, float angle)
+void stmukut(float originx, float originy, float resize, float angle)
 {
-	glRotatef(angle, 0.0f, 0.0f, 1.0f);
+	glPushMatrix();
+	glRotatef( angle, 0.0f, 0.0f, 1.0f);
 	// CROWN
 	// Triangle 1
 	glBegin(GL_TRIANGLES);
@@ -66,7 +67,7 @@ void mukut(float originx, float originy, float resize, float angle)
 	glVertex2f(originx + -0.243*resize, originy + 0.849*resize);
 	glVertex2f(originx + -0.109*resize, originy + 0.743*resize);
 	glEnd();
-
+	glPopMatrix();
 }
 
 void KrishnaStanding(float originx, float originy, float resize)
@@ -109,6 +110,7 @@ void KrishnaStanding(float originx, float originy, float resize)
 	glEnd();
 
 	// SMILE
+	glLineWidth(1.0f);
 	glBegin(GL_LINE_STRIP);
 	glColor3f(BLACK);
 	glVertex2f(originx + -0.205*resize, originy + 0.463*resize);
@@ -317,6 +319,7 @@ void KrishnaStanding(float originx, float originy, float resize)
 
 
 	// Janeu
+	glLineWidth(1);
 	glBegin(GL_LINE_STRIP);
 	glColor3f(WHITE);
 	glVertex2f(originx + 0.274*resize, originy + 0.328*resize);
@@ -387,6 +390,7 @@ void KrishnaStanding(float originx, float originy, float resize)
 	glVertex2f(originx + -0.084*resize, originy + 0.592*resize);
 	glEnd();
 
-	mukut(originx +0.17*resize, originy-0.11*resize, resize, -10);
+
+	stmukut(originx +0.22*resize, originy-0.11*resize, resize, -10);
 
 }

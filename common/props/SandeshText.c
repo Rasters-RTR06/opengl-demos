@@ -376,10 +376,17 @@ void drawLetterSha(float scalingFactor, float xOffset, float yOffset, struct RGB
 
 void drawSandesh()
 {
-	struct RGBColor letterColor = {1.0f, 1.0f, 1.0f, 0.2f};
-	struct RGBColor backgroundColor = {0.008f, 0.275f, 0.231f, 0.2f};
+	// Enable transparency
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	
+	struct RGBColor letterColor = {1.0f, 1.0f, 1.0f, 1.0f};
+	struct RGBColor backgroundColor = {0.008f, 0.275f, 0.231f, 1.0f};
 	drawLetterSa(2.6f, 0.27f, 0.0f, letterColor, backgroundColor);
 	drawLetterDe(3.0f, 0.0f, 0.0f, letterColor, backgroundColor);
 	drawLetterSha(2.6f, -0.395f, 0.0f, letterColor, backgroundColor);
+	
+	// Disable blending when done (optional, depending on your application)
+	glDisable(GL_BLEND);
 }
 

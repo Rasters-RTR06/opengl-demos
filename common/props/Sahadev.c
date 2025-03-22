@@ -11,8 +11,11 @@
 //}
 
 #define SAHADEV_DHOTI_COLOR {\
-glColor3f(0.78f, 0.78f, 0.278f);\
+glColor3f(0.58f, 0.00f, 0.00f);\
 }
+
+#define SAHADEV_SHOULDER_CLOTH_MAJOR {glColor3f(1.00f, 0.58f, 0.19f);}
+#define SAHADEV_SHOULDER_CLOTH_MINOR {glColor3f(0.75f, 0.55f, 0.00f);}
 
 // global variable declarations
 
@@ -27,7 +30,7 @@ void drawTriangleSahadev(float x1, float y1, float x2, float y2, float x3, float
 void showDhanushyaSahadev(float fOriginX, float fOriginY, float fResize);
 
 // function declarations
-void drawSahadev(float xOrigin, float yOrigin, float scale, int iStanding);
+void drawSahadev(float xOrigin, float yOrigin, float scale, int iStanding, int iHandPosition, int iShowBowArrow);
 void drawEllipseSahadev(
 	float startX, float startY, 
 	float startAngle, float endAngle, 
@@ -125,7 +128,7 @@ void drawTriangleSahadev(float x1, float y1, float x2, float y2, float x3, float
 	glEnd();
 }
 
-void drawSahadev(float xOrigin, float yOrigin, float scale, int iStanding)
+void drawSahadev(float xOrigin, float yOrigin, float scale, int iStanding, int iHandPosition, int iShowBowArrow)
 {
 	void drawClothBackSideSahadev(float, float, float);
 	void drawHeadSahadev(float, float, float);
@@ -134,10 +137,10 @@ void drawSahadev(float xOrigin, float yOrigin, float scale, int iStanding)
 	
 	drawClothBackSideSahadev(xOrigin, yOrigin, scale);
 	drawHeadSahadev(xOrigin, yOrigin, scale);
-	drawArrowBoxSahadev(xOrigin, yOrigin, scale, iStanding);
+	drawArrowBoxSahadev(xOrigin, yOrigin, scale, iShowBowArrow);
 	drawCommonBodySahadev(xOrigin, yOrigin, scale, iStanding);
-	drawHandAndClothSahadev(xOrigin, yOrigin, scale, iStanding);
-	if(iStanding == 1) showDhanushyaSahadev(xOrigin, yOrigin, 1.0f);
+	drawHandAndClothSahadev(xOrigin, yOrigin, scale, iHandPosition);
+	if(iShowBowArrow == 1) showDhanushyaSahadev(xOrigin, yOrigin, scale);
 }
 
 void drawHeadSahadev(float xOrigin, float yOrigin, float scale)
@@ -294,9 +297,9 @@ void drawHeadSahadev(float xOrigin, float yOrigin, float scale)
 	}
 }
 
-void drawArrowBoxSahadev(float xOrigin, float yOrigin, float scale, int iStanding)
+void drawArrowBoxSahadev(float xOrigin, float yOrigin, float scale, int iShowBowArrow)
 {
-	if(iStanding == 1)
+	if(iShowBowArrow == 1)
 	{
 		// Arrow carrier
 		glColor3f(0.03f, 0.42f, 0.12f);
@@ -358,7 +361,7 @@ void drawArrowBoxSahadev(float xOrigin, float yOrigin, float scale, int iStandin
 void drawClothBackSideSahadev(float xOrigin, float yOrigin, float scale)
 {
 	{
-		glColor3f(0.50f, 0.67f, 0.35f);
+		SAHADEV_SHOULDER_CLOTH_MAJOR
 		glBegin(GL_POLYGON);
 		glVertex2f(xOrigin + (-0.844f * scale), yOrigin + (-0.050f * scale));
 		glVertex2f(xOrigin + (-0.844f * scale), yOrigin + (-0.200f * scale));
@@ -375,7 +378,7 @@ void drawClothBackSideSahadev(float xOrigin, float yOrigin, float scale)
 			xOrigin + (-0.834f * scale), yOrigin + (-0.375f * scale));
 
 		glLineWidth(5.0f);
-		glColor3f(0.87f, 0.40f, 0.44f);
+		SAHADEV_SHOULDER_CLOTH_MINOR
 		glBegin(GL_LINES);
 		glVertex2f(xOrigin + (-0.834f * scale), yOrigin + (-0.375f * scale));
 		glVertex2f(xOrigin + (-0.860f * scale), yOrigin + (-0.350f * scale));
@@ -724,7 +727,7 @@ void drawCommonBodySahadev(float xOrigin, float yOrigin, float scale, int iStand
 }
 
 
-void drawHandAndClothSahadev(float xOrigin, float yOrigin, float scale, int iStanding)
+void drawHandAndClothSahadev(float xOrigin, float yOrigin, float scale, int iHandPosition)
 {
 	// Ear rudraksh
 	drawcircleSahadev(
@@ -774,7 +777,7 @@ void drawHandAndClothSahadev(float xOrigin, float yOrigin, float scale, int iSta
 
 	{
 		//shoulder cloth
-		glColor3f(0.50f, 0.67f, 0.35f);
+		SAHADEV_SHOULDER_CLOTH_MAJOR
 
 		drawQuadrangleSahadev(
 			xOrigin + (-0.680f * scale), yOrigin + (0.051f * scale),
@@ -784,7 +787,7 @@ void drawHandAndClothSahadev(float xOrigin, float yOrigin, float scale, int iSta
 
 
 		glLineWidth(5.0f);
-		glColor3f(0.87f, 0.40f, 0.44f);
+		SAHADEV_SHOULDER_CLOTH_MINOR
 		glBegin(GL_LINES);
 		glVertex2f(xOrigin + (-0.720f * scale), yOrigin + (0.071f * scale));
 		glVertex2f(xOrigin + (-0.760f * scale), yOrigin + (-0.325f * scale));
@@ -802,7 +805,7 @@ void drawHandAndClothSahadev(float xOrigin, float yOrigin, float scale, int iSta
 
 		glLineWidth(1.0f);
 
-		glColor3f(0.50f, 0.67f, 0.35f);
+		SAHADEV_SHOULDER_CLOTH_MAJOR
 
 		glBegin(GL_POLYGON);
 		glVertex2f(xOrigin + (-0.800f * scale), yOrigin + (0.075f * scale));
@@ -823,7 +826,7 @@ void drawHandAndClothSahadev(float xOrigin, float yOrigin, float scale, int iSta
 		glEnd();
 
 		glLineWidth(5.0f);
-		glColor3f(0.87f, 0.40f, 0.44f);
+		SAHADEV_SHOULDER_CLOTH_MINOR
 		glBegin(GL_LINES);
 		glVertex2f(xOrigin + (-0.800f * scale), yOrigin + (0.075f * scale));
 		glVertex2f(xOrigin + (-0.765f * scale), yOrigin + (-0.050f * scale));
@@ -917,7 +920,7 @@ void drawHandAndClothSahadev(float xOrigin, float yOrigin, float scale, int iSta
 			xOrigin + (-0.6175f * scale), yOrigin + (0.020f * scale),
 			xOrigin + (-0.6050f * scale), yOrigin + (0.024f * scale)); //finger tips
 
-		if (iStanding == 1)
+		if (iHandPosition == 1)
 		{
 			drawQuadrangleSahadev(
 				xOrigin + (-0.6250f * scale), yOrigin + (-0.075f * scale),
@@ -937,7 +940,7 @@ void drawHandAndClothSahadev(float xOrigin, float yOrigin, float scale, int iSta
 		//fingers
 		{
 			glColor3f(0.6f, 0.6f, 0.6f);
-			if (iStanding == 1)
+			if (iHandPosition == 1)
 			{
 				glBegin(GL_LINES);
 				glVertex2f(xOrigin + (-0.6190f * scale), yOrigin + (-0.006f * scale));
@@ -961,22 +964,21 @@ void drawHandAndClothSahadev(float xOrigin, float yOrigin, float scale, int iSta
 			glEnd();
 		}
 
-		if (iStanding == 1)
+		if (iHandPosition == 1)
 		{
 			//front side hand
 			SKIN_COLOR
 
 			drawQuadrangleSahadev(
-				xOrigin + (-0.6275f * scale), yOrigin + (-0.115f * scale),
+				xOrigin + (-0.6275f * scale), yOrigin + (-0.075f * scale),
 				xOrigin + (-0.7500f * scale), yOrigin + (-0.160f * scale),
 				xOrigin + (-0.7600f * scale), yOrigin + (-0.235f * scale),
-				xOrigin + (-0.6125f * scale), yOrigin + (-0.140f * scale)
-			);
+				xOrigin + (-0.6125f * scale), yOrigin + (-0.100f * scale));
+
 			drawTriangleSahadev(
 				xOrigin + (-0.6275f * scale), yOrigin + (-0.075f * scale),
 				xOrigin + (-0.6125f * scale), yOrigin + (-0.100f * scale),
-				xOrigin + (-0.6000f * scale), yOrigin + (-0.080f * scale)
-			);
+				xOrigin + (-0.6000f * scale), yOrigin + (-0.080f * scale));
 
 			drawQuadrangleSahadev(
 				xOrigin + (-0.6250f * scale), yOrigin + (-0.075f * scale),
@@ -1026,28 +1028,24 @@ void drawHandAndClothSahadev(float xOrigin, float yOrigin, float scale, int iSta
 				xOrigin + (-0.6275f * scale), yOrigin + (-0.170f * scale),
 				xOrigin + (-0.7500f * scale), yOrigin + (-0.160f * scale),
 				xOrigin + (-0.7600f * scale), yOrigin + (-0.235f * scale),
-				xOrigin + (-0.6275f * scale), yOrigin + (-0.195f * scale)
-			);
+				xOrigin + (-0.6275f * scale), yOrigin + (-0.195f * scale));
 
 			drawQuadrangleSahadev(
 				xOrigin + (-0.6275f * scale), yOrigin + (-0.170f * scale),
 				xOrigin + (-0.5900f * scale), yOrigin + (-0.180f * scale),
 				xOrigin + (-0.5900f * scale), yOrigin + (-0.200f * scale),
-				xOrigin + (-0.6275f * scale), yOrigin + (-0.195f * scale)
-			);
+				xOrigin + (-0.6275f * scale), yOrigin + (-0.195f * scale));
 
 			drawQuadrangleSahadev(
 				xOrigin + (-0.5900f * scale), yOrigin + (-0.180f * scale),
 				xOrigin + (-0.5700f * scale), yOrigin + (-0.170f * scale),
 				xOrigin + (-0.5720f * scale), yOrigin + (-0.180f * scale),
-				xOrigin + (-0.5900f * scale), yOrigin + (-0.200f * scale)
-			);
+				xOrigin + (-0.5900f * scale), yOrigin + (-0.200f * scale));
 
 			drawTriangleSahadev(
 				xOrigin + (-0.6275f * scale), yOrigin + (-0.170f * scale),
 				xOrigin + (-0.6000f * scale), yOrigin + (-0.150f * scale),
-				xOrigin + (-0.6100f * scale), yOrigin + (-0.195f * scale)
-			);
+				xOrigin + (-0.6100f * scale), yOrigin + (-0.195f * scale));
 		}
 	}
 
@@ -1082,6 +1080,7 @@ void drawHandAndClothSahadev(float xOrigin, float yOrigin, float scale, int iSta
 
 void showDhanushyaSahadev(float fOriginX, float fOriginY, float fResize)
 {
+	fResize = fResize + 0.05f;
 	fOriginX -= 0.62f;
 	fOriginY += 0.05f;
 
