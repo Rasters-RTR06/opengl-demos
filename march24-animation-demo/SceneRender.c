@@ -9,7 +9,7 @@
 #include "../common/props/peacock.c"
 #include "../common/props/fullkrushna.c"
 #include "../common/props/horse.c"
-#include "../common/props/SandeshText.c"
+#include "../common/props/nikhilsSandeshtxt.c"
 #include "Scene6_2Render.h"
 
 /*******************************/ 
@@ -31,6 +31,7 @@ Scene* currentScene = NULL;
 BOOL bCallTounge = FALSE;
 BOOL bCallElephant = FALSE;
 BOOL bCallButterfly = FALSE;
+BOOL bCallSandesh = FALSE;
 
 //scene 5 specific
 BOOL bShowRotatingPlants = FALSE;
@@ -180,23 +181,27 @@ void scene1Render(void)
     drawButterfly(butterflyX, butterflyY, 0.6f, butterflyRotation);
     toungeMovement();
     chamelon(1.5f, -0.35f, 0.2);
-    drawSandesh();
+    
+    // Draw the Sandesh message
+    updateSandesh(bCallSandesh, 1.0f);
 }
-
 
 void scene1Update(void)
 {
     // Check time-based triggers
     switch (iTimeElapsed) {
         case 50:
-            break;
-        case 60:
             bCallTounge = TRUE;
             break;
-        case 70:
+        case 60:
+            bCallButterfly = TRUE;
             bCallElephant = TRUE;
             break;
+        case 90:
+            bCallSandesh = TRUE;  // Hide Sandesh message before scene transition
+            break;
     }
+    
     // Update specific elements
     if(bCallTounge == TRUE)
         updateTounge();
@@ -210,7 +215,7 @@ void scene1Update(void)
 
 BOOL scene1ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 100;
+    int iThresholdTime = 150;
     BOOL flag = FALSE;
     if (iSkipped || (iTimeElapsed >= iThresholdTime))
     {
