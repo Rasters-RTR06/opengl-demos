@@ -1,8 +1,3 @@
-// header files
-//#include <GL/GLU.h>
-#include <GL/GLUT.h>
-#include <math.h>
-
 // The purpose of drawSierpinski() is to display the mathematical
 // function y = exp(-x) cos (2 PI x) in the window.
 void drawCurve(void){
