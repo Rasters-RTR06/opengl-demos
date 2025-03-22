@@ -1,31 +1,8 @@
 // header files
 #include "../common.h"
+//#include "Nakul.h"
 
-#define SKIN_COLOR                      \
-	{                                   \
-		glColor3f(0.98f, 0.75f, 0.54f); \
-	}
 
-#define NAKUL_DHOTI_COLOR                \
-	{                                    \
-		glColor3f(0.78f, 0.78f, 0.278f); \
-	}
-
-// global variable declarations
-int g_iNakulStanding = 1;
-float xOriginNakul = 0.0f;
-float yOriginNakul = 0.0f;
-float fScaleFactorNakul = 1.0f;
-
-// global function declarations
-void drawLineNakul(float x1, float y1, float x2, float y2);
-void drawRectangleNakul(float LX, float RX, float TY, float BY);
-void drawQuadrangleNakul(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4);
-void drawcircleNakul(float, float, float, float, float, float, float, int);
-void drawTriangleNakul(float x1, float y1, float x2, float y2, float x3, float y3);
-
-// function declarations
-void drawNakul(float xOriginNakul, float yOriginNakul, float scale, int iStanding);
 
 // Below setting required in init
 
@@ -49,6 +26,17 @@ void drawNakul(float xOriginNakul, float yOriginNakul, float scale, int iStandin
 // }
 
 // Draw Rectangle
+
+
+#define NAKUL_DHOTI_COLOR { glColor3f(0.78f, 0.78f, 0.278f);}
+
+#define NAKUL_SHOULDER_CLOTH_MAJOR {glColor3f(0.50f, 0.67f, 0.35f);}
+#define NAKUL_SHOULDER_CLOTH_MINOR {glColor3f(0.87f, 0.40f, 0.44f);}
+
+//void drawNakulDhoti() {
+    
+//}
+
 void drawRectangleNakul(float LX, float RX, float TY, float BY)
 {
 	glBegin(GL_QUADS);
@@ -95,7 +83,6 @@ void drawcircleNakul(float x, float y, float radius_vert, float radius_hor, floa
 	}
 
 	for (ObjAngle = (0.00f); ObjAngle <= (2.0f * PI); ObjAngle += 0.01f)
-
 	{
 		ObjX = x + radius_hor * sin(ObjAngle);
 		ObjY = y + radius_vert * cos(ObjAngle);
@@ -118,18 +105,18 @@ void drawTriangleNakul(float x1, float y1, float x2, float y2, float x3, float y
 
 void drawNakul(float xOriginNakul, float yOriginNakul, float scale, int iStanding)
 {
-	void drawClothBackSide(float, float, float);
-	void drawHead(float, float, float);
-	void drawCommonBody(float, float, float, int);
-	void drawHandAndCloth(float, float, float, int);
-
-	drawClothBackSide(xOriginNakul, yOriginNakul, scale);
-	drawHead(xOriginNakul, yOriginNakul, scale);
-	drawCommonBody(xOriginNakul, yOriginNakul, scale, iStanding);
-	drawHandAndCloth(xOriginNakul, yOriginNakul, scale, iStanding);
+	void drawClothBackSideNakul(float, float, float);
+	void drawHeadNakul(float, float, float);
+	void drawCommonBodyNakul(float, float, float, int);
+	void drawHandAndClothNakul(float, float, float, int);
+	
+	drawClothBackSideNakul(xOriginNakul, yOriginNakul, scale);
+	drawHeadNakul(xOriginNakul, yOriginNakul, scale);
+	drawCommonBodyNakul(xOriginNakul, yOriginNakul, scale, iStanding);
+	drawHandAndClothNakul(xOriginNakul, yOriginNakul, scale, iStanding);
 }
 
-void drawHead(float xOriginNakul, float yOriginNakul, float scale)
+void drawHeadNakul(float xOriginNakul, float yOriginNakul, float scale)
 {
 	// hairs
 	{
@@ -137,7 +124,7 @@ void drawHead(float xOriginNakul, float yOriginNakul, float scale)
 
 		drawcircleNakul(
 			xOriginNakul + (-0.7850f * scale), yOriginNakul + (0.2550f * scale),
-			yOriginNakul + (0.030f * scale), xOriginNakul + (0.020f * scale), 0.0f, 0.0f, 0.0f, 1);
+			(0.030f * scale), (0.020f * scale), 0.0f, 0.0f, 0.0f, 1);
 
 		glBegin(GL_POLYGON);
 		glVertex2f(xOriginNakul + (-0.7900f * scale), yOriginNakul + (0.2650f * scale));
@@ -170,7 +157,7 @@ void drawHead(float xOriginNakul, float yOriginNakul, float scale)
 	glVertex2f(xOriginNakul + (-0.7100f * scale), yOriginNakul + (0.2000f * scale));
 	glVertex2f(xOriginNakul + (-0.7070f * scale), yOriginNakul + (0.2050f * scale));
 	glVertex2f(xOriginNakul + (-0.7120f * scale), yOriginNakul + (0.2500f * scale));
-	glVertex2f(xOriginNakul + (-0.730f * scale), yOriginNakul + (0.2550f * scale));
+	glVertex2f(xOriginNakul + (-0.7300f * scale), yOriginNakul + (0.2550f * scale));
 	glEnd();
 	drawTriangleNakul(
 		xOriginNakul + (-0.7300f * scale), yOriginNakul + (0.2550f * scale),
@@ -279,14 +266,14 @@ void drawHead(float xOriginNakul, float yOriginNakul, float scale)
 
 		/*drawcircleNakul(
 			xOriginNakul + (-0.7650f * scale), yOriginNakul + (0.1250f * scale),
-			yOriginNakul + (0.01f * scale), xOriginNakul + (0.01f * scale), 0.33f, 0.11f, 0.0f, 1);*/
+			(0.01f * scale), (0.01f * scale), 0.33f, 0.11f, 0.0f, 1);*/
 	}
 }
 
-void drawClothBackSide(float xOriginNakul, float yOriginNakul, float scale)
+void drawClothBackSideNakul(float xOriginNakul, float yOriginNakul, float scale)
 {
 	{
-		glColor3f(0.50f, 0.67f, 0.35f);
+		NAKUL_SHOULDER_CLOTH_MAJOR
 		glBegin(GL_POLYGON);
 		glVertex2f(xOriginNakul + (-0.844f * scale), yOriginNakul + (-0.050f * scale));
 		glVertex2f(xOriginNakul + (-0.844f * scale), yOriginNakul + (-0.200f * scale));
@@ -303,7 +290,7 @@ void drawClothBackSide(float xOriginNakul, float yOriginNakul, float scale)
 			xOriginNakul + (-0.834f * scale), yOriginNakul + (-0.375f * scale));
 
 		glLineWidth(5.0f);
-		glColor3f(0.87f, 0.40f, 0.44f);
+		NAKUL_SHOULDER_CLOTH_MINOR
 		glBegin(GL_LINES);
 		glVertex2f(xOriginNakul + (-0.834f * scale), yOriginNakul + (-0.375f * scale));
 		glVertex2f(xOriginNakul + (-0.860f * scale), yOriginNakul + (-0.350f * scale));
@@ -324,7 +311,7 @@ void drawClothBackSide(float xOriginNakul, float yOriginNakul, float scale)
 	}
 }
 
-void drawCommonBody(float xOriginNakul, float yOriginNakul, float scale, int iStanding)
+void drawCommonBodyNakul(float xOriginNakul, float yOriginNakul, float scale, int iStanding)
 {
 	glColor3f(0.98f, 0.75f, 0.54f); // Skin 1
 	// neck
@@ -637,12 +624,12 @@ void drawCommonBody(float xOriginNakul, float yOriginNakul, float scale, int iSt
 	}
 }
 
-void drawHandAndCloth(float xOriginNakul, float yOriginNakul, float scale, int iStanding)
+void drawHandAndClothNakul(float xOriginNakul, float yOriginNakul, float scale, int iStanding)
 {
 	// Ear rudraksh
 	drawcircleNakul(
 		xOriginNakul + (-0.7650f * scale), yOriginNakul + (0.1300f * scale),
-		yOriginNakul + (0.005f * scale), xOriginNakul + (0.005f * scale), 0.33f, 0.11f, 0.0f, 1);
+		(0.005f * scale), (0.005f * scale), 0.33f, 0.11f, 0.0f, 1);
 
 	// neck thread
 	glColor3f(0.63f, 0.53f, 0.0f);
@@ -683,11 +670,11 @@ void drawHandAndCloth(float xOriginNakul, float yOriginNakul, float scale, int i
 
 	drawcircleNakul(
 		xOriginNakul + (-0.750f * scale), yOriginNakul + (-0.0500f * scale),
-		yOriginNakul + (0.005f * scale), xOriginNakul + (0.005f * scale), 0.33f, 0.11f, 0.0f, 1);
+		(0.005f * scale), (0.005f * scale), 0.33f, 0.11f, 0.0f, 1);
 
 	{
 		// shoulder cloth
-		glColor3f(0.50f, 0.67f, 0.35f);
+		NAKUL_SHOULDER_CLOTH_MAJOR
 
 		drawQuadrangleNakul(
 			xOriginNakul + (-0.680f * scale), yOriginNakul + (0.051f * scale),
@@ -696,7 +683,7 @@ void drawHandAndCloth(float xOriginNakul, float yOriginNakul, float scale, int i
 			xOriginNakul + (-0.720f * scale), yOriginNakul + (-0.345f * scale));
 
 		glLineWidth(5.0f);
-		glColor3f(0.87f, 0.40f, 0.44f);
+		NAKUL_SHOULDER_CLOTH_MINOR
 		glBegin(GL_LINES);
 		glVertex2f(xOriginNakul + (-0.720f * scale), yOriginNakul + (0.071f * scale));
 		glVertex2f(xOriginNakul + (-0.760f * scale), yOriginNakul + (-0.325f * scale));
@@ -714,7 +701,7 @@ void drawHandAndCloth(float xOriginNakul, float yOriginNakul, float scale, int i
 
 		glLineWidth(1.0f);
 
-		glColor3f(0.50f, 0.67f, 0.35f);
+		NAKUL_SHOULDER_CLOTH_MAJOR
 
 		glBegin(GL_POLYGON);
 		glVertex2f(xOriginNakul + (-0.800f * scale), yOriginNakul + (0.075f * scale));
@@ -735,7 +722,7 @@ void drawHandAndCloth(float xOriginNakul, float yOriginNakul, float scale, int i
 		glEnd();
 
 		glLineWidth(5.0f);
-		glColor3f(0.87f, 0.40f, 0.44f);
+		NAKUL_SHOULDER_CLOTH_MINOR
 		glBegin(GL_LINES);
 		glVertex2f(xOriginNakul + (-0.800f * scale), yOriginNakul + (0.075f * scale));
 		glVertex2f(xOriginNakul + (-0.765f * scale), yOriginNakul + (-0.050f * scale));

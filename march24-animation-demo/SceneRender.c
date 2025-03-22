@@ -6,6 +6,11 @@
 #include "../common/props/cranes.c"
 #include "../common/props/patternedDeers.c"
 #include "../common/props/plainDeers.c"
+#include "../common/props/peacock.c"
+#include "../common/props/fullkrushna.c"
+#include "../common/props/horse.c"
+#include "../common/props/SandeshText.c"
+#include "Scene6_2Render.h"
 
 /*******************************/ 
 /* TYPE DEFINITIONS AND DECLARATIONS */
@@ -57,9 +62,15 @@ BOOL scene1ShouldTransition(BOOL iSkipped);
 void scene2Render(void);
 void scene2Update(void);
 BOOL scene2ShouldTransition(BOOL iSkipped);
+void scene3Render(void);
+void scene3Update(void);
+BOOL scene3ShouldTransition(BOOL iSkipped);
 void scene5Render(void);
 void scene5Update(void);
 BOOL scene5ShouldTransition(BOOL iSkipped);
+void scene6_2Render(void);
+void scene6_2Update(void);
+BOOL scene6_2ShouldTransition(BOOL iSkipped);
 
 /*******************************/ 
 /* SCENE MANAGEMENT VARIABLES */
@@ -69,10 +80,14 @@ BOOL scene5ShouldTransition(BOOL iSkipped);
 Scene scene0 = {scene0Render, scene0Update, scene0ShouldTransition, NULL};
 Scene scene1 = {scene1Render, scene1Update, scene1ShouldTransition, NULL};
 Scene scene2 = {scene2Render, scene2Update, scene2ShouldTransition, NULL};
+Scene scene3 = {scene3Render, scene3Update, scene3ShouldTransition, NULL};
 Scene scene5;
+Scene scene6_2 = { scene6_2Render, scene6_2Update, scene6_2ShouldTransition, NULL };
 // External global variables from Raster.c
 extern FILE *gpFile;
 extern UINT iTimeElapsed;
+
+TRANSLATION rathTranslation;
 
 /*******************************/ 
 /* SCENE MANAGEMENT FUNCTIONS */
@@ -84,8 +99,10 @@ void initScenes(void) {
 
     scene0.nextScene = &scene1;
     scene1.nextScene = &scene2;
-    scene2.nextScene = &scene5;
-    scene5.nextScene = NULL; // End of chain
+    scene2.nextScene = &scene3;
+    scene3.nextScene = &scene5;
+    scene5.nextScene = &scene6_2;
+    scene6_2.nextScene = NULL;// End of chain
     currentScene = &scene0;   // Start with scene 1
 }
 
@@ -162,7 +179,8 @@ void scene1Render(void)
     elephant();
     drawButterfly(butterflyX, butterflyY, 0.6f, butterflyRotation);
     toungeMovement();
-    chamelon(0.5f, -0.35f, 0.2);
+    chamelon(1.5f, -0.35f, 0.2);
+    drawSandesh();
 }
 
 
@@ -192,14 +210,20 @@ void scene1Update(void)
 
 BOOL scene1ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 15;
-    if (iSkipped)
+    int iThresholdTime = 100;
+    BOOL flag = FALSE;
+    if (iSkipped || (iTimeElapsed >= iThresholdTime))
     {
         iTimeElapsed = 0;
         iTimeElapsed += iThresholdTime;
+        flag = TRUE;
+    }
+    if(flag)
+    {
+        iTimeElapsed = 0;
     }
     // Transition to the next scene after 15 seconds
-    return (iTimeElapsed >= iThresholdTime);
+    return (flag);
 }
 
 /*******************************/ 
@@ -211,6 +235,7 @@ void scene2Render(void)
     // Draw scene 2 elements
     //drawGround();
     // Add scene 2 specific rendering
+
 }
 
 void scene2Update(void)
@@ -221,13 +246,36 @@ void scene2Update(void)
 BOOL scene2ShouldTransition(BOOL iSkipped)
 {
     // 20 Sec is Temporarily set for testing
-    int iThresholdTime = 20000;
+    int iThresholdTime = 460;
     if (iSkipped)
     {
         iTimeElapsed = 0;
         iTimeElapsed += iThresholdTime;
     }
-    return TRUE;  
+    return (iTimeElapsed >= iThresholdTime);
+}
+
+void scene3Render(void)
+{
+    // Draw scene 3 elements
+    // Add scene 3 specific rendering
+}
+
+void scene3Update(void)
+{
+    // Update scene 3 elements
+}
+
+BOOL scene3ShouldTransition(BOOL iSkipped)
+{
+    // 20 Sec is Temporarily set for testing
+    int iThresholdTime = 520;
+    if (iSkipped)
+    {
+        iTimeElapsed = 0;
+        iTimeElapsed += iThresholdTime;
+    }
+    return (iTimeElapsed >= iThresholdTime);
 }
 
 /*******************************/
@@ -237,7 +285,7 @@ BOOL scene2ShouldTransition(BOOL iSkipped)
 void scene5Render(void)
 {
     /*
-    Elements' Sequence : 
+    Elements' Sequence :
                 1. Rotating plants at time 1.13 (73 seconds)
                 2. lake and cranes, Bhagvan shrikrishna ki sawari   at time 1.16 (76 seconds)
                 3. Patterned deers at time  1.24 (84 seconds)
@@ -249,22 +297,26 @@ void scene5Render(void)
     //drawGround();
     if (bShowRotatingPlants == TRUE)
     {
-        //set matrix to model view mode
-        glMatrixMode(GL_MODELVIEW);
-
-        //set it to identity matrix
-        glLoadIdentity();
-        glRotatef(0.0f, 1.0f, 0.0f, 0.0f);	// x axis rotation
+        drawGround();
         drawDenseForrest();
-        glEnd();
-       
     }
     if (bShriKrishnaEntry = TRUE && bShowLake == TRUE && bShowCranes == TRUE)
     {
-        //draw lake and cranes
-        drawCraneOne(0.0f, 0.0f, 1.0f);
-        drawCraneTwo(0.8f, 0.4f, 1.0f);
-        //call shrikrishna function
+        //lake and cranes
+        drawGround();
+        drawDenseForrest();
+
+        drawCraneOne(0.4f, -0.2f, 0.9f);
+        drawCraneTwo(0.8f, 0.0f, 0.9f);
+
+        //Shri-Krishna
+        KrishnaRath(-0.8f, -0.3f, 0.50f);
+        //Rath
+        MY_POINT startPosition = { 0.2f, -0.5f, 0.8f };
+        SCALING scaleBy = { 1.3f, 1.3f, 1.3f };
+        rath(startPosition, rathTranslation, scaleBy);
+        drawHorse(-0.3f, -0.5f, 0.8f);
+        drawFrontTrees();
     }
 
     if (bShowFlowers == TRUE)
@@ -273,12 +325,17 @@ void scene5Render(void)
     }
     if (bShowPatternedDeers)
     {
-         drawGround();
-         drawRightPatternedDeer(0.0f, 0.0f, 0.5f);
-         drawLeftPatternedDeer(-0.4f, 0.0f, 0.5f);
+        drawGround();
+        drawDenseForrest();
+        drawRightPatternedDeer(0.0f, 0.0f, 0.5f);
+        drawLeftPatternedDeer(-0.4f, 0.0f, 0.5f);
     }
-    //Flowers function
-    // Peacock function
+    if (bShowPeacock)
+    {
+        drawGround();
+        drawDenseForrest();
+        drawPeacock(0.0f, 0.0f , 0.3f);
+    }
 }
 
 void scene5Update(void)
@@ -286,21 +343,27 @@ void scene5Update(void)
     // Check time-based triggers
     switch (iTimeElapsed) 
     {
-        case 73:
+        case 205:
             bShowRotatingPlants = TRUE;
             break;
-        case 76:
+        case 210:
+            bShowRotatingPlants = FALSE;
             bShriKrishnaEntry = TRUE;
             bShowLake = TRUE;
             bShowCranes = TRUE;
             break;
-        case 84:
+        case 230:
+            bShriKrishnaEntry = FALSE;
+            bShowLake = FALSE;
+            bShowCranes = FALSE;
             bShowPatternedDeers = TRUE;
             break;
-        case 87:
+        case 240:
+            bShowPatternedDeers = FALSE;
             bShowFlowers = TRUE;
             break;
-        case 93:
+        case 245:
+            bShowFlowers = FALSE;
             bShowPeacock = TRUE;
             break;
     }
@@ -325,7 +388,7 @@ void scene5Update(void)
 
 BOOL scene5ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 81;
+    int iThresholdTime = 950;
     if (iSkipped)
     {
         iTimeElapsed = 0;
@@ -334,3 +397,89 @@ BOOL scene5ShouldTransition(BOOL iSkipped)
     // Transition to the next scene after 1 min 35 sec seconds
     return (iTimeElapsed >= iThresholdTime);
 }
+
+/*******************************/
+/* SCENE 6_2 IMPLEMENTATION */
+/******************************/
+
+void scene6_2Render()
+{
+
+    drawRoom();
+
+    drawArjun(xOriginArjun, yOriginArjun, 0.7f, g_iArjunStanding);
+    drawBheem(xOriginBheem, yOriginBheem, 0.7f, g_iBheemStanding);
+    //drawYudhishteer(xOriginYudhishteer, yOriginYudhishteer, 0.7f, g_iYudhishteerStanding);
+
+    //drawSahadev(xOriginSahadev, yOriginSahadev, 0.7f, g_iSahadevStanding);
+
+    //drawNakul(xOriginNakul, yOriginNakul, 0.7f, g_iNakulStanding);
+
+    sittingkrishna(originxSK, originySK, resizeSK);
+    drawNakul(xOriginNakul, yOriginNakul, 0.7f, g_iNakulStanding);
+    drawDraupadi(xOriginDraupadi, yOriginDraupadi, 0.8f, g_iHandPositionDraupadi, g_iStandingDraupadi);
+}
+
+void scene6_2Update()
+{
+    fprintf(gpFile, "Scene6_2\n");
+    g_iHandPositionDraupadi = 1;
+    g_iStandingDraupadi = 1;
+
+    g_iYudhishteerStanding = 0;
+    g_iBheemStanding = 0;
+    g_iArjunStanding = 0;
+    g_iNakulStanding = 0;
+    g_iSahadevStanding = 0;
+
+
+    xOriginArjun = 0.05;yOriginArjun = 0.1;
+    xOriginBheem = 0.2;yOriginBheem = 0.0;
+    xOriginYudhishteer = 0.4;yOriginYudhishteer = -0.2;
+
+    xOriginSahadev = -0.3;yOriginSahadev = 0.0;
+    xOriginNakul = -0.1; yOriginNakul = -0.2;
+
+    xOriginDraupadi = -0.2; yOriginDraupadi = -0.3;
+
+    //fprintf(gpFile, "% d\n", iTimeElapsed);
+
+    originxSK = 0.5f;
+    originySK = -0.3f;
+    resizeSK = 0.3f;
+
+    switch (iTimeElapsed)
+    {
+    case 1060:
+        //bMoveDraupadi = TRUE;
+
+        break;
+    case 1120:
+        bMoveDraupadi = FALSE;
+        break;
+    default:
+        break;
+    }
+
+    if (bMoveDraupadi)
+    {
+        if (xOriginDraupadi >= 0.0)
+            xOriginDraupadi += 0.001;
+        else
+            xOriginDraupadi -= 0.01;
+    }
+
+}
+
+BOOL scene6_2ShouldTransition(BOOL iSceneSkipped)
+{
+    int iThresholdTime = 1340;
+    if (iSceneSkipped)
+    {
+        iTimeElapsed = 0;
+        iTimeElapsed += iThresholdTime;
+    }
+    // Transition to the next scene after 2 min 14 sec seconds
+    return (iTimeElapsed >= iThresholdTime);
+}
+

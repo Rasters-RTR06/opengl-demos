@@ -64,6 +64,9 @@ void drawRasterGroupPresents();
 float getRandomFloat();
 void rath(MY_POINT startPosition, TRANSLATION translateBy, SCALING scaleBy);
 
+
+#define SKIN_COLOR  { glColor3f(0.98f, 0.75f, 0.54f); }
+
 #include "props.c"
 #include "drawing.c"
 #include "geometry_calculations.c"
@@ -72,5 +75,8 @@ void rath(MY_POINT startPosition, TRANSLATION translateBy, SCALING scaleBy);
 #include "astromedicomp_to_rasters.c"
 #include "rath.c"
 #include "Room_Interior.c"
+#include "arjun.c"
 #include "Nakul.c"
 #include "Draupadi.c"
+#include "Bheem.c"
+#include "krishnasitting.c"
