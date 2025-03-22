@@ -29,7 +29,7 @@ typedef struct {
 #define BHEEM_SHOULDER_CLOTH_MAJOR {glColor3f(0.188f, 0.38f, 0.008f);}
 #define BHEEM_SHOULDER_CLOTH_MINOR {glColor3f(0.831f, 0.69f, 0.271f);}
 
-void drawBheemWeapon();
+void drawBheemWeapon(float xOrigin, float yOrigin, float scale);
 
 //void changeDhotiColor(float r, float g, float b) {
 //    DhotiColor[0] = r;
