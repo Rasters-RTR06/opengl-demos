@@ -1,6 +1,6 @@
 #pragma once
 //#include "Raster.h"
-#include <Windows.h>
+//#include <Windows.h>
 
 #define CHARACTER_SITTING		0
 #define CHARACTER_STANDING		1
