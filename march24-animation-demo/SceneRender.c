@@ -9,14 +9,13 @@
 #include "../common/props/peacock.c"
 #include "../common/props/fullkrushna.c"
 #include "../common/props/horse.c"
-//#include "../common/props/SandeshText.c"
-//#include "../common/props/Sahadev.c"
+// #include "../common/props/SandeshText.c"
+// #include "../common/props/Sahadev.c"
 #include "../common/props/nikhilsSandeshtxt.c"
 #include "Scene6_2Render.h"
 #include "../common/props/krishnastanding.c"
 #include "../common/props/tutaribai.c"
 #include "../common/props/flowers.c"
-
 
 /*******************************/
 
@@ -131,8 +130,8 @@ void initScenes(void)
     scene2.nextScene = &scene3;
     scene3.nextScene = &scene5;
     scene5.nextScene = &scene6_2;
-    //scene6_2.nextScene = NULL;// End of chain
-    //currentScene = &scene2;   // Start with scene 1
+    // scene6_2.nextScene = NULL;// End of chain
+    // currentScene = &scene2;   // Start with scene 1
     scene6_2.nextScene = &scene6_5;
     scene6_5.nextScene = NULL; // End of chain
     currentScene = &scene0;    // Start with scene 1
@@ -218,7 +217,7 @@ BOOL scene0ShouldTransition(BOOL iSkipped)
 void PrabhatRender(void)
 {
     drawGround();
-    drawTutariWithAnimation(0,0,1);
+    drawTutariWithAnimation(0, 0, 1);
 }
 
 void PrabhatUpdate(void)
@@ -244,7 +243,6 @@ BOOL PrabhatShouldTransition(BOOL iSkipped)
     return (flag);
 }
 
-
 /*******************************/
 /* SCENE 1 IMPLEMENTATION */
 /******************************/
@@ -256,25 +254,26 @@ void scene1Render(void)
     elephant();
     drawButterfly(butterflyX, butterflyY, 0.6f, butterflyRotation);
     toungeMovement();
-    //chamelon(1.5f, -0.35f, 0.2);
-    
+    // chamelon(1.5f, -0.35f, 0.2);
+
     updateSandesh(bCallSandesh, 1.0f);
 }
 
 void scene1Update(void)
 {
     // Check time-based triggers
-    switch (iTimeElapsed) {
-        case 30:
-            bCallTounge = TRUE;
-            break;
-        case 40:
-            bCallButterfly = TRUE;
-            bCallElephant = TRUE;
-            break;
-        case 100:
-            bCallSandesh = TRUE;  // Hide Sandesh message before scene transition
-            break;
+    switch (iTimeElapsed)
+    {
+    case 30:
+        bCallTounge = TRUE;
+        break;
+    case 40:
+        bCallButterfly = TRUE;
+        bCallElephant = TRUE;
+        break;
+    case 100:
+        bCallSandesh = TRUE; // Hide Sandesh message before scene transition
+        break;
     }
 
     // Update specific elements
@@ -310,19 +309,19 @@ BOOL scene1ShouldTransition(BOOL iSkipped)
 /* SCENE 2 IMPLEMENTATION */
 /******************************/
 //
-//void scene2Render(void)
+// void scene2Render(void)
 //{
 //    // Draw scene 2 elements
 //     drawGround();
 //    // Add scene 2 specific rendering
 //}
 //
-//void scene2Update(void)
+// void scene2Update(void)
 //{
 //    // Update scene 2 elements
 //}
 //
-//BOOL scene2ShouldTransition(BOOL iSkipped)
+// BOOL scene2ShouldTransition(BOOL iSkipped)
 //{
 //    int iThresholdTime = 460;
 //    BOOL flag = FALSE;
@@ -340,22 +339,22 @@ BOOL scene1ShouldTransition(BOOL iSkipped)
 //    return (flag);
 //
 //
-/*******************************/ 
+/*******************************/
 /* SCENE 2 IMPLEMENTATION */
 /******************************/
 
 void scene2Render(void)
 {
     // Define phase durations (in seconds).
-    const float zoomOutDuration = 5.0f;   // Phase 0: Zoom out from top right.
-    const float waitAfterZoomOut = 6.0;  // Phase 1: Wait after zoom out.
-    const float zoomInDuration = 4.0f;   // Phase 2: Zoom in centered.
-    const float waitAfterZoomIn = 4.0f;   // Phase 3: Wait after zoom in.
-    const float leftMoveZoomDuration = 3.0f;   // Phase 4: While moving left, zoom out over this duration.
+    const float zoomOutDuration = 5.0f;      // Phase 0: Zoom out from top right.
+    const float waitAfterZoomOut = 6.0;      // Phase 1: Wait after zoom out.
+    const float zoomInDuration = 4.0f;       // Phase 2: Zoom in centered.
+    const float waitAfterZoomIn = 4.0f;      // Phase 3: Wait after zoom in.
+    const float leftMoveZoomDuration = 3.0f; // Phase 4: While moving left, zoom out over this duration.
 
     // Zoom factors.
     const float zoomInFactor = 5.0f;  // Fully zoomed in.
-    const float zoomOutFactor = 1.1f;  // Zoomed out state.
+    const float zoomOutFactor = 1.1f; // Zoomed out state.
 
     // Speed for camera left movement.
     const float cameraSpeed = 0.01f; // Units per second.
@@ -430,7 +429,7 @@ void scene2Render(void)
     }
     else if (phase == 4)
     {
-        // Phase 4: Move camera to the left 
+        // Phase 4: Move camera to the left
         if (elapsed < leftMoveZoomDuration)
         {
             currentZoom = zoomInFactor - (zoomInFactor - zoomOutFactor) * (elapsed / leftMoveZoomDuration);
@@ -471,23 +470,17 @@ void scene2Render(void)
     drawBheem(0.3, -0.3, 0.5, 1, 1);
     drawArjun(0.1, -0.3, 0.5, 1, 1, 0);
     drawNakul(-0.1, -0.3, 0.5, 1, 1);
-    drawSahadev(-0.3, -0.3, 0.5, 1,1 ,0);
+    drawSahadev(-0.3, -0.3, 0.5, 1, 1, 0);
     drawDenseForrest();
     drawFrontTrees();
 }
 
-
-
-
-
 void scene2Update(void)
 {
-    
 
     // Update scene 2 elements
     updateDenseForrest();
     updateFrontForrest();
-
 }
 
 BOOL scene2ShouldTransition(BOOL iSkipped)
@@ -500,7 +493,6 @@ BOOL scene2ShouldTransition(BOOL iSkipped)
         iTimeElapsed += iThresholdTime;
     }
     return (iTimeElapsed >= iThresholdTime);
-
 }
 
 void scene3Render(void)
@@ -597,32 +589,32 @@ void scene5Update(void)
     // Check time-based triggers
     switch (iTimeElapsed)
     {
-        case 730:
-            bShowRotatingPlants = TRUE;
-            break;
-        case 760:
-            bShowRotatingPlants = FALSE;
-            bShriKrishnaEntry = TRUE;
-            bShowLake = TRUE;
-            bShowCranes = TRUE;
-            break;
-        case 840:
-            bShriKrishnaEntry = FALSE;
-            bShowLake = FALSE;
-            bShowCranes = FALSE;
-            bShowPatternedDeers = TRUE;
-            break;
-        case 870:
-            bShowPatternedDeers = FALSE;
-            bShowFlowers = TRUE;
-            break;
-        case 890:
-            bShowFlowers = FALSE;
-            bShowPeacock = TRUE;
-            break;
-        case 900:
-            bShowPeacock = FALSE;
-            break;
+    case 730:
+        bShowRotatingPlants = TRUE;
+        break;
+    case 760:
+        bShowRotatingPlants = FALSE;
+        bShriKrishnaEntry = TRUE;
+        bShowLake = TRUE;
+        bShowCranes = TRUE;
+        break;
+    case 840:
+        bShriKrishnaEntry = FALSE;
+        bShowLake = FALSE;
+        bShowCranes = FALSE;
+        bShowPatternedDeers = TRUE;
+        break;
+    case 870:
+        bShowPatternedDeers = FALSE;
+        bShowFlowers = TRUE;
+        break;
+    case 890:
+        bShowFlowers = FALSE;
+        bShowPeacock = TRUE;
+        break;
+    case 900:
+        bShowPeacock = FALSE;
+        break;
     }
     // Update specific elements
     if (bShowRotatingPlants == TRUE)
@@ -756,6 +748,8 @@ void renderScene6_5()
     void drawRoom(void);
     void drawNakul(float xOrigin, float yOrigin, float scale, int iStanding, int iHandPosition);
     void drawDraupadi(float xOriginDrau, float yOriginDrau, float scale, int iHandPosition, int iStanding);
+    void KrishnaRath(float originx, float originy, float resize);
+    // void KrishnaStanding(float originx, float originy, float resize);
     // void KrishnaStanding(float originx, float originy, float resize);
 
     glLoadIdentity();
@@ -772,20 +766,19 @@ void renderScene6_5()
     glTranslatef(cameraTranslationScene6_5.x, cameraTranslationScene6_5.y, cameraTranslationScene6_5.z);
     glScalef(scalingScene6_5.x, scalingScene6_5.y, scalingScene6_5.z);
     // bheem
-    drawNakul(-0.3f, 0.0f, 0.7f, 1, 1);
+    drawBheem(-0.3f, 0.0f, 0.7f, 1, CHARACTER_HAND_FOLDED);
     // sahadev
-    drawNakul(-0.1f, 0.0f, 0.7f, 1, 1);
+    drawSahadev(-0.1f, 0.0f, 0.7f, 1, CHARACTER_HAND_FOLDED, HIDE_BOW_ARROW);
     // nakul
-    drawNakul(0.1f, 0.0f, 0.7f, 1, 1);
+    drawNakul(0.1f, 0.0f, 0.7f, 1, CHARACTER_HAND_FOLDED);
     // arjun
-    drawNakul(0.3f, 0.0f, 0.7f, 1, 1);
+    drawArjun(0.3f, 0.0f, 0.7f, 1, CHARACTER_HAND_FOLDED, HIDE_BOW_ARROW);
     // yushishtir
-    drawNakul(0.5f, 0.0f, 0.7f, 1, 1);
+    drawNakul(0.5f, 0.0f, 0.7f, 1, CHARACTER_HAND_FOLDED);
     // draupadi
     drawDraupadi(0.7f, 0.0f, 0.7f, 1, 1);
     // krishna
-    drawNakul(1.2f, 0.0f, 0.7f, 1, 1);
-    // KrishnaStanding(0.5f, 0.0f, 1.0f);
+    KrishnaStanding(0.7f, -0.15f, 0.40f);
 }
 
 void updateScene6_5()
@@ -800,34 +793,34 @@ void updateScene6_5()
         // show krishna face (zoomed in) for 2 secs
     case 1620:
         scalingScene6_5 = (SCALING){5.0f, 5.0f, 5.0f};
-        cameraTranslationScene6_5 = (TRANSLATION){-0.70 * scalingScene6_5.x, -0.1f, 0.0f};
+        cameraTranslationScene6_5 = (TRANSLATION){-0.70 * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f};
         break;
 
         // show pandavs
     case 1640:
         scalingScene6_5 = (SCALING){5.0f, 5.0f, 5.0f};
-        cameraTranslationScene6_5 = (TRANSLATION){-0.2f * scalingScene6_5.x, -0.1f, 0.0f};
+        cameraTranslationScene6_5 = (TRANSLATION){-0.2f * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f};
         break;
 
         // show pandavs face (zoomed in) for 4 secs translate towards right to left
     case 1650:
         transtateLeft = TRUE;
         scalingScene6_5 = (SCALING){5.0f, 5.0f, 5.0f};
-        cameraTranslationScene6_5 = (TRANSLATION){-0.2f * scalingScene6_5.x, -0.1f, 0.0f};
+        cameraTranslationScene6_5 = (TRANSLATION){-0.2f * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f};
         break;
 
         // show krishna face (zoomed in) again for 1 sec
     case 1690:
         transtateLeft = FALSE;
         scalingScene6_5 = (SCALING){5.0f, 5.0f, 5.0f};
-        cameraTranslationScene6_5 = (TRANSLATION){-0.70f * scalingScene6_5.x, -0.1f, 0.0f};
+        cameraTranslationScene6_5 = (TRANSLATION){-0.70f * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f};
         break;
 
         // show pandavs from left to right zooming out (for 6 secs)
     case 1700:
         zoomOutPandav = TRUE;
         scalingScene6_5 = (SCALING){5.0f, 5.0f, 5.0f};
-        cameraTranslationScene6_5 = (TRANSLATION){1.0f * scalingScene6_5.x, 0.0f, 0.0f};
+        cameraTranslationScene6_5 = (TRANSLATION){1.0f * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f};
         break;
 
     case 1780:
@@ -845,7 +838,12 @@ void updateScene6_5()
     {
         if (cameraTranslationScene6_5.x >= (0.0f))
         {
-            cameraTranslationScene6_5.x -= (0.0005f * scalingScene6_5.x);
+            cameraTranslationScene6_5.x -= (0.00055f * scalingScene6_5.x);
+        }
+
+        if (cameraTranslationScene6_5.y <= (0.0f))
+        {
+            cameraTranslationScene6_5.y += (0.0001f * scalingScene6_5.x);
         }
 
         if (scalingScene6_5.x >= 1.0f)
