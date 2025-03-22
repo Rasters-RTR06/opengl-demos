@@ -2,7 +2,7 @@
 #define GOLD 0.859, 0.616, 0.051
 #define SKIN 0.286, 0.231, 0.196
 #define PITAMBER 0.7765, 0.5686, 0.3373
-#define BLACK 0, 0, 0
+#define stBLACK 0.0, 0.0, 0.0
 #define WHITE 1, 1, 1
 
 void stmukut(float originx, float originy, float resize, float angle)
@@ -112,7 +112,7 @@ void KrishnaStanding(float originx, float originy, float resize)
 	// SMILE
 	glLineWidth(1.0f);
 	glBegin(GL_LINE_STRIP);
-	glColor3f(BLACK);
+	glColor3f(stBLACK);
 	glVertex2f(originx + -0.205*resize, originy + 0.463*resize);
 	glVertex2f(originx + -0.158*resize, originy + 0.472*resize);
 	glEnd();
@@ -155,7 +155,7 @@ void KrishnaStanding(float originx, float originy, float resize)
 
 	// flute
 	glBegin(GL_QUADS);
-	glColor3f(BLACK);
+	glColor3f(stBLACK);
 	glVertex2f(originx + 0.288*resize, originy + -0.554*resize);
 	glVertex2f(originx + 0.949*resize, originy + -0.396*resize);
 	glVertex2f(originx + 0.947*resize, originy + -0.392*resize);
@@ -221,32 +221,32 @@ void KrishnaStanding(float originx, float originy, float resize)
 	// Sovala
 	glBegin(GL_TRIANGLES);
 	glColor3f(PITAMBER);
-	glVertex2f(originx + -0.13953488372093026*resize, originy + -0.21994134897360706*resize);
-	glVertex2f(originx + -0.25116279069767444*resize, originy + -0.26392961876832843*resize);
-	glVertex2f(originx + -0.009302325581395321*resize, originy + -0.25219941348973607*resize);
+	glVertex2f(originx + -0.139*resize, originy + -0.219*resize);
+	glVertex2f(originx + -0.251*resize, originy + -0.263*resize);
+	glVertex2f(originx + -0.009*resize, originy + -0.252*resize);
 	glEnd();
 	// Sovala
 	glBegin(GL_TRIANGLES);
 	glColor3f(PITAMBER);
-	glVertex2f(originx + 0.17674418604651154*resize, originy + -0.21407624633431088*resize);
-	glVertex2f(originx + 0.3395348837209302*resize, originy + -0.25806451612903225*resize);
-	glVertex2f(originx + -0.009302325581395321*resize, originy + -0.25219941348973607*resize);
+	glVertex2f(originx +  0.176*resize, originy + -0.214*resize);
+	glVertex2f(originx +  0.339*resize, originy + -0.258*resize);
+	glVertex2f(originx + -0.009*resize, originy + -0.252*resize);
 	glEnd();
 
 
 	// Sovala
 	glBegin(GL_POLYGON);
 	glColor3f(PITAMBER);
-	glVertex2f(originx + -0.009302325581395321*resize, originy + -0.25219941348973607*resize);
-	glVertex2f(originx + -0.25116279069767444*resize, originy + -0.26392961876832843*resize);
-	glVertex2f(originx + -0.3534883720930233*resize, originy + -0.43108504398826986*resize);
-	glVertex2f(originx + -0.40930232558139534*resize, originy + -0.6392961876832846*resize);
-	glVertex2f(originx + -0.4279069767441861*resize, originy + -0.7595307917888563*resize);
-	glVertex2f(originx + -0.14883720930232558*resize, originy + -0.750733137829912*resize);
-	glVertex2f(originx + 0.037209302325581506*resize, originy + -0.7419354838709677*resize);
-	glVertex2f(originx + 0.30232558139534893*resize, originy + -0.7478005865102639*resize);
-	glVertex2f(originx + 0.35813953488372086*resize, originy + -0.5483870967741935*resize);
-	glVertex2f(originx + 0.3395348837209302*resize, originy + -0.25806451612903225*resize);
+	glVertex2f(originx + -0.009*resize, originy + -0.252*resize);
+	glVertex2f(originx + -0.251*resize, originy + -0.263*resize);
+	glVertex2f(originx + -0.353*resize, originy + -0.431*resize);
+	glVertex2f(originx + -0.409*resize, originy + -0.639*resize);
+	glVertex2f(originx + -0.427*resize, originy + -0.759*resize);
+	glVertex2f(originx + -0.148*resize, originy + -0.750*resize);
+	glVertex2f(originx + 0.037*resize, originy +  -0.741*resize);
+	glVertex2f(originx + 0.302*resize, originy +  -0.747*resize);
+	glVertex2f(originx + 0.358*resize, originy +  -0.548*resize);
+	glVertex2f(originx + 0.339*resize, originy +  -0.258*resize);
 	glEnd();
 	// Sovala
 	glBegin(GL_POLYGON);
@@ -377,7 +377,7 @@ void KrishnaStanding(float originx, float originy, float resize)
 
 	// EYE
 	glBegin(GL_TRIANGLES);
-	glColor3f(BLACK);
+	glColor3f(stBLACK);
 	glVertex2f(originx + -0.163*resize, originy + 0.587*resize);
 	glVertex2f(originx + -0.084*resize, originy + 0.592*resize);
 	glVertex2f(originx + -0.153*resize, originy + 0.563*resize);
