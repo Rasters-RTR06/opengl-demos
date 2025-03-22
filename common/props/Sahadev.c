@@ -62,7 +62,7 @@ void drawEllipseSahadev(
 //}
 
 // Draw Rectangle 
-void drawRectangleSahadevSahadev(float LX, float RX, float TY, float BY)
+void drawRectangleSahadev(float LX, float RX, float TY, float BY)
 {
 	glBegin(GL_QUADS);
 	glVertex2f(LX, TY);

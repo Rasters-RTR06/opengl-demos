@@ -103,7 +103,7 @@ void drawBPolygon(GLfloat vertices[][2], int numVertices, Color color) {
     glEnd();
 }
 
-void drawBheem(float xOrigin, float yOrigin, float scale, int iStanding, int iHandPosition)
+void drawBheem(float xOrigin, float yOrigin, float scale, int iStanding, int iHandPosition, int showGada)
 {
 	scale = scale + 0.1f;
 	void drawHeadBheem(float, float, float);
@@ -112,7 +112,8 @@ void drawBheem(float xOrigin, float yOrigin, float scale, int iStanding, int iHa
 	void drawHandAndClothBheem(float, float, float, int);
 
     //changeDhotiColor(1.0f, 0.0f, 0.0f);
-    drawBheemWeapon(xOrigin, yOrigin, scale);
+
+     if(showGada) drawBheemWeapon(xOrigin, yOrigin, scale);
 	drawHeadBheem(xOrigin, yOrigin, scale);
 	drawCommonBodyBheem(xOrigin, yOrigin, scale, iStanding);
 	drawHandAndClothBheem(xOrigin, yOrigin, scale, iHandPosition);

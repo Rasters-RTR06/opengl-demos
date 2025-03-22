@@ -32,7 +32,7 @@ void showDhanushya(float fOriginX, float fOriginY, float fResize);
 
 // function declarations
 void drawSahadev(float xOrigin, float yOrigin, float scale, int iStanding);
-void drawEllipse(
+void drawEllipseSahadev(
 	float startX, float startY, 
 	float startAngle, float endAngle, 
 	float rColor, float gColor, float bColor, 
@@ -1089,25 +1089,25 @@ void showDhanushya(float fOriginX, float fOriginY, float fResize)
 	fOriginX -= 0.62f;
 	fOriginY += 0.05f;
 
-	drawEllipse(
+	drawEllipseSahadev(
 		fOriginX, fOriginY + 0.13f, 
 		(PI / 2.0f), 3.0f * PI / 2.0f, 	
 		0.0f, 0.0f, 0.0f, 
 		0.02f, 0.03f);
 
-	drawEllipse(
+	drawEllipseSahadev(
 		fOriginX, fOriginY, 
 		-(PI / 2.0f),  PI / 2.0f, 
 		0.0f, 0.0f, 0.0f, 
 		0.05f, 0.10f);
 
-	drawEllipse(
+	drawEllipseSahadev(
 		fOriginX, fOriginY - 0.20f, 
 		-(PI / 2.0f),  PI / 2.0f, 
 		0.0f, 0.0f, 0.0f, 
 		0.05f, 0.10f);
 		
-	drawEllipse(
+	drawEllipseSahadev(
 		fOriginX, fOriginY - 0.20f - 0.13f, 
 		(PI / 2.0f), 3.0f * PI / 2.0f, 	
 		0.0f, 0.0f, 0.0f, 
@@ -1120,7 +1120,7 @@ void showDhanushya(float fOriginX, float fOriginY, float fResize)
 	glEnd();
 }
 
-void drawEllipse(
+void drawEllipseSahadev(
 	float startX, float startY, 
 	float startAngle, float endAngle, 
 	float rColor, float gColor, float bColor, 

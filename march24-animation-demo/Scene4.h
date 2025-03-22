@@ -5,7 +5,7 @@ float arjunOriginX = -0.15f;
 float arjunOriginY = -0.3f;
 
 float bheemOriginX = 0.15f;
-float bheemOriginY = -0.1f;
+float bheemOriginY = 0.0f;
 
 float yudhishteerOriginX = 0.45f;
 float yudhishteerOriginY = 0.1f;
@@ -26,7 +26,7 @@ float scaleScene = 1.0f;
 float sceneOriginX = 0.0f;
 float sceneOriginY = 0.0f;
 
-BOOL flag = FALSE;
+BOOL draupadiGoingBack = FALSE;
 
 void sceneFourRender()
 {
@@ -37,55 +37,28 @@ void sceneFourRender()
      glTranslatef(sceneOriginX, sceneOriginY, 0.0f);
 
      drawRoom();
-     drawArjun(arjunOriginX, arjunOriginY, 0.7f, 0);
-     drawEllipse((COLOR) {0.0f, 0.0f, 0.0f, 1.0f},
-               (ANGLE) {0.0f, 2 * PI, 0.0f},
-               (SCALING) {1.0f, 1.0f, 1.0f},
-               (TRANSLATION) {arjunOriginX - 0.53f, arjunOriginY - 0.5f, 0.0f},
-               (REFLECTION) {1, 1, 1},
-               (RADIUS) {0.15f, 0.1f, 0.0f},
-               0.0f);
+     drawArjun(arjunOriginX, arjunOriginY, 0.7f, 0, 0, 0);
 
-     drawBheem(bheemOriginX, bheemOriginY, 0.7f, 0);
-     drawEllipse((COLOR) {0.0f, 0.0f, 0.0f, 1.0f},
-               (ANGLE) {0.0f, 2 * PI, 0.0f},
-               (SCALING) {1.0f, 1.0f, 1.0f},
-               (TRANSLATION) {bheemOriginX - 0.53f, bheemOriginY - 0.5f, 0.0f},
-               (REFLECTION) {1, 1, 1},
-               (RADIUS) {0.15f, 0.1f, 0.0f},
-               0.0f);
+     drawBheem(bheemOriginX, bheemOriginY, 0.7f, 0, 0, 0);
 
-     drawSahadev(yudhishteerOriginX, yudhishteerOriginY, 0.7f, 0);
-     drawEllipse((COLOR) {0.0f, 0.0f, 0.0f, 1.0f},
-               (ANGLE) {0.0f, 2 * PI, 0.0f},
-               (SCALING) {1.0f, 1.0f, 1.0f},
-               (TRANSLATION) {yudhishteerOriginX - 0.53f, yudhishteerOriginY - 0.5f, 0.0f},
-               (REFLECTION) {1, 1, 1},
-               (RADIUS) {0.15f, 0.1f, 0.0f},
-               0.0f);
+     glRotatef(180, 0.0f, 1.0f, 0.0f);
+     drawSahadev(yudhishteerOriginX + 0.15f, yudhishteerOriginY, 0.7f, 0, 0, 0);
+     glRotatef(-180.0f, 0.0f, 1.0f, 0.0f);
 
-     drawSahadev(sahadevOriginX, sahadevOriginY, 0.7f, 0);
-     drawEllipse((COLOR) {0.0f, 0.0f, 0.0f, 1.0f},
-               (ANGLE) {0.0f, 2 * PI, 0.0f},
-               (SCALING) {1.0f, 1.0f, 1.0f},
-               (TRANSLATION) {sahadevOriginX - 0.53f, sahadevOriginY - 0.5f, 0.0f},
-               (REFLECTION) {1, 1, 1},
-               (RADIUS) {0.15f, 0.1f, 0.0f},
-               0.0f);
+     drawSahadev(sahadevOriginX, sahadevOriginY, 0.7f, 0,  0, 0);
 
-     drawNakul(nakulOriginX, nakulOriginY, 0.7f, 0);
-     drawEllipse((COLOR) {0.0f, 0.0f, 0.0f, 1.0f},
-               (ANGLE) {0.0f, 2 * PI, 0.0f},
-               (SCALING) {1.0f, 1.0f, 1.0f},
-               (TRANSLATION) {nakulOriginX - 0.53f, nakulOriginY - 0.5f, 0.0f},
-               (REFLECTION) {1, 1, 1},
-               (RADIUS) {0.15f, 0.1f, 0.0f},
-               0.0f);
+     glRotatef(180, 0.0f, 1.0f, 0.0f);
+     drawNakul(nakulOriginX - 1.3f, nakulOriginY, 0.7f, 0, 0);
+     glRotatef(-180.0f, 0.0f, 1.0f, 0.0f);
 
-     drawDraupadi(draupadiOriginX, draupadiOriginY, 0.7f, 2, 1);
-
-     glLoadIdentity();
-     glScalef(0.0f, 0.0f, 0.0f);
+     if(draupadiGoingBack)
+     {
+          glRotatef(180, 0.0f, 1.0f, 0.0f);
+          drawDraupadi(draupadiOriginX, draupadiOriginY, 0.7f, 2, 1);
+          glRotatef(-180.0f, 0.0f, 1.0f, 0.0f);
+     }
+     else 
+          drawDraupadi(draupadiOriginX, draupadiOriginY, 0.7f, 2, 1);
 }
 
 void sceneFourUpdate(UINT elapsedTime)
@@ -116,25 +89,25 @@ void sceneFourUpdate(UINT elapsedTime)
           sceneOriginX -= 0.05f;
           sceneOriginY -= 0.05f;
      }
-     else if (elapsedTime >= 76 && elapsedTime <= 85)
+     else if (elapsedTime >= 80 && elapsedTime <= 90)
      {
           sceneOriginX += 0.005f;
           sceneOriginY -= 0.0005f;
      }
 
      //   [FOCUS ON PLATES]
-     else if (elapsedTime >= 85 && elapsedTime <= 90)
+     else if (elapsedTime >= 90 && elapsedTime <= 95)
      {
           sceneOriginY += 0.015f;
      }
-     else if (elapsedTime >= 90 && elapsedTime <= 99)
+     else if (elapsedTime >= 95 && elapsedTime <= 105)
      {
           sceneOriginY += 0.0017f;
           sceneOriginX -= 0.0049f;
      }
 
      //   [FOCUS ON DROUPADI]
-     else if (elapsedTime == 100)
+     else if (elapsedTime == 106)
      {
           scaleScene += 0.4f;
           sceneOriginX = -0.1f;
@@ -142,28 +115,29 @@ void sceneFourUpdate(UINT elapsedTime)
      }
      
      //   [FOCUS ON PANDAV]
-     else if (elapsedTime == 110)
+     else if (elapsedTime == 116)
      {
           sceneOriginX = -0.3f;
           sceneOriginY = -0.2f;
      }
 
      //   [SCALE BACK]
-     else if(elapsedTime == 120)
+     else if(elapsedTime == 126)
      {
-          sceneOriginX = -0.3f;
+          draupadiGoingBack = TRUE;
+          sceneOriginX = -0.2f;
           sceneOriginY = 0.0f;
-          scaleScene -= 0.9f;
+          scaleScene = 1.2f;
      }
 
      //   [MOVE DROUPADI BACKWARD]
-     else if (elapsedTime >= 120 && elapsedTime <= 150)
+     else if (elapsedTime >= 126 && elapsedTime <= 156)
      {
-          draupadiOriginX -= 0.0016f;
+          draupadiOriginX += 0.001f;
      }
-     else if (elapsedTime >= 150)
+     else if (elapsedTime >= 156)
      {
-          draupadiOriginX -= 0.0016f;
+          draupadiOriginX += 0.001f;
           sceneOriginX += 0.001f;
      }
 }
