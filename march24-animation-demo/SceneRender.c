@@ -10,6 +10,7 @@
 #include "../common/props/fullkrushna.c"
 #include "../common/props/horse.c"
 #include "../common/props/SandeshText.c"
+#include "../common/props/Slogan.c"
 #include "Scene6_2Render.h"
 
 /*******************************/ 
@@ -71,6 +72,9 @@ BOOL scene5ShouldTransition(BOOL iSkipped);
 void scene6_2Render(void);
 void scene6_2Update(void);
 BOOL scene6_2ShouldTransition(BOOL iSkipped);
+void scene7Render(void);
+void scene7Update(void);
+BOOL scene7ShouldTransition(BOOL iSkipped);
 
 /*******************************/ 
 /* SCENE MANAGEMENT VARIABLES */
@@ -83,6 +87,7 @@ Scene scene2 = {scene2Render, scene2Update, scene2ShouldTransition, NULL};
 Scene scene3 = {scene3Render, scene3Update, scene3ShouldTransition, NULL};
 Scene scene5;
 Scene scene6_2 = { scene6_2Render, scene6_2Update, scene6_2ShouldTransition, NULL };
+Scene scene7 = { scene7Render, scene7Update, scene7ShouldTransition, NULL };
 // External global variables from Raster.c
 extern FILE *gpFile;
 extern UINT iTimeElapsed;
@@ -102,7 +107,8 @@ void initScenes(void) {
     scene2.nextScene = &scene3;
     scene3.nextScene = &scene5;
     scene5.nextScene = &scene6_2;
-    scene6_2.nextScene = NULL;// End of chain
+    scene6_2.nextScene = &scene7;
+    scene7.nextScene = NULL;// End of chain
     currentScene = &scene0;   // Start with scene 1
 }
 
@@ -475,6 +481,40 @@ BOOL scene6_2ShouldTransition(BOOL iSceneSkipped)
 {
     int iThresholdTime = 1340;
     if (iSceneSkipped)
+    {
+        iTimeElapsed = 0;
+        iTimeElapsed += iThresholdTime;
+    }
+    // Transition to the next scene after 2 min 14 sec seconds
+    return (iTimeElapsed >= iThresholdTime);
+}
+
+/*******************************/ 
+/* SCENE 7 IMPLEMENTATION */
+/******************************/
+void scene7Render(void)
+{
+    // glTranslatef(0.05f, 0.0f, 0.0f);
+    glScalef(1.0f, 1.0f, 1.0f);
+    drawText(255, 0, 0);
+}
+
+void scene7Update(void)
+{
+    // Check time-based triggers
+    switch (iTimeElapsed) {
+        case 1870:
+            break;
+        default:
+            break;
+    }
+    
+}
+
+BOOL scene7ShouldTransition(BOOL iSkipped)
+{
+    int iThresholdTime = 1870;
+    if (iSkipped)
     {
         iTimeElapsed = 0;
         iTimeElapsed += iThresholdTime;
