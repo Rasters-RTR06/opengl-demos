@@ -8,6 +8,9 @@
     glColor3f(0.125f,0.4f,0.047f);\
 }
 
+#define ARJUN_SHOULDER_CLOTH_MAJOR {glColor3f(0.75f, 0.00f, 0.25f);}
+#define ARJUN_SHOULDER_CLOTH_MINOR {glColor3f(0.75f, 0.55f, 0.00f);}
+
 // global variable declarations
 //float xOrigin_Arjun = 0.0f;
 //float yOrigin_Arjun_Arjun = 0.0f;
@@ -100,6 +103,7 @@ void drawTriangleArjun(float x1, float y1, float x2, float y2, float x3, float y
 
 void drawArjun(float xOrigin, float yOrigin_Arjun, float scale, int iStanding)
 {
+    scale = scale + 0.05f;
     void drawClothBackSideArjun(float, float, float);
     void drawHeadArjun(float, float, float);
     void drawCommonBodyArjun(float, float, float, int);
@@ -175,6 +179,19 @@ void drawHeadArjun(float xOrigin, float yOrigin_Arjun, float scale)
         glVertex2f(xOrigin + (-0.7100f * scale), yOrigin_Arjun + (0.1380f * scale));
         glEnd();
     }
+
+    glLineWidth(1.5f);
+    glColor3f(0.0f, 0.0f, 0.0f);
+    glBegin(GL_LINES);
+    glVertex2f(xOrigin + (-0.7100f * scale), yOrigin_Arjun+ (0.1420f * scale));
+    glVertex2f(xOrigin + (-0.7280f * scale), yOrigin_Arjun + (0.1370f * scale));
+    glEnd();
+    /*glBegin(GL_LINES);
+    glVertex2f(xOrigin + (-0.7280f * scale), yOrigin_Arjun + (0.1370f * scale));
+    glVertex2f(xOrigin + (-0.7370f * scale), yOrigin_Arjun + (0.1450f * scale));
+    glEnd();*/
+
+    glLineWidth(1.0f);
 
     //eye
     {
@@ -258,7 +275,7 @@ void drawHeadArjun(float xOrigin, float yOrigin_Arjun, float scale)
 void drawClothBackSideArjun(float xOrigin, float yOrigin_Arjun, float scale)
 {
     {
-        glColor3f(0.50f, 0.67f, 0.35f);
+        ARJUN_SHOULDER_CLOTH_MAJOR
         glBegin(GL_POLYGON);
         glVertex2f(xOrigin + (-0.844f * scale), yOrigin_Arjun + (-0.050f * scale));
         glVertex2f(xOrigin + (-0.844f * scale), yOrigin_Arjun + (-0.200f * scale));
@@ -275,7 +292,7 @@ void drawClothBackSideArjun(float xOrigin, float yOrigin_Arjun, float scale)
             xOrigin + (-0.834f * scale), yOrigin_Arjun + (-0.375f * scale));
 
         glLineWidth(5.0f);
-        glColor3f(0.87f, 0.40f, 0.44f);
+        ARJUN_SHOULDER_CLOTH_MINOR
         glBegin(GL_LINES);
         glVertex2f(xOrigin + (-0.834f * scale), yOrigin_Arjun + (-0.375f * scale));
         glVertex2f(xOrigin + (-0.860f * scale), yOrigin_Arjun + (-0.350f * scale));
@@ -660,7 +677,7 @@ void drawHandAndClothArjun(float xOrigin, float yOrigin_Arjun, float scale, int 
 
     {
         //shoulder cloth
-        glColor3f(0.50f, 0.67f, 0.35f);
+        ARJUN_SHOULDER_CLOTH_MAJOR
 
         drawQuadrangleArjun(
             xOrigin + (-0.680f * scale), yOrigin_Arjun + (0.051f * scale),
@@ -669,7 +686,7 @@ void drawHandAndClothArjun(float xOrigin, float yOrigin_Arjun, float scale, int 
             xOrigin + (-0.720f * scale), yOrigin_Arjun + (-0.345f * scale));
 
         glLineWidth(5.0f);
-        glColor3f(0.87f, 0.40f, 0.44f);
+        ARJUN_SHOULDER_CLOTH_MINOR
         glBegin(GL_LINES);
         glVertex2f(xOrigin + (-0.720f * scale), yOrigin_Arjun + (0.071f * scale));
         glVertex2f(xOrigin + (-0.760f * scale), yOrigin_Arjun + (-0.325f * scale));
@@ -687,7 +704,7 @@ void drawHandAndClothArjun(float xOrigin, float yOrigin_Arjun, float scale, int 
 
         glLineWidth(1.0f);
 
-        glColor3f(0.50f, 0.67f, 0.35f);
+        ARJUN_SHOULDER_CLOTH_MAJOR
 
         glBegin(GL_POLYGON);
         glVertex2f(xOrigin + (-0.800f * scale), yOrigin_Arjun + (0.075f * scale));
@@ -708,7 +725,7 @@ void drawHandAndClothArjun(float xOrigin, float yOrigin_Arjun, float scale, int 
         glEnd();
 
         glLineWidth(5.0f);
-        glColor3f(0.87f, 0.40f, 0.44f);
+        ARJUN_SHOULDER_CLOTH_MINOR
         glBegin(GL_LINES);
         glVertex2f(xOrigin + (-0.800f * scale), yOrigin_Arjun + (0.075f * scale));
         glVertex2f(xOrigin + (-0.765f * scale), yOrigin_Arjun + (-0.050f * scale));
@@ -941,5 +958,33 @@ void drawHandAndClothArjun(float xOrigin, float yOrigin_Arjun, float scale, int 
                 xOrigin + (-0.6100f * scale), yOrigin_Arjun + (-0.195f * scale)
             );
         }
+    }
+
+    {
+
+        glColor3f(0.0f, 0.0f, 0.0f);
+        glLineWidth(1.0);
+        glBegin(GL_LINES);
+        glVertex2f(xOrigin + (-0.815f * scale), yOrigin_Arjun + (-0.12f * scale));
+        glVertex2f(xOrigin + (-0.767f * scale), yOrigin_Arjun + (-0.08f * scale));
+        glEnd();
+
+        glLineWidth(1.0);
+        glBegin(GL_LINES);
+        glVertex2f(xOrigin + (-0.818f * scale), yOrigin_Arjun + (-0.11f * scale));
+        glVertex2f(xOrigin + (-0.768f * scale), yOrigin_Arjun + (-0.07f * scale));
+        glEnd();
+
+        glLineWidth(1.0);
+        glBegin(GL_LINES);
+        glVertex2f(xOrigin + (-0.68f * scale), yOrigin_Arjun + (-0.10f * scale));
+        glVertex2f(xOrigin + (-0.662f * scale), yOrigin_Arjun + (-0.08f * scale));
+        glEnd();
+
+        glLineWidth(1.0);
+        glBegin(GL_LINES);
+        glVertex2f(xOrigin + (-0.68f * scale), yOrigin_Arjun + (-0.09f * scale));
+        glVertex2f(xOrigin + (-0.663f * scale), yOrigin_Arjun + (-0.07f * scale));
+        glEnd();
     }
 }

@@ -411,7 +411,7 @@ void scene6_2Render()
     drawBheem(xOriginBheem, yOriginBheem, 0.7f, g_iBheemStanding);
     //drawYudhishteer(xOriginYudhishteer, yOriginYudhishteer, 0.7f, g_iYudhishteerStanding);
 
-    //drawSahadev(xOriginSahadev, yOriginSahadev, 0.7f, g_iSahadevStanding);
+    drawSahadev(xOriginSahadev, yOriginSahadev, 0.7f, g_iSahadevStanding);
 
     //drawNakul(xOriginNakul, yOriginNakul, 0.7f, g_iNakulStanding);
 

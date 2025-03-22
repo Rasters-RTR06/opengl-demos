@@ -77,6 +77,7 @@ void rath(MY_POINT startPosition, TRANSLATION translateBy, SCALING scaleBy);
 #include "Room_Interior.c"
 #include "arjun.c"
 #include "Nakul.c"
+#include "Sahadev.c"
 #include "Draupadi.c"
 #include "Bheem.c"
 #include "krishnasitting.c"

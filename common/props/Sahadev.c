@@ -11,8 +11,11 @@
 //}
 
 #define SAHADEV_DHOTI_COLOR {\
-glColor3f(0.78f, 0.78f, 0.278f);\
+glColor3f(0.58f, 0.00f, 0.00f);\
 }
+
+#define SAHADEV_SHOULDER_CLOTH_MAJOR {glColor3f(1.00f, 0.58f, 0.19f);}
+#define SAHADEV_SHOULDER_CLOTH_MINOR {glColor3f(0.75f, 0.55f, 0.00f);}
 
 // global variable declarations
 
@@ -358,7 +361,7 @@ void drawArrowBoxSahadev(float xOrigin, float yOrigin, float scale, int iStandin
 void drawClothBackSideSahadev(float xOrigin, float yOrigin, float scale)
 {
 	{
-		glColor3f(0.50f, 0.67f, 0.35f);
+		SAHADEV_SHOULDER_CLOTH_MAJOR
 		glBegin(GL_POLYGON);
 		glVertex2f(xOrigin + (-0.844f * scale), yOrigin + (-0.050f * scale));
 		glVertex2f(xOrigin + (-0.844f * scale), yOrigin + (-0.200f * scale));
@@ -375,7 +378,7 @@ void drawClothBackSideSahadev(float xOrigin, float yOrigin, float scale)
 			xOrigin + (-0.834f * scale), yOrigin + (-0.375f * scale));
 
 		glLineWidth(5.0f);
-		glColor3f(0.87f, 0.40f, 0.44f);
+		SAHADEV_SHOULDER_CLOTH_MINOR
 		glBegin(GL_LINES);
 		glVertex2f(xOrigin + (-0.834f * scale), yOrigin + (-0.375f * scale));
 		glVertex2f(xOrigin + (-0.860f * scale), yOrigin + (-0.350f * scale));
@@ -774,7 +777,7 @@ void drawHandAndClothSahadev(float xOrigin, float yOrigin, float scale, int iSta
 
 	{
 		//shoulder cloth
-		glColor3f(0.50f, 0.67f, 0.35f);
+		SAHADEV_SHOULDER_CLOTH_MAJOR
 
 		drawQuadrangleSahadev(
 			xOrigin + (-0.680f * scale), yOrigin + (0.051f * scale),
@@ -784,7 +787,7 @@ void drawHandAndClothSahadev(float xOrigin, float yOrigin, float scale, int iSta
 
 
 		glLineWidth(5.0f);
-		glColor3f(0.87f, 0.40f, 0.44f);
+		SAHADEV_SHOULDER_CLOTH_MINOR
 		glBegin(GL_LINES);
 		glVertex2f(xOrigin + (-0.720f * scale), yOrigin + (0.071f * scale));
 		glVertex2f(xOrigin + (-0.760f * scale), yOrigin + (-0.325f * scale));
@@ -802,7 +805,7 @@ void drawHandAndClothSahadev(float xOrigin, float yOrigin, float scale, int iSta
 
 		glLineWidth(1.0f);
 
-		glColor3f(0.50f, 0.67f, 0.35f);
+		SAHADEV_SHOULDER_CLOTH_MAJOR
 
 		glBegin(GL_POLYGON);
 		glVertex2f(xOrigin + (-0.800f * scale), yOrigin + (0.075f * scale));
@@ -823,7 +826,7 @@ void drawHandAndClothSahadev(float xOrigin, float yOrigin, float scale, int iSta
 		glEnd();
 
 		glLineWidth(5.0f);
-		glColor3f(0.87f, 0.40f, 0.44f);
+		SAHADEV_SHOULDER_CLOTH_MINOR
 		glBegin(GL_LINES);
 		glVertex2f(xOrigin + (-0.800f * scale), yOrigin + (0.075f * scale));
 		glVertex2f(xOrigin + (-0.765f * scale), yOrigin + (-0.050f * scale));
