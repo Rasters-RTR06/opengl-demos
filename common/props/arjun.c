@@ -22,9 +22,18 @@ void drawRectangleArjun(float LX, float RX, float TY, float BY);
 void drawQuadrangleArjun(float x1, float  y1, float  x2, float y2, float x3, float  y3, float x4, float y4);
 void drawcircleArjun(float, float, float, float, float, float, float, int);
 void drawTriangleArjun(float x1, float y1, float x2, float y2, float x3, float y3);
+void drawArrowBoxArjun(float xOrigin, float yOrigin, float scale, int iStanding);
+void showDhanushyaArjun(float fOriginX, float fOriginY, float fResize);
+
+void drawEllipseArjun(
+    float startX, float startY,
+    float startAngle, float endAngle,
+    float rColor, float gColor, float bColor,
+    float hRadius, float vRadius);
+
 
 // function declarations
-void drawArjun(float xOrigin_Arjun, float yOrigin_Arjun, float scale, int iStanding);
+void drawArjun(float xOrigin_Arjun, float yOrigin_Arjun, float scale, int iStanding, int iHandPosition, int iShowBowArrow);
 
 //void display(void)
 //{
@@ -101,7 +110,7 @@ void drawTriangleArjun(float x1, float y1, float x2, float y2, float x3, float y
     glEnd();
 }
 
-void drawArjun(float xOrigin, float yOrigin_Arjun, float scale, int iStanding)
+void drawArjun(float xOrigin, float yOrigin_Arjun, float scale, int iStanding, int iHandPosition, int iShowBowArrow)
 {
     scale = scale + 0.05f;
     void drawClothBackSideArjun(float, float, float);
@@ -111,8 +120,10 @@ void drawArjun(float xOrigin, float yOrigin_Arjun, float scale, int iStanding)
 
     drawClothBackSideArjun(xOrigin, yOrigin_Arjun, scale);
     drawHeadArjun(xOrigin, yOrigin_Arjun, scale);
+    drawArrowBoxArjun(xOrigin, yOrigin_Arjun, scale, iShowBowArrow);
     drawCommonBodyArjun(xOrigin, yOrigin_Arjun, scale, iStanding);
-    drawHandAndClothArjun(xOrigin, yOrigin_Arjun, scale, iStanding);
+    drawHandAndClothArjun(xOrigin, yOrigin_Arjun, scale, iHandPosition);
+    if (iShowBowArrow == 1) showDhanushyaArjun(xOrigin, yOrigin_Arjun, scale);
 }
 
 void drawHeadArjun(float xOrigin, float yOrigin_Arjun, float scale)
@@ -269,6 +280,67 @@ void drawHeadArjun(float xOrigin, float yOrigin_Arjun, float scale)
         glVertex2f(xOrigin + (-0.7650f * scale), yOrigin_Arjun + (0.1400f * scale));
         glVertex2f(xOrigin + (-0.7650f * scale), yOrigin_Arjun + (0.1300f * scale));
         glEnd();
+    }
+}
+
+void drawArrowBoxArjun(float xOrigin, float yOrigin, float scale, int iShowBowArrow)
+{
+    if (iShowBowArrow == 1)
+    {
+        // Arrow carrier
+        glColor3f(0.03f, 0.42f, 0.12f);
+        drawQuadrangleArjun(
+            xOrigin + (-0.8400f * scale), yOrigin + (-0.050f * scale),
+            xOrigin + (-0.8600f * scale), yOrigin + (0.090f * scale),
+            xOrigin + (-0.7900f * scale), yOrigin + (0.120f * scale),
+            xOrigin + (-0.7700f * scale), yOrigin + (-0.020f * scale)
+        );
+
+        // Arrow 1
+        glColor3f(0.0f, 0.0f, 0.0f);
+        glLineWidth(1.5);
+        glBegin(GL_LINES);
+        glVertex2f(xOrigin + (-0.858f * scale), yOrigin + (0.14f * scale));
+        glVertex2f(xOrigin + (-0.85f * scale), yOrigin + (0.09f * scale));
+        glEnd();
+
+        drawTriangleArjun(
+            xOrigin + (-0.858f * scale), yOrigin + (0.140f * scale),
+            xOrigin + (-0.862f * scale), yOrigin + (0.125f * scale),
+            xOrigin + (-0.850f * scale), yOrigin + (0.125f * scale)
+        );
+
+        // Arrow 2
+        glLineWidth(1.5);
+        glBegin(GL_LINES);
+        glVertex2f(xOrigin + (-0.835f * scale), yOrigin + (0.15f * scale));
+        glVertex2f(xOrigin + (-0.827f * scale), yOrigin + (0.10f * scale));
+        glEnd();
+
+
+        drawTriangleArjun(
+            xOrigin + (-0.835f * scale), yOrigin + (0.15f * scale),
+            xOrigin + (-0.839f * scale), yOrigin + (0.135f * scale),
+            xOrigin + (-0.826f * scale), yOrigin + (0.135f * scale)
+        );
+
+        // Arrow 3
+        glLineWidth(1.5);
+        glBegin(GL_LINES);
+        glVertex2f(xOrigin + (-0.812f * scale), yOrigin + (0.16f * scale));
+        glVertex2f(xOrigin + (-0.804f * scale), yOrigin + (0.11f * scale));
+        glEnd();
+
+
+        drawTriangleArjun(
+            xOrigin + (-0.812f * scale), yOrigin + (0.160f * scale),
+            xOrigin + (-0.816f * scale), yOrigin + (0.145f * scale),
+            xOrigin + (-0.801f * scale), yOrigin + (0.145f * scale)
+        );
+    }
+    else
+    {
+
     }
 }
 
@@ -627,7 +699,7 @@ void drawCommonBodyArjun(float xOrigin, float yOrigin_Arjun, float scale, int iS
     }
 }
 
-void drawHandAndClothArjun(float xOrigin, float yOrigin_Arjun, float scale, int iStanding)
+void drawHandAndClothArjun(float xOrigin, float yOrigin_Arjun, float scale, int iHandPosition)
 {
     // Ear rudraksh
     drawcircleArjun(
@@ -821,7 +893,7 @@ void drawHandAndClothArjun(float xOrigin, float yOrigin_Arjun, float scale, int 
             xOrigin + (-0.6050f * scale), yOrigin_Arjun + (0.024f * scale)
         ); //finger tips
 
-        if (iStanding == 1)
+        if (iHandPosition == 1)
         {
             drawQuadrangleArjun(
                 xOrigin + (-0.6250f * scale), yOrigin_Arjun + (-0.075f * scale),
@@ -843,7 +915,7 @@ void drawHandAndClothArjun(float xOrigin, float yOrigin_Arjun, float scale, int 
         //fingers
         {
             glColor3f(0.6f, 0.6f, 0.6f);
-            if (iStanding == 1)
+            if (iHandPosition == 1)
             {
                 glBegin(GL_LINES);
                 glVertex2f(xOrigin + (-0.6190f * scale), yOrigin_Arjun + (-0.006f * scale));
@@ -867,7 +939,7 @@ void drawHandAndClothArjun(float xOrigin, float yOrigin_Arjun, float scale, int 
             glEnd();
         }
 
-        if (iStanding == 1)
+        if (iHandPosition == 1)
         {
             //front side hand
             SKIN_COLOR
@@ -988,3 +1060,65 @@ void drawHandAndClothArjun(float xOrigin, float yOrigin_Arjun, float scale, int 
         glEnd();
     }
 }
+
+void showDhanushyaArjun(float fOriginX, float fOriginY, float fResize)
+{
+    fOriginX -= 0.62f;
+    fOriginY += 0.05f;
+
+    drawEllipseArjun(
+        fOriginX, fOriginY + 0.13f,
+        (PI / 2.0f), 3.0f * PI / 2.0f,
+        0.0f, 0.0f, 0.0f,
+        0.02f, 0.03f);
+
+    drawEllipseArjun(
+        fOriginX, fOriginY,
+        -(PI / 2.0f), PI / 2.0f,
+        0.0f, 0.0f, 0.0f,
+        0.05f, 0.10f);
+
+    drawEllipseArjun(
+        fOriginX, fOriginY - 0.20f,
+        -(PI / 2.0f), PI / 2.0f,
+        0.0f, 0.0f, 0.0f,
+        0.05f, 0.10f);
+
+    drawEllipseArjun(
+        fOriginX, fOriginY - 0.20f - 0.13f,
+        (PI / 2.0f), 3.0f * PI / 2.0f,
+        0.0f, 0.0f, 0.0f,
+        0.02f, 0.03f);
+
+    glLineWidth(1);
+    glBegin(GL_LINES);
+    glVertex2f(fOriginX - 0.02f, fOriginY + 0.13f);
+    glVertex2f(fOriginX - 0.02f, fOriginY - 0.20f - 0.13f);
+    glEnd();
+}
+
+void drawEllipseArjun(
+    float startX, float startY,
+    float startAngle, float endAngle,
+    float rColor, float gColor, float bColor,
+    float hRadius, float vRadius)
+{
+    float ObjX = 0.0f;
+    float ObjY = 0.0f;
+    float ObjAngle = 0.0f;
+
+    glColor4f(rColor, gColor, bColor, 1.0f);
+
+    glLineWidth(5.0f);
+    glBegin(GL_LINE_STRIP);
+
+    for (ObjAngle = startAngle; ObjAngle <= endAngle; ObjAngle += 0.001f)
+    {
+        ObjX = startX + hRadius * cos(ObjAngle);
+        ObjY = startY + vRadius * sin(ObjAngle);
+
+        glVertex3f(ObjX, ObjY, 1.0f);
+    }
+    glEnd();
+}
+

@@ -105,7 +105,7 @@ void drawTriangleNakul(float x1, float y1, float x2, float y2, float x3, float y
 	glEnd();
 }
 
-void drawNakul(float xOriginNakul, float yOriginNakul, float scale, int iStanding)
+void drawNakul(float xOriginNakul, float yOriginNakul, float scale, int iStanding, int iHandPosition)
 {
 	void drawClothBackSideNakul(float, float, float);
 	void drawHeadNakul(float, float, float);
@@ -115,7 +115,7 @@ void drawNakul(float xOriginNakul, float yOriginNakul, float scale, int iStandin
 	drawClothBackSideNakul(xOriginNakul, yOriginNakul, scale);
 	drawHeadNakul(xOriginNakul, yOriginNakul, scale);
 	drawCommonBodyNakul(xOriginNakul, yOriginNakul, scale, iStanding);
-	drawHandAndClothNakul(xOriginNakul, yOriginNakul, scale, iStanding);
+	drawHandAndClothNakul(xOriginNakul, yOriginNakul, scale, iHandPosition);
 }
 
 void drawHeadNakul(float xOriginNakul, float yOriginNakul, float scale)
@@ -626,7 +626,7 @@ void drawCommonBodyNakul(float xOriginNakul, float yOriginNakul, float scale, in
 	}
 }
 
-void drawHandAndClothNakul(float xOriginNakul, float yOriginNakul, float scale, int iStanding)
+void drawHandAndClothNakul(float xOriginNakul, float yOriginNakul, float scale, int iHandPosition)
 {
 	// Ear rudraksh
 	drawcircleNakul(
@@ -813,7 +813,7 @@ void drawHandAndClothNakul(float xOriginNakul, float yOriginNakul, float scale, 
 			xOriginNakul + (-0.6175f * scale), yOriginNakul + (0.020f * scale),
 			xOriginNakul + (-0.6050f * scale), yOriginNakul + (0.024f * scale)); // finger tips
 
-		if (iStanding == 1)
+		if (iHandPosition == 1)
 		{
 			drawQuadrangleNakul(
 				xOriginNakul + (-0.6250f * scale), yOriginNakul + (-0.075f * scale),
@@ -833,7 +833,7 @@ void drawHandAndClothNakul(float xOriginNakul, float yOriginNakul, float scale, 
 		// fingers
 		{
 			glColor3f(0.6f, 0.6f, 0.6f);
-			if (iStanding == 1)
+			if (iHandPosition == 1)
 			{
 				glBegin(GL_LINES);
 				glVertex2f(xOriginNakul + (-0.6190f * scale), yOriginNakul + (-0.006f * scale));
@@ -857,7 +857,7 @@ void drawHandAndClothNakul(float xOriginNakul, float yOriginNakul, float scale, 
 			glEnd();
 		}
 
-		if (iStanding == 1)
+		if (iHandPosition == 1)
 		{
 			// front side hand
 			SKIN_COLOR

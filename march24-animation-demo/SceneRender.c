@@ -412,42 +412,39 @@ void scene6_2Render()
 
     drawRoom();
 
-    drawArjun(xOriginArjun, yOriginArjun, 0.7f, g_iArjunStanding);
-    drawBheem(xOriginBheem, yOriginBheem, 0.7f, g_iBheemStanding);
-    //drawYudhishteer(xOriginYudhishteer, yOriginYudhishteer, 0.7f, g_iYudhishteerStanding);
-
-    drawSahadev(xOriginSahadev, yOriginSahadev, 0.7f, g_iSahadevStanding);
-
-    //drawNakul(xOriginNakul, yOriginNakul, 0.7f, g_iNakulStanding);
-
     sittingkrishna(originxSK, originySK, resizeSK);
-    drawNakul(xOriginNakul, yOriginNakul, 0.7f, g_iNakulStanding);
+
+
+    drawArjun(xOriginArjun, yOriginArjun, fScaleFactorArjun, g_iArjunStanding, g_iHandPositionArjun, HIDE_BOW_ARROW);
+    drawBheem(xOriginBheem, yOriginBheem, fScaleFactorBheem, g_iBheemStanding, g_iHandPositionBheem);
+    //drawYudhishteer(xOriginYudhishteer, yOriginYudhishteer, fScaleFactorYudhishteer, g_iYudhishteerStanding, g_iHandPositionYudhishteer);
+
+    drawSahadev(xOriginSahadev, yOriginSahadev, fScaleFactorSahadev, g_iSahadevStanding, g_iHandPositionSahadev, HIDE_BOW_ARROW);
+    drawNakul(xOriginNakul, yOriginNakul, fScaleFactorNakul, g_iNakulStanding, g_iHandPositionNakul);
+
     drawDraupadi(xOriginDraupadi, yOriginDraupadi, 0.8f, g_iHandPositionDraupadi, g_iStandingDraupadi);
 }
 
 void scene6_2Update()
 {
-    fprintf(gpFile, "Scene6_2\n");
-    g_iHandPositionDraupadi = 1;
-    g_iStandingDraupadi = 1;
+    g_iHandPositionDraupadi = DRAUPADI_HAND_FOLDED;
+    g_iStandingDraupadi = CHARACTER_STANDING;
 
-    g_iYudhishteerStanding = 0;
-    g_iBheemStanding = 0;
-    g_iArjunStanding = 0;
-    g_iNakulStanding = 0;
-    g_iSahadevStanding = 0;
+    g_iYudhishteerStanding = g_iBheemStanding = g_iArjunStanding = g_iNakulStanding = g_iSahadevStanding = CHARACTER_SITTING;
 
+    g_iHandPositionYudhishteer = g_iHandPositionBheem = g_iHandPositionArjun = CHARACTER_HAND_GESTURE;
+    g_iHandPositionNakul = g_iHandPositionSahadev = CHARACTER_HAND_FOLDED;
 
-    xOriginArjun = 0.05;yOriginArjun = 0.1;
-    xOriginBheem = 0.2;yOriginBheem = 0.0;
-    xOriginYudhishteer = 0.4;yOriginYudhishteer = -0.2;
+    fScaleFactorYudhishteer = fScaleFactorBheem = fScaleFactorArjun = fScaleFactorNakul = fScaleFactorSahadev = 0.7f;
+
+    xOriginArjun = 0.05; yOriginArjun = 0.1;
+    xOriginBheem = 0.2; yOriginBheem = 0.0;
+    xOriginYudhishteer = 0.4; yOriginYudhishteer = -0.2;
 
     xOriginSahadev = -0.3;yOriginSahadev = 0.0;
     xOriginNakul = -0.1; yOriginNakul = -0.2;
 
     xOriginDraupadi = -0.2; yOriginDraupadi = -0.3;
-
-    //fprintf(gpFile, "% d\n", iTimeElapsed);
 
     originxSK = 0.5f;
     originySK = -0.3f;
@@ -457,7 +454,6 @@ void scene6_2Update()
     {
     case 1060:
         //bMoveDraupadi = TRUE;
-
         break;
     case 1120:
         bMoveDraupadi = FALSE;

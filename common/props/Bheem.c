@@ -103,7 +103,7 @@ void drawBPolygon(GLfloat vertices[][2], int numVertices, Color color) {
     glEnd();
 }
 
-void drawBheem(float xOrigin, float yOrigin, float scale, int iStanding)
+void drawBheem(float xOrigin, float yOrigin, float scale, int iStanding, int iHandPosition)
 {
 	scale = scale + 0.1f;
 	void drawHeadBheem(float, float, float);
@@ -115,7 +115,7 @@ void drawBheem(float xOrigin, float yOrigin, float scale, int iStanding)
     drawBheemWeapon(xOrigin, yOrigin, scale);
 	drawHeadBheem(xOrigin, yOrigin, scale);
 	drawCommonBodyBheem(xOrigin, yOrigin, scale, iStanding);
-	drawHandAndClothBheem(xOrigin, yOrigin, scale, iStanding);
+	drawHandAndClothBheem(xOrigin, yOrigin, scale, iHandPosition);
 }
 
 void drawBheemWeapon(float xOrigin, float yOrigin, float scale) {
@@ -675,7 +675,7 @@ void drawCommonBodyBheem(float xOriginBheem, float yOriginBheem, float scale, in
 	}
 }
 
-void drawHandAndClothBheem(float xOriginBheem, float yOriginBheem, float scale, int iStanding)
+void drawHandAndClothBheem(float xOriginBheem, float yOriginBheem, float scale, int iHandPosition)
 {
 	// Ear rudraksh
 	drawcircleBheem(
@@ -862,7 +862,7 @@ void drawHandAndClothBheem(float xOriginBheem, float yOriginBheem, float scale, 
 			xOriginBheem + (-0.6175f * scale), yOriginBheem + (0.020f * scale),
 			xOriginBheem + (-0.6050f * scale), yOriginBheem + (0.024f * scale)); // finger tips
 
-		if (iStanding == 1)
+		if (iHandPosition == 1)
 		{
 			drawQuadrangleBheem(
 				xOriginBheem + (-0.6250f * scale), yOriginBheem + (-0.075f * scale),
@@ -882,7 +882,7 @@ void drawHandAndClothBheem(float xOriginBheem, float yOriginBheem, float scale, 
 		// fingers
 		{
 			glColor3f(0.6f, 0.6f, 0.6f);
-			if (iStanding == 1)
+			if (iHandPosition == 1)
 			{
 				glBegin(GL_LINES);
 				glVertex2f(xOriginBheem + (-0.6190f * scale), yOriginBheem + (-0.006f * scale));
@@ -906,7 +906,7 @@ void drawHandAndClothBheem(float xOriginBheem, float yOriginBheem, float scale, 
 			glEnd();
 		}
 
-		if (iStanding == 1)
+		if (iHandPosition == 1)
 		{
 			// front side hand
 			SKIN_COLOR
