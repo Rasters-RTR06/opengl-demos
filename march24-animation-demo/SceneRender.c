@@ -12,6 +12,7 @@
 #include "../common/props/nikhilsSandeshtxt.c"
 #include "Scene6_2Render.h"
 #include "../common/props/krishnastanding.c"
+#include "../common/props/flowers.c"
 
 /*******************************/
 /* TYPE DEFINITIONS AND DECLARATIONS */
@@ -211,7 +212,6 @@ void scene1Render(void)
     drawButterfly(butterflyX, butterflyY, 0.6f, butterflyRotation);
     toungeMovement();
     //chamelon(1.5f, -0.35f, 0.2);
-    KrishnaStanding(0, 0, 0.3);
     
     updateSandesh(bCallSandesh, 1.0f);
 }
@@ -309,20 +309,14 @@ void scene3Update(void)
 
 BOOL scene3ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 520;
-    BOOL flag = FALSE;
-    if (iSkipped || (iTimeElapsed >= iThresholdTime))
+    int iThresholdTime = 720;
+    if (iSkipped)
     {
         iTimeElapsed = 0;
         iTimeElapsed += iThresholdTime;
-        flag = TRUE;
     }
-    if(flag)
-    {
-        iTimeElapsed = 0;
-    }
-    // Transition to the next scene after 15 seconds
-    return (flag);
+    // Transition to the next scene after 2 min 14 sec seconds
+    return (iTimeElapsed >= iThresholdTime);
 }
 
 /*******************************/
@@ -337,7 +331,7 @@ void scene5Render(void)
                 2. lake and cranes, Bhagvan shrikrishna ki sawari   at time 1.16 (76 seconds)
                 3. Patterned deers at time  1.24 (84 seconds)
                 4. Flowers  - Jungle me mangal chaaya at time 1.27 (87 seconds)
-                5. Peacock at time 1.33 (93 seconds)
+                5. Peacock at time 1.33 (95 seconds)
 
     */
     // Draw scene 5 elements
@@ -368,20 +362,26 @@ void scene5Render(void)
 
     if (bShowFlowers == TRUE)
     {
-        // flowers funtion
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        glScalef(0.2f, 0.2f, 0.0f);
+        drawCurve();
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        glScalef(1.0f, 1.0f, 1.0f);
     }
-    if (bShowPatternedDeers)
+    if (bShowPatternedDeers == TRUE)
     {
         drawGround();
         drawDenseForrest();
         drawRightPatternedDeer(0.0f, 0.0f, 0.5f);
         drawLeftPatternedDeer(-0.4f, 0.0f, 0.5f);
     }
-    if (bShowPeacock)
+    if (bShowPeacock == TRUE)
     {
         drawGround();
         drawDenseForrest();
-        drawPeacock(0.0f, 0.0f, 0.3f);
+        drawPeacock(0.0f, 0.0f, 0.8f);
     }
 }
 
@@ -390,29 +390,32 @@ void scene5Update(void)
     // Check time-based triggers
     switch (iTimeElapsed)
     {
-    case 205:
-        bShowRotatingPlants = TRUE;
-        break;
-    case 210:
-        bShowRotatingPlants = FALSE;
-        bShriKrishnaEntry = TRUE;
-        bShowLake = TRUE;
-        bShowCranes = TRUE;
-        break;
-    case 230:
-        bShriKrishnaEntry = FALSE;
-        bShowLake = FALSE;
-        bShowCranes = FALSE;
-        bShowPatternedDeers = TRUE;
-        break;
-    case 240:
-        bShowPatternedDeers = FALSE;
-        bShowFlowers = TRUE;
-        break;
-    case 245:
-        bShowFlowers = FALSE;
-        bShowPeacock = TRUE;
-        break;
+        case 730:
+            bShowRotatingPlants = TRUE;
+            break;
+        case 760:
+            bShowRotatingPlants = FALSE;
+            bShriKrishnaEntry = TRUE;
+            bShowLake = TRUE;
+            bShowCranes = TRUE;
+            break;
+        case 840:
+            bShriKrishnaEntry = FALSE;
+            bShowLake = FALSE;
+            bShowCranes = FALSE;
+            bShowPatternedDeers = TRUE;
+            break;
+        case 870:
+            bShowPatternedDeers = FALSE;
+            bShowFlowers = TRUE;
+            break;
+        case 890:
+            bShowFlowers = FALSE;
+            bShowPeacock = TRUE;
+            break;
+        case 900:
+            bShowPeacock = FALSE;
+            break;
     }
     // Update specific elements
     if (bShowRotatingPlants == TRUE)
