@@ -516,7 +516,7 @@ void scene6_4_6Update(void)
 
 BOOL scene6_4_6ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 1700;
+    int iThresholdTime = 30;
     BOOL flag = FALSE;
     if (iSkipped || (iTimeElapsed >= iThresholdTime))
     {
@@ -1433,6 +1433,7 @@ void scene7Render(void)
 {
     glLoadIdentity();
     glScalef(scaleSlogan, scaleSlogan, scaleSlogan);
+    drawRoom();
     drawText(0.2, 0, 1, 255, 0, 0);
 }
 
