@@ -922,3 +922,72 @@ void TutariBai(float originx, float originy, float resize)
 	glEnd();
 }
 
+static float cameraY = -0.9f;      // Starting position at the feet
+static float cameraSpeed = 0.004f;  
+static float zoomFactor = 2.8f;    
+static float zoomSpeed = 0.006f;
+static int animationPhase = 1;     // Phase 1: Moving up, Phase 2: Scaling down
+
+static float phaseTransitionY = 0.0f;  // Position to stop moving up and start scaling
+static float finalZoom = 1.0f;   
+
+void updateTutariBai(UINT iTimeElapsed)
+{
+	static BOOL phaseOneStartLogged = FALSE;
+	static BOOL phaseTwoStartLogged = FALSE;
+	static BOOL animationCompleteLogged = FALSE;
+
+	
+	// Phase 1: Camera moves up until reaching transition point
+	if (animationPhase == 1) {
+		if (!phaseOneStartLogged && gpFile) {
+			fprintf(gpFile, "TutariBai Animation: Phase 1 started at %d seconds\n", iTimeElapsed);
+			phaseOneStartLogged = TRUE;
+		}
+		
+
+		
+		// Move camera up slowly
+		cameraY += cameraSpeed;
+		
+		if (cameraY >= phaseTransitionY) {
+			cameraY = phaseTransitionY;  
+			animationPhase = 2;  
+			
+			if (gpFile) {
+				fprintf(gpFile, "TutariBai Animation: Phase 1 completed at %d seconds\n", 
+						iTimeElapsed);
+				fprintf(gpFile, "TutariBai Animation: Phase 2 started at %d seconds\n", iTimeElapsed);
+				phaseTwoStartLogged = TRUE;
+			}
+		}
+	}
+	// Phase 2: Camera stays fixed, zoom scales down
+	else if (animationPhase == 2) {
+
+		// Gradually zoom out
+		if (zoomFactor > finalZoom) {
+			zoomFactor -= zoomSpeed;
+			
+			if (zoomFactor <= finalZoom) {
+				zoomFactor = finalZoom; 
+				animationPhase = 0; 
+				
+				if (gpFile && !animationCompleteLogged) {
+					fprintf(gpFile, "TutariBai Animation: Phase 2 completed at %d seconds\n", 
+							iTimeElapsed);
+					animationCompleteLogged = TRUE;
+				}
+			}
+		}
+	}
+}
+
+void drawTutariWithAnimation(float originx, float originy, float resize)
+{
+	float adjustedOriginY = originy - cameraY;
+	float adjustedResize = resize * zoomFactor;
+	
+	TutariBai(originx, adjustedOriginY, adjustedResize);
+}
+

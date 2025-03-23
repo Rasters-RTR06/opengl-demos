@@ -26,7 +26,10 @@ typedef struct {
 #define HANDLE_COLOR (Color){0.6f, 0.4f, 0.2f}
 #define BHEEM_DHOTI_COLOR { glColor3f(1.0f, 0.0f, 0.0f);}
 
-void drawBheemWeapon();
+#define BHEEM_SHOULDER_CLOTH_MAJOR {glColor3f(0.188f, 0.38f, 0.008f);}
+#define BHEEM_SHOULDER_CLOTH_MINOR {glColor3f(0.831f, 0.69f, 0.271f);}
+
+void drawBheemWeapon(float xOrigin, float yOrigin, float scale);
 
 //void changeDhotiColor(float r, float g, float b) {
 //    DhotiColor[0] = r;
@@ -100,8 +103,9 @@ void drawBPolygon(GLfloat vertices[][2], int numVertices, Color color) {
     glEnd();
 }
 
-void drawBheem(float xOrigin, float yOrigin, float scale, int iStanding)
+void drawBheem(float xOrigin, float yOrigin, float scale, int iStanding, int iHandPosition)
 {
+	scale = scale + 0.1f;
 	void drawHeadBheem(float, float, float);
 	void drawClothBackSideBheem(float, float, float);
 	void drawCommonBodyBheem(float, float, float, int);
@@ -111,7 +115,7 @@ void drawBheem(float xOrigin, float yOrigin, float scale, int iStanding)
     drawBheemWeapon(xOrigin, yOrigin, scale);
 	drawHeadBheem(xOrigin, yOrigin, scale);
 	drawCommonBodyBheem(xOrigin, yOrigin, scale, iStanding);
-	drawHandAndClothBheem(xOrigin, yOrigin, scale, iStanding);
+	drawHandAndClothBheem(xOrigin, yOrigin, scale, iHandPosition);
 }
 
 void drawBheemWeapon(float xOrigin, float yOrigin, float scale) {
@@ -195,6 +199,7 @@ void drawHeadBheem(float xOriginBheem, float yOriginBheem, float scale)
 		xOriginBheem + (-0.7625f * scale), yOriginBheem + (0.2200f * scale),
 		xOriginBheem + (-0.7625f * scale), yOriginBheem + (0.1750f * scale));
 
+	
 	// lips
 	{
 		glColor3f(0.5f, 0.5f, 0.5f);
@@ -211,6 +216,21 @@ void drawHeadBheem(float xOriginBheem, float yOriginBheem, float scale)
 		glVertex2f(xOriginBheem + (-0.7220f * scale), yOriginBheem + (0.1330f * scale));
 		glVertex2f(xOriginBheem + (-0.7100f * scale), yOriginBheem + (0.1380f * scale));
 		glEnd();
+	}
+	//mooch
+	{
+		glLineWidth(1.5f);
+		glColor3f(0.0f, 0.0f, 0.0f);
+		glBegin(GL_LINES);
+		glVertex2f(xOriginBheem + (-0.7100f * scale), yOriginBheem + (0.1420f * scale));
+		glVertex2f(xOriginBheem + (-0.7280f * scale), yOriginBheem + (0.1370f * scale));
+		glEnd();
+		glBegin(GL_LINES);
+		glVertex2f(xOriginBheem + (-0.7280f * scale), yOriginBheem + (0.1370f * scale));
+		glVertex2f(xOriginBheem + (-0.7370f * scale), yOriginBheem + (0.1450f * scale));
+		glEnd();
+
+		glLineWidth(1.0f);
 	}
 
 	// eye
@@ -241,12 +261,15 @@ void drawHeadBheem(float xOriginBheem, float yOriginBheem, float scale)
 		glVertex2f(xOriginBheem + (-0.7130f * scale), yOriginBheem + (0.2000f * scale));
 		glEnd();
 
-		glColor3f(0.0f, 0.0f, 0.0f);
+		/*glColor3f(0.0f, 0.0f, 0.0f);
 		glPointSize(4.0f);
 		glBegin(GL_POINTS);
 		glVertex2f(xOriginBheem + (-0.7200f * scale), yOriginBheem + (0.2000f * scale));
 		glEnd();
-		glPointSize(1.0f);
+		glPointSize(1.0f);*/
+		drawcircleBheem(
+			xOriginBheem + (-0.7200f * scale), yOriginBheem + (0.2000f * scale),
+			(0.004f * scale), (0.0035f * scale), 0.0f, 0.0f, 0.0f, 1);
 
 		glBegin(GL_LINES);
 		glVertex2f(xOriginBheem + (-0.7130f * scale), yOriginBheem + (0.2150f * scale));
@@ -304,7 +327,7 @@ void drawHeadBheem(float xOriginBheem, float yOriginBheem, float scale)
 void drawClothBackSideBheem(float xOriginBheem, float yOriginBheem, float scale)
 {
 	{
-		glColor3f(0.50f, 0.67f, 0.35f);
+		BHEEM_SHOULDER_CLOTH_MAJOR
 		glBegin(GL_POLYGON);
 		glVertex2f(xOriginBheem + (-0.844f * scale), yOriginBheem + (-0.050f * scale));
 		glVertex2f(xOriginBheem + (-0.844f * scale), yOriginBheem + (-0.200f * scale));
@@ -321,7 +344,7 @@ void drawClothBackSideBheem(float xOriginBheem, float yOriginBheem, float scale)
 			xOriginBheem + (-0.834f * scale), yOriginBheem + (-0.375f * scale));
 
 		glLineWidth(5.0f);
-		glColor3f(0.87f, 0.40f, 0.44f);
+		BHEEM_SHOULDER_CLOTH_MINOR
 		glBegin(GL_LINES);
 		glVertex2f(xOriginBheem + (-0.834f * scale), yOriginBheem + (-0.375f * scale));
 		glVertex2f(xOriginBheem + (-0.860f * scale), yOriginBheem + (-0.350f * scale));
@@ -655,7 +678,7 @@ void drawCommonBodyBheem(float xOriginBheem, float yOriginBheem, float scale, in
 	}
 }
 
-void drawHandAndClothBheem(float xOriginBheem, float yOriginBheem, float scale, int iStanding)
+void drawHandAndClothBheem(float xOriginBheem, float yOriginBheem, float scale, int iHandPosition)
 {
 	// Ear rudraksh
 	drawcircleBheem(
@@ -705,7 +728,7 @@ void drawHandAndClothBheem(float xOriginBheem, float yOriginBheem, float scale, 
 
 	{
 		// shoulder cloth
-		glColor3f(0.50f, 0.67f, 0.35f);
+		BHEEM_SHOULDER_CLOTH_MAJOR
 
 		drawQuadrangleBheem(
 			xOriginBheem + (-0.680f * scale), yOriginBheem + (0.051f * scale),
@@ -714,7 +737,7 @@ void drawHandAndClothBheem(float xOriginBheem, float yOriginBheem, float scale, 
 			xOriginBheem + (-0.720f * scale), yOriginBheem + (-0.345f * scale));
 
 		glLineWidth(5.0f);
-		glColor3f(0.87f, 0.40f, 0.44f);
+		BHEEM_SHOULDER_CLOTH_MINOR
 		glBegin(GL_LINES);
 		glVertex2f(xOriginBheem + (-0.720f * scale), yOriginBheem + (0.071f * scale));
 		glVertex2f(xOriginBheem + (-0.760f * scale), yOriginBheem + (-0.325f * scale));
@@ -732,7 +755,7 @@ void drawHandAndClothBheem(float xOriginBheem, float yOriginBheem, float scale, 
 
 		glLineWidth(1.0f);
 
-		glColor3f(0.50f, 0.67f, 0.35f);
+		BHEEM_SHOULDER_CLOTH_MAJOR
 
 		glBegin(GL_POLYGON);
 		glVertex2f(xOriginBheem + (-0.800f * scale), yOriginBheem + (0.075f * scale));
@@ -753,7 +776,7 @@ void drawHandAndClothBheem(float xOriginBheem, float yOriginBheem, float scale, 
 		glEnd();
 
 		glLineWidth(5.0f);
-		glColor3f(0.87f, 0.40f, 0.44f);
+		BHEEM_SHOULDER_CLOTH_MINOR
 		glBegin(GL_LINES);
 		glVertex2f(xOriginBheem + (-0.800f * scale), yOriginBheem + (0.075f * scale));
 		glVertex2f(xOriginBheem + (-0.765f * scale), yOriginBheem + (-0.050f * scale));
@@ -842,7 +865,7 @@ void drawHandAndClothBheem(float xOriginBheem, float yOriginBheem, float scale, 
 			xOriginBheem + (-0.6175f * scale), yOriginBheem + (0.020f * scale),
 			xOriginBheem + (-0.6050f * scale), yOriginBheem + (0.024f * scale)); // finger tips
 
-		if (iStanding == 1)
+		if (iHandPosition == 1)
 		{
 			drawQuadrangleBheem(
 				xOriginBheem + (-0.6250f * scale), yOriginBheem + (-0.075f * scale),
@@ -862,7 +885,7 @@ void drawHandAndClothBheem(float xOriginBheem, float yOriginBheem, float scale, 
 		// fingers
 		{
 			glColor3f(0.6f, 0.6f, 0.6f);
-			if (iStanding == 1)
+			if (iHandPosition == 1)
 			{
 				glBegin(GL_LINES);
 				glVertex2f(xOriginBheem + (-0.6190f * scale), yOriginBheem + (-0.006f * scale));
@@ -886,7 +909,7 @@ void drawHandAndClothBheem(float xOriginBheem, float yOriginBheem, float scale, 
 			glEnd();
 		}
 
-		if (iStanding == 1)
+		if (iHandPosition == 1)
 		{
 			// front side hand
 			SKIN_COLOR
@@ -968,5 +991,33 @@ void drawHandAndClothBheem(float xOriginBheem, float yOriginBheem, float scale, 
 				xOriginBheem + (-0.6000f * scale), yOriginBheem + (-0.150f * scale),
 				xOriginBheem + (-0.6100f * scale), yOriginBheem + (-0.195f * scale));
 		}
+	}
+
+	{
+
+		glColor3f(0.0f, 0.0f, 0.0f);
+		glLineWidth(1.0);
+		glBegin(GL_LINES);
+		glVertex2f(xOriginBheem + (-0.815f * scale), yOriginBheem + (-0.12f * scale));
+		glVertex2f(xOriginBheem + (-0.767f * scale), yOriginBheem + (-0.08f * scale));
+		glEnd();
+
+		glLineWidth(1.0);
+		glBegin(GL_LINES);
+		glVertex2f(xOriginBheem + (-0.818f * scale), yOriginBheem + (-0.11f * scale));
+		glVertex2f(xOriginBheem + (-0.768f * scale), yOriginBheem + (-0.07f * scale));
+		glEnd();
+
+		glLineWidth(1.0);
+		glBegin(GL_LINES);
+		glVertex2f(xOriginBheem + (-0.68f * scale), yOriginBheem + (-0.10f * scale));
+		glVertex2f(xOriginBheem + (-0.662f * scale), yOriginBheem + (-0.08f * scale));
+		glEnd();
+
+		glLineWidth(1.0);
+		glBegin(GL_LINES);
+		glVertex2f(xOriginBheem + (-0.68f * scale), yOriginBheem + (-0.09f * scale));
+		glVertex2f(xOriginBheem + (-0.663f * scale), yOriginBheem + (-0.07f * scale));
+		glEnd();
 	}
 }

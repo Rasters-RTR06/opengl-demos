@@ -126,6 +126,7 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
     }
 
     case 'B': case 'b':
+    {
         MY_POINT startB = start;
         MY_POINT endB = { startX, endY, 0.0f };
         drawLine(color, thickness, startB, endB);
@@ -141,8 +142,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         translationFactor.y = startY + height / 4.0f;
         drawEllipse(color, angle, scalingFactor, translationFactor, reflectionFactor, radius, 0.0f);
         break;
+    }
 
     case 'C': case 'c':
+    {
         angle.x = PI / 4.0f;
         angle.y = 7.0f * angle.x;
         translationFactor.x = startX + width / 2.0f;
@@ -150,8 +153,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         drawEllipse(color, angle, scalingFactor, translationFactor, reflectionFactor, radius, 0.0f);
         drawEllipse(color, angle, scalingFactor, translationFactor, reflectionFactor, radius, 0.0f);
         break;
+    }
 
     case 'D': case 'd':
+    {
         angle.y = PI / 2.0f;
         angle.x = -1 * angle.y;
         translationFactor.x = startX + width / 2.0f;
@@ -171,8 +176,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         endD.y = startY;
         drawLine(color, thickness, startD, endD);
         break;
+    }
 
     case 'E': case 'e':
+    {
         MY_POINT startE = start;
         MY_POINT endE = {startX + width, startY, 0.0f};
         drawLine(color, thickness, startE, endE);
@@ -191,8 +198,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         endE.y = startY + height / 2.0f;
         drawLine(color, thickness, startE, endE);
         break;
+    }
 
     case 'F': case 'f':
+    {
         MY_POINT startF = start;
         MY_POINT endF = { startX, startY + height, 0.0f };
         drawLine(color, thickness, startF, endF);
@@ -207,8 +216,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         endF.y = startY + height / 2.0f;
         drawLine(color, thickness, startF, endF);
         break;
+    }
 
     case 'G': case 'g':
+    {
         angle.x = PI / 4.0f;
         angle.y = 7.0f * angle.x;
         translationFactor.x = startX + width / 2.0f;
@@ -224,8 +235,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         endG.x = endX - width / 6.0f;
         drawLine(color, thickness, startG, endG);
         break;
+    }
 
     case 'H': case 'h':
+    {
         MY_POINT startH = start;
         MY_POINT endH = {startX, endY, 0.0f};
         drawLine(color, thickness, startH, endH);
@@ -241,8 +254,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         endH.y = endY - height / 2.0f;
         drawLine(color, thickness, startH, endH);
         break;
+    }
 
     case 'I': case 'i':
+    {
         MY_POINT startI = start;
         MY_POINT endI = {endX, startY, 0.0f};
         drawLine(color, thickness, startI, endI);
@@ -256,8 +271,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         endI.x = startX + width / 2.0f;
         drawLine(color, thickness, startI, endI);
         break;
+    }
 
     case 'J': case 'j':
+    {
         MY_POINT startJ = {startX, endY, 0.0f};
         MY_POINT endJ = { endX, endY, 0.0f };
         drawLine(color, thickness, startJ, endJ);
@@ -275,8 +292,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         radius.y = height / 4.0f;
         drawEllipse(color, angle, scalingFactor, translationFactor, reflectionFactor, radius, 0.0f);
         break;
+    }
 
     case 'K': case 'k':
+    {
         MY_POINT startK = start;
         MY_POINT endK = { startX, startY + height, 0.0f };
         drawLine(color, thickness, startK, endK);
@@ -288,8 +307,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         endK.y = startY;
         drawLine(color, thickness, startK, endK);
         break;
+    }
 
     case 'L': case 'l':
+    {
         MY_POINT startL = start;
         MY_POINT endL = { startX, startY + height, 0.0f };
         drawLine(color, thickness, startL, endL);
@@ -298,8 +319,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         endL.x = endX;
         drawLine(color, thickness, startL, endL);
         break;
+    }
 
     case 'M': case 'm':
+    {
         MY_POINT startM = start;
         MY_POINT endM = { startX, endY, 0.0f };
         MY_POINT centerM = {startX + width / 2.0f, startY + height / 2.0f, 0.0f};
@@ -312,8 +335,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         drawLine(color, thickness, startM, endM);
         drawLine(color, thickness, centerM, endM);
         break;
+    }
 
     case 'N': case 'n':
+    {
         MY_POINT startN = start;
         MY_POINT endN = { startX, endY, 0.0f };
         drawLine(color, thickness, startN, endN);
@@ -328,16 +353,20 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         endN.y = startY;
         drawLine(color, thickness, startN, endN);
         break;
+    }
 
     case 'O': case 'o':
+    {
         angle.x = 0;
         angle.y = 2 * PI;
         translationFactor.x = startX + width / 2.0f;
         translationFactor.y = startY + height / 2.0f;
         drawEllipse(color, angle, scalingFactor, translationFactor, reflectionFactor, radius, 0.0f);
         break;
+    }
 
     case 'P': case 'p':
+    {
         MY_POINT startP = start;
         MY_POINT endP = { startX, endY, 0.0f };
         drawLine(color, thickness, startP, endP);
@@ -350,8 +379,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         radius.y = height / 4.0f;
         drawEllipse(color, angle, scalingFactor, translationFactor, reflectionFactor, radius, 0.0f);
         break;
+    }
 
     case 'Q': case 'q':
+    {
         angle.x = 0;
         angle.y = 2 * PI;
         translationFactor.x = startX + width / 2.0f;
@@ -362,8 +393,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         MY_POINT endQ = { endX, startY, 0.0f };
         drawLine(color, thickness, centerQ, endQ);
         break;
+    }
 
     case 'R': case 'r':
+    {
         MY_POINT startR = start;
         MY_POINT endR = { startX, endY, 0.0f };
         drawLine(color, thickness, startR, endR);
@@ -380,8 +413,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         radius.y = height / 4.0f;
         drawEllipse(color, angle, scalingFactor, translationFactor, reflectionFactor, radius, 0.0f);
         break;
+    }
 
     case 'S': case 's':
+    {
         radius.x = width / 2.0f;
         radius.y = height / 3.0f;
         angle.x = PI;
@@ -400,8 +435,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         MY_POINT endS = { startX + width, startY + height / 3.0f, 0.0f };
         drawLine(color, thickness, startS, endS);
         break;
+    }
 
     case 'T': case 't':
+    {
         MY_POINT startT = {startX + width / 2.0f, startY, 0.0f};
         MY_POINT endT = { startX + width / 2.0f, endY, 0.0f };
         drawLine(color, thickness, startT, endT);
@@ -411,8 +448,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         endT.x = endX;
         drawLine(color, thickness, startT, endT);
         break;
+    }
 
     case 'U': case 'u':
+    {
         MY_POINT startU = { startX, endY, 0.0f };
         MY_POINT endU = { startX, startY + height / 3.0f, 0.0f };
         drawLine(color, thickness, startU, endU);
@@ -429,8 +468,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         radius.y = height / 3.0f;
         drawEllipse(color, angle, scalingFactor, translationFactor, reflectionFactor, radius, 0.0f);
         break;
+    }
 
     case 'V': case 'v':
+    {
         MY_POINT startV = { startX, endY, 0.0f };
         MY_POINT endV = { startX + width / 2.0f, startY, 0.0f };
         drawLine(color, thickness, startV, endV);
@@ -439,8 +480,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         startV.y = endY;
         drawLine(color, thickness, startV, endV);
         break;
+    }
 
     case 'W': case 'w':
+    {
         MY_POINT startW = start;
         MY_POINT endW = { startX, endY, 0.0f };
         MY_POINT centerW = { startX + width / 2.0f, startY + height / 2.0f, 0.0f };
@@ -453,8 +496,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         drawLine(color, thickness, startW, endW);
         drawLine(color, thickness, centerW, startW);
         break;
+    }
 
     case 'X': case 'x':
+    {
         MY_POINT sX = start;
         MY_POINT eX = {endX, endY, 0.0f};
         drawLine(color, thickness, sX, eX);
@@ -463,8 +508,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         eX.y = startY;
         drawLine(color, thickness, sX, eX);
         break;
+    }
 
     case 'Y': case 'y':
+    {
         MY_POINT sY = {startX, endY, 0.0f};
         MY_POINT centerY = { startX + width / 2.0f, startY + height / 2.0f, 0.0f };
         drawLine(color, thickness, sY, centerY);
@@ -476,8 +523,10 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         sY.y = startY;
         drawLine(color, thickness, sY, centerY);
         break;
+    }
 
     case 'Z': case 'z':
+    {
         MY_POINT startZ = start;
         MY_POINT endZ = {endX, startY, 0.0f};
         drawLine(color, thickness, startZ, endZ);
@@ -488,6 +537,7 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
         startZ.y = endY;
         drawLine(color, thickness, startZ, endZ);
         break;
+    }
     }
 }
 

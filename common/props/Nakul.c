@@ -30,8 +30,10 @@
 
 #define NAKUL_DHOTI_COLOR { glColor3f(0.78f, 0.78f, 0.278f);}
 
-#define NAKUL_SHOULDER_CLOTH_MAJOR {glColor3f(0.50f, 0.67f, 0.35f);}
-#define NAKUL_SHOULDER_CLOTH_MINOR {glColor3f(0.87f, 0.40f, 0.44f);}
+//#define NAKUL_SHOULDER_CLOTH_MAJOR {glColor3f(0.50f, 0.67f, 0.35f);}
+#define NAKUL_SHOULDER_CLOTH_MAJOR {glColor3f(0.27f, 0.01f, 0.04f);}
+//#define NAKUL_SHOULDER_CLOTH_MINOR {glColor3f(0.87f, 0.40f, 0.44f);}
+#define NAKUL_SHOULDER_CLOTH_MINOR {glColor3f(0.75f, 0.55f, 0.00f);}
 
 //void drawNakulDhoti() {
     
@@ -103,7 +105,7 @@ void drawTriangleNakul(float x1, float y1, float x2, float y2, float x3, float y
 	glEnd();
 }
 
-void drawNakul(float xOriginNakul, float yOriginNakul, float scale, int iStanding)
+void drawNakul(float xOriginNakul, float yOriginNakul, float scale, int iStanding, int iHandPosition)
 {
 	void drawClothBackSideNakul(float, float, float);
 	void drawHeadNakul(float, float, float);
@@ -113,7 +115,7 @@ void drawNakul(float xOriginNakul, float yOriginNakul, float scale, int iStandin
 	drawClothBackSideNakul(xOriginNakul, yOriginNakul, scale);
 	drawHeadNakul(xOriginNakul, yOriginNakul, scale);
 	drawCommonBodyNakul(xOriginNakul, yOriginNakul, scale, iStanding);
-	drawHandAndClothNakul(xOriginNakul, yOriginNakul, scale, iStanding);
+	drawHandAndClothNakul(xOriginNakul, yOriginNakul, scale, iHandPosition);
 }
 
 void drawHeadNakul(float xOriginNakul, float yOriginNakul, float scale)
@@ -210,12 +212,15 @@ void drawHeadNakul(float xOriginNakul, float yOriginNakul, float scale)
 		glVertex2f(xOriginNakul + (-0.7130f * scale), yOriginNakul + (0.2000f * scale));
 		glEnd();
 
-		glColor3f(0.0f, 0.0f, 0.0f);
+		/*glColor3f(0.0f, 0.0f, 0.0f);
 		glPointSize(4.0f);
 		glBegin(GL_POINTS);
 		glVertex2f(xOriginNakul + (-0.7200f * scale), yOriginNakul + (0.2000f * scale));
 		glEnd();
-		glPointSize(1.0f);
+		glPointSize(1.0f);*/
+		drawcircleNakul(
+			xOriginNakul + (-0.7200f * scale), yOriginNakul + (0.2000f * scale),
+			(0.004f * scale), (0.0035f * scale), 0.0f, 0.0f, 0.0f, 1);
 
 		glBegin(GL_LINES);
 		glVertex2f(xOriginNakul + (-0.7130f * scale), yOriginNakul + (0.2150f * scale));
@@ -624,7 +629,7 @@ void drawCommonBodyNakul(float xOriginNakul, float yOriginNakul, float scale, in
 	}
 }
 
-void drawHandAndClothNakul(float xOriginNakul, float yOriginNakul, float scale, int iStanding)
+void drawHandAndClothNakul(float xOriginNakul, float yOriginNakul, float scale, int iHandPosition)
 {
 	// Ear rudraksh
 	drawcircleNakul(
@@ -811,7 +816,7 @@ void drawHandAndClothNakul(float xOriginNakul, float yOriginNakul, float scale, 
 			xOriginNakul + (-0.6175f * scale), yOriginNakul + (0.020f * scale),
 			xOriginNakul + (-0.6050f * scale), yOriginNakul + (0.024f * scale)); // finger tips
 
-		if (iStanding == 1)
+		if (iHandPosition == 1)
 		{
 			drawQuadrangleNakul(
 				xOriginNakul + (-0.6250f * scale), yOriginNakul + (-0.075f * scale),
@@ -831,7 +836,7 @@ void drawHandAndClothNakul(float xOriginNakul, float yOriginNakul, float scale, 
 		// fingers
 		{
 			glColor3f(0.6f, 0.6f, 0.6f);
-			if (iStanding == 1)
+			if (iHandPosition == 1)
 			{
 				glBegin(GL_LINES);
 				glVertex2f(xOriginNakul + (-0.6190f * scale), yOriginNakul + (-0.006f * scale));
@@ -855,7 +860,7 @@ void drawHandAndClothNakul(float xOriginNakul, float yOriginNakul, float scale, 
 			glEnd();
 		}
 
-		if (iStanding == 1)
+		if (iHandPosition == 1)
 		{
 			// front side hand
 			SKIN_COLOR
@@ -937,5 +942,32 @@ void drawHandAndClothNakul(float xOriginNakul, float yOriginNakul, float scale, 
 				xOriginNakul + (-0.6000f * scale), yOriginNakul + (-0.150f * scale),
 				xOriginNakul + (-0.6100f * scale), yOriginNakul + (-0.195f * scale));
 		}
+	}
+	{
+
+		glColor3f(0.0f, 0.0f, 0.0f);
+		glLineWidth(1.0);
+		glBegin(GL_LINES);
+		glVertex2f(xOriginNakul + (-0.815f * scale), yOriginNakul + (-0.12f * scale));
+		glVertex2f(xOriginNakul + (-0.767f * scale), yOriginNakul + (-0.08f * scale));
+		glEnd();
+
+		glLineWidth(1.0);
+		glBegin(GL_LINES);
+		glVertex2f(xOriginNakul + (-0.818f * scale), yOriginNakul + (-0.11f * scale));
+		glVertex2f(xOriginNakul + (-0.768f * scale), yOriginNakul + (-0.07f * scale));
+		glEnd();
+
+		glLineWidth(1.0);
+		glBegin(GL_LINES);
+		glVertex2f(xOriginNakul + (-0.68f * scale), yOriginNakul + (-0.10f * scale));
+		glVertex2f(xOriginNakul + (-0.662f * scale), yOriginNakul + (-0.08f * scale));
+		glEnd();
+
+		glLineWidth(1.0);
+		glBegin(GL_LINES);
+		glVertex2f(xOriginNakul + (-0.68f * scale), yOriginNakul + (-0.09f * scale));
+		glVertex2f(xOriginNakul + (-0.663f * scale), yOriginNakul + (-0.07f * scale));
+		glEnd();
 	}
 }
