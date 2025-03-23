@@ -18,9 +18,8 @@
 #include "../common/props/flowers.c"
 #include "../common/props/Slogan.c"
 #include "../common/props/plate.c"
-#include "Scene4.c"
-
 /*******************************/
+
 /* TYPE DEFINITIONS AND DECLARATIONS */
 /******************************/
 
@@ -29,12 +28,12 @@ typedef struct Scene
 {
     void (*render)(void);                    // Function to render the scene
     void (*update)(void);                    // Function to update the scene
-    BOOL (*shouldTransition)(BOOL iSkipped); // Function to check if transition to next scene is needed
-    struct Scene *nextScene;                 // Pointer to next scene in the chain
+    BOOL(*shouldTransition)(BOOL iSkipped); // Function to check if transition to next scene is needed
+    struct Scene* nextScene;                 // Pointer to next scene in the chain
 } Scene;
 
 // External scene variables
-Scene *currentScene = NULL;
+Scene* currentScene = NULL;
 
 // Scene-specific globals
 BOOL bCallTounge = FALSE;
@@ -80,9 +79,6 @@ BOOL scene2ShouldTransition(BOOL iSkipped);
 void scene3Render(void);
 void scene3Update(void);
 BOOL scene3ShouldTransition(BOOL iSkipped);
-void scene4Render(void);
-void scene4Update(void);
-BOOL scene4ShouldTransition(BOOL iSkipped);
 void scene5Render(void);
 void scene5Update(void);
 BOOL scene5ShouldTransition(BOOL iSkipped);
@@ -98,19 +94,18 @@ BOOL scene7ShouldTransition(BOOL iSkipped);
 /******************************/
 
 // Scene management variables
-Scene scene0 = {scene0Render, scene0Update, scene0ShouldTransition, NULL};
-Scene Prabhat = {PrabhatRender, PrabhatUpdate, PrabhatShouldTransition, NULL};
-Scene scene1 = {scene1Render, scene1Update, scene1ShouldTransition, NULL};
-Scene scene2 = {scene2Render, scene2Update, scene2ShouldTransition, NULL};
-Scene scene3 = {scene3Render, scene3Update, scene3ShouldTransition, NULL};
-Scene scene4 = {scene4Render, scene4Update, scene4ShouldTransition, NULL};
+Scene scene0 = { scene0Render, scene0Update, scene0ShouldTransition, NULL };
+Scene Prabhat = { PrabhatRender, PrabhatUpdate, PrabhatShouldTransition, NULL };
+Scene scene1 = { scene1Render, scene1Update, scene1ShouldTransition, NULL };
+Scene scene2 = { scene2Render, scene2Update, scene2ShouldTransition, NULL };
+Scene scene3 = { scene3Render, scene3Update, scene3ShouldTransition, NULL };
 Scene scene5;
 Scene scene6_2 = { scene6_2Render, scene6_2Update, scene6_2ShouldTransition, NULL };
 Scene scene7 = { scene7Render, scene7Update, scene7ShouldTransition, NULL };
 Scene scene6_5;
 
 // External global variables from Raster.c
-extern FILE *gpFile;
+extern FILE* gpFile;
 extern UINT iTimeElapsed;
 
 TRANSLATION rathTranslation;
@@ -130,19 +125,18 @@ void initScenes(void)
     BOOL shouldTransitionScene6_5(BOOL);
 
     // code
-    scene5 = (Scene){scene5Render, scene5Update, scene5ShouldTransition, NULL};
+    scene5 = (Scene){ scene5Render, scene5Update, scene5ShouldTransition, NULL };
     scene6_5 = (Scene){
         renderScene6_5,
         updateScene6_5,
         shouldTransitionScene6_5,
-        NULL};
+        NULL };
 
     scene0.nextScene = &Prabhat;
     Prabhat.nextScene = &scene1;
     scene1.nextScene = &scene2;
     scene2.nextScene = &scene3;
-    scene3.nextScene = &scene4;
-    scene4.nextScene = &scene5;
+    scene3.nextScene = &scene5;
     scene5.nextScene = &scene6_2;
     scene6_2.nextScene = &scene6_5;
     scene6_5.nextScene = &scene7;  // Fixed: Added & to get the address of scene7
@@ -150,23 +144,11 @@ void initScenes(void)
 
     currentScene = &scene0;    // Start with scene 1
 
-    cameraTranslationScene6_5 = (TRANSLATION){0.0f, 0.0f, 0.0f};
-    scalingScene6_5 = (SCALING){1.0f, 1.0f, 1.0f};
+    cameraTranslationScene6_5 = (TRANSLATION){ 0.0f, 0.0f, 0.0f };
+    scalingScene6_5 = (SCALING){ 1.0f, 1.0f, 1.0f };
 
     cameraTranslationScene6_2 = (TRANSLATION){ 0.0f, 0.0f, 0.0f };
     scalingScene6_2 = (SCALING){ 1.0f, 1.0f, 1.0f };
-
-    FILE* fp = fopen("./sandeshfinal.wav", "r");
-    bool is_exist = false;
-    if (fp != NULL)
-    {
-        is_exist = true;
-        fclose(fp); // close the file
-    }
-    if (is_exist == true)
-    {
-        PlaySound("./sandeshfinal.wav", NULL, SND_ASYNC | SND_FILENAME);
-    }
 }
 
 // Update the current scene
@@ -507,7 +489,7 @@ void scene2Render(void)
 
     // Draw scene elements.
     drawGround();
-    drawNakul(0.45, -0.3, 0.5, 1, 1);
+    drawYudhishthir(0.45, -0.3, 0.5, 1, 1);
     drawDraupadi(0.30, -0.3, 0.5, 1, 1);
     drawBheem(0.15, -0.3, 0.45, 1, 1);
     drawArjun(0.00, -0.3, 0.5, 1, 1, 0);
@@ -516,18 +498,18 @@ void scene2Render(void)
     drawDenseForrest();
 
     if (phase == 0 || (phase == 1 && elapsed < 2.0f))
-{
-    for (float x = startX; x <= endX; x += spacing)
     {
-        drawCompactPlant(x, -1.0f, darkGreen, yellowish);
+        for (float x = startX; x <= endX; x += spacing)
+        {
+            drawCompactPlant(x, -1.0f, darkGreen, yellowish);
+        }
+        drawTallNarrowPlant(-0.3f, -1.0f, darkGreen, yellowish);
     }
-    drawTallNarrowPlant(-0.3f, -1.0f, darkGreen, yellowish);
-}
     else if ((phase == 1 && elapsed >= 2.0f) || phase >= 2)
     {
         drawFrontTrees();
     }
-    
+
 
 }
 
@@ -555,40 +537,19 @@ void scene3Render(void)
 {
     // Draw scene 3 elements
     // Add scene 3 specific rendering
+    drawGround();
+    drawDenseForrest();
+    drawRightPatternedDeer(0.9, 0.7, 0.05);
+    drawLeftPatternedDeer(0.9, 0.7, 0.05);
 }
 
 void scene3Update(void)
 {
+    
     // Update scene 3 elements
 }
 
 BOOL scene3ShouldTransition(BOOL iSkipped)
-{
-    int iThresholdTime = 520;
-    if (iSkipped)
-    {
-        iTimeElapsed = 0;
-        iTimeElapsed += iThresholdTime;
-    }
-    // Transition to the next scene after 2 min 14 sec seconds
-    return (iTimeElapsed >= iThresholdTime);
-}
-
-/*******************************/
-/* SCENE 5 IMPLEMENTATION */
-/******************************/
-
-void scene4Render(void)
-{
-    sceneFourRender();
-}
-
-void scene4Update(void)
-{
-    sceneFourUpdate(iTimeElapsed - 520);
-}
-
-BOOL scene4ShouldTransition(BOOL iSkipped)
 {
     int iThresholdTime = 720;
     if (iSkipped)
@@ -596,6 +557,7 @@ BOOL scene4ShouldTransition(BOOL iSkipped)
         iTimeElapsed = 0;
         iTimeElapsed += iThresholdTime;
     }
+    // Transition to the next scene after 2 min 14 sec seconds
     return (iTimeElapsed >= iThresholdTime);
 }
 
@@ -633,8 +595,8 @@ void scene5Render(void)
         // Shri-Krishna
         KrishnaRath(-0.8f, -0.3f, 0.50f);
         // Rath
-        MY_POINT startPosition = {0.2f, -0.5f, 0.8f};
-        SCALING scaleBy = {1.3f, 1.3f, 1.3f};
+        MY_POINT startPosition = { 0.2f, -0.5f, 0.8f };
+        SCALING scaleBy = { 1.3f, 1.3f, 1.3f };
         rath(startPosition, rathTranslation, scaleBy);
         drawHorse(-0.3f, -0.5f, 0.8f);
         drawFrontTrees();
@@ -971,7 +933,7 @@ BOOL scene6_2ShouldTransition(BOOL iSceneSkipped)
  * At 175: translate towards right till krishna appears (for 5 secs)
  * At 180: start zooming in on krishna (for 10 secs)
  */
-/******************************/
+ /******************************/
 void renderScene6_5()
 {
     void drawRoom(void);
@@ -1021,42 +983,42 @@ void updateScene6_5()
     {
         // show krishna face (zoomed in) for 2 secs
     case 1620:
-        scalingScene6_5 = (SCALING){5.0f, 5.0f, 5.0f};
-        cameraTranslationScene6_5 = (TRANSLATION){-0.70 * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f};
+        scalingScene6_5 = (SCALING){ 5.0f, 5.0f, 5.0f };
+        cameraTranslationScene6_5 = (TRANSLATION){ -0.70 * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f };
         break;
 
         // show pandavs
     case 1640:
-        scalingScene6_5 = (SCALING){5.0f, 5.0f, 5.0f};
-        cameraTranslationScene6_5 = (TRANSLATION){-0.2f * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f};
+        scalingScene6_5 = (SCALING){ 5.0f, 5.0f, 5.0f };
+        cameraTranslationScene6_5 = (TRANSLATION){ -0.2f * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f };
         break;
 
         // show pandavs face (zoomed in) for 4 secs translate towards right to left
     case 1650:
         transtateLeft = TRUE;
-        scalingScene6_5 = (SCALING){5.0f, 5.0f, 5.0f};
-        cameraTranslationScene6_5 = (TRANSLATION){-0.2f * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f};
+        scalingScene6_5 = (SCALING){ 5.0f, 5.0f, 5.0f };
+        cameraTranslationScene6_5 = (TRANSLATION){ -0.2f * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f };
         break;
 
         // show krishna face (zoomed in) again for 1 sec
     case 1690:
         transtateLeft = FALSE;
-        scalingScene6_5 = (SCALING){5.0f, 5.0f, 5.0f};
-        cameraTranslationScene6_5 = (TRANSLATION){-0.70f * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f};
+        scalingScene6_5 = (SCALING){ 5.0f, 5.0f, 5.0f };
+        cameraTranslationScene6_5 = (TRANSLATION){ -0.70f * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f };
         break;
 
         // show pandavs from left to right zooming out (for 6 secs)
     case 1700:
         zoomOutPandav = TRUE;
-        scalingScene6_5 = (SCALING){5.0f, 5.0f, 5.0f};
-        cameraTranslationScene6_5 = (TRANSLATION){1.0f * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f};
+        scalingScene6_5 = (SCALING){ 5.0f, 5.0f, 5.0f };
+        cameraTranslationScene6_5 = (TRANSLATION){ 1.0f * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f };
         break;
 
     case 1780:
         zoomOutPandav = FALSE;
         zoomInKrishna = TRUE;
-        scalingScene6_5 = (SCALING){1.0f, 1.0f, 1.0f};
-        cameraTranslationScene6_5 = (TRANSLATION){0.0f, 0.0f, 0.0f};
+        scalingScene6_5 = (SCALING){ 1.0f, 1.0f, 1.0f };
+        cameraTranslationScene6_5 = (TRANSLATION){ 0.0f, 0.0f, 0.0f };
         break;
 
     default:
@@ -1123,7 +1085,7 @@ BOOL shouldTransitionScene6_5(BOOL iSceneSkipped)
     return TRUE;
 }
 
-/*******************************/ 
+/*******************************/
 /* SCENE 7 IMPLEMENTATION */
 /******************************/
 void scene7Render(void)
@@ -1137,17 +1099,17 @@ void scene7Update(void)
 {
     if (scaleSlogan <= 0.9f)
     {
-        scaleSlogan = scaleSlogan + 0.001f;    
+        scaleSlogan = scaleSlogan + 0.001f;
     }
-    
+
     // Check time-based triggers
     switch (iTimeElapsed) {
-        case 1870:
-            break;
-        default:
-            break;
+    case 1870:
+        break;
+    default:
+        break;
     }
-    
+
 }
 
 BOOL scene7ShouldTransition(BOOL iSkipped)
@@ -1161,4 +1123,3 @@ BOOL scene7ShouldTransition(BOOL iSkipped)
     // Transition to the next scene after 2 min 14 sec seconds
     return (iTimeElapsed >= iThresholdTime);
 }
-
