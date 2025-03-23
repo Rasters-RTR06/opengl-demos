@@ -671,7 +671,7 @@ void drawHandAndClothYP(float xOrigin, float yOrigin, float scale, int iStanding
 
 	drawcircleYP(
 		xOrigin + (-0.750f * scale), yOrigin + (-0.0500f * scale),
-		yOrigin + (0.005f * scale), (0.005f * scale), 0.33f, 0.11f, 0.0f, 1);
+		(0.005f * scale), (0.005f * scale), 0.33f, 0.11f, 0.0f, 1);
 
 	{
 		// shoulder cloth
