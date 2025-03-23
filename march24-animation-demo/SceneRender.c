@@ -9,13 +9,18 @@
 #include "../common/props/peacock.c"
 #include "../common/props/fullkrushna.c"
 #include "../common/props/horse.c"
+// #include "../common/props/SandeshText.c"
+// #include "../common/props/Sahadev.c"
 #include "../common/props/nikhilsSandeshtxt.c"
 #include "../common/props/sahadev.c"
 #include "Scene6_2Render.h"
 #include "Scene4.h"
 #include "../common/props/krishnastanding.c"
+#include "../common/props/tutaribai.c"
+#include "../common/props/flowers.c"
 
 /*******************************/
+
 /* TYPE DEFINITIONS AND DECLARATIONS */
 /******************************/
 
@@ -60,6 +65,9 @@ void logSceneTransition(UINT iTimeElapsed);
 void scene0Render(void);
 void scene0Update(void);
 BOOL scene0ShouldTransition(BOOL iSkipped);
+void PrabhatRender(void);
+void PrabhatUpdate(void);
+BOOL PrabhatShouldTransition(BOOL iSkipped);
 void scene1Render(void);
 void scene1Update(void);
 BOOL scene1ShouldTransition(BOOL iSkipped);
@@ -85,6 +93,7 @@ BOOL scene6_2ShouldTransition(BOOL iSkipped);
 
 // Scene management variables
 Scene scene0 = {scene0Render, scene0Update, scene0ShouldTransition, NULL};
+Scene Prabhat = {PrabhatRender, PrabhatUpdate, PrabhatShouldTransition, NULL};
 Scene scene1 = {scene1Render, scene1Update, scene1ShouldTransition, NULL};
 Scene scene2 = {scene2Render, scene2Update, scene2ShouldTransition, NULL};
 Scene scene3 = {scene3Render, scene3Update, scene3ShouldTransition, NULL};
@@ -121,12 +130,15 @@ void initScenes(void)
         shouldTransitionScene6_5,
         NULL};
 
-    scene0.nextScene = &scene1;
+    scene0.nextScene = &Prabhat;
+    Prabhat.nextScene = &scene1;
     scene1.nextScene = &scene2;
     scene2.nextScene = &scene3;
     scene3.nextScene = &scene4;
     scene4.nextScene = &scene5;
     scene5.nextScene = &scene6_2;
+    // scene6_2.nextScene = NULL;// End of chain
+    // currentScene = &scene2;   // Start with scene 1
     scene6_2.nextScene = &scene6_5;
     scene6_5.nextScene = NULL; // End of chain
 
@@ -208,6 +220,38 @@ BOOL scene0ShouldTransition(BOOL iSkipped)
 }
 
 /*******************************/
+/* PRABHAT IMPLEMENTATION */
+/******************************/
+void PrabhatRender(void)
+{
+    drawGround();
+    drawTutariWithAnimation(0, 0, 1);
+}
+
+void PrabhatUpdate(void)
+{
+    updateTutariBai(iTimeElapsed);
+}
+
+BOOL PrabhatShouldTransition(BOOL iSkipped)
+{
+    int iThresholdTime = 260;
+    BOOL flag = FALSE;
+    if (iSkipped || (iTimeElapsed >= iThresholdTime))
+    {
+        iTimeElapsed = 0;
+        iTimeElapsed += iThresholdTime;
+        flag = TRUE;
+    }
+    if (flag)
+    {
+        iTimeElapsed = 0;
+    }
+    // Transition to the next scene after 15 seconds
+    return (flag);
+}
+
+/*******************************/
 /* SCENE 1 IMPLEMENTATION */
 /******************************/
 void scene1Render(void)
@@ -218,26 +262,26 @@ void scene1Render(void)
     elephant();
     drawButterfly(butterflyX, butterflyY, 0.6f, butterflyRotation);
     toungeMovement();
-    //chamelon(1.5f, -0.35f, 0.2);
-    KrishnaStanding(0, 0, 0.3);
-    
+    // chamelon(1.5f, -0.35f, 0.2);
+
     updateSandesh(bCallSandesh, 1.0f);
 }
 
 void scene1Update(void)
 {
     // Check time-based triggers
-    switch (iTimeElapsed) {
-        case 30:
-            bCallTounge = TRUE;
-            break;
-        case 40:
-            bCallButterfly = TRUE;
-            bCallElephant = TRUE;
-            break;
-        case 100:
-            bCallSandesh = TRUE;  // Hide Sandesh message before scene transition
-            break;
+    switch (iTimeElapsed)
+    {
+    case 30:
+        bCallTounge = TRUE;
+        break;
+    case 40:
+        bCallButterfly = TRUE;
+        bCallElephant = TRUE;
+        break;
+    case 100:
+        bCallSandesh = TRUE; // Hide Sandesh message before scene transition
+        break;
     }
 
     // Update specific elements
@@ -272,36 +316,191 @@ BOOL scene1ShouldTransition(BOOL iSkipped)
 /*******************************/
 /* SCENE 2 IMPLEMENTATION */
 /******************************/
+//
+// void scene2Render(void)
+//{
+//    // Draw scene 2 elements
+//     drawGround();
+//    // Add scene 2 specific rendering
+//}
+//
+// void scene2Update(void)
+//{
+//    // Update scene 2 elements
+//}
+//
+// BOOL scene2ShouldTransition(BOOL iSkipped)
+//{
+//    int iThresholdTime = 460;
+//    BOOL flag = FALSE;
+//    if (iSkipped || (iTimeElapsed >= iThresholdTime))
+//    {
+//        iTimeElapsed = 0;
+//        iTimeElapsed += iThresholdTime;
+//        flag = TRUE;
+//    }
+//    if(flag)
+//    {
+//        iTimeElapsed = 0;
+//    }
+//    // Transition to the next scene after 15 seconds
+//    return (flag);
+//
+//
+/*******************************/
+/* SCENE 2 IMPLEMENTATION */
+/******************************/
 
 void scene2Render(void)
 {
-    // Draw scene 2 elements
-     drawGround();
-    // Add scene 2 specific rendering
+    // Define phase durations (in seconds).
+    const float zoomOutDuration = 5.0f;      // Phase 0: Zoom out from top right.
+    const float waitAfterZoomOut = 6.0;      // Phase 1: Wait after zoom out.
+    const float zoomInDuration = 4.0f;       // Phase 2: Zoom in centered.
+    const float waitAfterZoomIn = 4.0f;      // Phase 3: Wait after zoom in.
+    const float leftMoveZoomDuration = 3.0f; // Phase 4: While moving left, zoom out over this duration.
+
+    // Zoom factors.
+    const float zoomInFactor = 5.0f;  // Fully zoomed in.
+    const float zoomOutFactor = 1.1f; // Zoomed out state.
+
+    // Speed for camera left movement.
+    const float cameraSpeed = 0.01f; // Units per second.
+
+    // Phase definitions:
+    // Phase 0: Zoom out from top right.
+    // Phase 1: Wait after zoom out.
+    // Phase 2: Zoom in centered.
+    // Phase 3: Wait after zoom in.
+    // Phase 4: Move camera to the left while zooming out.
+    static int phase = 0;
+    static clock_t phaseStartTime = 0;
+    static float cameraOffset = 0.0f; // Accumulated offset for leftward camera movement.
+
+    // Initialize phase start time on the first call.
+    if (phaseStartTime == 0)
+        phaseStartTime = clock();
+
+    // Get elapsed time (in seconds) for the current phase.
+    clock_t currentTime = clock();
+    float elapsed = ((float)(currentTime - phaseStartTime)) / CLOCKS_PER_SEC;
+
+    float currentZoom = 1.0f;
+
+    if (phase == 0)
+    {
+        // Phase 0: Zoom out from the top right.
+        if (elapsed < zoomOutDuration)
+        {
+            currentZoom = zoomInFactor - (zoomInFactor - zoomOutFactor) * (elapsed / zoomOutDuration);
+        }
+        else
+        {
+            currentZoom = zoomOutFactor;
+            phase = 1; // Transition to Phase 1.
+            phaseStartTime = clock();
+        }
+    }
+    else if (phase == 1)
+    {
+        // Phase 1: Wait after zoom out.
+        currentZoom = zoomOutFactor;
+        if (elapsed >= waitAfterZoomOut)
+        {
+            phase = 2; // Transition to Phase 2.
+            phaseStartTime = clock();
+        }
+    }
+    else if (phase == 2)
+    {
+        // Phase 2: Zoom in centered.
+        if (elapsed < zoomInDuration)
+        {
+            currentZoom = zoomOutFactor + (zoomInFactor - zoomOutFactor) * (elapsed / zoomInDuration);
+        }
+        else
+        {
+            currentZoom = zoomInFactor;
+            phase = 3; // Transition to Phase 3.
+            phaseStartTime = clock();
+        }
+    }
+    else if (phase == 3)
+    {
+        // Phase 3: Wait after zoom in.
+        currentZoom = zoomInFactor;
+        if (elapsed >= waitAfterZoomIn)
+        {
+            phase = 4; // Transition to Phase 4.
+            phaseStartTime = clock();
+        }
+    }
+    else if (phase == 4)
+    {
+        // Phase 4: Move camera to the left
+        if (elapsed < leftMoveZoomDuration)
+        {
+            currentZoom = zoomInFactor - (zoomInFactor - zoomOutFactor) * (elapsed / leftMoveZoomDuration);
+        }
+        else
+        {
+            currentZoom = zoomOutFactor;
+        }
+        cameraOffset = cameraSpeed * elapsed;
+    }
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+    if (phase == 0 || phase == 1)
+    {
+        // For Phases 0 and 1 (zoom out and wait), use the top right pivot (1,1).
+        glTranslatef(1.0f, 1.0f, 0.0f);
+        glScalef(currentZoom, currentZoom, 1.0f);
+        glTranslatef(-1.0f, -1.0f, 0.0f);
+    }
+    else
+    {
+        // For Phases 2, 3, and 4
+        glTranslatef(0.3f, -0.4f, 0.0f);
+        glScalef(currentZoom, currentZoom, 1.0f);
+        glTranslatef(-0.3f, 0.4f, 0.0f);
+        if (phase == 4)
+        {
+            // To simulate the camera moving left, translate the scene to the right.
+            glTranslatef(cameraOffset, 0.0f, 0.0f);
+        }
+    }
+
+    // Draw scene elements.
+    drawGround();
+    drawDraupadi(0.5, -0.3, 0.5, 1, 1);
+    drawBheem(0.3, -0.3, 0.5, 1, 1);
+    drawArjun(0.1, -0.3, 0.5, 1, 1, 0);
+    drawNakul(-0.1, -0.3, 0.5, 1, 1);
+    drawSahadev(-0.3, -0.3, 0.5, 1, 1, 0);
+    drawDenseForrest();
+    drawFrontTrees();
 }
 
 void scene2Update(void)
 {
+
     // Update scene 2 elements
+    updateDenseForrest();
+    updateFrontForrest();
 }
 
 BOOL scene2ShouldTransition(BOOL iSkipped)
 {
+    // 20 Sec is Temporarily set for testing
     int iThresholdTime = 460;
-    BOOL flag = FALSE;
-    if (iSkipped || (iTimeElapsed >= iThresholdTime))
+    if (iSkipped)
     {
         iTimeElapsed = 0;
         iTimeElapsed += iThresholdTime;
-        flag = TRUE;
     }
-    if(flag)
-    {
-        iTimeElapsed = 0;
-    }
-    // Transition to the next scene after 15 seconds
-    return (flag);
-
+    return (iTimeElapsed >= iThresholdTime);
 }
 
 /*******************************/ 
@@ -320,12 +519,11 @@ void scene3Update(void)
 
 BOOL scene3ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 520;
+    int iThresholdTime = 720;
     if (iSkipped)
     {
         iTimeElapsed = 0;
         iTimeElapsed += iThresholdTime;
-        flag = TRUE;
     }
     if(flag)
     {
@@ -371,7 +569,7 @@ void scene5Render(void)
                 2. lake and cranes, Bhagvan shrikrishna ki sawari   at time 1.16 (76 seconds)
                 3. Patterned deers at time  1.24 (84 seconds)
                 4. Flowers  - Jungle me mangal chaaya at time 1.27 (87 seconds)
-                5. Peacock at time 1.33 (93 seconds)
+                5. Peacock at time 1.33 (95 seconds)
 
     */
     // Draw scene 5 elements
@@ -402,20 +600,26 @@ void scene5Render(void)
 
     if (bShowFlowers == TRUE)
     {
-        // flowers funtion
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        glScalef(0.2f, 0.2f, 0.0f);
+        drawCurve();
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        glScalef(1.0f, 1.0f, 1.0f);
     }
-    if (bShowPatternedDeers)
+    if (bShowPatternedDeers == TRUE)
     {
         drawGround();
         drawDenseForrest();
         drawRightPatternedDeer(0.0f, 0.0f, 0.5f);
         drawLeftPatternedDeer(-0.4f, 0.0f, 0.5f);
     }
-    if (bShowPeacock)
+    if (bShowPeacock == TRUE)
     {
         drawGround();
         drawDenseForrest();
-        drawPeacock(0.0f, 0.0f, 0.3f);
+        drawPeacock(0.0f, 0.0f, 0.8f);
     }
 }
 
@@ -424,28 +628,31 @@ void scene5Update(void)
     // Check time-based triggers
     switch (iTimeElapsed)
     {
-    case 205:
+    case 730:
         bShowRotatingPlants = TRUE;
         break;
-    case 210:
+    case 760:
         bShowRotatingPlants = FALSE;
         bShriKrishnaEntry = TRUE;
         bShowLake = TRUE;
         bShowCranes = TRUE;
         break;
-    case 230:
+    case 840:
         bShriKrishnaEntry = FALSE;
         bShowLake = FALSE;
         bShowCranes = FALSE;
         bShowPatternedDeers = TRUE;
         break;
-    case 240:
+    case 870:
         bShowPatternedDeers = FALSE;
         bShowFlowers = TRUE;
         break;
-    case 245:
+    case 890:
         bShowFlowers = FALSE;
         bShowPeacock = TRUE;
+        break;
+    case 900:
+        bShowPeacock = FALSE;
         break;
     }
     // Update specific elements
@@ -580,6 +787,8 @@ void renderScene6_5()
     void drawRoom(void);
     void drawNakul(float xOrigin, float yOrigin, float scale, int iStanding, int iHandPosition);
     void drawDraupadi(float xOriginDrau, float yOriginDrau, float scale, int iHandPosition, int iStanding);
+    void KrishnaRath(float originx, float originy, float resize);
+    // void KrishnaStanding(float originx, float originy, float resize);
     // void KrishnaStanding(float originx, float originy, float resize);
 
     glLoadIdentity();
@@ -596,20 +805,19 @@ void renderScene6_5()
     glTranslatef(cameraTranslationScene6_5.x, cameraTranslationScene6_5.y, cameraTranslationScene6_5.z);
     glScalef(scalingScene6_5.x, scalingScene6_5.y, scalingScene6_5.z);
     // bheem
-    drawNakul(-0.3f, 0.0f, 0.7f, 1, 1);
+    drawBheem(-0.3f, 0.0f, 0.7f, 1, CHARACTER_HAND_FOLDED);
     // sahadev
-    drawNakul(-0.1f, 0.0f, 0.7f, 1, 1);
+    drawSahadev(-0.1f, 0.0f, 0.7f, 1, CHARACTER_HAND_FOLDED, HIDE_BOW_ARROW);
     // nakul
-    drawNakul(0.1f, 0.0f, 0.7f, 1, 1);
+    drawNakul(0.1f, 0.0f, 0.7f, 1, CHARACTER_HAND_FOLDED);
     // arjun
-    drawNakul(0.3f, 0.0f, 0.7f, 1, 1);
+    drawArjun(0.3f, 0.0f, 0.7f, 1, CHARACTER_HAND_FOLDED, HIDE_BOW_ARROW);
     // yushishtir
-    drawNakul(0.5f, 0.0f, 0.7f, 1, 1);
+    drawNakul(0.5f, 0.0f, 0.7f, 1, CHARACTER_HAND_FOLDED);
     // draupadi
     drawDraupadi(0.7f, 0.0f, 0.7f, 1, 1);
     // krishna
-    drawNakul(1.2f, 0.0f, 0.7f, 1, 1);
-    // KrishnaStanding(0.5f, 0.0f, 1.0f);
+    KrishnaStanding(0.7f, -0.15f, 0.40f);
 }
 
 void updateScene6_5()
@@ -624,34 +832,34 @@ void updateScene6_5()
         // show krishna face (zoomed in) for 2 secs
     case 1620:
         scalingScene6_5 = (SCALING){5.0f, 5.0f, 5.0f};
-        cameraTranslationScene6_5 = (TRANSLATION){-0.70 * scalingScene6_5.x, -0.1f, 0.0f};
+        cameraTranslationScene6_5 = (TRANSLATION){-0.70 * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f};
         break;
 
         // show pandavs
     case 1640:
         scalingScene6_5 = (SCALING){5.0f, 5.0f, 5.0f};
-        cameraTranslationScene6_5 = (TRANSLATION){-0.2f * scalingScene6_5.x, -0.1f, 0.0f};
+        cameraTranslationScene6_5 = (TRANSLATION){-0.2f * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f};
         break;
 
         // show pandavs face (zoomed in) for 4 secs translate towards right to left
     case 1650:
         transtateLeft = TRUE;
         scalingScene6_5 = (SCALING){5.0f, 5.0f, 5.0f};
-        cameraTranslationScene6_5 = (TRANSLATION){-0.2f * scalingScene6_5.x, -0.1f, 0.0f};
+        cameraTranslationScene6_5 = (TRANSLATION){-0.2f * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f};
         break;
 
         // show krishna face (zoomed in) again for 1 sec
     case 1690:
         transtateLeft = FALSE;
         scalingScene6_5 = (SCALING){5.0f, 5.0f, 5.0f};
-        cameraTranslationScene6_5 = (TRANSLATION){-0.70f * scalingScene6_5.x, -0.1f, 0.0f};
+        cameraTranslationScene6_5 = (TRANSLATION){-0.70f * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f};
         break;
 
         // show pandavs from left to right zooming out (for 6 secs)
     case 1700:
         zoomOutPandav = TRUE;
         scalingScene6_5 = (SCALING){5.0f, 5.0f, 5.0f};
-        cameraTranslationScene6_5 = (TRANSLATION){1.0f * scalingScene6_5.x, 0.0f, 0.0f};
+        cameraTranslationScene6_5 = (TRANSLATION){1.0f * scalingScene6_5.x, -0.1f * scalingScene6_5.y, 0.0f};
         break;
 
     case 1780:
@@ -669,7 +877,12 @@ void updateScene6_5()
     {
         if (cameraTranslationScene6_5.x >= (0.0f))
         {
-            cameraTranslationScene6_5.x -= (0.0005f * scalingScene6_5.x);
+            cameraTranslationScene6_5.x -= (0.00055f * scalingScene6_5.x);
+        }
+
+        if (cameraTranslationScene6_5.y <= (0.0f))
+        {
+            cameraTranslationScene6_5.y += (0.0001f * scalingScene6_5.x);
         }
 
         if (scalingScene6_5.x >= 1.0f)

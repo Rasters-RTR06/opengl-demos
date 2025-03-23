@@ -83,4 +83,3 @@ void rath(MY_POINT startPosition, TRANSLATION translateBy, SCALING scaleBy);
 #include "Draupadi.c"
 #include "Bheem.c"
 #include "krishnasitting.c"
-// #include "krishnastanding.c"

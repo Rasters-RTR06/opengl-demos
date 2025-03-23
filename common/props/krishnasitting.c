@@ -1,7 +1,7 @@
 #define GOLD 0.859, 0.616, 0.051
 #define SKIN 0.286, 0.231, 0.196
 #define PITAMBER 0.7765, 0.5686, 0.3373
-#define BLACK 0, 0, 0
+#define siBLACK 0, 0, 0
 #define WHITE 1, 1, 1
 
 void mukut(float originx, float originy, float resize)
@@ -109,7 +109,7 @@ void sittingkrishna(float originx, float originy, float resize)
 	glEnd();
 	// HandLines
 	glBegin(GL_LINE_STRIP);
-	glColor3f(BLACK);
+	glColor3f(siBLACK);
 	glVertex2f(originx + 0.116*resize, originy + -0.147*resize);
 	glVertex2f(originx + 0.082*resize, originy + -0.305*resize);
 	glVertex2f(originx + -0.008*resize, originy + -0.353*resize);
@@ -119,7 +119,7 @@ void sittingkrishna(float originx, float originy, float resize)
 
 	// HandLine
 	glBegin(GL_LINE_STRIP);
-	glColor3f(BLACK);
+	glColor3f(siBLACK);
 	glVertex2f(originx + -0.259*resize, originy + -0.132*resize);
 	glVertex2f(originx + -0.248*resize, originy + -0.314*resize);
 	glVertex2f(originx + -0.248*resize, originy + -0.396*resize);
@@ -239,7 +239,7 @@ void sittingkrishna(float originx, float originy, float resize)
 
 	// fold
 	glBegin(GL_LINE_STRIP);
-	glColor3f(BLACK);
+	glColor3f(siBLACK);
 	glVertex2f(originx + -0.125*resize, originy + -0.837*resize);
 	glVertex2f(originx + -0.255*resize, originy + -0.684*resize);
 	glVertex2f(originx + -0.334*resize, originy + -0.628*resize);
@@ -264,7 +264,7 @@ void sittingkrishna(float originx, float originy, float resize)
 	glEnd();
 
 	glBegin(GL_LINE_STRIP);
-	glColor3f(BLACK);
+	glColor3f(siBLACK);
 	glVertex2f(originx + -0.186*resize, originy + 0.237*resize);
 	glVertex2f(originx + -0.252*resize, originy + 0.224*resize);
 	glVertex2f(originx + -0.310*resize, originy + 0.179*resize);
@@ -414,14 +414,14 @@ void sittingkrishna(float originx, float originy, float resize)
 
 	// Smile
 	glBegin(GL_LINE_STRIP);
-	glColor3f(BLACK);
+	glColor3f(siBLACK);
 	glVertex2f(originx + -0.283*resize, originy + 0.308*resize);
 	glVertex2f(originx + -0.249*resize, originy + 0.336*resize);
 	glVertex2f(originx + -0.249*resize, originy + 0.336*resize);
 	glEnd();
 	// Nose Line
 	glBegin(GL_LINE_STRIP);
-	glColor3f(BLACK);
+	glColor3f(siBLACK);
 	glVertex2f(originx + -0.304*resize, originy + 0.336*resize);
 	glVertex2f(originx + -0.283*resize, originy + 0.342*resize);
 	glVertex2f(originx + -0.280*resize, originy + 0.364*resize);
