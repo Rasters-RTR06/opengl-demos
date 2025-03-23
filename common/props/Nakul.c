@@ -212,15 +212,12 @@ void drawHeadNakul(float xOriginNakul, float yOriginNakul, float scale)
 		glVertex2f(xOriginNakul + (-0.7130f * scale), yOriginNakul + (0.2000f * scale));
 		glEnd();
 
-		/*glColor3f(0.0f, 0.0f, 0.0f);
+		glColor3f(0.0f, 0.0f, 0.0f);
 		glPointSize(4.0f);
 		glBegin(GL_POINTS);
 		glVertex2f(xOriginNakul + (-0.7200f * scale), yOriginNakul + (0.2000f * scale));
 		glEnd();
-		glPointSize(1.0f);*/
-		drawcircleNakul(
-			xOriginNakul + (-0.7200f * scale), yOriginNakul + (0.2000f * scale),
-			(0.004f * scale), (0.0035f * scale), 0.0f, 0.0f, 0.0f, 1);
+		glPointSize(1.0f);
 
 		glBegin(GL_LINES);
 		glVertex2f(xOriginNakul + (-0.7130f * scale), yOriginNakul + (0.2150f * scale));

@@ -231,15 +231,12 @@ void drawHeadArjun(float xOrigin, float yOrigin_Arjun, float scale)
         glVertex2f(xOrigin + (-0.7130f * scale), yOrigin_Arjun + (0.2000f * scale));
         glEnd();
 
-        /*glColor3f(0.0f, 0.0f, 0.0f);
+        glColor3f(0.0f, 0.0f, 0.0f);
         glPointSize(4.0f);
         glBegin(GL_POINTS);
         glVertex2f(xOrigin + (-0.7200f * scale), yOrigin_Arjun + (0.2000f * scale));
         glEnd();
-        glPointSize(1.0f);*/
-        drawcircleArjun(
-            xOrigin + (-0.7200f * scale), yOrigin_Arjun + (0.2000f * scale),
-            (0.004f * scale), (0.0035f * scale), 0.0f, 0.0f, 0.0f, 1);
+        glPointSize(1.0f);
 
         glBegin(GL_LINES);
         glVertex2f(xOrigin + (-0.7130f * scale), yOrigin_Arjun + (0.2150f * scale));

@@ -237,15 +237,12 @@ void drawHeadSahadev(float xOrigin, float yOrigin, float scale)
 		glVertex2f(xOrigin + (-0.7130f * scale), yOrigin + (0.2000f * scale));
 		glEnd();
 
-		/*glColor3f(0.0f, 0.0f, 0.0f);
+		glColor3f(0.0f, 0.0f, 0.0f);
 		glPointSize(4.0f);
 		glBegin(GL_POINTS);
 		glVertex2f(xOrigin + (-0.7200f * scale), yOrigin + (0.2000f * scale));
 		glEnd();
-		glPointSize(1.0f);*/
-		drawcircleSahadev(
-			xOrigin + (-0.7200f * scale), yOrigin + (0.2000f * scale),
-			(0.004f * scale), (0.0035f * scale), 0.0f, 0.0f, 0.0f, 1);
+		glPointSize(1.0f);
 
 		glBegin(GL_LINES);
 		glVertex2f(xOrigin + (-0.7130f * scale), yOrigin + (0.2150f * scale));

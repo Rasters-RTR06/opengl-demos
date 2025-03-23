@@ -10,8 +10,8 @@ void drawRoom(void)
 	glBegin(GL_POLYGON);
 	glColor3f(0.1f, 0.2f, 0.15f);  // Darker, aged green
 	glVertex3f(1.0f, 1.0f, 0.0f);  // Top right
-	glVertex3f(-1.5f, 1.0f, 0.0f); // Top left
-	glVertex3f(-1.5f, 0.0f, 0.0f); // Bottom left
+	glVertex3f(-1.0f, 1.0f, 0.0f); // Top left
+	glVertex3f(-1.0f, 0.0f, 0.0f); // Bottom left
 	glVertex3f(1.0f, 0.0f, 0.0f);  // Bottom right
 	glEnd();
 
@@ -19,8 +19,8 @@ void drawRoom(void)
 	glBegin(GL_POLYGON);
 	glColor3f(0.45f, 0.35f, 0.25f); // Muted brown for ancient floor
 	glVertex3f(1.0f, 0.0f, 0.0f);	// Top right
-	glVertex3f(-1.5f, 0.0f, 0.0f);	// Top left
-	glVertex3f(-1.5f, -1.0f, 0.0f); // Bottom left
+	glVertex3f(-1.0f, 0.0f, 0.0f);	// Top left
+	glVertex3f(-1.0f, -1.0f, 0.0f); // Bottom left
 	glVertex3f(1.0f, -1.0f, 0.0f);	// Bottom right
 	glEnd();
 
