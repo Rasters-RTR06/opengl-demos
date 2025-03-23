@@ -192,6 +192,18 @@ void initScenes(void)
 
     cameraTranslationScene6_2 = (TRANSLATION){ 0.0f, 0.0f, 0.0f };
     scalingScene6_2 = (SCALING){ 1.0f, 1.0f, 1.0f };
+
+    FILE* fp = fopen("./sandeshfinal.wav", "r");
+    bool is_exist = false;
+    if (fp != NULL)
+    {
+        is_exist = true;
+        fclose(fp); // close the file
+    }
+    if (is_exist == true)
+    {
+        PlaySound("./sandeshfinal.wav", NULL, SND_ASYNC | SND_FILENAME);
+    }
 }
 
 // Update the current scene
@@ -642,20 +654,20 @@ void scene1Update(void)
 
 BOOL scene1ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 150;
+    int iThresholdTime = 120;
     BOOL flag = FALSE;
     if (iSkipped || (iTimeElapsed >= iThresholdTime))
     {
         iTimeElapsed = 0;
         iTimeElapsed += iThresholdTime;
-        flag = TRUE;
+        //flag = TRUE;
     }
-    if (flag)
+    /*if (flag)
     {
         iTimeElapsed = 0;
-    }
+    }*/
     // Transition to the next scene after 15 seconds
-    return (flag);
+    return (iTimeElapsed >= iThresholdTime);
 }
 
 /*******************************/
@@ -851,8 +863,6 @@ void scene2Render(void)
     {
         drawFrontTrees();
     }
-
-
 }
 
 void scene2Update(void)
@@ -866,13 +876,19 @@ void scene2Update(void)
 BOOL scene2ShouldTransition(BOOL iSkipped)
 {
     // 20 Sec is Temporarily set for testing
-    int iThresholdTime = 460;
+    int iThresholdTime = 380;
     if (iSkipped)
     {
         iTimeElapsed = 0;
         iTimeElapsed += iThresholdTime;
     }
-    return (iTimeElapsed >= iThresholdTime);
+    if (iTimeElapsed >= iThresholdTime)
+    {
+        iTimeElapsed = 460;
+        return TRUE;
+    }
+    else
+        return FALSE;
 }
 
 void scene3Render(void)
@@ -1515,8 +1531,8 @@ BOOL shouldTransitionScene6_5(BOOL iSceneSkipped)
 void scene7Render(void)
 {
     glLoadIdentity();
-    glScalef(scaleSlogan, scaleSlogan, scaleSlogan);
     drawRoom();
+    glScalef(scaleSlogan, scaleSlogan, scaleSlogan);
     drawText(0.2, 0, 1, 255, 0, 0);
 }
 
