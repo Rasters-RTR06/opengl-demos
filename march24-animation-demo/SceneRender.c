@@ -148,6 +148,18 @@ void initScenes(void)
 
     cameraTranslationScene6_2 = (TRANSLATION){ 0.0f, 0.0f, 0.0f };
     scalingScene6_2 = (SCALING){ 1.0f, 1.0f, 1.0f };
+
+    FILE* fp = fopen("./sandeshfinal.wav", "r");
+    bool is_exist = false;
+    if (fp != NULL)
+    {
+        is_exist = true;
+        fclose(fp); // close the file
+    }
+    if (is_exist == true)
+    {
+        PlaySound("./sandeshfinal.wav", NULL, SND_ASYNC | SND_FILENAME);
+    }
 }
 
 // Update the current scene
