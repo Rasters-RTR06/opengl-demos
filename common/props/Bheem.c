@@ -261,12 +261,15 @@ void drawHeadBheem(float xOriginBheem, float yOriginBheem, float scale)
 		glVertex2f(xOriginBheem + (-0.7130f * scale), yOriginBheem + (0.2000f * scale));
 		glEnd();
 
-		glColor3f(0.0f, 0.0f, 0.0f);
+		/*glColor3f(0.0f, 0.0f, 0.0f);
 		glPointSize(4.0f);
 		glBegin(GL_POINTS);
 		glVertex2f(xOriginBheem + (-0.7200f * scale), yOriginBheem + (0.2000f * scale));
 		glEnd();
-		glPointSize(1.0f);
+		glPointSize(1.0f);*/
+		drawcircleBheem(
+			xOriginBheem + (-0.7200f * scale), yOriginBheem + (0.2000f * scale),
+			(0.004f * scale), (0.0035f * scale), 0.0f, 0.0f, 0.0f, 1);
 
 		glBegin(GL_LINES);
 		glVertex2f(xOriginBheem + (-0.7130f * scale), yOriginBheem + (0.2150f * scale));
