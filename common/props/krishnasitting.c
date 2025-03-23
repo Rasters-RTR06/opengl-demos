@@ -410,7 +410,6 @@ void sittingkrishna(float originx, float originy, float resize)
 	glVertex2f(originx + 0.046*resize, originy + -0.782*resize);
 	glVertex2f(originx + 0.091*resize, originy + -0.768*resize);
 	glEnd();
-	glEnd();
 
 	// Smile
 	glBegin(GL_LINE_STRIP);
