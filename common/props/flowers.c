@@ -1,4 +1,5 @@
-const double PI = 3.14159;          //PI in radians
+//const double PI = 3.14159;          //PI in radians
+//#define PI 3.14159
 
 void drawCurve(void){
     int n = 10;                         // 2n is number of petals on flower

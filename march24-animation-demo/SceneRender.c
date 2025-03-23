@@ -16,7 +16,6 @@
 #include "../common/props/krishnastanding.c"
 #include "../common/props/tutaribai.c"
 #include "../common/props/flowers.c"
-#include "../common/props/SandeshText.c"
 #include "../common/props/Slogan.c"
 /*******************************/
 
@@ -102,7 +101,6 @@ Scene scene3 = {scene3Render, scene3Update, scene3ShouldTransition, NULL};
 Scene scene5;
 Scene scene6_2 = { scene6_2Render, scene6_2Update, scene6_2ShouldTransition, NULL };
 Scene scene7 = { scene7Render, scene7Update, scene7ShouldTransition, NULL };
-Scene scene6_2 = {scene6_2Render, scene6_2Update, scene6_2ShouldTransition, NULL};
 Scene scene6_5;
 
 // External global variables from Raster.c
@@ -142,7 +140,6 @@ void initScenes(void)
     scene6_2.nextScene = &scene7;
     scene7.nextScene = NULL;// End of chain
     currentScene = &scene0;   // Start with scene 1
-=======
     // scene6_2.nextScene = NULL;// End of chain
     // currentScene = &scene2;   // Start with scene 1
     scene6_2.nextScene = &scene6_5;
@@ -380,7 +377,7 @@ void scene2Render(void)
     const float zoomOutFactor = 1.1f; // Zoomed out state.
 
     // Speed for camera left movement.
-    const float cameraSpeed = 0.01f; .
+    const float cameraSpeed = 0.01f;
 
     // Phase definitions:
     // Phase 0: Zoom out from top right.
@@ -1122,4 +1119,3 @@ BOOL scene7ShouldTransition(BOOL iSkipped)
     return (iTimeElapsed >= iThresholdTime);
 }
 
-=======
