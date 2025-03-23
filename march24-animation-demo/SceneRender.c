@@ -976,7 +976,7 @@ void scene4Update(void)
 
 BOOL scene4ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 920;
+    int iThresholdTime = 720;
     if (iSkipped)
     {
         iTimeElapsed = 0;

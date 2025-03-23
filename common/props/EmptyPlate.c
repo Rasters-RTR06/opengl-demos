@@ -1,14 +1,4 @@
-// Win32 headers
-#include <windows.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <GL/glu.h>
-#include <math.h>
-#include <stdio.h>
-//#define PI 3.14159
 
-// OpenGL related header file
-#include <gl/GL.h>
 
 // global function declarations
 extern float plateResize;
