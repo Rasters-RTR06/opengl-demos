@@ -364,7 +364,7 @@ void scene2Render(void)
     const float zoomOutFactor = 1.1f; // Zoomed out state.
 
     // Speed for camera left movement.
-    const float cameraSpeed = 0.01f; .
+    const float cameraSpeed = 0.01f;
 
     // Phase definitions:
     // Phase 0: Zoom out from top right.
