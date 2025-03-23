@@ -1,17 +1,9 @@
-// header files
-//#include <GL/GLU.h>
-//#include <GL/GLUT.h>
-//#include <math.h>
-
-// The purpose of drawSierpinski() is to display the mathematical
-// function y = exp(-x) cos (2 PI x) in the window.
-
-//const double PI = 3.1419;
+//const double PI = 3.14159;          //PI in radians
 //#define PI 3.14159
+
 void drawCurve(void){
     int n = 10;                         // 2n is number of petals on flower
-	//const double PI = 3.14159;          //PI in radians
-	double radians;                     //theta in radians
+  double radians;                     //theta in radians
 	
 	//set the foreground color
 	glColor3ub (255, 235, 20);
@@ -32,8 +24,6 @@ void drawCurve(void){
 
 void drawCircle(void)
 {
-    // local variables declaration
-    //const double PI = 3.1459;
     double x, y;
     double radius = 0.25;
     double radian_angle;
