@@ -30,6 +30,7 @@ BOOL draupadiGoingBack = FALSE;
 
 void sceneFourRender()
 {
+     drawPlate();
      glMatrixMode(GL_MODELVIEW);
      glLoadIdentity();
      glScalef(scaleScene, scaleScene, 0.0f);

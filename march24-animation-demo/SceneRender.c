@@ -17,6 +17,7 @@
 #include "../common/props/tutaribai.c"
 #include "../common/props/flowers.c"
 #include "../common/props/Slogan.c"
+#include "../common/props/plate.c"
 #include "Scene4.c"
 
 /*******************************/
