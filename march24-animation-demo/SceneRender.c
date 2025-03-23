@@ -42,6 +42,9 @@ BOOL bShowPatternedDeers = FALSE;
 BOOL bShowFlowers = FALSE;
 BOOL bShowPeacock = FALSE;
 
+//scene 7 specific variable
+float scaleSlogan = 0.0f;
+
 
 // Scene management functions declarations
 void initScenes(void);
@@ -494,13 +497,18 @@ BOOL scene6_2ShouldTransition(BOOL iSceneSkipped)
 /******************************/
 void scene7Render(void)
 {
-    // glTranslatef(0.05f, 0.0f, 0.0f);
-    glScalef(1.0f, 1.0f, 1.0f);
-    drawText(255, 0, 0);
+    glLoadIdentity();
+    glScalef(scaleSlogan, scaleSlogan, scaleSlogan);
+    drawText(0.2, 0, 1, 255, 0, 0);
 }
 
 void scene7Update(void)
 {
+    if (scaleSlogan <= 0.9f)
+    {
+        scaleSlogan = scaleSlogan + 0.001f;    
+    }
+    
     // Check time-based triggers
     switch (iTimeElapsed) {
         case 1870:
