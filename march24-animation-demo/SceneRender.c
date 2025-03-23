@@ -345,15 +345,22 @@ BOOL scene1ShouldTransition(BOOL iSkipped)
 
 void scene2Render(void)
 {
+    // bush colors and positions for the bottom plants.
+    struct Color darkGreen = { 0.004f, 0.114f, 0.165f };
+    struct Color yellowish = { 0.735f, 0.625f, 0.455f };
+    float startX = -1.0f;  // Adjust based on your viewport
+    float endX = 1.0f;     // Adjust based on your viewport
+    float spacing = 0.2f;  // Distance between plants
+
     // Define phase durations (in seconds).
     const float zoomOutDuration = 5.0f;      // Phase 0: Zoom out from top right.
-    const float waitAfterZoomOut = 6.0;      // Phase 1: Wait after zoom out.
-    const float zoomInDuration = 4.0f;       // Phase 2: Zoom in centered.
-    const float waitAfterZoomIn = 4.0f;      // Phase 3: Wait after zoom in.
-    const float leftMoveZoomDuration = 3.0f; // Phase 4: While moving left, zoom out over this duration.
+    const float waitAfterZoomOut = 6.0f;       // Phase 1: Wait after zoom out.
+    const float zoomInDuration = 4.0f;         // Phase 2: Zoom in centered.
+    const float waitAfterZoomIn = 4.0f;        // Phase 3: Wait after zoom in.
+    const float leftMoveZoomDuration = 20.0f;   // Phase 4: While moving left, zoom out over this duration.
 
     // Zoom factors.
-    const float zoomInFactor = 5.0f;  // Fully zoomed in.
+    const float zoomInFactor = 6.0f;  // Fully zoomed in.
     const float zoomOutFactor = 1.1f; // Zoomed out state.
 
     // Speed for camera left movement.
@@ -367,7 +374,7 @@ void scene2Render(void)
     // Phase 4: Move camera to the left while zooming out.
     static int phase = 0;
     static clock_t phaseStartTime = 0;
-    static float cameraOffset = 0.0f; // Accumulated offset for leftward camera movement.
+    static float cameraOffset = -1.0f; // Accumulated offset for leftward camera movement.
 
     // Initialize phase start time on the first call.
     if (phaseStartTime == 0)
@@ -429,7 +436,7 @@ void scene2Render(void)
     }
     else if (phase == 4)
     {
-        // Phase 4: Move camera to the left
+        // Phase 4: Move camera to the left.
         if (elapsed < leftMoveZoomDuration)
         {
             currentZoom = zoomInFactor - (zoomInFactor - zoomOutFactor) * (elapsed / leftMoveZoomDuration);
@@ -439,8 +446,13 @@ void scene2Render(void)
             currentZoom = zoomOutFactor;
         }
         cameraOffset = cameraSpeed * elapsed;
+        glPushMatrix();
+        glTranslatef(-1.0f, 0.0f, 0.0f);
+        drawGround();
+        glPopMatrix();
     }
 
+    // Set up the transformation matrix.
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
@@ -453,10 +465,10 @@ void scene2Render(void)
     }
     else
     {
-        // For Phases 2, 3, and 4
-        glTranslatef(0.3f, -0.4f, 0.0f);
+        // For Phases 2, 3, and 4.
+        glTranslatef(0.0f, -0.3f, 0.0f);
         glScalef(currentZoom, currentZoom, 1.0f);
-        glTranslatef(-0.3f, 0.4f, 0.0f);
+        glTranslatef(-0.0f, 0.3f, 0.0f);
         if (phase == 4)
         {
             // To simulate the camera moving left, translate the scene to the right.
@@ -466,13 +478,28 @@ void scene2Render(void)
 
     // Draw scene elements.
     drawGround();
-    drawDraupadi(0.5, -0.3, 0.5, 1, 1);
-    drawBheem(0.3, -0.3, 0.5, 1, 1);
-    drawArjun(0.1, -0.3, 0.5, 1, 1, 0);
-    drawNakul(-0.1, -0.3, 0.5, 1, 1);
-    drawSahadev(-0.3, -0.3, 0.5, 1, 1, 0);
+    drawNakul(0.45, -0.3, 0.5, 1, 1);
+    drawDraupadi(0.30, -0.3, 0.5, 1, 1);
+    drawBheem(0.15, -0.3, 0.45, 1, 1);
+    drawArjun(0.00, -0.3, 0.5, 1, 1, 0);
+    drawNakul(-0.20, -0.3, 0.5, 1, 1);
+    drawSahadev(-0.35, -0.3, 0.5, 1, 1, 0);
     drawDenseForrest();
-    drawFrontTrees();
+
+    if (phase == 0 || (phase == 1 && elapsed < 2.0f))
+{
+    for (float x = startX; x <= endX; x += spacing)
+    {
+        drawCompactPlant(x, -1.0f, darkGreen, yellowish);
+    }
+    drawTallNarrowPlant(-0.3f, -1.0f, darkGreen, yellowish);
+}
+    else if ((phase == 1 && elapsed >= 2.0f) || phase >= 2)
+    {
+        drawFrontTrees();
+    }
+    
+
 }
 
 void scene2Update(void)
