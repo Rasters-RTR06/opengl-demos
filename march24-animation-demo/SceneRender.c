@@ -137,13 +137,10 @@ void initScenes(void)
     scene2.nextScene = &scene3;
     scene3.nextScene = &scene5;
     scene5.nextScene = &scene6_2;
-    scene6_2.nextScene = &scene7;
-    scene7.nextScene = NULL;// End of chain
-    currentScene = &scene0;   // Start with scene 1
-    // scene6_2.nextScene = NULL;// End of chain
-    // currentScene = &scene2;   // Start with scene 1
     scene6_2.nextScene = &scene6_5;
-    scene6_5.nextScene = NULL; // End of chain
+    scene6_5.nextScene = &scene7;  // Fixed: Added & to get the address of scene7
+    scene7.nextScene = NULL;// End of chain
+
     currentScene = &scene0;    // Start with scene 1
 
     cameraTranslationScene6_5 = (TRANSLATION){0.0f, 0.0f, 0.0f};
@@ -908,7 +905,9 @@ void scene6_2Update()
 
 BOOL scene6_2ShouldTransition(BOOL iSceneSkipped)
 {
-    int iThresholdTime = 1340;
+    //int iThresholdTime = 1340;
+    int iThresholdTime = 1620;
+
     if (iSceneSkipped)
     {
         iTimeElapsed = 0;
@@ -1109,7 +1108,7 @@ void scene7Update(void)
 
 BOOL scene7ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 1870;
+    int iThresholdTime = 2080;
     if (iSkipped)
     {
         iTimeElapsed = 0;
