@@ -652,8 +652,22 @@ void drawHandAndCloth(float xOrigin, float yOrigin, float scale, int iHandPositi
 	drawQuadrangleYu(
 		xOrigin + (-0.775f * scale), yOrigin + (0.20f * scale),
 		xOrigin + (-0.765f * scale), yOrigin + (0.20f * scale),
-		xOrigin + (-0.74f * scale), yOrigin + (0.10f * scale),
-		xOrigin + (-0.715f * scale), yOrigin + (0.11f * scale));
+		xOrigin + (-0.740f * scale), yOrigin + (0.10f * scale),
+		xOrigin + (-0.710f * scale), yOrigin + (0.12f * scale));
+
+	drawQuadrangleYu(
+		xOrigin + (-0.740f * scale), yOrigin + (0.100f * scale),
+		xOrigin + (-0.710f * scale), yOrigin + (0.120f * scale),
+		xOrigin + (-0.708f * scale), yOrigin + (0.070f * scale),
+		xOrigin + (-0.715f * scale), yOrigin + (0.080f * scale));
+
+
+	glLineWidth(2.5f);
+	glColor3f(0.0f, 0.0f, 0.0f);
+	glBegin(GL_LINES);
+	glVertex2f(xOrigin + (-0.7100f * scale), yOrigin + (0.1420f * scale));
+	glVertex2f(xOrigin + (-0.7320f * scale), yOrigin + (0.1370f * scale));
+	glEnd();
 
 	//neck thread
 	glColor3f(0.63f, 0.53f, 0.0f);
