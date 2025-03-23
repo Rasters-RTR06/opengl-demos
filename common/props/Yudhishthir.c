@@ -117,7 +117,7 @@ void drawHeadYP(float xOrigin, float yOrigin, float scale)
 
 		drawcircleYP(
 			xOrigin + (-0.7850f * scale), yOrigin + (0.2550f * scale),
-			yOrigin + (0.030f * scale), 0.0 + (0.020f * scale), 0.0f, 0.0f, 0.0f, 1);
+			(0.030f * scale), 0.0 + (0.020f * scale), 0.0f, 0.0f, 0.0f, 1);
 
 		glBegin(GL_POLYGON);
 		glVertex2f(xOrigin + (-0.7900f * scale), yOrigin + (0.2650f * scale));
@@ -622,7 +622,7 @@ void drawHandAndClothYP(float xOrigin, float yOrigin, float scale, int iStanding
 	// Ear rudraksh
 	drawcircleYP(
 		xOrigin + (-0.7650f * scale), yOrigin + (0.1300f * scale),
-		yOrigin + (0.005f * scale), (0.005f * scale), 0.33f, 0.11f, 0.0f, 1);
+		(0.005f * scale), (0.005f * scale), 0.33f, 0.11f, 0.0f, 1);
 
 	// beard
 	glColor3f(0.0f, 0.0f, 0.0f);
