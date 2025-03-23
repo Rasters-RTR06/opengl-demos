@@ -17,6 +17,8 @@
 #include "../common/props/tutaribai.c"
 #include "../common/props/flowers.c"
 #include "../common/props/Slogan.c"
+#include "../common/props/plate.c"
+#include "Scene4.c"
 /*******************************/
 
 /* TYPE DEFINITIONS AND DECLARATIONS */
@@ -78,6 +80,9 @@ BOOL scene2ShouldTransition(BOOL iSkipped);
 void scene3Render(void);
 void scene3Update(void);
 BOOL scene3ShouldTransition(BOOL iSkipped);
+void scene4Render(void);
+void scene4Update(void);
+BOOL scene4ShouldTransition(BOOL iSkipped);
 void scene5Render(void);
 void scene5Update(void);
 BOOL scene5ShouldTransition(BOOL iSkipped);
@@ -98,6 +103,7 @@ Scene Prabhat = { PrabhatRender, PrabhatUpdate, PrabhatShouldTransition, NULL };
 Scene scene1 = { scene1Render, scene1Update, scene1ShouldTransition, NULL };
 Scene scene2 = { scene2Render, scene2Update, scene2ShouldTransition, NULL };
 Scene scene3 = { scene3Render, scene3Update, scene3ShouldTransition, NULL };
+Scene scene4 = {scene4Render, scene4Update, scene4ShouldTransition, NULL};
 Scene scene5;
 Scene scene6_2 = { scene6_2Render, scene6_2Update, scene6_2ShouldTransition, NULL };
 Scene scene7 = { scene7Render, scene7Update, scene7ShouldTransition, NULL };
@@ -135,7 +141,8 @@ void initScenes(void)
     Prabhat.nextScene = &scene1;
     scene1.nextScene = &scene2;
     scene2.nextScene = &scene3;
-    scene3.nextScene = &scene5;
+    scene3.nextScene = &scene4;
+    scene4.nextScene = &scene5;
     scene5.nextScene = &scene6_2;
     scene6_2.nextScene = &scene6_5;
     scene6_5.nextScene = &scene7;  // Fixed: Added & to get the address of scene7
@@ -557,6 +564,30 @@ BOOL scene3ShouldTransition(BOOL iSkipped)
         iTimeElapsed += iThresholdTime;
     }
     // Transition to the next scene after 2 min 14 sec seconds
+    return (iTimeElapsed >= iThresholdTime);
+}
+
+/*******************************/
+/* SCENE 4 IMPLEMENTATION */
+/******************************/
+void scene4Render(void)
+{
+    sceneFourRender();
+}
+
+void scene4Update(void)
+{
+    sceneFourUpdate(iTimeElapsed - 720);
+}
+
+BOOL scene4ShouldTransition(BOOL iSkipped)
+{
+    int iThresholdTime = 920;
+    if (iSkipped)
+    {
+        iTimeElapsed = 0;
+        iTimeElapsed += iThresholdTime;
+    }
     return (iTimeElapsed >= iThresholdTime);
 }
 

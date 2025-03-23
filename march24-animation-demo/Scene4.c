@@ -1,10 +1,11 @@
 void sceneFourRender();
 void sceneFourUpdate(UINT elapsedTime);
+void drawPlateScene4(float startX, float startY);
 
 float arjunOriginX = -0.15f;
 float arjunOriginY = -0.3f;
 
-float bheemOriginX = 0.15f;
+float bheemOriginX = 0.19f;
 float bheemOriginY = 0.0f;
 
 float yudhishteerOriginX = 0.45f;
@@ -22,6 +23,7 @@ float draupadiOriginY = -0.3f;
 float plateOriginX = 0.0f;
 float plateOriginY = 0.0f;
 
+float scalePlate = 0.14f;
 float scaleScene = 1.0f;
 float sceneOriginX = 0.0f;
 float sceneOriginY = 0.0f;
@@ -30,35 +32,49 @@ BOOL draupadiGoingBack = FALSE;
 
 void sceneFourRender()
 {
+     drawPlate();
      glMatrixMode(GL_MODELVIEW);
      glLoadIdentity();
      glScalef(scaleScene, scaleScene, 0.0f);
-
      glTranslatef(sceneOriginX, sceneOriginY, 0.0f);
 
      drawRoom();
+
      drawArjun(arjunOriginX, arjunOriginY, 0.7f, 0, 0, 0);
+     drawPlateScene4(-0.7, -0.78);
 
      drawBheem(bheemOriginX, bheemOriginY, 0.7f, 0, 0);
+     drawPlateScene4(-0.39, -0.49);
 
      glRotatef(180, 0.0f, 1.0f, 0.0f);
      drawSahadev(yudhishteerOriginX + 0.15f, yudhishteerOriginY, 0.7f, 0, 0, 0);
      glRotatef(-180.0f, 0.0f, 1.0f, 0.0f);
+     drawPlateScene4(-0.05, -0.35);
 
      drawSahadev(sahadevOriginX, sahadevOriginY, 0.7f, 0,  0, 0);
+     drawPlateScene4(0.3, -0.35);
 
      glRotatef(180, 0.0f, 1.0f, 0.0f);
      drawNakul(nakulOriginX - 1.3f, nakulOriginY, 0.7f, 0, 0);
      glRotatef(-180.0f, 0.0f, 1.0f, 0.0f);
+     drawPlateScene4(0.7, -0.45);
 
      if(draupadiGoingBack)
      {
           glRotatef(180, 0.0f, 1.0f, 0.0f);
           drawDraupadi(draupadiOriginX, draupadiOriginY, 0.7f, 2, 1);
           glRotatef(-180.0f, 0.0f, 1.0f, 0.0f);
+          // glScalef(0.8f, 0.8f, 0.0f);
+          // DrawPlateEP(draupadiOriginX - 0.5f, draupadiOriginY + 0.1f, 0.5f);
+          // glScalef(1.0f / 0.8f, 1.0f / 0.8f, 0.0f);
      }
      else 
+     {
+          // glScalef(0.8f, 0.8f, 0.0f);
+          // DrawPlateEP(draupadiOriginX - 0.6f, draupadiOriginY - 0.3f, 0.5f);
+          // glScalef(1.0f / 0.8f, 1.0f / 0.8f, 0.0f);
           drawDraupadi(draupadiOriginX, draupadiOriginY, 0.7f, 2, 1);
+     }
 }
 
 void sceneFourUpdate(UINT elapsedTime)
@@ -140,4 +156,13 @@ void sceneFourUpdate(UINT elapsedTime)
           draupadiOriginX += 0.001f;
           sceneOriginX += 0.001f;
      }
+}
+
+void drawPlateScene4(float startX, float startY)
+{     
+     glTranslatef(startX, startY, 0.0f);
+     glScalef(scalePlate, scalePlate, 0.0f);
+     drawPlate();
+     glScalef(1.0f / scalePlate, 1.0f / scalePlate, 0.0f);
+     glTranslatef(-startX, -startY, 0.0f);
 }
