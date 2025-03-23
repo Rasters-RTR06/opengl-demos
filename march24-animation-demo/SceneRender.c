@@ -19,6 +19,7 @@
 #include "../common/props/Slogan.c"
 #include "../common/props/plate.c"
 #include "Scene4.c"
+#include "../common/props/SimpleHut.c"
 /*******************************/
 
 /* TYPE DEFINITIONS AND DECLARATIONS */
@@ -876,12 +877,70 @@ BOOL scene2ShouldTransition(BOOL iSkipped)
 
 void scene3Render(void)
 {
-    // Draw scene 3 elements
-    // Add scene 3 specific rendering
+    // Phase durations (in seconds)
+    const float waitDuration = 1.0f;  // Phase 1: Stay still.
+    const float zoomInDuration = 4.0f;  // Phase 2: Zoom in.
+
+    // Zoom factors.
+    const float zoomOutFactor = 1.1f;  // Zoom level during the still phase.
+    const float zoomInFactor = 4.0f;  // Fully zoomed-in state.
+
+    // Static phase tracking variables.
+    // Phase 1: Stay still, Phase 2: Zoom in.
+    static int phase = 1;
+    static clock_t phaseStartTime = 0;
+
+    // phase start time
+    if (phaseStartTime == 0)
+        phaseStartTime = clock();
+
+    // Compute elapsed time (in seconds) for the current phase.
+    clock_t currentTime = clock();
+    float elapsed = ((float)(currentTime - phaseStartTime)) / CLOCKS_PER_SEC;
+
+    // Determine the current zoom factor.
+    float currentZoom = zoomOutFactor;
+    if (phase == 1)
+    {
+        // Phase 1: Stay still with constant zoomOutFactor.
+        currentZoom = zoomOutFactor;
+        if (elapsed >= waitDuration)
+        {
+            phase = 2; // Transition to zoom-in phase.
+            phaseStartTime = clock();
+        }
+    }
+    else if (phase == 2)
+    {
+        // Phase 2: Gradually zoom in.
+        if (elapsed < zoomInDuration)
+        {
+            currentZoom = zoomOutFactor + (zoomInFactor - zoomOutFactor) * (elapsed / zoomInDuration);
+        }
+        else
+        {
+            currentZoom = zoomInFactor;
+        }
+    }
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslatef(-0.70f, 0.20f, 0.0f);
+    glScalef(currentZoom, currentZoom, 1.0f);
+    glTranslatef(0.70f, -0.20f, 0.0f);
+
+    // Draw scene elements.
     drawGround();
     drawDenseForrest();
-    drawRightPatternedDeer(0.9, 0.7, 0.05);
-    drawLeftPatternedDeer(0.9, 0.7, 0.05);
+    //drawRightPatternedDeer(0.9, 0.7, 0.05);
+    // drawLeftPatternedDeer(0.4, 0.7, 0.05);
+
+    partUpperHut(-0.6f, 0.3f, 0.34f, 0.15f, 0.52f, 0.45f, 0.19f, 1);
+    partLowerHut(0.1f, 0.0f, 1.0f);
+
+    drawDraupadi(-0.2, 0.0, 0.5, 1, 1);
+    drawTopDeerNearDraupadi(0.4f, 0.4f, 0.50f);
+    drawBottomDeerNearDraupadi(0.1f, -0.3f, 0.50f);
 }
 
 void scene3Update(void)
