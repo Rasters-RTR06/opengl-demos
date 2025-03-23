@@ -1,5 +1,10 @@
 
 //Use drawRiceGrain() function to call draw 
+
+// Win32 headers
+#include "../common.h"
+#include "props.h"
+
 void drawRiceGrain(void);
 
 
