@@ -138,6 +138,9 @@ void initScenes(void)
 
     cameraTranslationScene6_5 = (TRANSLATION){0.0f, 0.0f, 0.0f};
     scalingScene6_5 = (SCALING){1.0f, 1.0f, 1.0f};
+
+    cameraTranslationScene6_2 = (TRANSLATION){ 0.0f, 0.0f, 0.0f };
+    scalingScene6_2 = (SCALING){ 1.0f, 1.0f, 1.0f };
 }
 
 // Update the current scene
@@ -676,80 +679,226 @@ BOOL scene5ShouldTransition(BOOL iSkipped)
 
 /*******************************/
 /* SCENE 6_2 IMPLEMENTATION */
+/*
+At 106 - Krishna Close up look and zoom out
+At 109 - Pandav and Draupadi Sitting
+At 113 - Nakul and Sahadev close up
+At 114 - Camera travels to Other 3 brothers
+At 116 - Krishna close up
+At 118 - Bheem Close up
+At 119 - Krishna Face
+At 120 - Yudhishteer Face
+At 121 - Nakul and Sahadev close up
+At 123 - Draupadi Zooming in till 130
+At 130 - Slide oved Pandavas
+At 132 - Krishna close up
+At 133 - Full scene with Drapadi holding Thali till 136
 /******************************/
 
 void scene6_2Render()
 {
+    // set it to identity matrix
+    glLoadIdentity();
+
+    // translate triangle backwards by z
+    glTranslatef(cameraTranslationScene6_2.x, cameraTranslationScene6_2.y, cameraTranslationScene6_2.z);
+    glScalef(scalingScene6_2.x, scalingScene6_2.y, scalingScene6_2.z);
 
     drawRoom();
 
-    sittingkrishna(originxSK, originySK, resizeSK);
+    sittingkrishna(0.5f, -0.35f, 0.3f);
 
-    drawArjun(xOriginArjun, yOriginArjun, fScaleFactorArjun, g_iArjunStanding, g_iHandPositionArjun, HIDE_BOW_ARROW);
-    drawBheem(xOriginBheem, yOriginBheem, fScaleFactorBheem, g_iBheemStanding, g_iHandPositionBheem);
-    // drawYudhishteer(xOriginYudhishteer, yOriginYudhishteer, fScaleFactorYudhishteer, g_iYudhishteerStanding, g_iHandPositionYudhishteer);
+    drawBheem(0.145f, 0.13f, 0.7f, CHARACTER_SITTING, CHARACTER_HAND_GESTURE);
+    drawArjun(0.30f, -0.05f, 0.7f, CHARACTER_SITTING, CHARACTER_HAND_GESTURE, HIDE_BOW_ARROW);
+    drawYudhishthir(0.42f, -0.20f, 0.7f, CHARACTER_SITTING, CHARACTER_HAND_FOLDED);
 
-    drawSahadev(xOriginSahadev, yOriginSahadev, fScaleFactorSahadev, g_iSahadevStanding, g_iHandPositionSahadev, HIDE_BOW_ARROW);
-    drawNakul(xOriginNakul, yOriginNakul, fScaleFactorNakul, g_iNakulStanding, g_iHandPositionNakul);
+    drawSahadev(-0.25f, -0.05f, 0.7f, CHARACTER_SITTING, CHARACTER_HAND_FOLDED, HIDE_BOW_ARROW);
+    drawNakul(-0.05f, -0.20f, 0.7f, CHARACTER_SITTING, CHARACTER_HAND_FOLDED);
 
-    drawDraupadi(xOriginDraupadi, yOriginDraupadi, 0.8f, g_iHandPositionDraupadi, g_iStandingDraupadi);
+
+    drawDraupadi(-0.2f, -0.35f, 0.7f, g_iHandPositionDraupadi, CHARACTER_STANDING);
+    if (g_iHandPositionDraupadi == DRAUPADI_HAND_THALI)
+        DrawPlateEP(-0.66f, -0.53f, 0.3f);
 }
 
 void scene6_2Update()
 {
-    g_iHandPositionDraupadi = DRAUPADI_HAND_FOLDED;
-    g_iStandingDraupadi = CHARACTER_STANDING;
-
-    g_iYudhishteerStanding = g_iBheemStanding = g_iArjunStanding = g_iNakulStanding = g_iSahadevStanding = CHARACTER_SITTING;
-
-    g_iHandPositionYudhishteer = g_iHandPositionBheem = g_iHandPositionArjun = CHARACTER_HAND_GESTURE;
-    g_iHandPositionNakul = g_iHandPositionSahadev = CHARACTER_HAND_FOLDED;
-
-    fScaleFactorYudhishteer = fScaleFactorBheem = fScaleFactorArjun = fScaleFactorNakul = fScaleFactorSahadev = 0.7f;
-
-    xOriginArjun = 0.05;
-    yOriginArjun = 0.1;
-    xOriginBheem = 0.2;
-    yOriginBheem = 0.0;
-    xOriginYudhishteer = 0.4;
-    yOriginYudhishteer = -0.2;
-
-    xOriginSahadev = -0.3;
-    yOriginSahadev = 0.0;
-    xOriginNakul = -0.1;
-    yOriginNakul = -0.2;
-
-    xOriginDraupadi = -0.2;
-    yOriginDraupadi = -0.3;
-
-    originxSK = 0.5f;
-    originySK = -0.3f;
-    resizeSK = 0.3f;
+    static GLboolean translateRightPandav = FALSE;
+    static GLboolean zoomIn1Draupadi = FALSE;
+    static GLboolean zoomIn2Draupadi = FALSE;
 
     switch (iTimeElapsed)
     {
     case 1060:
-        // bMoveDraupadi = TRUE;
+    {
+        g_iHandPositionDraupadi = DRAUPADI_HAND_FOLDED;
+        scalingScene6_2 = (SCALING){ 6.0f, 6.0f, 0.0f };
+        cameraTranslationScene6_2 = (TRANSLATION){ -0.45f * scalingScene6_2.x, 0.26f * scalingScene6_2.y, 0.0f };
         break;
-    case 1120:
-        bMoveDraupadi = FALSE;
+    }
+    case 1075:
+    {
+        scalingScene6_2 = (SCALING){ 4.0f, 4.0f, 0.0f };
+        cameraTranslationScene6_2 = (TRANSLATION){ -0.45f * scalingScene6_2.x, 0.26f * scalingScene6_2.y, 0.0f };
         break;
+    }
+    case 1090:
+    {
+        scalingScene6_2 = (SCALING){ 2.0f, 2.0f, 0.0f };
+        cameraTranslationScene6_2 = (TRANSLATION){ 0.45f * scalingScene6_2.x, 0.1f * scalingScene6_2.y, 0.0f };
+        break;
+    }
+    case 1130:
+    {
+        scalingScene6_2 = (SCALING){ 5.0f, 5.0f, 0.0f };
+        cameraTranslationScene6_2 = (TRANSLATION){ 0.7f * scalingScene6_2.x, 0.055f * scalingScene6_2.y, 0.0f };
+        break;
+    }
+    case 1140:
+    {
+        scalingScene6_2 = (SCALING){ 3.0f, 3.0f, 0.0f };
+        cameraTranslationScene6_2 = (TRANSLATION){ 0.30f * scalingScene6_2.x, -0.01f * scalingScene6_2.y, 0.0f };
+        break;
+    }
+    case 1160:
+    {
+        scalingScene6_2 = (SCALING){ 5.0f, 5.0f, 0.0f };
+        cameraTranslationScene6_2 = (TRANSLATION){ -0.45f * scalingScene6_2.x, 0.26f * scalingScene6_2.y, 0.0f };
+        break;
+    }
+    case 1180:
+    {
+        scalingScene6_2 = (SCALING){ 5.0f, 5.0f, 0.0f };
+        cameraTranslationScene6_2 = (TRANSLATION){ 0.45f * scalingScene6_2.x, -0.2f * scalingScene6_2.y, 0.0f };
+        break;
+    }
+    case 1190:
+    {
+        scalingScene6_2 = (SCALING){ 7.0f, 7.0f, 0.0f };
+        cameraTranslationScene6_2 = (TRANSLATION){ -0.40f * scalingScene6_2.x, 0.26f * scalingScene6_2.y, 0.0f };
+        break;
+    }
+    case 1200:
+    {
+        scalingScene6_2 = (SCALING){ 7.0f, 7.0f, 0.0f };
+        cameraTranslationScene6_2 = (TRANSLATION){ 0.028f * scalingScene6_2.x, 0.12f * scalingScene6_2.y, 0.0f };
+        break;
+    }
+    case 1210:
+    {
+        scalingScene6_2 = (SCALING){ 5.2f, 5.2f, 0.0f };
+        cameraTranslationScene6_2 = (TRANSLATION){ 0.7f * scalingScene6_2.x, 0.055f * scalingScene6_2.y, 0.0f };
+        break;
+    }
+    case 1230:
+    {
+        scalingScene6_2 = (SCALING){ 1.5f, 1.5f, 0.0f };
+        cameraTranslationScene6_2 = (TRANSLATION){ 0.7f * scalingScene6_2.x, 0.25f * scalingScene6_2.y, 0.0f };
+        break;
+    }
+    case 1245:
+    {
+        zoomIn1Draupadi = TRUE;
+        scalingScene6_2 = (SCALING){ 1.5f, 1.5f, 0.0f };
+        cameraTranslationScene6_2 = (TRANSLATION){ 0.7f * scalingScene6_2.x, 0.25f * scalingScene6_2.y, 0.0f };
+        break;
+    }
+    case 1250:
+    {
+        zoomIn1Draupadi = FALSE;
+        scalingScene6_2 = (SCALING){ 2.5f, 2.5f, 0.0f };
+        cameraTranslationScene6_2 = (TRANSLATION){ 0.7f * scalingScene6_2.x, 0.25f * scalingScene6_2.y, 0.0f };
+        break;
+    }
+    case 1265:
+    {
+        zoomIn2Draupadi = TRUE;
+        scalingScene6_2 = (SCALING){ 2.5f, 2.5f, 0.0f };
+        cameraTranslationScene6_2 = (TRANSLATION){ 0.7f * scalingScene6_2.x, 0.25f * scalingScene6_2.y, 0.0f };
+        break;
+    }
+    case 1270:
+    {
+        zoomIn2Draupadi = FALSE;
+        scalingScene6_2 = (SCALING){ 3.5f, 3.5f, 0.0f };
+        cameraTranslationScene6_2 = (TRANSLATION){ 0.7f * scalingScene6_2.x, 0.25f * scalingScene6_2.y, 0.0f };
+        break;
+    }
+    case 1300:
+    {
+        scalingScene6_2 = (SCALING){ 4.0f, 4.0f, 0.0f };
+        cameraTranslationScene6_2 = (TRANSLATION){ 0.7f * scalingScene6_2.x, -0.01f * scalingScene6_2.y, 0.0f };
+        break;
+    }
+    case 1305:
+    {
+        translateRightPandav = TRUE;
+        scalingScene6_2 = (SCALING){ 4.0f, 4.0f, 0.0f };
+        cameraTranslationScene6_2 = (TRANSLATION){ 0.7f * scalingScene6_2.x, -0.01f * scalingScene6_2.y, 0.0f };
+        break;
+    }
+    case 1310:
+    {
+        translateRightPandav = FALSE;
+        scalingScene6_2 = (SCALING){ 4.0f, 4.0f, 0.0f };
+        cameraTranslationScene6_2 = (TRANSLATION){ 0.2f * scalingScene6_2.x, -0.01f * scalingScene6_2.y, 0.0f };
+        break;
+    }
+    case 1320:
+    {
+        scalingScene6_2 = (SCALING){ 7.0f, 7.0f, 0.0f };
+        cameraTranslationScene6_2 = (TRANSLATION){ -0.40f * scalingScene6_2.x, 0.26f * scalingScene6_2.y, 0.0f };
+        break;
+    }
+    case 1330:
+    case 1340:
+        g_iHandPositionDraupadi = DRAUPADI_HAND_THALI;
+        cameraTranslationScene6_2 = (TRANSLATION){ 0.0f, 0.0f, 0.0f };
+        scalingScene6_2 = (SCALING){ 1.0f, 1.0f, 0.0f };
+        break;
+
     default:
         break;
     }
 
-    if (bMoveDraupadi)
+
+    if (zoomIn1Draupadi == TRUE)
     {
-        if (xOriginDraupadi >= 0.0)
-            xOriginDraupadi += 0.001;
-        else
-            xOriginDraupadi -= 0.01;
+        if (scalingScene6_2.x < 2.45f)
+            scalingScene6_2.x += 0.05f;
+
+        if (scalingScene6_2.y < 2.45f)
+            scalingScene6_2.y += 0.05f;
+
+        cameraTranslationScene6_2 = (TRANSLATION){ 0.7f * scalingScene6_2.x, 0.25f * scalingScene6_2.y, 0.0f };
     }
+
+    if (zoomIn2Draupadi == TRUE)
+    {
+        if (scalingScene6_2.x < 3.45f)
+            scalingScene6_2.x += 0.05f;
+
+        if (scalingScene6_2.y < 3.45f)
+            scalingScene6_2.y += 0.05f;
+
+        cameraTranslationScene6_2 = (TRANSLATION){ 0.7f * scalingScene6_2.x, 0.25f * scalingScene6_2.y, 0.0f };
+    }
+    if (translateRightPandav == TRUE)
+    {
+        float x = cameraTranslationScene6_2.x / scalingScene6_2.x;
+
+        if (x > 0.2f)
+            x = x - 0.005f;
+
+        cameraTranslationScene6_2.x = x * scalingScene6_2.x;
+    }
+
+
 }
 
 BOOL scene6_2ShouldTransition(BOOL iSceneSkipped)
 {
-    int iThresholdTime = 1620;
+    int iThresholdTime = 1340;
     if (iSceneSkipped)
     {
         iTimeElapsed = 0;
