@@ -348,8 +348,8 @@ void scene2Render(void)
     // bush colors and positions for the bottom plants.
     struct Color darkGreen = { 0.004f, 0.114f, 0.165f };
     struct Color yellowish = { 0.735f, 0.625f, 0.455f };
-    float startX = -1.0f;  // Adjust based on your viewport
-    float endX = 1.0f;     // Adjust based on your viewport
+    float startX = -1.0f;  // Small bush left start
+    float endX = 1.0f;     // Small bush left start
     float spacing = 0.2f;  // Distance between plants
 
     // Define phase durations (in seconds).
@@ -364,7 +364,7 @@ void scene2Render(void)
     const float zoomOutFactor = 1.1f; // Zoomed out state.
 
     // Speed for camera left movement.
-    const float cameraSpeed = 0.01f; // Units per second.
+    const float cameraSpeed = 0.01f; .
 
     // Phase definitions:
     // Phase 0: Zoom out from top right.
@@ -374,7 +374,7 @@ void scene2Render(void)
     // Phase 4: Move camera to the left while zooming out.
     static int phase = 0;
     static clock_t phaseStartTime = 0;
-    static float cameraOffset = -1.0f; // Accumulated offset for leftward camera movement.
+    static float cameraOffset = -1.0f; // leftward camera movement.
 
     // Initialize phase start time on the first call.
     if (phaseStartTime == 0)
@@ -471,7 +471,7 @@ void scene2Render(void)
         glTranslatef(-0.0f, 0.3f, 0.0f);
         if (phase == 4)
         {
-            // To simulate the camera moving left, translate the scene to the right.
+            // Move camera to left
             glTranslatef(cameraOffset, 0.0f, 0.0f);
         }
     }
