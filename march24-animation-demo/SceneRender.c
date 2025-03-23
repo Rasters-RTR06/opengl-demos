@@ -16,7 +16,8 @@
 #include "../common/props/krishnastanding.c"
 #include "../common/props/tutaribai.c"
 #include "../common/props/flowers.c"
-
+#include "../common/props/SandeshText.c"
+#include "../common/props/Slogan.c"
 /*******************************/
 
 /* TYPE DEFINITIONS AND DECLARATIONS */
@@ -48,6 +49,9 @@ BOOL bShowCranes = FALSE;
 BOOL bShowPatternedDeers = FALSE;
 BOOL bShowFlowers = FALSE;
 BOOL bShowPeacock = FALSE;
+
+//scene 7 specific variable
+float scaleSlogan = 0.0f;
 
 // Scene management functions declarations
 void initScenes(void);
@@ -81,6 +85,9 @@ BOOL scene5ShouldTransition(BOOL iSkipped);
 void scene6_2Render(void);
 void scene6_2Update(void);
 BOOL scene6_2ShouldTransition(BOOL iSkipped);
+void scene7Render(void);
+void scene7Update(void);
+BOOL scene7ShouldTransition(BOOL iSkipped);
 
 /*******************************/
 /* SCENE MANAGEMENT VARIABLES */
@@ -93,6 +100,8 @@ Scene scene1 = {scene1Render, scene1Update, scene1ShouldTransition, NULL};
 Scene scene2 = {scene2Render, scene2Update, scene2ShouldTransition, NULL};
 Scene scene3 = {scene3Render, scene3Update, scene3ShouldTransition, NULL};
 Scene scene5;
+Scene scene6_2 = { scene6_2Render, scene6_2Update, scene6_2ShouldTransition, NULL };
+Scene scene7 = { scene7Render, scene7Update, scene7ShouldTransition, NULL };
 Scene scene6_2 = {scene6_2Render, scene6_2Update, scene6_2ShouldTransition, NULL};
 Scene scene6_5;
 
@@ -130,6 +139,10 @@ void initScenes(void)
     scene2.nextScene = &scene3;
     scene3.nextScene = &scene5;
     scene5.nextScene = &scene6_2;
+    scene6_2.nextScene = &scene7;
+    scene7.nextScene = NULL;// End of chain
+    currentScene = &scene0;   // Start with scene 1
+=======
     // scene6_2.nextScene = NULL;// End of chain
     // currentScene = &scene2;   // Start with scene 1
     scene6_2.nextScene = &scene6_5;
@@ -1069,3 +1082,44 @@ BOOL shouldTransitionScene6_5(BOOL iSceneSkipped)
     }
     return TRUE;
 }
+
+/*******************************/ 
+/* SCENE 7 IMPLEMENTATION */
+/******************************/
+void scene7Render(void)
+{
+    glLoadIdentity();
+    glScalef(scaleSlogan, scaleSlogan, scaleSlogan);
+    drawText(0.2, 0, 1, 255, 0, 0);
+}
+
+void scene7Update(void)
+{
+    if (scaleSlogan <= 0.9f)
+    {
+        scaleSlogan = scaleSlogan + 0.001f;    
+    }
+    
+    // Check time-based triggers
+    switch (iTimeElapsed) {
+        case 1870:
+            break;
+        default:
+            break;
+    }
+    
+}
+
+BOOL scene7ShouldTransition(BOOL iSkipped)
+{
+    int iThresholdTime = 1870;
+    if (iSkipped)
+    {
+        iTimeElapsed = 0;
+        iTimeElapsed += iThresholdTime;
+    }
+    // Transition to the next scene after 2 min 14 sec seconds
+    return (iTimeElapsed >= iThresholdTime);
+}
+
+=======
