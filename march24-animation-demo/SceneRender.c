@@ -21,6 +21,7 @@
 #include "../common/props/plate.c"
 #include "Scene4.c"
 #include "../common/props/SimpleHut.c"
+#include "../common/props/endcredits.c"
 /*******************************/
 
 /* TYPE DEFINITIONS AND DECLARATIONS */
@@ -126,6 +127,10 @@ void scene7Render(void);
 void scene7Update(void);
 BOOL scene7ShouldTransition(BOOL iSkipped);
 
+void outroRender(void);
+void outroUpdate(void);
+BOOL outroShouldTransition(BOOL iSkipped);
+
 /*******************************/
 /* SCENE MANAGEMENT VARIABLES */
 /******************************/
@@ -151,6 +156,8 @@ Scene scene6_4_6 = {scene6_4_6Render, scene6_4_6Update, scene6_4_6ShouldTransiti
 
 Scene scene7 = {scene7Render, scene7Update, scene7ShouldTransition, NULL};
 Scene scene6_5;
+
+Scene outro = {outroRender, outroUpdate, outroShouldTransition, NULL};
 
 // External global variables from Raster.c
 extern FILE *gpFile;
@@ -201,7 +208,8 @@ void initScenes(void)
     scene6_4_5.nextScene = &scene6_4_6;
     scene6_4_6.nextScene = &scene6_5;
     scene6_5.nextScene = &scene7; // Fixed: Added & to get the address of scene7
-    scene7.nextScene = NULL;      // End of chain
+    scene7.nextScene = &outro;      // End of chain
+    outro.nextScene = NULL;
 
     currentScene = &scene0; // Start with scene 1
 
@@ -1855,6 +1863,32 @@ void scene7Update(void)
 BOOL scene7ShouldTransition(BOOL iSkipped)
 {
     int iThresholdTime = 2080;
+    if (iSkipped)
+    {
+        iTimeElapsed = 0;
+        iTimeElapsed += iThresholdTime;
+    }
+    // Transition to the next scene after 2 min 14 sec seconds
+    return (iTimeElapsed >= iThresholdTime);
+}
+
+/*******************************/
+/* OUTRO IMPLEMENTATION */
+/******************************/
+void outroRender(void)
+{
+    drawNikhilSathe();
+
+}
+
+void outroUpdate(void)
+{
+
+}
+
+BOOL outroShouldTransition(BOOL iSkipped)
+{
+    int iThresholdTime = 3500;
     if (iSkipped)
     {
         iTimeElapsed = 0;
