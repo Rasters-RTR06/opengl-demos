@@ -54,6 +54,11 @@ BOOL bShowPatternedDeers = FALSE;
 BOOL bShowFlowers = FALSE;
 BOOL bShowPeacock = FALSE;
 
+float flowerRotateAngle = 0.0f;
+TRANSLATION krishnaScene5Translation = {0.0f, 0.0f, 0.0f};
+TRANSLATION rathScene5Translation = {0.0f, 0.0f, 0.0f};
+TRANSLATION horseScene5Translation = {0.0f, 0.0f, 0.0f};
+
 // scene 7 specific variable
 float scaleSlogan = 0.0f;
 
@@ -627,17 +632,16 @@ BOOL PrabhatShouldTransition(BOOL iSkipped)
 void scene1Render(void)
 {
     drawGround();
-    //drawDenseForrest();
+    // drawDenseForrest();
     glPushMatrix();
     glTranslatef(0.0f, 1.5f, 0.0f);
     drawFrontTrees();
     glPopMatrix();
 
     elephant();
-    
+
     drawFrontTrees();
 
-    
     drawButterfly(butterflyX, butterflyY, 0.6f, butterflyRotation);
     toungeMovement();
     // chamelon(1.5f, -0.35f, 0.2);
@@ -1059,20 +1063,21 @@ void scene5Render(void)
         drawCraneTwo(0.8f, 0.0f, 0.9f);
 
         // Shri-Krishna
-        KrishnaRath(-0.8f, -0.3f, 0.50f);
+        KrishnaRath(-0.2f + krishnaScene5Translation.x, -0.3f + krishnaScene5Translation.y, 0.50f);
         // Rath
-        MY_POINT startPosition = {0.2f, -0.5f, 0.8f};
-        SCALING scaleBy = {1.3f, 1.3f, 1.3f};
-        rath(startPosition, rathTranslation, scaleBy);
-        drawHorse(-0.3f, -0.5f, 0.8f);
+        rath((MY_POINT){0.0f, -0.5f, 0.8f}, rathScene5Translation, (SCALING){1.3f, 1.3f, 1.3f});
+        drawHorse(-0.5f + horseScene5Translation.x, -0.5f + horseScene5Translation.y, 0.7f);
         drawFrontTrees();
     }
 
     if (bShowFlowers == TRUE)
     {
+        drawDenseForrest();
+        drawFrontTrees();
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         glScalef(0.2f, 0.2f, 0.0f);
+        glRotatef(flowerRotateAngle, 0.0f, 0.0f, 1.0f);
         drawCurve();
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
@@ -1090,6 +1095,7 @@ void scene5Render(void)
         drawGround();
         drawDenseForrest();
         drawPeacock(0.0f, 0.0f, 0.8f);
+        drawFrontTrees();
     }
 }
 
@@ -1104,6 +1110,10 @@ void scene5Update(void)
     case 760:
         bShowRotatingPlants = FALSE;
         bShriKrishnaEntry = TRUE;
+        // to make whose chariot dissaper before it enters from right side of the screen
+        krishnaScene5Translation.x = 1.5f;
+        rathScene5Translation.x = 1.5f;
+        horseScene5Translation.x = 1.5f;
         bShowLake = TRUE;
         bShowCranes = TRUE;
         break;
@@ -1131,11 +1141,13 @@ void scene5Update(void)
     // Update specific elements
     if (bShowRotatingPlants == TRUE)
     {
-        // rotate plants
+        flowerRotateAngle += 0.01f;
     }
     if (bShriKrishnaEntry == TRUE)
     {
-        // call traslation related function for moving Rath
+        krishnaScene5Translation.x -= 0.01f;
+        rathScene5Translation.x -= 0.01f;
+        horseScene5Translation.x -= 0.01f;
     }
     if (bShowFlowers == TRUE)
     {
