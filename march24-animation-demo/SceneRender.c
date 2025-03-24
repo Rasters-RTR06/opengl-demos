@@ -379,7 +379,7 @@ void scene6_4_2Update(void)
 
 BOOL scene6_4_2ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 50;
+    int iThresholdTime = 20;
     BOOL flag = FALSE;
     if (iSkipped || (iTimeElapsed >= iThresholdTime))
     {
@@ -420,7 +420,7 @@ void scene6_4_3Update(void)
 
 BOOL scene6_4_3ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 40;
+    int iThresholdTime = 20;
     BOOL flag = FALSE;
     if (iSkipped || (iTimeElapsed >= iThresholdTime))
     {
@@ -683,7 +683,7 @@ void scene1Update(void)
 
 BOOL scene1ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 120;
+    int iThresholdTime = 200;
     BOOL flag = FALSE;
     if (iSkipped || (iTimeElapsed >= iThresholdTime))
     {
@@ -906,8 +906,7 @@ void scene2Update(void)
 
 BOOL scene2ShouldTransition(BOOL iSkipped)
 {
-    // 20 Sec is Temporarily set for testing
-    int iThresholdTime = 380;
+    int iThresholdTime = 460;
     if (iSkipped)
     {
         iTimeElapsed = 0;
@@ -1076,11 +1075,11 @@ void drawRiver(float fSpawnAt[2], float fScaleBy) {
     glEnd();
 }
     
-float fSpawnPos1[2] = {0.0f, 1.45f};
-float fSpawnPos2[2] = {0.0f, 1.35f};
-float fSpawnPos3[2] = {0.0f, 1.25f};
-float fSpawnPos4[2] = {0.0f, 1.0f};
-float fSpawnPos5[2] = {0.0f, 1.15f};
+float fSpawnPos1[2] = {0.0f, 1.25f};
+float fSpawnPos2[2] = {0.0f, 1.15f};
+float fSpawnPos3[2] = {0.0f, 1.05f};
+float fSpawnPos4[2] = {0.0f, 0.95f};
+float fSpawnPos5[2] = {0.0f, 0.85f};
 void scene5Render(void)
 {
     /*
@@ -1097,14 +1096,14 @@ void scene5Render(void)
     if (bShowRotatingPlants == TRUE)
     {
         drawGround();
-        drawRiver(fSpawnPos1, 1.3f);
-        drawRiver(fSpawnPos2, 1.3f);
-        drawRiver(fSpawnPos3, 1.3f);
-        drawRiver(fSpawnPos4, 1.3f);
-        drawRiver(fSpawnPos5, 1.3f);
+        drawRiver(fSpawnPos1, 1.2f);
+        drawRiver(fSpawnPos2, 1.2f);
+        drawRiver(fSpawnPos3, 1.2f);
+        drawRiver(fSpawnPos4, 1.2f);
+        drawRiver(fSpawnPos5, 1.2f);
 
-        drawCraneOne(-0.6f, 0.2f, 0.9f);
-        drawCraneTwo(0.2f, 0.2f, 0.9f);
+        drawCraneOne(-0.6f, 0.2f, 0.6f);
+        drawCraneTwo(0.2f, 0.2f, 0.6f);
         drawFrontTrees();
     }
     if (bShriKrishnaEntry = TRUE && bShowLake == TRUE && bShowCranes == TRUE)
@@ -1113,22 +1112,22 @@ void scene5Render(void)
         drawGround();
         //drawDenseForrest();
         drawGround();
-        drawRiver(fSpawnPos1, 1.5f);
-        drawRiver(fSpawnPos2, 1.5f);
-        drawRiver(fSpawnPos3, 1.5f);
-        drawRiver(fSpawnPos4, 1.5f);
-        drawRiver(fSpawnPos5, 1.5f);
+        drawRiver(fSpawnPos1, 1.2f);
+        drawRiver(fSpawnPos2, 1.2f);
+        drawRiver(fSpawnPos3, 1.2f);
+        drawRiver(fSpawnPos4, 1.2f);
+        drawRiver(fSpawnPos5, 1.2f);
 
-        drawCraneOne(-0.6f, 0.2f, 0.9f);
-        drawCraneTwo(0.5f, 0.4f, 0.9f);
+        drawCraneOne(-0.6f, 0.2f, 0.6f);
+        drawCraneTwo(0.5f, 0.4f, 0.6f);
 
         
 
         // Shri-Krishna
-        KrishnaRath(-0.2f + krishnaScene5Translation.x, 0.0f + krishnaScene5Translation.y, 0.30f);
+        KrishnaRath(-0.2f + krishnaScene5Translation.x, 0.0f + krishnaScene5Translation.y, 0.20f);
         // Rath
-        rath((MY_POINT){0.0f, -0.5f, 0.8f}, rathScene5Translation, (SCALING){1.3f, 1.3f, 1.3f});
-        drawHorse(-0.5f + horseScene5Translation.x, -0.5f + horseScene5Translation.y, 0.7f);
+        rath((MY_POINT){0.0f, -0.5f, 0.8f}, rathScene5Translation, (SCALING){1.2f, 1.2f, 1.2f});
+        drawHorse(-0.5f + horseScene5Translation.x, -0.5f + horseScene5Translation.y, 0.6f);
         drawFrontTrees();
     }
 
@@ -1845,7 +1844,7 @@ void scene7Update(void)
 {
     if (scaleSlogan <= 0.9f)
     {
-        scaleSlogan = scaleSlogan + 0.001f;
+        scaleSlogan = scaleSlogan + 0.008f;
     }
 
     // Check time-based triggers
