@@ -661,11 +661,11 @@ void scene1Update(void)
     case 30:
         bCallTounge = TRUE;
         break;
-    case 40:
+    case 45:
         bCallButterfly = TRUE;
         bCallElephant = TRUE;
         break;
-    case 100:
+    case 80:
         bCallSandesh = TRUE; // Hide Sandesh message before scene transition
         break;
     }
