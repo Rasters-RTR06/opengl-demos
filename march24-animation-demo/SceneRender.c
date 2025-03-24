@@ -627,9 +627,17 @@ BOOL PrabhatShouldTransition(BOOL iSkipped)
 void scene1Render(void)
 {
     drawGround();
-    drawDenseForrest();
+    //drawDenseForrest();
+    glPushMatrix();
+    glTranslatef(0.0f, 1.5f, 0.0f);
     drawFrontTrees();
+    glPopMatrix();
+
     elephant();
+    
+    drawFrontTrees();
+
+    
     drawButterfly(butterflyX, butterflyY, 0.6f, butterflyRotation);
     toungeMovement();
     // chamelon(1.5f, -0.35f, 0.2);
