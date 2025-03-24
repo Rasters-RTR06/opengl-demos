@@ -1049,7 +1049,7 @@ void drawRiver(float fSpawnAt[2], float fScaleBy)
         riverMovX = 0.0f;
     }
     glBegin(GL_QUAD_STRIP);
-    glColor3f(0.0f, 0.4f, 0.8f);
+    glColor3f(0.11, 0.247, 0.271);
 
     float riverY = -0.5f * fScaleBy + fSpawnAt[1];
     float amplitude = 0.03f * fScaleBy;
@@ -1234,9 +1234,9 @@ void scene5Update(void)
     }
     if (bShriKrishnaEntry == TRUE)
     {
-        krishnaScene5Translation.x -= 0.01f;
-        rathScene5Translation.x -= 0.01f;
-        horseScene5Translation.x -= 0.01f;
+        krishnaScene5Translation.x -= 0.008f;
+        rathScene5Translation.x -= 0.008f;
+        horseScene5Translation.x -= 0.008f;
     }
     if (bShowFlowers == TRUE)
     {
