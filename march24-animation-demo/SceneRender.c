@@ -1102,7 +1102,7 @@ void scene5Render(void)
         drawRiver(fSpawnPos5, 1.5f);
 
         drawCraneOne(-0.6f, 0.2f, 0.9f);
-        drawCraneTwo(0.5f, 0.4f, 0.9f);
+        drawCraneTwo(0.2f, 0.2f, 0.9f);
         drawFrontTrees();
     }
     if (bShriKrishnaEntry = TRUE && bShowLake == TRUE && bShowCranes == TRUE)
