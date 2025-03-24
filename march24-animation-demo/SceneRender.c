@@ -1698,7 +1698,7 @@ void scene7Render(void)
     glLoadIdentity();
     drawRoom();
     glScalef(scaleSlogan, scaleSlogan, scaleSlogan);
-    drawText(0.2, 0, 1, 255, 0, 0);
+    drawText(0.2, 0, 1, 255, 255, 0);
 }
 
 void scene7Update(void)
