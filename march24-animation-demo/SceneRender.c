@@ -991,6 +991,8 @@ void scene3Render(void)
     drawTopDeerNearDraupadi(0.4f, 0.4f, 0.50f);
     drawBottomDeerNearDraupadi(0.1f, -0.3f, 0.50f);
     drawFrontTrees();
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 }
 
 void scene3Update(void)
@@ -1095,11 +1097,11 @@ void scene5Render(void)
     if (bShowRotatingPlants == TRUE)
     {
         drawGround();
-        drawRiver(fSpawnPos1, 1.5f);
-        drawRiver(fSpawnPos2, 1.5f);
-        drawRiver(fSpawnPos3, 1.5f);
-        drawRiver(fSpawnPos4, 1.5f);
-        drawRiver(fSpawnPos5, 1.5f);
+        drawRiver(fSpawnPos1, 1.3f);
+        drawRiver(fSpawnPos2, 1.3f);
+        drawRiver(fSpawnPos3, 1.3f);
+        drawRiver(fSpawnPos4, 1.3f);
+        drawRiver(fSpawnPos5, 1.3f);
 
         drawCraneOne(-0.6f, 0.2f, 0.9f);
         drawCraneTwo(0.2f, 0.2f, 0.9f);
