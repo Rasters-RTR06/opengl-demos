@@ -56,7 +56,6 @@ BOOL bShowFlowers = FALSE;
 BOOL bShowPeacock = FALSE;
 BOOL bShowChamelon = FALSE;
 
-
 float flowerRotateAngle = 0.0f;
 TRANSLATION krishnaScene5Translation = {0.0f, 0.0f, 0.0f};
 TRANSLATION rathScene5Translation = {0.0f, 0.0f, 0.0f};
@@ -1039,42 +1038,46 @@ BOOL scene4ShouldTransition(BOOL iSkipped)
 /*******************************/
 /* SCENE 5 IMPLEMENTATION */
 /******************************/
-float riverMovX = 0.0f; 
+float riverMovX = 0.0f;
 
-void drawRiver(float fSpawnAt[2], float fScaleBy) {
+void drawRiver(float fSpawnAt[2], float fScaleBy)
+{
     // river wave
     riverMovX += 0.005f;
-    if (riverMovX > 2.0f * M_PI) {
+    if (riverMovX > 2.0f * PI)
+    {
         riverMovX = 0.0f;
     }
     glBegin(GL_QUAD_STRIP);
     glColor3f(0.0f, 0.4f, 0.8f);
-    
+
     float riverY = -0.5f * fScaleBy + fSpawnAt[1];
     float amplitude = 0.03f * fScaleBy;
     float wavelength = 5.0f / fScaleBy;
-    
+
     // Water Blue
-    for (float x = -1.0f * fScaleBy + fSpawnAt[0]; x <= 1.0f * fScaleBy + fSpawnAt[0]; x += 0.01f * fScaleBy) {
+    for (float x = -1.0f * fScaleBy + fSpawnAt[0]; x <= 1.0f * fScaleBy + fSpawnAt[0]; x += 0.01f * fScaleBy)
+    {
         float y = riverY + amplitude * sin(wavelength * (x - fSpawnAt[0]) / fScaleBy + riverMovX);
 
         glVertex2f(x, y);
         glVertex2f(x, riverY - 0.15f * fScaleBy);
     }
     glEnd();
-    
+
     // Water Reflection white
     glBegin(GL_QUAD_STRIP);
     glColor4f(0.6f, 0.8f, 1.0f, 0.3f);
-    for (float x = -1.0f * fScaleBy + fSpawnAt[0]; x <= 1.0f * fScaleBy + fSpawnAt[0]; x += 0.01f * fScaleBy) {
-        float y = riverY + amplitude * 0.5f * sin(wavelength * (x - fSpawnAt[0]) / fScaleBy + riverMovX + M_PI);
+    for (float x = -1.0f * fScaleBy + fSpawnAt[0]; x <= 1.0f * fScaleBy + fSpawnAt[0]; x += 0.01f * fScaleBy)
+    {
+        float y = riverY + amplitude * 0.5f * sin(wavelength * (x - fSpawnAt[0]) / fScaleBy + riverMovX + PI);
         y = y - 0.05f * fScaleBy;
         glVertex2f(x, y);
         glVertex2f(x, y - 0.02f);
     }
     glEnd();
 }
-    
+
 float fSpawnPos1[2] = {0.0f, 1.25f};
 float fSpawnPos2[2] = {0.0f, 1.15f};
 float fSpawnPos3[2] = {0.0f, 1.05f};
@@ -1110,7 +1113,7 @@ void scene5Render(void)
     {
         // lake and cranes
         drawGround();
-        //drawDenseForrest();
+        // drawDenseForrest();
         drawGround();
         drawRiver(fSpawnPos1, 1.2f);
         drawRiver(fSpawnPos2, 1.2f);
@@ -1120,8 +1123,6 @@ void scene5Render(void)
 
         drawCraneOne(-0.6f, 0.2f, 0.6f);
         drawCraneTwo(0.5f, 0.4f, 0.6f);
-
-        
 
         // Shri-Krishna
         KrishnaRath(-0.2f + krishnaScene5Translation.x, 0.0f + krishnaScene5Translation.y, 0.20f);
@@ -1158,36 +1159,30 @@ void scene5Render(void)
         drawRightPatternedDeer(0.0f, 0.0f, 0.5f);
         drawLeftPatternedDeer(-0.4f, 0.0f, 0.5f);
         drawFrontTrees();
-        
-        
-
     }
     if (bShowPeacock == TRUE)
     {
         drawGround();
-            glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    glTranslatef(0.0f, 1.5f, 0.0f);
-    drawFrontTrees();
-    glLoadIdentity();
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        glTranslatef(0.0f, 1.5f, 0.0f);
+        drawFrontTrees();
+        glLoadIdentity();
 
         drawPeacock(0.0f, 0.0f, 0.8f);
         drawAnt(0.5f, -0.15f, 0.3f);
         drawAnt(-0.5f, -0.15f, 0.3f);
-
     }
     if (bShowChamelon == TRUE)
     {
-    drawGround();
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    glTranslatef(0.0f, 1.5f, 0.0f);
-    drawFrontTrees();
-    glLoadIdentity();
+        drawGround();
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        glTranslatef(0.0f, 1.5f, 0.0f);
+        drawFrontTrees();
+        glLoadIdentity();
 
-    chamelon(0.5f, -0.0f, 0.2);
-
-
+        chamelon(0.5f, -0.0f, 0.2);
     }
 }
 
@@ -1281,7 +1276,7 @@ void drawChariotScene6_1()
     MY_POINT startPosition = {0.859f + rathTranslationScene6_1.x, -0.47f + rathTranslationScene6_1.y, 0.0f + rathTranslationScene6_1.z};
     SCALING scaleBy = {0.8f, 0.8f, 0.8f};
 
-    //KrishnaStanding(0.75f + rathTranslationScene6_1.x, -0.1f + rathTranslationScene6_1.y, 0.2f);
+    // KrishnaStanding(0.75f + rathTranslationScene6_1.x, -0.1f + rathTranslationScene6_1.y, 0.2f);
     KrishnaRath(0.75f + rathTranslationScene6_1.x, -0.1f + rathTranslationScene6_1.y, 0.2f);
 
     drawHorse(0.5f + rathTranslationScene6_1.x, -0.3f + rathTranslationScene6_1.y, 0.5f);
