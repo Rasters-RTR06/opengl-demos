@@ -1123,7 +1123,7 @@ void scene5Render(void)
         
 
         // Shri-Krishna
-        KrishnaRath(-0.2f + krishnaScene5Translation.x, -0.3f + krishnaScene5Translation.y, 0.50f);
+        KrishnaRath(-0.2f + krishnaScene5Translation.x, 0.0f + krishnaScene5Translation.y, 0.30f);
         // Rath
         rath((MY_POINT){0.0f, -0.5f, 0.8f}, rathScene5Translation, (SCALING){1.3f, 1.3f, 1.3f});
         drawHorse(-0.5f + horseScene5Translation.x, -0.5f + horseScene5Translation.y, 0.7f);
@@ -1280,7 +1280,9 @@ void drawChariotScene6_1()
     MY_POINT startPosition = {0.859f + rathTranslationScene6_1.x, -0.47f + rathTranslationScene6_1.y, 0.0f + rathTranslationScene6_1.z};
     SCALING scaleBy = {0.8f, 0.8f, 0.8f};
 
-    KrishnaStanding(0.75f + rathTranslationScene6_1.x, -0.1f + rathTranslationScene6_1.y, 0.2f);
+    //KrishnaStanding(0.75f + rathTranslationScene6_1.x, -0.1f + rathTranslationScene6_1.y, 0.2f);
+    KrishnaRath(0.75f + rathTranslationScene6_1.x, -0.1f + rathTranslationScene6_1.y, 0.2f);
+
     drawHorse(0.5f + rathTranslationScene6_1.x, -0.3f + rathTranslationScene6_1.y, 0.5f);
     rath(startPosition, rathTranslationScene6_1, scaleBy);
 }

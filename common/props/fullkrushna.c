@@ -395,9 +395,7 @@
 
 void KrishnaRath(float originx, float originy, float resize)
 {
-    // Set matrix to model view mode and reset to identity
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity(); // No global scaling; we'll handle it per vertex
+
 
     // CROWN
     // Triangle 1
@@ -784,7 +782,4 @@ void KrishnaRath(float originx, float originy, float resize)
     glVertex2f(originx + (-0.417 * resize), originy + (0.620 * resize));
     glEnd();
 
-    // Reset matrix to identity (optional, depending on your program)
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
 }
