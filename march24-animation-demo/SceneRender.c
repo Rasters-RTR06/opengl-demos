@@ -9,6 +9,7 @@
 #include "../common/props/peacock.c"
 #include "../common/props/fullkrushna.c"
 #include "../common/props/horse.c"
+#include "../common/props/ant.c"
 // #include "../common/props/SandeshText.c"
 // #include "../common/props/Sahadev.c"
 #include "../common/props/nikhilsSandeshtxt.c"
@@ -53,6 +54,8 @@ BOOL bShowCranes = FALSE;
 BOOL bShowPatternedDeers = FALSE;
 BOOL bShowFlowers = FALSE;
 BOOL bShowPeacock = FALSE;
+BOOL bShowChamelon = FALSE;
+
 
 // scene 7 specific variable
 float scaleSlogan = 0.0f;
@@ -628,13 +631,14 @@ void scene1Render(void)
 {
     drawGround();
     //drawDenseForrest();
-    glPushMatrix();
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
     glTranslatef(0.0f, 1.5f, 0.0f);
     drawFrontTrees();
-    glPopMatrix();
+    glLoadIdentity();
 
     elephant();
-    
+
     drawFrontTrees();
 
     
@@ -1026,7 +1030,47 @@ BOOL scene4ShouldTransition(BOOL iSkipped)
 /*******************************/
 /* SCENE 5 IMPLEMENTATION */
 /******************************/
+float riverMovX = 0.0f; 
 
+void drawRiver(float fSpawnAt[2], float fScaleBy) {
+    // river wave
+    riverMovX += 0.005f;
+    if (riverMovX > 2.0f * M_PI) {
+        riverMovX = 0.0f;
+    }
+    glBegin(GL_QUAD_STRIP);
+    glColor3f(0.0f, 0.4f, 0.8f);
+    
+    float riverY = -0.5f * fScaleBy + fSpawnAt[1];
+    float amplitude = 0.03f * fScaleBy;
+    float wavelength = 5.0f / fScaleBy;
+    
+    // Water Blue
+    for (float x = -1.0f * fScaleBy + fSpawnAt[0]; x <= 1.0f * fScaleBy + fSpawnAt[0]; x += 0.01f * fScaleBy) {
+        float y = riverY + amplitude * sin(wavelength * (x - fSpawnAt[0]) / fScaleBy + riverMovX);
+
+        glVertex2f(x, y);
+        glVertex2f(x, riverY - 0.15f * fScaleBy);
+    }
+    glEnd();
+    
+    // Water Reflection white
+    glBegin(GL_QUAD_STRIP);
+    glColor4f(0.6f, 0.8f, 1.0f, 0.3f);
+    for (float x = -1.0f * fScaleBy + fSpawnAt[0]; x <= 1.0f * fScaleBy + fSpawnAt[0]; x += 0.01f * fScaleBy) {
+        float y = riverY + amplitude * 0.5f * sin(wavelength * (x - fSpawnAt[0]) / fScaleBy + riverMovX + M_PI);
+        y = y - 0.05f * fScaleBy;
+        glVertex2f(x, y);
+        glVertex2f(x, y - 0.02f);
+    }
+    glEnd();
+}
+    
+float fSpawnPos1[2] = {0.0f, 1.45f};
+float fSpawnPos2[2] = {0.0f, 1.35f};
+float fSpawnPos3[2] = {0.0f, 1.25f};
+float fSpawnPos4[2] = {0.0f, 1.0f};
+float fSpawnPos5[2] = {0.0f, 1.15f};
 void scene5Render(void)
 {
     /*
@@ -1043,16 +1087,32 @@ void scene5Render(void)
     if (bShowRotatingPlants == TRUE)
     {
         drawGround();
-        drawDenseForrest();
+        drawRiver(fSpawnPos1, 1.5f);
+        drawRiver(fSpawnPos2, 1.5f);
+        drawRiver(fSpawnPos3, 1.5f);
+        drawRiver(fSpawnPos4, 1.5f);
+        drawRiver(fSpawnPos5, 1.5f);
+
+        drawCraneOne(-0.6f, 0.2f, 0.9f);
+        drawCraneTwo(0.5f, 0.4f, 0.9f);
+        drawFrontTrees();
     }
     if (bShriKrishnaEntry = TRUE && bShowLake == TRUE && bShowCranes == TRUE)
     {
         // lake and cranes
         drawGround();
-        drawDenseForrest();
+        //drawDenseForrest();
+        drawGround();
+        drawRiver(fSpawnPos1, 1.5f);
+        drawRiver(fSpawnPos2, 1.5f);
+        drawRiver(fSpawnPos3, 1.5f);
+        drawRiver(fSpawnPos4, 1.5f);
+        drawRiver(fSpawnPos5, 1.5f);
 
-        drawCraneOne(0.4f, -0.2f, 0.9f);
-        drawCraneTwo(0.8f, 0.0f, 0.9f);
+        drawCraneOne(-0.6f, 0.2f, 0.9f);
+        drawCraneTwo(0.5f, 0.4f, 0.9f);
+
+        
 
         // Shri-Krishna
         KrishnaRath(-0.8f, -0.3f, 0.50f);
@@ -1066,26 +1126,60 @@ void scene5Render(void)
 
     if (bShowFlowers == TRUE)
     {
+        drawGround();
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         glScalef(0.2f, 0.2f, 0.0f);
         drawCurve();
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
+
         glScalef(1.0f, 1.0f, 1.0f);
+
+        drawFrontTrees();
     }
     if (bShowPatternedDeers == TRUE)
     {
         drawGround();
-        drawDenseForrest();
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        glTranslatef(0.0f, 1.5f, 0.0f);
+        drawFrontTrees();
+        glLoadIdentity();
+
         drawRightPatternedDeer(0.0f, 0.0f, 0.5f);
         drawLeftPatternedDeer(-0.4f, 0.0f, 0.5f);
+        drawFrontTrees();
+        
+        
+
     }
     if (bShowPeacock == TRUE)
     {
         drawGround();
-        drawDenseForrest();
+            glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslatef(0.0f, 1.5f, 0.0f);
+    drawFrontTrees();
+    glLoadIdentity();
+
         drawPeacock(0.0f, 0.0f, 0.8f);
+        drawAnt(0.5f, -0.15f, 0.3f);
+        drawAnt(-0.5f, -0.15f, 0.3f);
+
+    }
+    if (bShowChamelon == TRUE)
+    {
+    drawGround();
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslatef(0.0f, 1.5f, 0.0f);
+    drawFrontTrees();
+    glLoadIdentity();
+
+    chamelon(0.5f, -0.0f, 0.2);
+
+
     }
 }
 
@@ -1094,31 +1188,33 @@ void scene5Update(void)
     // Check time-based triggers
     switch (iTimeElapsed)
     {
-    case 730:
+    case 720:
         bShowRotatingPlants = TRUE;
+
         break;
-    case 760:
+    case 750:
         bShowRotatingPlants = FALSE;
         bShriKrishnaEntry = TRUE;
         bShowLake = TRUE;
         bShowCranes = TRUE;
         break;
-    case 840:
+    case 790:
         bShriKrishnaEntry = FALSE;
         bShowLake = FALSE;
         bShowCranes = FALSE;
         bShowPatternedDeers = TRUE;
         break;
-    case 870:
+    case 830:
         bShowPatternedDeers = FALSE;
         bShowFlowers = TRUE;
         break;
-    case 890:
+    case 850:
         bShowFlowers = FALSE;
         bShowPeacock = TRUE;
         break;
     case 900:
         bShowPeacock = FALSE;
+        bShowChamelon = TRUE;
         break;
     }
     // Update specific elements
