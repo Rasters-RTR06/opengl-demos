@@ -838,6 +838,8 @@ void scene2Render(void)
         glPopMatrix();
     }
 
+    pointResize = currentZoom;
+
     // Set up the transformation matrix.
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -959,6 +961,8 @@ void scene3Render(void)
             currentZoom = zoomInFactor;
         }
     }
+
+    pointResize = currentZoom;
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -1121,6 +1125,9 @@ void scene5Update(void)
         bShowPeacock = FALSE;
         break;
     }
+
+    pointResize = 1.0f;
+
     // Update specific elements
     if (bShowRotatingPlants == TRUE)
     {
@@ -1165,7 +1172,7 @@ BOOL scene5ShouldTransition(BOOL iSkipped)
 
 void drawChariotScene6_1()
 {
-    MY_POINT startPosition = {0.859f + rathTranslationScene6_1.x, -0.47f + rathTranslationScene6_1.y, 0.8f + rathTranslationScene6_1.z};
+    MY_POINT startPosition = {0.859f + rathTranslationScene6_1.x, -0.47f + rathTranslationScene6_1.y, 0.0f + rathTranslationScene6_1.z};
     SCALING scaleBy = {0.8f, 0.8f, 0.8f};
 
     KrishnaStanding(0.75f + rathTranslationScene6_1.x, -0.1f + rathTranslationScene6_1.y, 0.2f);
@@ -1193,12 +1200,15 @@ void scene6_1Render()
 
     drawDenseForrest();
 
-    drawYudhishthir(-0.05, -0.1, 0.5, 1, 1);
-    drawBheem(0.20, -0.1, 0.5, 1, 1);
-    drawArjun(-0.35, -0.1, 0.5, 1, 1, 0);
-    drawNakul(-0.50, -0.1, 0.5, 1, 1);
-    drawSahadev(-0.65, -0.1, 0.5, 1, 1, 0);
-    drawDraupadi(-0.8, -0.1, 0.5, 1, 1);
+    partUpperHut(-1.0f, 0.3f, 0.34f, 0.15f, 0.52f, 0.45f, 0.19f, 1);
+    partLowerHut(-0.3f, 0.0f, 1.0f);
+
+    drawYudhishthir(0.15, -0.1, 0.5, 1, 1);
+    drawBheem(0.00, -0.1, 0.5, 1, 1);
+    drawArjun(-0.15, -0.1, 0.5, 1, 1, 0);
+    drawNakul(-0.30, -0.1, 0.5, 1, 1);
+    drawSahadev(-0.45, -0.1, 0.5, 1, 1, 0);
+    drawDraupadi(-0.60, 0.1, 0.5, 1, 1);
 
     drawChariotScene6_1();
 
@@ -1219,7 +1229,7 @@ void scene6_1Update()
     case 950:
         translateKrishna = TRUE;
         scalingScene6_1 = (SCALING){4.0f, 4.0f, 4.0f};
-        cameraTranslationScene6_1 = (TRANSLATION){-0.7f * scalingScene6_1.x, 0.3f * scalingScene6_1.y, 0.0f};
+        cameraTranslationScene6_1 = (TRANSLATION){-0.7f * scalingScene6_1.x, 0.0f * scalingScene6_1.y, 0.0f};
         rathTranslationScene6_1 = (TRANSLATION){0.4f * scalingScene6_1.z, 0.0f * scalingScene6_1.y, 0.0f};
         break;
 
@@ -1227,17 +1237,9 @@ void scene6_1Update()
         translateKrishna = FALSE;
         zoomOutKrishna = TRUE;
         scalingScene6_1 = (SCALING){4.0f, 4.0f, 4.0f};
-        cameraTranslationScene6_1 = (TRANSLATION){-0.7f * scalingScene6_1.x, 0.3f * scalingScene6_1.y, 0.0f};
+        cameraTranslationScene6_1 = (TRANSLATION){-0.7f * scalingScene6_1.x, 0.0f * scalingScene6_1.y, 0.0f};
         rathTranslationScene6_1 = (TRANSLATION){0.0f * scalingScene6_1.z, 0.0f * scalingScene6_1.y, 0.0f};
         break;
-
-        // case 990:
-        //     zoomOutKrishna = FALSE;
-        //     sceneTranslateLeft = TRUE;
-        //     scalingScene6_1 = (SCALING){1.0f, 1.0f, 1.0f};
-        //     cameraTranslationScene6_1 = (TRANSLATION){0.0f * scalingScene6_1.x, 0.0f * scalingScene6_1.y, 0.0f};
-        //     rathTranslationScene6_1 = (TRANSLATION){0.0f * scalingScene6_1.z, 0.0f * scalingScene6_1.y, 0.0f};
-        //     break;
 
     case 1030:
         sceneTranslateLeft = FALSE;
@@ -1251,6 +1253,8 @@ void scene6_1Update()
         break;
     }
 
+    pointResize = scalingScene6_1.x;
+
     if (translateKrishna == TRUE)
     {
         callCount++;
@@ -1262,37 +1266,54 @@ void scene6_1Update()
 
     if (zoomOutKrishna == TRUE)
     {
-        if (cameraTranslationScene6_1.x <= 0.0f)
-        {
-            cameraTranslationScene6_1.x += 0.15 * scalingScene6_1.x;
-        }
+        float startTime = 980.0f;
+        float endTime = 1030.0f;
+        float t = (float)(iTimeElapsed - startTime) / (endTime - startTime); // Normalized time [0,1]
+        if (t > 1.0f)
+            t = 1.0f;
 
-        if (cameraTranslationScene6_1.y >= 0.0f)
-        {
-            cameraTranslationScene6_1.y -= 0.05 * scalingScene6_1.y;
-        }
+        // Initial and target values
+        float startScale = 4.0f;
+        float targetScale = 1.0f;
+        float startCamX = -0.7f * 4.0f; // From previous phase
+        float targetCamX = 0.0f;
+        float startCamY = 0.0f;
+        float targetCamY = 0.0f;
 
-        if (scalingScene6_1.x >= 1.0f)
-        {
-            scalingScene6_1.x -= 0.05f;
-            scalingScene6_1.y -= 0.05f;
-            scalingScene6_1.z -= 0.05f;
-        }
+        // Smoothstep interpolation for natural easing
+        float smoothT = t * t * (3.0f - 2.0f * t); // Smoothstep formula
+
+        scalingScene6_1.x = startScale + (targetScale - startScale) * smoothT;
+        scalingScene6_1.y = scalingScene6_1.x; // Uniform scaling
+        scalingScene6_1.z = scalingScene6_1.x;
+        cameraTranslationScene6_1.x = startCamX + (targetCamX - startCamX) * smoothT;
+        cameraTranslationScene6_1.y = startCamY + (targetCamY - startCamY) * smoothT;
+        rathTranslationScene6_1.x = 0.0f;
     }
 
     if (zoomInDraupadi == TRUE)
     {
-        if (cameraTranslationScene6_1.x <= 0.8f * scalingScene6_1.x)
-        {
-            cameraTranslationScene6_1.x += 0.01 * scalingScene6_1.x;
-        }
+        float startTime = 1030.0f;
+        float endTime = 1080.0f;                                             // Assuming zoom completes by 1080, adjust as needed
+        float t = (float)(iTimeElapsed - startTime) / (endTime - startTime); // Normalized time [0,1]
+        if (t > 1.0f)
+            t = 1.0f;
 
-        if (scalingScene6_1.x <= 4.0f)
-        {
-            scalingScene6_1.x += 0.05f;
-            scalingScene6_1.y += 0.05f;
-            scalingScene6_1.z += 0.05f;
-        }
+        // Initial and target values
+        float startScale = 1.0f;
+        float targetScale = 4.0f;
+        float startCamX = 0.0f;
+        float targetCamX = 0.8f * 4.0f; // Adjusted to match target
+
+        // Smoothstep interpolation
+        float smoothT = t * t * (3.0f - 2.0f * t);
+
+        scalingScene6_1.x = startScale + (targetScale - startScale) * smoothT;
+        scalingScene6_1.y = scalingScene6_1.x;
+        scalingScene6_1.z = scalingScene6_1.x;
+        cameraTranslationScene6_1.x = startCamX + (targetCamX - startCamX) * smoothT;
+        cameraTranslationScene6_1.y = 0.0f; // No vertical movement
+        rathTranslationScene6_1.x = 0.0f;
     }
 
     fprintf(gpFile, "update scene 6_1: iTimeElapsed: %d :: callCount: %d", iTimeElapsed, callCount);
@@ -1637,6 +1658,8 @@ void updateScene6_5()
     default:
         break;
     }
+
+    pointResize = scalingScene6_5.x;
 
     if (zoomOutPandav == TRUE)
     {

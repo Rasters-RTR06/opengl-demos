@@ -212,22 +212,22 @@ void drawTallNarrowPlant(float startX, float startY, struct Color leavesColor, s
     void drawBushWith(float centerX, float centerY, float radiusX, float radiusY, int dotsCount, struct Color color);
 
     // code
-    drawBushWith(startX + 0.0f, startY + 0.0f, 0.10f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + 0.050f, startY + 0.0f, 0.10f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + -0.050f, startY + 0.0f, 0.10f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + 0.040f, startY + 0.10f, 0.10f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + -0.040f, startY + 0.10f, 0.10f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + 0.010f, startY + 0.10f, 0.10f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + 0.030f, startY + 0.20f, 0.10f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + -0.030f, startY + 0.20f, 0.10f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + 0.020f, startY + 0.20f, 0.10f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + 0.025f, startY + 0.30f, 0.10f, 0.30f, 400, leavesColor);
-    drawBushWith(startX + -0.025f, startY + 0.30f, 0.10f, 0.30f, 400, leavesColor);
-    drawBushWith(startX + 0.015f, startY + 0.40f, 0.10f, 0.30f, 400, leavesColor);
-    drawBushWith(startX + -0.015f, startY + 0.40f, 0.10f, 0.30f, 400, leavesColor);
-    drawBushWith(startX + 0.005f, startY + 0.50f, 0.10f, 0.30f, 400, leavesColor);
-    drawBushWith(startX + -0.005f, startY + 0.50f, 0.10f, 0.30f, 400, leavesColor);
-    drawBushWith(startX + 0.005f, startY + 0.60f, 0.10f, 0.30f, 400, leavesColor);
+    drawBushWith(startX + 0.0f, startY + 0.0f, 0.10f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + 0.050f, startY + 0.0f, 0.10f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + -0.050f, startY + 0.0f, 0.10f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + 0.040f, startY + 0.10f, 0.10f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + -0.040f, startY + 0.10f, 0.10f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + 0.010f, startY + 0.10f, 0.10f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + 0.030f, startY + 0.20f, 0.10f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + -0.030f, startY + 0.20f, 0.10f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + 0.020f, startY + 0.20f, 0.10f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + 0.025f, startY + 0.30f, 0.10f, 0.30f, 800, leavesColor);
+    drawBushWith(startX + -0.025f, startY + 0.30f, 0.10f, 0.30f, 800, leavesColor);
+    drawBushWith(startX + 0.015f, startY + 0.40f, 0.10f, 0.30f, 800, leavesColor);
+    drawBushWith(startX + -0.015f, startY + 0.40f, 0.10f, 0.30f, 800, leavesColor);
+    drawBushWith(startX + 0.005f, startY + 0.50f, 0.10f, 0.30f, 800, leavesColor);
+    drawBushWith(startX + -0.005f, startY + 0.50f, 0.10f, 0.30f, 800, leavesColor);
+    drawBushWith(startX + 0.005f, startY + 0.60f, 0.10f, 0.30f, 800, leavesColor);
     drawBushWith(startX + -0.005f, startY + 0.50f, 0.10f, 0.30f, 30, petalColor);
     drawBushWith(startX + 0.025f, startY + 0.30f, 0.10f, 0.30f, 30, petalColor);
     drawBushWith(startX + 0.030f, startY + 0.20f, 0.10f, 0.10f, 30, petalColor);
@@ -240,19 +240,19 @@ void drawCompactPlant(float startX, float startY, struct Color leavesColor, stru
     void drawBushWith(float centerX, float centerY, float radiusX, float radiusY, int dotsCount, struct Color color);
 
     // code
-    drawBushWith(startX + 0.0f, startY + 0.0f, 0.10f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + 0.05f, startY + 0.00f, 0.10f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + 0.05f, startY + 0.00f, 0.10f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + -0.05f, startY + 0.00f, 0.10f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + 0.025f, startY + 0.05f, 0.10f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + -0.025f, startY + 0.05f, 0.10f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + -0.025f, startY + 0.10f, 0.05f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + 0.010f, startY + 0.10f, 0.05f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + 0.030f, startY + 0.10f, 0.05f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + 0.015f, startY + 0.15f, 0.05f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + -0.015f, startY + 0.15f, 0.05f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + 0.020f, startY + 0.20f, 0.05f, 0.10f, 400, leavesColor);
-    drawBushWith(startX + -0.020f, startY + 0.20f, 0.05f, 0.10f, 400, leavesColor);
+    drawBushWith(startX + 0.0f, startY + 0.0f, 0.10f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + 0.05f, startY + 0.00f, 0.10f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + 0.05f, startY + 0.00f, 0.10f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + -0.05f, startY + 0.00f, 0.10f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + 0.025f, startY + 0.05f, 0.10f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + -0.025f, startY + 0.05f, 0.10f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + -0.025f, startY + 0.10f, 0.05f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + 0.010f, startY + 0.10f, 0.05f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + 0.030f, startY + 0.10f, 0.05f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + 0.015f, startY + 0.15f, 0.05f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + -0.015f, startY + 0.15f, 0.05f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + 0.020f, startY + 0.20f, 0.05f, 0.10f, 800, leavesColor);
+    drawBushWith(startX + -0.020f, startY + 0.20f, 0.05f, 0.10f, 800, leavesColor);
     drawBushWith(startX + 0.0f, startY + 0.10f, 0.05f, 0.20f, 30, petalColor);
 }
 
@@ -262,13 +262,13 @@ void drawPlant(float startX, float startY, struct Color leavesColor, struct Colo
     void drawBushWith(float centerX, float centerY, float radiusX, float radiusY, int dotsCount, struct Color color);
 
     // code
-    drawBushWith(startX + 0.0f, startY + 0.0f, 0.050f, 0.050f, 400, leavesColor);
-    drawBushWith(startX + 0.05f, startY + 0.00f, 0.050f, 0.050f, 400, leavesColor);
-    drawBushWith(startX + -0.05f, startY + 0.00f, 0.050f, 0.050f, 400, leavesColor);
+    drawBushWith(startX + 0.0f, startY + 0.0f, 0.050f, 0.050f, 300, leavesColor);
+    drawBushWith(startX + 0.05f, startY + 0.00f, 0.050f, 0.050f, 300, leavesColor);
+    drawBushWith(startX + -0.05f, startY + 0.00f, 0.050f, 0.050f, 300, leavesColor);
     drawBushWith(startX, startY, 0.10f, 0.10f, 50, petalColor);
-    drawBushWith(startX + 0.025f, startY + 0.05f, 0.050f, 0.050f, 400, leavesColor);
-    drawBushWith(startX + -0.025f, startY + 0.05f, 0.050f, 0.050f, 400, leavesColor);
-    drawBushWith(startX + -0.025f, startY + 0.10f, 0.050f, 0.10f, 400, leavesColor);
+    drawBushWith(startX + 0.025f, startY + 0.05f, 0.050f, 0.050f, 300, leavesColor);
+    drawBushWith(startX + -0.025f, startY + 0.05f, 0.050f, 0.050f, 300, leavesColor);
+    drawBushWith(startX + -0.025f, startY + 0.10f, 0.050f, 0.10f, 300, leavesColor);
 }
 
 void drawBushWith(float centerX, float centerY, float radiusX, float radiusY, int dotsCount, struct Color color)
@@ -280,7 +280,7 @@ void drawBushWith(float centerX, float centerY, float radiusX, float radiusY, in
     // variable declarations
     static int setDots = 1;
     int numberOfDots = dotsCount > 300 ? 300 : dotsCount;
-    static struct Dots dots[400];
+    static struct Dots dots[800];
 
     if (setDots != 0)
     {
