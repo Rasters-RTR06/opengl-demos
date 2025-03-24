@@ -1057,7 +1057,7 @@ void drawRiver(float fSpawnAt[2], float fScaleBy)
         riverMovX = 0.0f;
     }
     glBegin(GL_QUAD_STRIP);
-    glColor3f(0.11, 0.247, 0.271);
+    glColor3f(0.11, 0.443, 0.502);
 
     float riverY = -0.5f * fScaleBy + fSpawnAt[1];
     float amplitude = 0.03f * fScaleBy;
@@ -1875,20 +1875,54 @@ BOOL scene7ShouldTransition(BOOL iSkipped)
 /*******************************/
 /* OUTRO IMPLEMENTATION */
 /******************************/
+BOOL bShowMemberNames = FALSE;
+BOOL bShowSandeshReference = FALSE;
+BOOL bShowRasterGroupLeader = FALSE;
+
 void outroRender(void)
 {
-    drawNikhilSathe();
+    glLoadIdentity();
+    glScalef(1.0f, 1.0f, 1.0f);
 
+    if (bShowMemberNames)
+    {
+        drawMemberNames();
+    }
+    
+    if (bShowSandeshReference)
+    {
+        drawSandeshReference();
+    }
+    
+    if (bShowRasterGroupLeader)
+    {
+        drawRasterGroupLeader();
+    }
 }
 
 void outroUpdate(void)
 {
+    switch (iTimeElapsed)
+    {
+    case 2080:
+        bShowMemberNames = TRUE;
+        break;
+    case 2100:
+        bShowMemberNames = FALSE;
+        bShowRasterGroupLeader = TRUE;
+        
+        break;
+    case 2250:
+        bShowRasterGroupLeader = FALSE;
+        bShowSandeshReference = TRUE;
 
+        break;
+    }
 }
 
 BOOL outroShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 3500;
+    int iThresholdTime = 2300;
     if (iSkipped)
     {
         iTimeElapsed = 0;
