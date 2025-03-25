@@ -1029,12 +1029,14 @@ void scene4Render(void)
 
 void scene4Update(void)
 {
-    sceneFourUpdate(iTimeElapsed - 520);
+    sceneFourUpdate(iTimeElapsed - 520);    //  as sceneFourUpdate consider times from start or zero so we need to pass time from zero for update of scene 4
+                                            //  i.e. iTimeElapsed - (start time of scene 4 or end time of previous scene)
+                                            //  i.e. iTimeElapsed - (iThresholdTime for previous scene) === iTimeElapsed - 520
 }
 
 BOOL scene4ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 720;
+    int iThresholdTime = 720;               //  The sompletion time of scene4 is considered as 20 sec
     if (iSkipped)
     {
         iTimeElapsed = 0;
