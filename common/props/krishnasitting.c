@@ -410,7 +410,6 @@ void sittingkrishna(float originx, float originy, float resize)
 	glVertex2f(originx + 0.046*resize, originy + -0.782*resize);
 	glVertex2f(originx + 0.091*resize, originy + -0.768*resize);
 	glEnd();
-	glEnd();
 
 	// Smile
 	glBegin(GL_LINE_STRIP);
@@ -430,21 +429,21 @@ void sittingkrishna(float originx, float originy, float resize)
 	// EYE
 	// Triangle 2
 	glBegin(GL_TRIANGLES);
-	glColor3f(0.4118, 0.3255, 0.3098);
+	glColor3f(WHITE);
 	glVertex2f(originx + -0.249*resize, originy + 0.477*resize);
 	glVertex2f(originx + -0.328*resize, originy + 0.452*resize);
 	glVertex2f(originx + -0.256*resize, originy + 0.424*resize);
 	glEnd();
 	// Triangle 3
 	glBegin(GL_TRIANGLES);
-	glColor3f(0.1647, 0.1725, 0.2196);
+	glColor3f(siBLACK);
 	glVertex2f(originx + -0.328*resize, originy + 0.452*resize);
 	glVertex2f(originx + -0.249*resize, originy + 0.477*resize);
 	glVertex2f(originx + -0.269*resize, originy + 0.446*resize);
 	glEnd();
 	// EYE
 	glBegin(GL_TRIANGLES);
-	glColor3f(0.8275, 0.6118, 0.4078);
+	glColor3f(WHITE);
 	glVertex2f(originx + -0.249*resize, originy + 0.477*resize);
 	glVertex2f(originx + -0.256*resize, originy + 0.424*resize);
 	glVertex2f(originx + -0.070*resize, originy + 0.469*resize);

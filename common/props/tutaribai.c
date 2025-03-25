@@ -925,7 +925,7 @@ void TutariBai(float originx, float originy, float resize)
 static float cameraY = -0.9f;      // Starting position at the feet
 static float cameraSpeed = 0.004f;  
 static float zoomFactor = 2.8f;    
-static float zoomSpeed = 0.006f;
+static float zoomSpeed = 0.008f;
 static int animationPhase = 1;     // Phase 1: Moving up, Phase 2: Scaling down
 
 static float phaseTransitionY = 0.0f;  // Position to stop moving up and start scaling

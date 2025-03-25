@@ -15,8 +15,6 @@ void setCircularCurvePoints(float centerX, float centerY, float radiusH, float r
     // float ObjX = 0.0f;
     // float ObjY = 0.0f;
     float ObjAngle = 0.0f;
-    fprintf(gpFile, "inside setcircularCurvePoint centerX: %f, centerY: %f\n", centerX, centerY);
-    fprintf(gpFile, "inside setcircularCurvePoint radiusH: %f, radiusV: %f\n", radiusH, radiusV);
 
     for (ObjAngle = startAngle; ObjAngle <= endAngle; ObjAngle += 0.01f)
     {

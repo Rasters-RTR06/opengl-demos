@@ -9,19 +9,19 @@ void drawRoom(void)
 	// Upper wall (aged wood texture with darker, muted green)
 	glBegin(GL_POLYGON);
 	glColor3f(0.1f, 0.2f, 0.15f);  // Darker, aged green
-	glVertex3f(1.0f, 1.0f, 0.0f);  // Top right
+	glVertex3f(1.5f, 1.0f, 0.0f);  // Top right
 	glVertex3f(-1.5f, 1.0f, 0.0f); // Top left
 	glVertex3f(-1.5f, 0.0f, 0.0f); // Bottom left
-	glVertex3f(1.0f, 0.0f, 0.0f);  // Bottom right
+	glVertex3f(1.5f, 0.0f, 0.0f);  // Bottom right
 	glEnd();
 
 	// Lower floor (worn stone or dirt floor with earthy tones)
 	glBegin(GL_POLYGON);
 	glColor3f(0.45f, 0.35f, 0.25f); // Muted brown for ancient floor
-	glVertex3f(1.0f, 0.0f, 0.0f);	// Top right
+	glVertex3f(1.5f, 0.0f, 0.0f);	// Top right
 	glVertex3f(-1.5f, 0.0f, 0.0f);	// Top left
 	glVertex3f(-1.5f, -1.0f, 0.0f); // Bottom left
-	glVertex3f(1.0f, -1.0f, 0.0f);	// Bottom right
+	glVertex3f(1.5f, -1.0f, 0.0f);	// Bottom right
 	glEnd();
 
 	// Wooden beam across ceiling (aged wood)
@@ -55,14 +55,14 @@ void drawRoom(void)
 	glVertex3f(0.4f, 0.65f, 0.0f);
 	glEnd();
 
-	// Small shelf or ledge on wall
-	glBegin(GL_QUADS);
-	glColor3f(0.3f, 0.2f, 0.1f);	// Matching wood beam
-	glVertex3f(0.5f, -0.2f, 0.0f);	// Top right
-	glVertex3f(0.7f, -0.2f, 0.0f);	// Top left
-	glVertex3f(0.7f, -0.25f, 0.0f); // Bottom left
-	glVertex3f(0.5f, -0.25f, 0.0f); // Bottom right
-	glEnd();
+	//// Small shelf or ledge on wall
+	//glBegin(GL_QUADS);
+	//glColor3f(0.3f, 0.2f, 0.1f);	// Matching wood beam
+	//glVertex3f(0.5f, -0.2f, 0.0f);	// Top right
+	//glVertex3f(0.7f, -0.2f, 0.0f);	// Top left
+	//glVertex3f(0.7f, -0.25f, 0.0f); // Bottom left
+	//glVertex3f(0.5f, -0.25f, 0.0f); // Bottom right
+	//glEnd();
 
 	// Floor cracks (to simulate age)
 	glLineWidth(1.0f);
