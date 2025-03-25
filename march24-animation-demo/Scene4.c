@@ -75,6 +75,7 @@ void sceneFourRender()
           // glScalef(1.0f / 0.8f, 1.0f / 0.8f, 0.0f);
           drawDraupadi(draupadiOriginX, draupadiOriginY, 0.7f, 2, 1);
      }
+     glLoadIdentity();
 }
 
 void sceneFourUpdate(UINT elapsedTime)
