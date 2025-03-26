@@ -208,7 +208,7 @@ void initScenes(void)
     scene6_4_5.nextScene = &scene6_4_6;
     scene6_4_6.nextScene = &scene6_5;
     scene6_5.nextScene = &scene7; // Fixed: Added & to get the address of scene7
-    scene7.nextScene = &outro;      // End of chain
+    scene7.nextScene = &outro;    // End of chain
     outro.nextScene = NULL;
 
     currentScene = &scene0; // Start with scene 1
@@ -1029,14 +1029,14 @@ void scene4Render(void)
 
 void scene4Update(void)
 {
-    sceneFourUpdate(iTimeElapsed - 520);    //  as sceneFourUpdate consider times from start or zero so we need to pass time from zero for update of scene 4
-                                            //  i.e. iTimeElapsed - (start time of scene 4 or end time of previous scene)
-                                            //  i.e. iTimeElapsed - (iThresholdTime for previous scene) === iTimeElapsed - 520
+    sceneFourUpdate(iTimeElapsed - 520); //  as sceneFourUpdate consider times from start or zero so we need to pass time from zero for update of scene 4
+                                         //  i.e. iTimeElapsed - (start time of scene 4 or end time of previous scene)
+                                         //  i.e. iTimeElapsed - (iThresholdTime for previous scene) === iTimeElapsed - 520
 }
 
 BOOL scene4ShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 720;               //  The sompletion time of scene4 is considered as 20 sec
+    int iThresholdTime = 720; //  The sompletion time of scene4 is considered as 20 sec
     if (iSkipped)
     {
         iTimeElapsed = 0;
@@ -1778,19 +1778,19 @@ void updateScene6_5()
     {
         if (cameraTranslationScene6_5.x >= (0.0f))
         {
-            cameraTranslationScene6_5.x -= (0.00055f * scalingScene6_5.x);
+            cameraTranslationScene6_5.x -= (0.002f * scalingScene6_5.x);
         }
 
         if (cameraTranslationScene6_5.y <= (0.0f))
         {
-            cameraTranslationScene6_5.y += (0.0001f * scalingScene6_5.x);
+            cameraTranslationScene6_5.y += (0.0005f * scalingScene6_5.x);
         }
 
         if (scalingScene6_5.x >= 1.0f)
         {
-            scalingScene6_5.x -= 0.001;
-            scalingScene6_5.y -= 0.001;
-            scalingScene6_5.z -= 0.001;
+            scalingScene6_5.x -= 0.0015;
+            scalingScene6_5.y -= 0.0015;
+            scalingScene6_5.z -= 0.0015;
         }
     }
 
@@ -1798,7 +1798,7 @@ void updateScene6_5()
     {
         if (cameraTranslationScene6_5.x <= (1.0f * scalingScene6_5.x))
         {
-            cameraTranslationScene6_5.x += (0.0004f * scalingScene6_5.x);
+            cameraTranslationScene6_5.x += (0.003f * scalingScene6_5.x);
         }
     }
 
@@ -1806,19 +1806,19 @@ void updateScene6_5()
     {
         if (cameraTranslationScene6_5.x >= (-0.7f * scalingScene6_5.x))
         {
-            cameraTranslationScene6_5.x -= (0.0003f * scalingScene6_5.x);
+            cameraTranslationScene6_5.x -= (0.002f * scalingScene6_5.x);
         }
 
         if (cameraTranslationScene6_5.y >= (-0.1f * scalingScene6_5.y))
         {
-            cameraTranslationScene6_5.y -= (0.0001f * scalingScene6_5.y);
+            cameraTranslationScene6_5.y -= (0.0005f * scalingScene6_5.y);
         }
 
         if (scalingScene6_5.x <= 7.0f)
         {
-            scalingScene6_5.x += 0.001;
-            scalingScene6_5.y += 0.001;
-            scalingScene6_5.z += 0.001;
+            scalingScene6_5.x += 0.005;
+            scalingScene6_5.y += 0.005;
+            scalingScene6_5.z += 0.005;
         }
     }
 }
@@ -1890,12 +1890,12 @@ void outroRender(void)
     {
         drawMemberNames();
     }
-    
+
     if (bShowSandeshReference)
     {
         drawSandeshReference();
     }
-    
+
     if (bShowRasterGroupLeader)
     {
         drawRasterGroupLeader();
@@ -1912,7 +1912,7 @@ void outroUpdate(void)
     case 2100:
         bShowMemberNames = FALSE;
         bShowRasterGroupLeader = TRUE;
-        
+
         break;
     case 2250:
         bShowRasterGroupLeader = FALSE;
