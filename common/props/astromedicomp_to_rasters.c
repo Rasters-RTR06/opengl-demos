@@ -10,6 +10,7 @@ BOOL flag1 = FALSE;
 BOOL flag2 = FALSE;
 
 COLOR color = { 1.0f, 0.0f, 0.0f, 1.0f };
+COLOR whiteColor = {1.0f, 1.0f, 1.0f, 1.0f};
 MY_POINT start = { -0.75f, -0.15f, 0.0f };
 MY_POINT posR, posE;
 
