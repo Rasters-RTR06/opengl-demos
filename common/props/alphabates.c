@@ -600,6 +600,19 @@ void drawCharacter(char character, float height, MY_POINT start, COLOR color, fl
             drawLine(color, thickness, startDash, endDash);
             break;
         }
+
+        case '.':
+        {
+            MY_POINT colonDot1 = {(startX + endX) / 2.0f, startY + height / 4.0f, start.z};
+
+            glEnable(GL_POINT_SMOOTH);
+            glPointSize(thickness <= 10.0f ? thickness : thickness / 4.0f);
+            glBegin(GL_POINTS);
+            glVertex3f(colonDot1.x, colonDot1.y, colonDot1.z);
+            glEnd();
+            glDisable(GL_POINT_SMOOTH);
+            break;
+        }
     }
 }
 
