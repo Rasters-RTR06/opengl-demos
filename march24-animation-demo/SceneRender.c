@@ -217,7 +217,7 @@ void initScenes(void)
     scalingScene6_5 = (SCALING){1.0f, 1.0f, 1.0f};
 
     cameraTranslationScene6_1 = (TRANSLATION){0.0f, 0.0f, 0.0f};
-    rathTranslationScene6_1 = (TRANSLATION){1.0f * scalingScene6_1.z, 0.0f * scalingScene6_1.y, 0.0f};
+    rathTranslationScene6_1 = (TRANSLATION){1.0f * scalingScene6_1.x, 0.0f * scalingScene6_1.y, 0.0f};
     scalingScene6_1 = (SCALING){1.0f, 1.0f, 1.0f};
 
     cameraTranslationScene6_2 = (TRANSLATION){0.0f, 0.0f, 0.0f};
@@ -1209,9 +1209,9 @@ void scene5Update(void)
         bShowRotatingPlants = FALSE;
         bShriKrishnaEntry = TRUE;
         // to make whose chariot dissaper before it enters from right side of the screen
-        krishnaScene5Translation.x = 1.5f;
-        rathScene5Translation.x = 1.5f;
-        horseScene5Translation.x = 1.5f;
+        krishnaScene5Translation.x = 1.6f;
+        rathScene5Translation.x = 1.6f;
+        horseScene5Translation.x = 1.6f;
         bShowLake = TRUE;
         bShowCranes = TRUE;
         break;
@@ -1244,9 +1244,9 @@ void scene5Update(void)
     }
     if (bShriKrishnaEntry == TRUE)
     {
-        krishnaScene5Translation.x -= 0.008f;
-        rathScene5Translation.x -= 0.008f;
-        horseScene5Translation.x -= 0.008f;
+        krishnaScene5Translation.x -= 0.01f;
+        rathScene5Translation.x -= 0.01f;
+        horseScene5Translation.x -= 0.01f;
     }
     if (bShowFlowers == TRUE)
     {
@@ -1287,9 +1287,9 @@ void drawChariotScene6_1()
     SCALING scaleBy = {0.8f, 0.8f, 0.8f};
 
     // KrishnaStanding(0.75f + rathTranslationScene6_1.x, -0.1f + rathTranslationScene6_1.y, 0.2f);
-    KrishnaRath(0.75f + rathTranslationScene6_1.x, -0.1f + rathTranslationScene6_1.y, 0.2f);
+    KrishnaRath(0.75f + rathTranslationScene6_1.x, -0.1f + rathTranslationScene6_1.y, 0.22f);
 
-    drawHorse(0.5f + rathTranslationScene6_1.x, -0.3f + rathTranslationScene6_1.y, 0.5f);
+    drawHorse(0.5f + rathTranslationScene6_1.x, -0.25f + rathTranslationScene6_1.y, 0.5f);
     rath(startPosition, rathTranslationScene6_1, scaleBy);
 }
 
@@ -1343,7 +1343,7 @@ void scene6_1Update()
         translateKrishna = TRUE;
         scalingScene6_1 = (SCALING){4.0f, 4.0f, 4.0f};
         cameraTranslationScene6_1 = (TRANSLATION){-0.7f * scalingScene6_1.x, 0.0f * scalingScene6_1.y, 0.0f};
-        rathTranslationScene6_1 = (TRANSLATION){0.4f * scalingScene6_1.z, 0.0f * scalingScene6_1.y, 0.0f};
+        rathTranslationScene6_1 = (TRANSLATION){0.4f * scalingScene6_1.x, 0.0f * scalingScene6_1.y, 0.0f};
         break;
 
     case 980:
@@ -1351,7 +1351,7 @@ void scene6_1Update()
         zoomOutKrishna = TRUE;
         scalingScene6_1 = (SCALING){4.0f, 4.0f, 4.0f};
         cameraTranslationScene6_1 = (TRANSLATION){-0.7f * scalingScene6_1.x, 0.0f * scalingScene6_1.y, 0.0f};
-        rathTranslationScene6_1 = (TRANSLATION){0.0f * scalingScene6_1.z, 0.0f * scalingScene6_1.y, 0.0f};
+        rathTranslationScene6_1 = (TRANSLATION){0.0f * scalingScene6_1.x, 0.0f * scalingScene6_1.y, 0.0f};
         break;
 
     case 1030:
@@ -1359,7 +1359,7 @@ void scene6_1Update()
         zoomInDraupadi = TRUE;
         scalingScene6_1 = (SCALING){1.0f, 1.0f, 1.0f};
         cameraTranslationScene6_1 = (TRANSLATION){0.0f * scalingScene6_1.x, 0.0f * scalingScene6_1.y, 0.0f};
-        rathTranslationScene6_1 = (TRANSLATION){0.0f * scalingScene6_1.z, 0.0f * scalingScene6_1.y, 0.0f};
+        rathTranslationScene6_1 = (TRANSLATION){0.0f * scalingScene6_1.x, 0.0f * scalingScene6_1.y, 0.0f};
         break;
 
     default:
@@ -1373,7 +1373,7 @@ void scene6_1Update()
         callCount++;
         if (rathTranslationScene6_1.x >= 0.0f)
         {
-            rathTranslationScene6_1.x -= (0.005f * scalingScene6_1.x);
+            rathTranslationScene6_1.x -= (0.008f * scalingScene6_1.x);
         }
     }
 
