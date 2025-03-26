@@ -2,7 +2,6 @@
 
 !!! MUST READ !!!
 
-[ USING AI TO WRITE THE FOLLOWING TEXT TO AVOID ANY MISCOMMUNICATION ]
 ### Quick URLs
 
 *   Spreadsheet: [https://docs.google.com/spreadsheets/d/1EOz-s97FK4etPZI86mG54PqIOzZLotIQroWeTNsb\_DM/edit?usp=sharing](https://docs.google.com/spreadsheets/d/1EOz-s97FK4etPZI86mG54PqIOzZLotIQroWeTNsb_DM/edit?usp=sharing)

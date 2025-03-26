@@ -1904,6 +1904,8 @@ void outroRender(void)
 
 void outroUpdate(void)
 {
+
+    
     switch (iTimeElapsed)
     {
     case 2080:
@@ -1912,20 +1914,17 @@ void outroUpdate(void)
     case 3200:
         bShowMemberNames = TRUE; // FALSE 
         break;
-    // case 2300:
-    //     bShowSandeshReference = TRUE;
-    //     break;
     }
 }
 
 BOOL outroShouldTransition(BOOL iSkipped)
 {
-    int iThresholdTime = 2300;
+    int iThresholdTime = 3500; // Increased to allow more time for credits
     if (iSkipped)
     {
         iTimeElapsed = 0;
         iTimeElapsed += iThresholdTime;
     }
-    // Transition to the next scene after 2 min 14 sec seconds
+    // Transition to the next scene after credits finish
     return (iTimeElapsed >= iThresholdTime);
 }
