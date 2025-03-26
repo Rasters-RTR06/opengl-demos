@@ -1879,7 +1879,7 @@ BOOL scene7ShouldTransition(BOOL iSkipped)
 /******************************/
 BOOL bShowMemberNames = FALSE;
 BOOL bShowSandeshReference = FALSE;
-BOOL bShowRasterGroupLeader = FALSE;
+// BOOL bShowRasterGroupLeader = FALSE;
 
 void outroRender(void)
 {
@@ -1891,15 +1891,15 @@ void outroRender(void)
         drawMemberNames();
     }
 
-    if (bShowSandeshReference)
-    {
-        drawSandeshReference();
-    }
+    // if (bShowSandeshReference)
+    // {
+    //     drawSandeshReference();
+    // }
 
-    if (bShowRasterGroupLeader)
-    {
-        drawRasterGroupLeader();
-    }
+    // if (bShowRasterGroupLeader)
+    // {
+    //     drawRasterGroupLeader();
+    // }
 }
 
 void outroUpdate(void)
@@ -1909,16 +1909,12 @@ void outroUpdate(void)
     case 2080:
         bShowMemberNames = TRUE;
         break;
-    case 2100:
-        bShowMemberNames = FALSE;
-        bShowRasterGroupLeader = TRUE;
-
+    case 3200:
+        bShowMemberNames = TRUE; // FALSE 
         break;
-    case 2250:
-        bShowRasterGroupLeader = FALSE;
-        bShowSandeshReference = TRUE;
-
-        break;
+    // case 2300:
+    //     bShowSandeshReference = TRUE;
+    //     break;
     }
 }
 
