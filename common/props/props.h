@@ -86,3 +86,4 @@ void rath(MY_POINT startPosition, TRANSLATION translateBy, SCALING scaleBy);
 #include "krishnasitting.c"
 #include "Yudhishthir.c"
 #include "EmptyPlate.c"
+#include "SudarshanChakra.c"
