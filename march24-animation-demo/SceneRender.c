@@ -758,7 +758,7 @@ void scene2Render(void)
     const float waitAfterZoomOut = 6.0f;      // Phase 1: Wait after zoom out.
     const float zoomInDuration = 4.0f;        // Phase 2: Zoom in centered.
     const float waitAfterZoomIn = 4.0f;       // Phase 3: Wait after zoom in.
-    const float leftMoveZoomDuration = 10.0f; // Phase 4: While moving left, zoom out over this duration.
+    const float leftMoveZoomDuration = 20.0f; // Phase 4: While moving left, zoom out over this duration.
 
     // Zoom factors.
     const float zoomInFactor = 6.0f;  // Fully zoomed in.
