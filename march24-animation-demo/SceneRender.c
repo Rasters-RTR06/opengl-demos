@@ -673,7 +673,7 @@ void scene1Update(void)
         bCallElephant = TRUE;
         break;
     case 80:
-        bCallSandesh = TRUE; // Hide Sandesh message before scene transition
+        bCallSandesh = TRUE;
         break;
     }
 
