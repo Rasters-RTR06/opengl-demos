@@ -20,8 +20,8 @@ float nakulOriginY = 0.0f;
 float draupadiOriginX = -0.15f;
 float draupadiOriginY = -0.3f;
 
-float plateOriginX = 0.0f;
-float plateOriginY = 0.0f;
+float plateOriginX = -0.15f - 0.6f;
+float plateOriginY = -0.3f - 0.3f;
 
 float scalePlate = 0.14f;
 float scaleScene = 1.0f;
@@ -62,17 +62,17 @@ void sceneFourRender()
      if(draupadiGoingBack)
      {
           glRotatef(180, 0.0f, 1.0f, 0.0f);
+          glScalef(0.8f, 0.8f, 0.0f);
+          DrawPlateEP(plateOriginX, plateOriginY, 0.5f);
+          glScalef(1.0f / 0.8f, 1.0f / 0.8f, 0.0f);
           drawDraupadi(draupadiOriginX, draupadiOriginY, 0.7f, 2, 1);
           glRotatef(-180.0f, 0.0f, 1.0f, 0.0f);
-          // glScalef(0.8f, 0.8f, 0.0f);
-          // DrawPlateEP(draupadiOriginX - 0.5f, draupadiOriginY + 0.1f, 0.5f);
-          // glScalef(1.0f / 0.8f, 1.0f / 0.8f, 0.0f);
      }
      else 
      {
-          // glScalef(0.8f, 0.8f, 0.0f);
-          // DrawPlateEP(draupadiOriginX - 0.6f, draupadiOriginY - 0.3f, 0.5f);
-          // glScalef(1.0f / 0.8f, 1.0f / 0.8f, 0.0f);
+          glScalef(0.8f, 0.8f, 0.0f);
+          DrawPlateEP(plateOriginX, plateOriginY, 0.5f);
+          glScalef(1.0f / 0.8f, 1.0f / 0.8f, 0.0f);
           drawDraupadi(draupadiOriginX, draupadiOriginY, 0.7f, 2, 1);
      }
      
@@ -93,12 +93,15 @@ void sceneFourUpdate(UINT elapsedTime)
      else if (elapsedTime >= 15 && elapsedTime <= 50)
      {
           draupadiOriginX += 0.002f;
+          plateOriginX += 0.0025f;
           sceneOriginX -= 0.002f;
      }
      else if (elapsedTime >= 50 && elapsedTime <= 75)
      {
-         if (draupadiOriginX <= 0.95f)
-          draupadiOriginX += 0.002f;
+         if (draupadiOriginX <= 0.95f){
+               draupadiOriginX += 0.002f;
+               plateOriginX += 0.0025f;
+          }
      }
 
      //   [FOCUS ON PANDAV]
@@ -129,8 +132,8 @@ void sceneFourUpdate(UINT elapsedTime)
      //   [FOCUS ON DROUPADI]
      else if (elapsedTime == 106)
      {
-         //draupadiGoingBack = TRUE;
-          //scaleScene += 0.4f;
+          // draupadiGoingBack = TRUE;
+          // scaleScene += 0.4f;
           sceneOriginX = -0.1f;
           sceneOriginY = 0.25f;
      }
@@ -149,22 +152,26 @@ void sceneFourUpdate(UINT elapsedTime)
      //   [SCALE BACK]
      else if(elapsedTime == 126)
      {
-          //draupadiGoingBack = TRUE;
+          plateOriginX = draupadiOriginX - 0.4f;
+          plateOriginY = draupadiOriginY - 0.3f;
+          //   draupadiGoingBack = TRUE;
           sceneOriginX = -0.5f;
           sceneOriginY = 0.2f;
-          //scaleScene = 1.2f;
+          //   scaleScene = 1.2f;
      }
 
-     //   [MOVE DROUPADI BACKWARD]
-     //else if (elapsedTime >= 126 && elapsedTime <= 156)
-     //{
+     //  [MOVE DROUPADI BACKWARD]
+     // else if (elapsedTime >= 126 && elapsedTime <= 156)
+     // {
      //     draupadiOriginX += 0.001f;
-     //}
-     //else if (elapsedTime >= 156)
-     //{
+     //     plateOriginX += 0.0013f;
+     // }
+     // else if (elapsedTime >= 156)
+     // {
      //     draupadiOriginX += 0.001f;
-     //     //sceneOriginX += 0.001f;
-     //}
+     //     plateOriginX += 0.0013f;
+     //     sceneOriginX += 0.001f;
+     // }
 }
 
 void drawPlateScene4(float startX, float startY)
