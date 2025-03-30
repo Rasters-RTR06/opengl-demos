@@ -21,21 +21,21 @@ void drawPlate(void) {
 
     // yellow bowl
     glPushMatrix();
-    glTranslated(-0.50, 0.25, 0.0);
-    glScaled(0.085, 0.085, 0.0);
-    drawCircleRadhika(133, 133, 133);       //function called
+    glTranslated(-0.25, 0.25, 0.0);
+    glScaled(0.034, 0.034, 0.0);
+    drawCircle(133, 133, 133);       //function called
     glPopMatrix();
 
     glPushMatrix();
-    glTranslated(-0.50, 0.25, 0.0);
-    glScaled(0.08, 0.08, 0.0);
-    drawCircleRadhika(250, 194, 25);       //function called
+    glTranslated(-0.25, 0.25, 0.0);
+    glScaled(0.034, 0.034, 0.0);
+    drawCircle(250, 194, 25);       //function called
     glPopMatrix();
  
     glPushMatrix();
-    glTranslated(0.0, 0.0, 0.0);
-    glScaled(0.15, 0.15, 0.0);
-    drawCircleRadhika(232, 252, 238);       //function called
+    glTranslated(-0.22, 0.0, 0.0);
+    glScaled(0.07, 0.07, 0.0);
+    drawCircle(232, 252, 238);       //function called
     glPopMatrix();
 
     // bowl - 1
@@ -63,6 +63,13 @@ void drawPlate(void) {
     glScaled(0.15, 0.03, 0.0);
     drawCircleRadhika(42, 94, 32);       //function called
     glPopMatrix();
+
+    glBegin(GL_TRIANGLES);
+    glColor3f(0.13f, 0.27f, 0.17f);
+    glVertex2f(-0.01f, 0.25f);
+    glVertex2f(-0.08f, 0.15f);
+    glVertex2f(-0.09f, 0.25f);
+    glEnd();
 }
 
 void drawCircleRadhika(int r, int g, int b)
@@ -115,10 +122,10 @@ void drawTriangleRadhika(int r, int g, int b)
     glColor3ub (r, g, b);
 
     glBegin(GL_TRIANGLES);
-    glVertex2d(0.0, 0.1);
-    glVertex2d(-0.1, 0.0);
-    glVertex2d(0.1, -0.1);
-    glEnd();   
+    glVertex2f(-0.01f, 0.25f);
+    glVertex2f(-0.08f, 0.15f);
+    glVertex2f(-0.09f, 0.25f);
+    glEnd();  
 }
 
 void drawCardioidRadhika(int r, int g, int b)
