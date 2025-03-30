@@ -89,5 +89,10 @@ void drawSudarshanChakra(MY_POINT center, TRANSLATION translateBy, SCALING scale
         ringCircleAngle += (PI / 8); // dividing by 16 because of 16 ring circles
     }
 
+    if (rotateBy.y >= 2 * PI)
+    {
+        rotateBy.y = 0.0f;
+    }
+
     rotateBy.y += 0.05f;
 }
