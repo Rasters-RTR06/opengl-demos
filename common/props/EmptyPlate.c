@@ -97,7 +97,7 @@ void drawEllipseEP(
 
 	//vRadius *= plateResize;
 
-	for (ObjAngle = startAngle; ObjAngle <= endAngle; ObjAngle += 0.001f)
+	for (ObjAngle = startAngle; ObjAngle <= endAngle; ObjAngle += 0.5f)
 	{
 		ObjX = startX + (hRadius * cos(ObjAngle)) * plateResize;
 		ObjY = startY + (vRadius * sin(ObjAngle)) * plateResize;
@@ -122,7 +122,7 @@ void drawEllipsePolyEP(
 	//glLineWidth(5.0f);
 	glBegin(GL_POLYGON);
 
-	for (ObjAngle = startAngle; ObjAngle <= endAngle; ObjAngle += 0.001f)
+	for (ObjAngle = startAngle; ObjAngle <= endAngle; ObjAngle += 0.5f)
 	{
 		ObjX = startX + (hRadius * cos(ObjAngle)) * plateResize;
 		ObjY = startY + (vRadius * sin(ObjAngle)) * plateResize;
