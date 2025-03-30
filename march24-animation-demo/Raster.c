@@ -32,7 +32,7 @@ BOOL gbEscapeKeyIsPressed = FALSE;
 
 //	time to update the update() function
 UINT timeUpdate = 100; //	10 * timeUpdate = 1 sec
- 
+
 // Opengl related global variable
 HDC ghdc = NULL;   // global handle to device context
 HGLRC ghrc = NULL; // global handle to rendering context (rc -> rendering context, HGLRC -> handle to openGL rendering context)
@@ -229,7 +229,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 
 	case WM_TIMER:
 		iTimeElapsed++;
-		//fprintf(gpFile, "%d seconds\n", iTimeElapsed);
+		// fprintf(gpFile, "%d seconds\n", iTimeElapsed);
 
 		break;
 	case WM_CLOSE:
