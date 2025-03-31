@@ -412,3 +412,6 @@ log.txt
 *log*.txt
 *Log*.txt
 *.res
+
+repo_showcase.sh
+tempvimrc.txt
