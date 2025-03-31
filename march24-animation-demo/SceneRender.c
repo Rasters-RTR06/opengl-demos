@@ -1189,8 +1189,8 @@ void scene5Render(void)
         glLoadIdentity();
 
         drawPeacock(0.0f, 0.0f, 0.8f);
-        drawAnt(0.5f, -0.15f, 0.3f);
-        drawAnt(-0.5f, -0.15f, 0.3f);
+        drawFrontTrees();
+
     }
     if (bShowChamelon == TRUE)
     {
@@ -1202,6 +1202,11 @@ void scene5Render(void)
         glLoadIdentity();
 
         chamelon(0.5f, -0.0f, 0.2);
+        drawAnt(-0.65f, -0.05f, 0.1f);
+        drawAnt(-0.5f, -0.08f, 0.1f);
+        drawAnt(-0.35f, -0.105f, 0.1f);
+
+        drawFrontTrees();
     }
 }
 
