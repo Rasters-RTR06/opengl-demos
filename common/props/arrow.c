@@ -81,4 +81,6 @@ void drawArrow(float x, float y, float scale, float rotation) {
 	glVertex2f(0.2f, -0.2f);  // Lower side point
 	glVertex2f(0.4f, 0.0f);   // Base again
 	glEnd();
+	
+	glLoadIdentity();
 }
