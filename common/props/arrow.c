@@ -83,4 +83,5 @@ void drawArrow(float x, float y, float scale, float rotation) {
 	glEnd();
 	
 	glLoadIdentity();
+	
 }
