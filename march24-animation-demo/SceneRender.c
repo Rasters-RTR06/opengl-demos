@@ -1904,7 +1904,6 @@ BOOL bShowSandeshReference = FALSE;
 void outroRender(void)
 {
     glLoadIdentity();
-    glScalef(1.0f, 1.0f, 1.0f);
 
     if (bShowMemberNames)
     {
