@@ -21,7 +21,7 @@
 #include "../common/props/plate.c"
 #include "Scene4.c"
 #include "../common/props/SimpleHut.c"
-#include "../common/props/endcredits.c"
+
 /*******************************/
 
 /* TYPE DEFINITIONS AND DECLARATIONS */

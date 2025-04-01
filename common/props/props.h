@@ -88,3 +88,5 @@ void rath(MY_POINT startPosition, TRANSLATION translateBy, SCALING scaleBy);
 #include "EmptyPlate.c"
 #include "SudarshanChakra.c"
 #include "Om.c"
+#include "arrow.c"
+#include "endcredits.c"
