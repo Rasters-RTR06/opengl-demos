@@ -150,11 +150,14 @@ void drawPeacockNeck(MY_POINT OriginPeacock, float resize)
 	Peacockneck.points[3].z = OriginPeacock.z + 0.00f;
 
 
-	glColor3f(0.035f, 0.282f, 0.925f);
 	glBegin(GL_POLYGON);
+	glColor3f(0.035f, 0.282f, 0.925f);
 	glVertex3f(Peacockneck.points[0].x * resize, Peacockneck.points[0].y * resize, 0.0f * resize); //Bottom Left
+	glColor3f(0.007f, 0.16f, 0.282f);
 	glVertex3f(Peacockneck.points[1].x * resize, Peacockneck.points[1].y * resize, 0.0f * resize);
+	glColor3f(0.007f, 0.16f, 0.282f);
 	glVertex3f(Peacockneck.points[2].x * resize, Peacockneck.points[2].y * resize, 0.0f * resize);
+	glColor3f(0.035f, 0.282f, 0.925f);
 	glVertex3f(Peacockneck.points[3].x * resize, Peacockneck.points[3].y * resize, 0.0f * resize);
 	glEnd();
 }
@@ -191,30 +194,38 @@ void drawPeacockBody(MY_POINT OriginPeacock, float resize)
 	PeacockRightBody.points[2].y = OriginPeacock.y + 0.00f;
 	PeacockRightBody.points[2].z = OriginPeacock.z + 0.00f;
 
+	drawCircleWithColor_Peacock(OriginPeacock.x * resize + -0.09, OriginPeacock.y * resize + -0.15, 0.080, 0.0950, 0.403f, 0.235f, 0.023f, 1, 1, resize);
+	drawCircleWithColor_Peacock(OriginPeacock.x * resize + 0.09, OriginPeacock.y * resize + -0.15, 0.080, 0.0950, 0.403f, 0.235f, 0.023f, 1, 1, resize);
+
+
+	drawCircleWithColor_Peacock(OriginPeacock.x * resize + -0.06, OriginPeacock.y * resize + -0.10, 0.120, 0.090, 0.984f, 0.737f, 0.023f, 1, 1, resize);
+	drawCircleWithColor_Peacock(OriginPeacock.x * resize + 0.06, OriginPeacock.y * resize + -0.10, 0.120, 0.090, 0.984f, 0.737f, 0.023f, 1, 1, resize);
+
+
 	//DrawLeftBody
 	glBegin(GL_TRIANGLES);
 	glColor3f(0.047f, 0.556f, 0.658f);
 	//glVertex3f(fOriginX + -0.11f, fOriginY + 0.05f, 0.0f); //Bottom Left
-	glVertex3f(PeacockLeftBody.points[0].x * resize, PeacockLeftBody.points[0].y * resize, 0.0f * resize); //Bottom Left
+	glVertex3f(PeacockLeftBody.points[0].x * resize, PeacockLeftBody.points[0].y * resize, 0.0f); //Bottom Left
 	glColor3f(0.00f, 0.360f, 0.560f);
 	//glVertex3f(fOriginX + -0.02f, fOriginY + 0.50f, 0.0f);
-	glVertex3f(PeacockLeftBody.points[1].x * resize, PeacockLeftBody.points[1].y * resize, 0.0f * resize);
+	glVertex3f(PeacockLeftBody.points[1].x * resize, PeacockLeftBody.points[1].y * resize, 0.0f);
 	glColor3f(0.031f, 0.588f, 0.690f);
 	//glVertex3f(fOriginX + -0.07f, fOriginY + 0.00f, 0.0f);
-	glVertex3f(PeacockLeftBody.points[2].x * resize, PeacockLeftBody.points[2].y * resize, 0.0f * resize);
+	glVertex3f(PeacockLeftBody.points[2].x * resize, PeacockLeftBody.points[2].y * resize, 0.0f);
 	glEnd();
 
 	//DrawRightBody
 	glBegin(GL_TRIANGLES);
 	glColor3f(0.047f, 0.556f, 0.658f);
 	//glVertex3f(fOriginX + 0.11f, fOriginY + 0.05f, 0.0f); //Bottom Left
-	glVertex3f(PeacockRightBody.points[0].x * resize, PeacockRightBody.points[0].y * resize, 0.0f * resize); //Bottom Left
+	glVertex3f(PeacockRightBody.points[0].x * resize, PeacockRightBody.points[0].y * resize, 0.0f); //Bottom Left
 	glColor3f(0.00f, 0.360f, 0.560f);
 	//glVertex3f(fOriginX + 0.02f, fOriginY + 0.50f, 0.0f);
-	glVertex3f(PeacockRightBody.points[1].x * resize, PeacockRightBody.points[1].y * resize, 0.0f * resize);
+	glVertex3f(PeacockRightBody.points[1].x * resize, PeacockRightBody.points[1].y * resize, 0.0f);
 	glColor3f(0.031f, 0.588f, 0.690f);
 	//glVertex3f(fOriginX + 0.07f, fOriginY + 0.00f, 0.0f);
-	glVertex3f(PeacockRightBody.points[2].x * resize, PeacockRightBody.points[2].y * resize, 0.0f * resize);
+	glVertex3f(PeacockRightBody.points[2].x * resize, PeacockRightBody.points[2].y * resize, 0.0f);
 	glEnd();
 
 
@@ -229,6 +240,8 @@ void drawPeacockBody(MY_POINT OriginPeacock, float resize)
 	glVertex3f(0.070f  * resize, 0.05f  * resize, 0.0f * resize); //Bottom Left
 	glEnd();
 
+
+	//Blue Lower body portion
 	drawCircleWithColor_Peacock(OriginPeacock.x * resize + -0.06, OriginPeacock.y * resize + -0.20, 0.050, 0.090, 0.135f, 0.282f, 0.925f, 1, 1, resize);
 	drawCircleWithColor_Peacock(OriginPeacock.x * resize + 0.06, OriginPeacock.y * resize + -0.20, 0.050, 0.090, 0.135f, 0.282f, 0.925f, 1, 1, resize);
 
@@ -447,7 +460,7 @@ void drawPeacockWings(MY_POINT OriginPeacock, float resize)
 	scaleFactorPoint.y = 0.0f;
 	scaleFactorPoint.z = 0.0f;
 
-	//for (scaleFactorPoint.x = 1.3f; scaleFactorPoint.x >= 1.0f; scaleFactorPoint.x = scaleFactorPoint.x - 0.2f)
+	for (scaleFactorPoint.x = 1.3f; scaleFactorPoint.x >= 1.0f; scaleFactorPoint.x = scaleFactorPoint.x - 0.2f)
 	{
 
 		for (int iNoOfWings = 1; iNoOfWings <= 9; iNoOfWings = iNoOfWings + 1)
@@ -458,7 +471,7 @@ void drawPeacockWings(MY_POINT OriginPeacock, float resize)
 			{
 
 				glColor3f(WingColor[iShape].rValue, WingColor[iShape].gValue, WingColor[iShape].bValue);
-				glVertex3f(rotatePoint(Wings.points[iShape], fAngle * iCounter).x * resize, rotatePoint(Wings.points[iShape], fAngle * iCounter).y * resize, Wings.points[iShape].z * resize); //Origin 
+				glVertex3f(scalePoint(rotatePoint(Wings.points[iShape], fAngle * iCounter), scaleFactorPoint).x * resize, rotatePoint(Wings.points[iShape], fAngle * iCounter).y * resize, Wings.points[iShape].z * resize); //Origin 
 				//glVertex3f(scalePoint(rotatePoint(Wings.points[iShape], fAngle * iCounter), scaleFactorPoint).x * resize, rotatePoint(Wings.points[iShape], fAngle * iCounter).y * resize, Wings.points[iShape].z * resize); //Origin 
 			}
 			glEnd();
@@ -469,7 +482,7 @@ void drawPeacockWings(MY_POINT OriginPeacock, float resize)
 
 				//glColor3f(WingColor[iShape].rValue, WingColor[iShape].gValue, WingColor[iShape].bValue);
 				glColor3f(0.784f, 0.788f, 0.321f); //Shade of Yellow
-				glVertex3f(rotatePoint(WingDesignYellowPoly.points[iShape], fAngle * iCounter).x * resize, rotatePoint(WingDesignYellowPoly.points[iShape], fAngle * iCounter).y * resize, WingDesignYellowPoly.points[iShape].z * resize); //Origin 
+				glVertex3f(scalePoint(rotatePoint(WingDesignYellowPoly.points[iShape], fAngle * iCounter), scaleFactorPoint).x * resize, rotatePoint(WingDesignYellowPoly.points[iShape], fAngle * iCounter).y * resize, WingDesignYellowPoly.points[iShape].z * resize); //Origin 
 				//glVertex3f(scalePoint(rotatePoint(WingDesignYellowPoly.points[iShape], fAngle * iCounter), scaleFactorPoint).x * resize, rotatePoint(WingDesignYellowPoly.points[iShape], fAngle * iCounter).y * resize, WingDesignYellowPoly.points[iShape].z * resize); //Origin 
 			}
 			glEnd();
@@ -480,8 +493,7 @@ void drawPeacockWings(MY_POINT OriginPeacock, float resize)
 
 				//glColor3f(WingColor[iShape].rValue, WingColor[iShape].gValue, WingColor[iShape].bValue);
 				glColor3f(0.082f, 0.478f, 0.631f); //Shade of Yellow
-				glVertex3f(rotatePoint(WingDesignGreenPoly.points[iShape], fAngle * iCounter).x * resize, rotatePoint(WingDesignGreenPoly.points[iShape], fAngle * iCounter).y * resize, WingDesignGreenPoly.points[iShape].z * resize); //Origin 
-				//glVertex3f(scalePoint(rotatePoint(WingDesignGreenPoly.points[iShape], fAngle * iCounter), scaleFactorPoint).x, rotatePoint(WingDesignGreenPoly.points[iShape], fAngle * iCounter).y, WingDesignGreenPoly.points[iShape].z); //Origin 
+				glVertex3f(scalePoint(rotatePoint(WingDesignGreenPoly.points[iShape], fAngle * iCounter), scaleFactorPoint).x * resize, rotatePoint(WingDesignGreenPoly.points[iShape], fAngle * iCounter).y * resize, WingDesignGreenPoly.points[iShape].z * resize); //Origin 
 			}
 			glEnd();
 
@@ -491,16 +503,14 @@ void drawPeacockWings(MY_POINT OriginPeacock, float resize)
 
 				//glColor3f(WingColor[iShape].rValue, WingColor[iShape].gValue, WingColor[iShape].bValue);
 				glColor3f(0.254f, 0.258f, 0.623f); //Shade of Yellow
-				glVertex3f(rotatePoint(WingDesignPurplePoly.points[iShape], fAngle * iCounter).x * resize, rotatePoint(WingDesignPurplePoly.points[iShape], fAngle * iCounter).y * resize, WingDesignPurplePoly.points[iShape].z * resize); //Origin 
-				//glVertex3f(scalePoint(rotatePoint(WingDesignPurplePoly.points[iShape], fAngle * iCounter), scaleFactorPoint).x, rotatePoint(WingDesignPurplePoly.points[iShape], fAngle * iCounter).y, WingDesignPurplePoly.points[iShape].z); //Origin 
+				glVertex3f(scalePoint(rotatePoint(WingDesignPurplePoly.points[iShape], fAngle * iCounter), scaleFactorPoint).x * resize, rotatePoint(WingDesignPurplePoly.points[iShape], fAngle * iCounter).y * resize, WingDesignPurplePoly.points[iShape].z * resize); //Origin 
 			}
 			glEnd();
 
 			iCounter += 6;
 		}
-		//iCounter = 6;
+		iCounter = 6;
 	}
-
 }
 
 void drawCircleWithColor_Peacock(float x, float y, float radius_vert, float radius_hor, float r, float g, float b, float alpha, int fill, float resize)
