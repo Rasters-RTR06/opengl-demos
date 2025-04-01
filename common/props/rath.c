@@ -23,6 +23,7 @@ void rathBody(MY_POINT startPosition, TRANSLATION translateBy, SCALING scaleBy)
 {
     // function prototypes
     void setCircularCurvePoints(float centerX, float centerY, float radiusH, float radiusV, float startAngle, float endAngle);
+    void drawOM(float originx, float originy, float resize);
 
     // variable declaration
     float ObjAngle = 0.0f;
@@ -35,7 +36,7 @@ void rathBody(MY_POINT startPosition, TRANSLATION translateBy, SCALING scaleBy)
     glBegin(GL_LINES);
     glColor3f(0.776f, 0.557f, 0.490f); // wooden pole color browinsh
     glVertex3f(startPosition.x, startPosition.y, startPosition.x);
-    glVertex3f(startPosition.x, startPosition.y + 1.15 * scaleBy.y, startPosition.z);
+    glVertex3f(startPosition.x, startPosition.y + (1.15 * scaleBy.y), startPosition.z);
     glEnd();
 
     // rath roof
@@ -89,6 +90,8 @@ void rathBody(MY_POINT startPosition, TRANSLATION translateBy, SCALING scaleBy)
     glVertex3f(startPosition.x + (0.15f * scaleBy.x), startPosition.y + (1.10f * scaleBy.y), startPosition.z);
     glVertex3f(startPosition.x, startPosition.y + (1.05f * scaleBy.y), startPosition.z);
     glEnd();
+
+    drawOM(startPosition.x + (0.05f * scaleBy.x), startPosition.y + (1.10f * scaleBy.y), 0.03f);
 
     // Tassels hanging from roof
     glLineWidth(2.0f);
@@ -183,6 +186,7 @@ void wheel(MY_POINT startPosition, RADIUS radius, TRANSLATION translateBy, SCALI
     void setCircularCurvePoints(float centerX, float centerY, float radiusH, float radiusV, float startAngle, float endAngle);
 
     // variable declaration
+    static float rotateBy = 0.0f;
     float ObjAngle = 0.0f;
     float ObjX = 0.0f;
     float ObjY = 0.0f;
@@ -219,15 +223,25 @@ void wheel(MY_POINT startPosition, RADIUS radius, TRANSLATION translateBy, SCALI
         float angle = i * angleStep;
         float x1 = startPosition.x;
         float y1 = startPosition.y;
-        float x2 = startPosition.x + (radius.x * scaleBy.x * cos(angle));
-        float y2 = startPosition.y + (radius.y * scaleBy.y * WINDOW_ASPECT * sin(angle));
-        float x3 = startPosition.x + (radius.x * scaleBy.x * cos(angle + angleStep / 2));
-        float y3 = startPosition.y + (radius.y * scaleBy.y * WINDOW_ASPECT * sin(angle + angleStep / 2));
+        float x2 = startPosition.x + (radius.x * scaleBy.x * cos(angle + rotateBy));
+        float y2 = startPosition.y + (radius.y * scaleBy.y * WINDOW_ASPECT * sin(angle + rotateBy));
+        float x3 = startPosition.x + (radius.x * scaleBy.x * cos(angle + (angleStep / 2) + rotateBy));
+        float y3 = startPosition.y + (radius.y * scaleBy.y * WINDOW_ASPECT * sin(angle + (angleStep / 2) + rotateBy));
 
         glBegin(GL_TRIANGLES);
         glVertex2f(x1, y1);
         glVertex2f(x2, y2);
         glVertex2f(x3, y3);
         glEnd();
+    }
+
+    if (bMoveRath == TRUE)
+    {
+        if (rotateBy >= 2 * PI)
+        {
+            rotateBy = 0.0f;
+        }
+
+        rotateBy += 0.05f;
     }
 }

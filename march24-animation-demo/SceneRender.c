@@ -1128,7 +1128,7 @@ void scene5Render(void)
     {
         // lake and cranes
         drawGround();
-        //drawDenseForrest();
+        // drawDenseForrest();
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         glTranslatef(0.0f, 1.5f, 0.0f);
@@ -1144,10 +1144,10 @@ void scene5Render(void)
         drawCraneTwo(0.2f, 0.2f, 0.6f);
 
         // Shri-Krishna
-        KrishnaRath(-0.2f + krishnaScene5Translation.x, 0.0f + krishnaScene5Translation.y, 0.20f);
+        KrishnaRath(-0.2f + krishnaScene5Translation.x, 0.0f + krishnaScene5Translation.y, 0.30f);
         // Rath
         rath((MY_POINT){0.0f, -0.5f, 0.8f}, rathScene5Translation, (SCALING){1.2f, 1.2f, 1.2f});
-        drawHorse(-0.5f + horseScene5Translation.x, -0.5f + horseScene5Translation.y, 0.6f);
+        drawHorse(-0.5f + horseScene5Translation.x, -0.3f + horseScene5Translation.y, 0.6f);
         drawFrontTrees();
     }
 
@@ -1189,8 +1189,8 @@ void scene5Render(void)
         glLoadIdentity();
 
         drawPeacock(0.0f, 0.0f, 0.8f);
-        drawAnt(0.5f, -0.15f, 0.3f);
-        drawAnt(-0.5f, -0.15f, 0.3f);
+        drawFrontTrees();
+
     }
     if (bShowChamelon == TRUE)
     {
@@ -1202,6 +1202,11 @@ void scene5Render(void)
         glLoadIdentity();
 
         chamelon(0.5f, -0.0f, 0.2);
+        drawAnt(-0.65f, -0.05f, 0.1f);
+        drawAnt(-0.5f, -0.08f, 0.1f);
+        drawAnt(-0.35f, -0.105f, 0.1f);
+
+        drawFrontTrees();
     }
 }
 
@@ -1214,9 +1219,10 @@ void scene5Update(void)
         bShowRotatingPlants = TRUE;
 
         break;
-    case 750:
+    case 740:
         bShowRotatingPlants = FALSE;
         bShriKrishnaEntry = TRUE;
+        bMoveRath = TRUE;
         // to make whose chariot dissaper before it enters from right side of the screen
         krishnaScene5Translation.x = 1.6f;
         rathScene5Translation.x = 1.6f;
@@ -1224,8 +1230,10 @@ void scene5Update(void)
         bShowLake = TRUE;
         bShowCranes = TRUE;
         break;
+
     case 790:
         bShriKrishnaEntry = FALSE;
+        bMoveRath = FALSE;
         bShowLake = FALSE;
         bShowCranes = FALSE;
         bShowPatternedDeers = TRUE;
@@ -1292,7 +1300,8 @@ BOOL scene5ShouldTransition(BOOL iSkipped)
 
 void drawChariotScene6_1()
 {
-    MY_POINT startPosition = {0.859f + rathTranslationScene6_1.x, -0.47f + rathTranslationScene6_1.y, 0.0f + rathTranslationScene6_1.z};
+    // MY_POINT startPosition = {0.859f + rathTranslationScene6_1.x, -0.47f + rathTranslationScene6_1.y, 0.0f + rathTranslationScene6_1.z};
+    MY_POINT startPosition = {0.859f, -0.47f, 0.0f};
     SCALING scaleBy = {0.8f, 0.8f, 0.8f};
 
     // KrishnaStanding(0.75f + rathTranslationScene6_1.x, -0.1f + rathTranslationScene6_1.y, 0.2f);
@@ -1350,6 +1359,7 @@ void scene6_1Update()
     {
     case 950:
         translateKrishna = TRUE;
+        bMoveRath = TRUE;
         scalingScene6_1 = (SCALING){4.0f, 4.0f, 4.0f};
         cameraTranslationScene6_1 = (TRANSLATION){-0.7f * scalingScene6_1.x, 0.0f * scalingScene6_1.y, 0.0f};
         rathTranslationScene6_1 = (TRANSLATION){0.4f * scalingScene6_1.x, 0.0f * scalingScene6_1.y, 0.0f};
@@ -1357,6 +1367,7 @@ void scene6_1Update()
 
     case 980:
         translateKrishna = FALSE;
+        bMoveRath = FALSE;
         zoomOutKrishna = TRUE;
         scalingScene6_1 = (SCALING){4.0f, 4.0f, 4.0f};
         cameraTranslationScene6_1 = (TRANSLATION){-0.7f * scalingScene6_1.x, 0.0f * scalingScene6_1.y, 0.0f};
@@ -1919,7 +1930,7 @@ void outroUpdate(void)
         bShowMemberNames = TRUE;
         break;
     case 3200:
-        bShowMemberNames = TRUE; // FALSE 
+        bShowMemberNames = TRUE; // FALSE
         break;
     }
 }
