@@ -1109,6 +1109,11 @@ void scene5Render(void)
     if (bShowRotatingPlants == TRUE)
     {
         drawGround();
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        glTranslatef(0.0f, 1.5f, 0.0f);
+        drawFrontTrees();
+        glLoadIdentity();
         drawRiver(fSpawnPos1, 1.2f);
         drawRiver(fSpawnPos2, 1.2f);
         drawRiver(fSpawnPos3, 1.2f);
@@ -1123,8 +1128,12 @@ void scene5Render(void)
     {
         // lake and cranes
         drawGround();
-        // drawDenseForrest();
-        drawGround();
+        //drawDenseForrest();
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        glTranslatef(0.0f, 1.5f, 0.0f);
+        drawFrontTrees();
+        glLoadIdentity();
         drawRiver(fSpawnPos1, 1.2f);
         drawRiver(fSpawnPos2, 1.2f);
         drawRiver(fSpawnPos3, 1.2f);
@@ -1132,7 +1141,7 @@ void scene5Render(void)
         drawRiver(fSpawnPos5, 1.2f);
 
         drawCraneOne(-0.6f, 0.2f, 0.6f);
-        drawCraneTwo(0.5f, 0.4f, 0.6f);
+        drawCraneTwo(0.2f, 0.2f, 0.6f);
 
         // Shri-Krishna
         KrishnaRath(-0.2f + krishnaScene5Translation.x, 0.0f + krishnaScene5Translation.y, 0.20f);
