@@ -38,6 +38,8 @@ void sceneFourRender()
      glTranslatef(sceneOriginX, sceneOriginY, 0.0f);
      glScalef(scaleScene, scaleScene, 0.0f);
      
+
+
      drawRoom();
 
      drawArjun(arjunOriginX, arjunOriginY, 0.7f, 0, 0, 0);
@@ -58,11 +60,16 @@ void sceneFourRender()
      drawNakul(nakulOriginX - 1.3f, nakulOriginY, 0.7f, 0, 0);
      glRotatef(-180.0f, 0.0f, 1.0f, 0.0f);
      drawPlateScene4(0.7, -0.45);
+     // VIshals plate
+     //DrawPlateEP(draupadiOriginX, -0.45f, 0.4f);
+     
 
      if(draupadiGoingBack)
      {
           glRotatef(180, 0.0f, 1.0f, 0.0f);
+          drawbowl(draupadiOriginX, draupadiOriginY);
           drawDraupadi(draupadiOriginX, draupadiOriginY, 0.7f, 2, 1);
+
           glRotatef(-180.0f, 0.0f, 1.0f, 0.0f);
           // glScalef(0.8f, 0.8f, 0.0f);
           // DrawPlateEP(draupadiOriginX - 0.5f, draupadiOriginY + 0.1f, 0.5f);
@@ -73,7 +80,9 @@ void sceneFourRender()
           // glScalef(0.8f, 0.8f, 0.0f);
           // DrawPlateEP(draupadiOriginX - 0.6f, draupadiOriginY - 0.3f, 0.5f);
           // glScalef(1.0f / 0.8f, 1.0f / 0.8f, 0.0f);
+          drawbowl(draupadiOriginX, draupadiOriginY);
           drawDraupadi(draupadiOriginX, draupadiOriginY, 0.7f, 2, 1);
+          
      }
      
      glLoadIdentity();

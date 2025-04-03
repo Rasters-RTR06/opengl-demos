@@ -4,6 +4,20 @@ void drawSemiCircleRadhika(int r, int g, int b);
 void drawTriangleRadhika(int r, int g, int b);
 void drawCardioidRadhika(int r, int g, int b);
 
+void drawbowl(float ox, float oy) {
+    // bowl - 1
+    glPushMatrix();
+    glTranslated(ox-0.41, oy-0.13, 0.0);
+    glScaled(0.025, 0.02, 0.0);
+    drawSemiCircleRadhika(94, 56, 18);       //function called
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslated(ox-0.41, oy-0.13, 0.0);
+    glScaled(0.025, 0.006, 0.0);
+    drawCircleRadhika(110, 69, 29);       //function called
+    glPopMatrix();
+}
 void drawPlate(void) {
     // code
     // plate
