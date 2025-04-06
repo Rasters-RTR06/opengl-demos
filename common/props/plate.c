@@ -35,20 +35,20 @@ void drawPlate(void) {
 
     // yellow bowl
     glPushMatrix();
-    glTranslated(-0.50, 0.25, 0.0);
-    glScaled(0.085, 0.085, 0.0);
+    glTranslated(-0.25, 0.25, 0.0);
+    glScaled(0.045, 0.045, 0.0);
     drawCircleRadhika(133, 133, 133);       //function called
     glPopMatrix();
 
     glPushMatrix();
     glTranslated(-0.50, 0.25, 0.0);
-    glScaled(0.08, 0.08, 0.0);
+    glScaled(0.05, 0.05, 0.0);
     drawCircleRadhika(250, 194, 25);       //function called
     glPopMatrix();
  
     glPushMatrix();
     glTranslated(0.0, 0.0, 0.0);
-    glScaled(0.15, 0.15, 0.0);
+    glScaled(0.062, 0.062, 0.0);
     drawCircleRadhika(232, 252, 238);       //function called
     glPopMatrix();
 
