@@ -285,14 +285,14 @@ void logSceneTransition(UINT timeElapsed)
 /******************************/
 
 float D_cordinate = -0.4f;
-float P_cordinate = -0.8f;
+float P_cordinate = -0.86f;
 BOOL move = FALSE;
 
 void updateD_Pos(void)
 {
-    D_cordinate += 0.06f;
-    P_cordinate += 0.06f;
-    if (D_cordinate > 0.6f)
+    D_cordinate += 0.03f;
+    P_cordinate += 0.03f;
+    if (D_cordinate > 0.615f)
     {
         move = FALSE;
     }
@@ -328,10 +328,10 @@ void scene6_4_1Render(void)
 
     drawSahadev(-0.25f, -0.05f, 0.7f, CHARACTER_SITTING, CHARACTER_HAND_FOLDED, HIDE_BOW_ARROW);
     drawNakul(-0.05f, -0.20f, 0.7f, CHARACTER_SITTING, CHARACTER_HAND_FOLDED);
-    sittingkrishna(0.6, -0.1f, 0.3);
+    sittingkrishna(0.5, -0.35f, 0.3);
 
-    drawDraupadi(D_cordinate, -0.3f, 0.6f, 3.0f, 1.0f);
-    DrawPlateEP(P_cordinate, -0.45f, 0.4f);
+    drawDraupadi(D_cordinate, -0.3f, 0.7f, 3.0f, 1.0f);
+    DrawPlateEP(P_cordinate, -0.47f, 0.3f);
 }
 
 void scene6_4_1Update(void)
@@ -374,7 +374,7 @@ void scene6_4_2Render(void)
 {
     drawRoom();
     sittingkrishna(0.6, -0.1f, 0.7);
-    drawDraupadi(0.58, 0.1f, 1.6f, 3.0f, 0.0f);
+    drawDraupadi(0.58f, 0.1f, 1.6f, 3.0f, 0.0f);
     DrawPlateEP(-0.3, -0.25f, 0.9f);
     // drawRiceGrain(-0.2, -0.15);
 }
@@ -415,9 +415,9 @@ void scene6_4_3Render(void)
 
     drawSahadev(-0.25f, -0.05f, 0.7f, CHARACTER_SITTING, CHARACTER_HAND_FOLDED, HIDE_BOW_ARROW);
     drawNakul(-0.05f, -0.20f, 0.7f, CHARACTER_SITTING, CHARACTER_HAND_FOLDED);
-    sittingkrishna(0.6, -0.1f, 0.3);
-    drawDraupadi(0.5f, -0.2f, 0.6f, 3.0f, 0.0f);
-    DrawPlateEP(0.1f, -0.35f, 0.4f);
+    sittingkrishna(0.6, -0.40f, 0.3);
+    drawDraupadi(0.6f, -0.35f, 0.7f, 3.0f, 0.0f);
+    DrawPlateEP(0.14f, -0.525f, 0.3f);
     // Add plate;
 }
 
@@ -508,11 +508,12 @@ BOOL scene6_4_4ShouldTransition(BOOL iSkipped)
 void scene6_4_5Render(void)
 {
     drawRoom();
-    drawBheem(1.9f, 0.0f, 1.6f, CHARACTER_SITTING, CHARACTER_HAND_GESTURE);
-    drawArjun(0.6f, 0.1f, 1.6, CHARACTER_SITTING, CHARACTER_HAND_GESTURE, HIDE_BOW_ARROW);
-    drawYudhishthir(0.2f, 0.0f, 1.6, CHARACTER_SITTING, CHARACTER_HAND_FOLDED);
 
-    drawSahadev(1.5f, 0.0f, 1.6, CHARACTER_SITTING, CHARACTER_HAND_FOLDED, HIDE_BOW_ARROW);
+    drawSahadev(1.4f, 0.2f, 1.6, CHARACTER_SITTING, CHARACTER_HAND_FOLDED, HIDE_BOW_ARROW);
+    drawBheem(1.9f, 0.0f, 1.6f, CHARACTER_SITTING, CHARACTER_HAND_FOLDED);
+    drawArjun(0.6f, 0.1f, 1.6, CHARACTER_SITTING, CHARACTER_HAND_FOLDED, HIDE_BOW_ARROW);
+    drawYudhishthir(0.2f, -0.2f, 1.6, CHARACTER_SITTING, CHARACTER_HAND_FOLDED);
+
     drawNakul(0.9f, -0.4f, 1.6, CHARACTER_SITTING, CHARACTER_HAND_FOLDED);
 }
 
@@ -546,7 +547,7 @@ void scene6_4_6Render(void)
 {
     drawRoom();
 
-    sittingkrishna(0.6, -0.1f, 1.6);
+    sittingkrishna(0.6, -0.35f, 1.6);
 }
 
 void scene6_4_6Update(void)
@@ -1502,9 +1503,16 @@ void scene6_2Render()
     drawSahadev(-0.25f, -0.05f, 0.7f, CHARACTER_SITTING, CHARACTER_HAND_FOLDED, HIDE_BOW_ARROW);
     drawNakul(-0.05f, -0.20f, 0.7f, CHARACTER_SITTING, CHARACTER_HAND_FOLDED);
 
-    drawDraupadi(-0.2f, -0.35f, 0.7f, g_iHandPositionDraupadi, CHARACTER_STANDING);
+    //drawDraupadi(-0.2f, -0.35f, 0.7f, g_iHandPositionDraupadi, CHARACTER_STANDING);
     if (g_iHandPositionDraupadi == DRAUPADI_HAND_THALI)
-        DrawPlateEP(-0.66f, -0.53f, 0.3f);
+    {
+        drawDraupadi(-0.4f, -0.30f, 0.7f, g_iHandPositionDraupadi, CHARACTER_STANDING);
+        DrawPlateEP(-0.86f, -0.47f, 0.3f);
+    }
+    else
+    {
+        drawDraupadi(-0.2f, -0.35f, 0.7f, g_iHandPositionDraupadi, CHARACTER_STANDING);
+    }
 }
 
 void scene6_2Update()
@@ -1637,7 +1645,7 @@ void scene6_2Update()
         break;
     }
     case 1330:
-    case 1340:
+    //case 1340:
         g_iHandPositionDraupadi = DRAUPADI_HAND_THALI;
         cameraTranslationScene6_2 = (TRANSLATION){0.0f, 0.0f, 0.0f};
         scalingScene6_2 = (SCALING){1.0f, 1.0f, 0.0f};
@@ -1732,7 +1740,7 @@ void renderScene6_5()
     // arjun
     drawArjun(0.3f, 0.0f, 0.7f, 1, CHARACTER_HAND_FOLDED, HIDE_BOW_ARROW);
     // yushishtir
-    drawNakul(0.5f, 0.0f, 0.7f, 1, CHARACTER_HAND_FOLDED);
+    drawYudhishthir(0.5f, 0.0f, 0.7f, 1, CHARACTER_HAND_FOLDED);
     // draupadi
     drawDraupadi(0.7f, 0.0f, 0.7f, 1, 1);
     // krishna

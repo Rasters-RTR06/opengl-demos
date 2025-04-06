@@ -112,8 +112,8 @@ void KrishnaHand(float originx, float originy, float resize)
     glColor3f(0.286, 0.231, 0.196);
     glBegin(GL_POLYGON);
     glVertex2f(originx + resize * 0.486, originy + resize * 0.465);
-    glVertex2f(originx + resize * 0.935, originy + resize * 0.785);
-    glVertex2f(originx + resize * 0.932, originy + resize * 0.335);
+    glVertex2f(originx + resize * 1.335, originy + resize * 0.785);
+    glVertex2f(originx + resize * 1.332, originy + resize * 0.335);
     glVertex2f(originx + resize * 0.720, originy + resize * 0.238);
     glEnd();
 }
