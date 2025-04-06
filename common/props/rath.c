@@ -35,8 +35,8 @@ void rathBody(MY_POINT startPosition, TRANSLATION translateBy, SCALING scaleBy)
     glLineWidth(10.0);
     glBegin(GL_LINES);
     glColor3f(0.776f, 0.557f, 0.490f); // wooden pole color browinsh
-    glVertex3f(startPosition.x, startPosition.y, startPosition.x);
-    glVertex3f(startPosition.x, startPosition.y + (1.15 * scaleBy.y), startPosition.z);
+    glVertex3f(startPosition.x + (0.01f * scaleBy.x), startPosition.y + (-0.005f * scaleBy.y), startPosition.z);
+    glVertex3f(startPosition.x + (0.01f * scaleBy.x), startPosition.y + (1.15 * scaleBy.y), startPosition.z);
     glEnd();
 
     // rath roof
