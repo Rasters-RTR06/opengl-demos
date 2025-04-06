@@ -1144,10 +1144,14 @@ void scene5Render(void)
         drawCraneTwo(0.2f, 0.2f, 0.6f);
 
         // Shri-Krishna
+        drawReins((MY_POINT){-1.0f + rathScene5Translation.x, -0.20f + rathScene5Translation.y, 0.0f},
+                  (MY_POINT){-0.4f + rathScene5Translation.x, -0.04f + rathScene5Translation.y, 0.0f});
+        drawHorse(-0.5f + horseScene5Translation.x, -0.3f + horseScene5Translation.y, 0.6f);
+        drawReins((MY_POINT){-1.0f + rathScene5Translation.x, -0.25f + rathScene5Translation.y, 0.0f},
+                  (MY_POINT){-0.30f + rathScene5Translation.x, -0.03f + rathScene5Translation.y, 0.0f});
         KrishnaRath(-0.2f + krishnaScene5Translation.x, 0.0f + krishnaScene5Translation.y, 0.30f);
         // Rath
         rath((MY_POINT){0.0f, -0.5f, 0.8f}, rathScene5Translation, (SCALING){1.2f, 1.2f, 1.2f});
-        drawHorse(-0.5f + horseScene5Translation.x, -0.3f + horseScene5Translation.y, 0.6f);
         drawFrontTrees();
     }
 
@@ -1190,7 +1194,6 @@ void scene5Render(void)
 
         drawPeacock(0.0f, 0.0f, 0.8f);
         drawFrontTrees();
-
     }
     if (bShowChamelon == TRUE)
     {
@@ -1304,10 +1307,12 @@ void drawChariotScene6_1()
     MY_POINT startPosition = {0.859f, -0.47f, 0.0f};
     SCALING scaleBy = {0.8f, 0.8f, 0.8f};
 
-    // KrishnaStanding(0.75f + rathTranslationScene6_1.x, -0.1f + rathTranslationScene6_1.y, 0.2f);
-    KrishnaRath(0.75f + rathTranslationScene6_1.x, -0.1f + rathTranslationScene6_1.y, 0.22f);
-
+    drawReins((MY_POINT){0.10f + rathTranslationScene6_1.x, -0.20f + rathTranslationScene6_1.y, 0.0f},
+              (MY_POINT){0.60f + rathTranslationScene6_1.x, -0.12f + rathTranslationScene6_1.y, 0.0f});
     drawHorse(0.5f + rathTranslationScene6_1.x, -0.25f + rathTranslationScene6_1.y, 0.5f);
+    drawReins((MY_POINT){0.10f + rathTranslationScene6_1.x, -0.20f + rathTranslationScene6_1.y, 0.0f},
+              (MY_POINT){0.70f + rathTranslationScene6_1.x, -0.13f + rathTranslationScene6_1.y, 0.0f});
+    KrishnaRath(0.75f + rathTranslationScene6_1.x, -0.1f + rathTranslationScene6_1.y, 0.22f);
     rath(startPosition, rathTranslationScene6_1, scaleBy);
 }
 
