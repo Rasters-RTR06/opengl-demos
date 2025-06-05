@@ -394,6 +394,7 @@ void display(void)
 	glLoadIdentity();
 	// glRotatef(angleCube, -0.25f, 1.0f, 0.0f);
 
+
 	// translate table top
 	glPushMatrix();
 	glTranslatef(0.0f, 0.0f, -8.0f);
@@ -416,20 +417,24 @@ void display(void)
 	glRotatef(angleCube, -0.25f, 1.0f, 0.0f);
 	glScalef(0.04f, 1.0f, 0.04f);
 	drawCube();
+	glPopMatrix();
 
-	// translate table leg3
+	// Left back leg
 	glPushMatrix();
-	glTranslatef(-2.8f, -1.0f, -15.0f);
-	glRotatef(angleCube, -0.25f, 1.0f, 0.0f);
-	glScalef(0.07f, 1.0f, 0.04f);
-	drawCube();
-
-	// translate table leg4
-	glPushMatrix();
-	glTranslatef(-2.8f, 1.0f, -15.0f);
+	glTranslatef(-1.8f, -1.0f, -19.0f);
 	glRotatef(angleCube, -0.25f, 1.0f, 0.0f);
 	glScalef(0.04f, 1.0f, 0.04f);
 	drawCube();
+	glPopMatrix();
+
+	// translate table leg4 (right back)
+	glPushMatrix();
+	glTranslatef(2.8f, -1.0f, -15.0f);
+	glRotatef(angleCube, -0.25f, 1.0f, 0.0f);
+	glScalef(0.04f, 1.0f, 0.04f);
+	drawCube();
+	glPopMatrix();
+
 
 	SwapBuffers(ghdc);
 }
