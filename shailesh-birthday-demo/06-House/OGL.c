@@ -42,6 +42,20 @@ FILE *gpFile = NULL;
 HDC ghdc = NULL; // Handle device context
 HGLRC ghrc = NULL; // Handle to graphics rendering context 
 
+// light related variables
+BOOL bLight = FALSE;
+GLfloat lightAmbient[] = {0.0f, 0.0f, 0.0f, 1.0f};
+GLfloat lightDiffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
+GLfloat lightSpecular[] = {0.0f, 0.0f, 0.0f, 1.0f};
+GLfloat lightPosition[] = {0.0f, 0.0f, 0.0f, 1.0f};
+
+GLfloat materialAmbient[] = {0.0f, 0.0f, 0.0f, 1.0f};
+GLfloat materialDiffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
+GLfloat materialSpecular[] = {1.0f, 1.0f, 1.0f, 1.0f};
+GLfloat materialShininess = 50.0f;
+
+GLfloat lightAngle0 = 45.0f;
+
 // Rotation angles
 float angleCube = -45.0f;
 GLuint texture_brick = 0.0f;
@@ -233,6 +247,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 						gbFullScreen = FALSE;
 					}
 					break;
+				case 'L':
+				case 'l':
+					if (bLight == FALSE)
+					{
+						bLight = TRUE;
+						glEnable(GL_LIGHTING);
+					}
+					else
+					{
+						bLight = FALSE;
+						glDisable(GL_LIGHTING);
+					}
+					break;
 				default:
 					break;
 			}
@@ -356,6 +383,18 @@ int initialize(void)
 	// Tell OpenGL to choose the color to clear the screen
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
+	// Light Configration
+	glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmbient);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDiffuse);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpecular);
+	glEnable(GL_LIGHT0);
+
+	// Material configration
+	glMaterialfv(GL_FRONT, GL_AMBIENT, materialAmbient);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, materialDiffuse);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, materialSpecular);
+	glMaterialf(GL_FRONT, GL_SHININESS, materialShininess);
+
 	// Load Textures
 	if(loadGLTexture(&texture_brick, MAKEINTRESOURCE(IDBITMAP_BRICK)) == FALSE)
 	{
@@ -446,6 +485,13 @@ void display(void)
 
 	// Set it to identity matrix
 	glLoadIdentity();
+
+	// Red light rotation
+	glPushMatrix();
+	glRotatef(lightAngle0, 1.0f, 0.0f, 0.0f);
+	lightPosition[2] = lightAngle0;
+	glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+	glPopMatrix();
 
 	// translate Cube backwards
 	glTranslatef(0.0f, 0.0f, -8.0f);
@@ -626,6 +672,13 @@ void update(void)
 	// if (angleCube >= 360.0f)
 	// {
 	// 	angleCube = angleCube - 360.0f;
+	// }
+
+	// update red light position
+	// lightAngle0 += 0.05f;
+	// if(lightAngle0 >= 360.0)
+	// {
+	// 	lightAngle0 = lightAngle0 - 360.f;
 	// }
 		
 }
