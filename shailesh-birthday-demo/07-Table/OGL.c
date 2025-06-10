@@ -44,6 +44,7 @@ HGLRC ghrc = NULL; // Handle to graphics rendering context
 
 // Rotation angles
 float angleCube = -40.0f;
+GLuint texture_wood = 0.0f;
 
 // Entry Point Function
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int iCmdShow)
@@ -53,6 +54,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	void display(void);
 	void update(void);
 	void uninitialize(void);
+	BOOL loadGLTexture(GLuint*, TCHAR[]);
 	
 	// variable declaration
 	WNDCLASSEX wndclass;
@@ -353,8 +355,55 @@ int initialize(void)
 	// Tell OpenGL to choose the color to clear the screen
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
+	// Load Textures
+	if(loadGLTexture(&texture_wood, MAKEINTRESOURCE(IDBITMAP_WOOD)) == FALSE)
+	{
+		fprintf(gpFile, "Loading wood texture failed!\n");
+		return(-6);
+	}
+
+	// Enable Texturing
+	glEnable(GL_TEXTURE_2D);
+
+	// warm up resize
+	resize(WIN_WIDTH, WIN_HEIGHT);
+
     return(0);
 }
+BOOL loadGLTexture(GLuint *texture, TCHAR imageResourceID[])
+{
+	// variable declarations
+	HBITMAP hBitmap = NULL;
+	BITMAP bmp;
+	BOOL bResult = FALSE;
+
+	// code
+	// load the bitmap is image
+	hBitmap = (HBITMAP)LoadImage(GetModuleHandle(NULL), imageResourceID, IMAGE_BITMAP, 0, 0, LR_CREATEDIBSECTION); // Create Device Independent Bitmap (DIB Section)
+	if (hBitmap)
+	{
+		bResult = TRUE;
+
+		// Get bitmap structure from the loaded bitmap image
+		GetObject(hBitmap, sizeof(BITMAP), &bmp);
+
+		// Generate OpenGL Texture Object
+		glGenTextures(1, texture);
+		// Bind to the newly created empty structure object
+		glBindTexture(GL_TEXTURE_2D, *texture);
+		// Unpack the image in memory for faster loading
+		glPixelStorei(GL_UNPACK_ALIGNMENT, 4); // 4 is for RGBA - 4 channels
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		gluBuild2DMipmaps(GL_TEXTURE_2D, 3, bmp.bmWidth, bmp.bmHeight, GL_BGR_EXT, GL_UNSIGNED_BYTE, bmp.bmBits);
+		glBindTexture(GL_TEXTURE_2D, 0); // Unbind texture by passing 0
+		// delete object
+		DeleteObject(hBitmap);
+		hBitmap = NULL;
+	}
+	return bResult;
+}
+
 
 void resize(int width, int height)
 {
@@ -396,6 +445,7 @@ void display(void)
 
 
 	// translate table top
+	
 	glPushMatrix();
 	glTranslatef(0.0f, 0.0f, -8.0f);
 	glRotatef(angleCube, -0.25f, 1.0f, 0.0f);
@@ -435,7 +485,7 @@ void display(void)
 	drawCube();
 	glPopMatrix();
 
-
+	
 	SwapBuffers(ghdc);
 }
 
@@ -453,86 +503,112 @@ void update(void)
 void drawCube(void)
 {
 	// Draw Cube here
+	glBindTexture(GL_TEXTURE_2D, texture_wood);
 	glBegin(GL_QUADS);
 	// Front face
 	// Top Right
+	glTexCoord2f(1.0, 1.0);
     glVertex3f(2.0f, 1.0f, 1.0f);
 
 	// Top Left
+	glTexCoord2f(0.0, 1.0);
     glVertex3f(-2.0f, 1.0f, 1.0f);
 
 	// Bottom Left
+	glTexCoord2f(0.0, 0.0);
     glVertex3f(-2.0f, -1.0f, 1.0f);
 
 	// Bottom Right
+	glTexCoord2f(1.0, 0.0);
     glVertex3f(2.0f, -1.0f, 1.0f);
 
 	// Right face
 	// Top Right
+	glTexCoord2f(1.0, 1.0);
     glVertex3f(2.0f, 1.0f, -1.0f);
 
 	// Top Left
+	glTexCoord2f(0.0, 1.0);
     glVertex3f(2.0f, 1.0f, 1.0f);
 
 	// Bottom Left
+	glTexCoord2f(0.0, 0.0);
     glVertex3f(2.0f, -1.0f, 1.0f);
 
 	// Bottom Right
+	glTexCoord2f(1.0, 0.0);
     glVertex3f(2.0f, -1.0f, -1.0f);
 
 	// Back face
 	// Top Right
+	glTexCoord2f(1.0, 1.0);
     glVertex3f(-2.0f, 1.0f, -1.0f);
 
 	// Top Left
+	glTexCoord2f(0.0, 1.0);
     glVertex3f(2.0f, 1.0f, -1.0f);
 
 	// Bottom Left
+	glTexCoord2f(0.0, 0.0);
     glVertex3f(2.0f, -1.0f, -1.0f);
 
 	// Bottom Right
+	glTexCoord2f(1.0, 0.0);
     glVertex3f(-2.0f, -1.0f, -1.0f);
 
 	// Left face
 	// Top Right
+	glTexCoord2f(1.0, 1.0);
     glVertex3f(-2.0f, 1.0f, 1.0f);
 
 	// Top Left
+	glTexCoord2f(0.0, 1.0);
     glVertex3f(-2.0f, 1.0f, -1.0f);
 
 	// Bottom Left
+	glTexCoord2f(0.0, 0.0);
     glVertex3f(-2.0f, -1.0f, -1.0f);
 
 	// Bottom Right
+	glTexCoord2f(1.0, 0.0);
     glVertex3f(-2.0f, -1.0f, 1.0f);
 
 	// Top face
 	// Top Right
+	glTexCoord2f(1.0, 1.0);
     glVertex3f(-2.0f, 1.0f, -1.0f);
 
 	// Top Left
+	glTexCoord2f(0.0, 1.0);
     glVertex3f(-2.0f, 1.0f, 1.0f);
 
 	// Bottom Left
+	glTexCoord2f(0.0, 0.0);
     glVertex3f(2.0f, 1.0f, 1.0f);
 
 	// Bottom Right
+	glTexCoord2f(1.0, 0.0);
     glVertex3f(2.0f, 1.0f, -1.0f);
 
 	// Bottom face
 	// Top Right
+	glTexCoord2f(1.0, 1.0);
     glVertex3f(-2.0f, -1.0f, -1.0f);
 
 	// Top Left
+	glTexCoord2f(0.0, 1.0);
     glVertex3f(-2.0f, -1.0f, 1.0f);
 
 	// Bottom Left
+	glTexCoord2f(0.0, 0.0);
     glVertex3f(2.0f, -1.0f, 1.0f);
 
 	// Bottom Right
+	glTexCoord2f(1.0, 0.0);
     glVertex3f(2.0f, -1.0f, -1.0f);
 
     glEnd();
+	glBindTexture(GL_TEXTURE_2D, 0); // Unbind texture here
 
 }
 
